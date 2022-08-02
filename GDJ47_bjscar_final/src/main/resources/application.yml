@@ -1,0 +1,39 @@
+server: 
+  port: 9090
+
+spring: 
+  datasource: 
+    url: jdbc:oracle:thin:@61.78.121.242:8877:xe
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    username: bjscar
+    password: bjscar
+    #connection pool설정
+    hikari:
+      minimum-idle: 10
+      maximum-pool-size: 50
+      auto-commit: false
+      connection-test-query: select 1 from dual
+      pool-name: bspool
+ #jpa환경설정하기
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    database: oracle    
+    database-platform: org.hibernate.dialect.Oracle9Dialect    
+#    hibernate:
+#      ddl-auto: create         
+
+#mvc패턴으로 jsp페이지 연결하기
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+
+      
+      
+      
+      
+      
+      
+      
+    
