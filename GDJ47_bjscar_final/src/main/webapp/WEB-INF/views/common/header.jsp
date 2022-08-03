@@ -37,7 +37,8 @@
 						</ul>
 				</li>
 				<ul class="login">
-					<button class="login">로그인</button>
+					  <button onclick="location.assign('${path}/member/memberLogin.do')">로그인</button>
+					  <button onclick="location.assign('${path}/member/memberEnroll.do')">회원가입</button>
 				</ul>				
 			</ul>
 	</nav>
