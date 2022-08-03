@@ -17,8 +17,8 @@ public class TestController {
 //		return "index";
 //	}
 	
-	@RequestMapping("/")
-	public String buisnessman() {
-		return "workplace/workplacePage";
-	}
+//	@RequestMapping("/")
+//	public String buisnessman() {
+//		return "workplace/workplacePage";
+//	}
 }

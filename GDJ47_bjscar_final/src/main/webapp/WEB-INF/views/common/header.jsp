@@ -4,16 +4,6 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">﻿
 <!DOCTYPE html>
-<<<<<<< HEAD
-<html>
-<head>
-<meta charset="UTF-8">
-<title>BJSCAR</title>
-</head>
-<body>
-	<h1>header</h1>
-</body>
-=======
 <html lang="en">
 <header>
 	<nav>
@@ -157,5 +147,3 @@ $(function(){
 	
 });
 </script>
->>>>>>> branch 'main' of https://github.com/loJYve/finalproject.git
-</html>
