@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<h1>main</h1>
 </body>
 </html>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
