@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="member">
+ <resultMap type="member" id="memberMap">
+       <id property="memberId" column="member_id"/>
+       <result property="password" column="password"/>
+       <result property="memberName" column="member_name"/>
+       <result property="birthday" column="birthday"/>
+       <result property="email" column="email"/>
+       <result property="phone" column="phone"/>
+       <result property="address" column="address"/>
+       <result property="totalMileage" column="total_mileage"/>
+       <result property="enrollDate" column="enroll_date"/>
+       <result property="secessionReason" column="secession_reason"/>
+    </resultMap>
+
+  <insert id="insertMember" parameterType="member">
+    INSERT INTO MEMBER VALUES(#{memberId},#{password},#{memberName},#{birthday},#{email},#{phone},#{address},default,default,default)
+  </insert>
+  
+  <select id="selectMember" parameterType="member" resultMap="memberMap">
+   SELECT * FROM MEMBER WHERE MEMBER_ID=#{memberId}
+  </select>
+  
+  <select id="selectFindByMemberId" parameterType="string" resultMap="memberMap">
+  SELECT * FROM MEMBER WHERE MEMBER_ID=#{userId} 
+  </select>
+</mapper>
