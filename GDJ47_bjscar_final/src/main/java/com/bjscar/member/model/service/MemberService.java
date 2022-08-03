@@ -14,7 +14,8 @@ public interface MemberService {
 	Member selectMember(Member m);
 	
 	String PhoneNumberCheck(String to) throws CoolsmsException;
-	
-	
+		
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
+	
+	
 }

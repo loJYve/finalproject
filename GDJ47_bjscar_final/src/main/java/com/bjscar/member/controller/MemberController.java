@@ -54,4 +54,6 @@ public class MemberController {
 		return service.selectMember(m);
 	}
 	
+	
+	
 }

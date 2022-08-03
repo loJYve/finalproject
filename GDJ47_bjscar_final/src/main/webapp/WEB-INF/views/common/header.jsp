@@ -40,7 +40,9 @@
 						</ul>
 				</li>
 				<ul class="login">
-				<button class="login">로그인</button>
+				<button onclick="location.assign('${path}/member/memberPage.do')">로그인</button>
+				<button onclick="location.assign('${path}/member/memberEnroll.do')">회원가입</button>
+				<!-- <button class="login">로그인</button> -->
 				</ul>
 			</ul>
 	</nav>
