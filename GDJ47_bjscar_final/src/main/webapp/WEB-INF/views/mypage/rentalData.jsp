@@ -1,12 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+
 <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
     <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
       <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
@@ -67,5 +60,5 @@
       </li>
     </ul>
   </div>
-</body>
-</html>
+  
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
