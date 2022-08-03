@@ -1,4 +1,4 @@
-package com.bjscar.model.vo;
+package com.bjscar.vehicle.model.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
