@@ -6,6 +6,6 @@
     <setting name="jdbcTypeForNull" value="VARCHAR"/>
    </settings>
      <typeAliases>
-     <typeAlias type="com.ys.project.member.model.vo.Member" alias="member"/>
+     <typeAlias type="com.bjscar.member.model.vo.Member" alias="member"/>
    </typeAliases>
 </configuration>

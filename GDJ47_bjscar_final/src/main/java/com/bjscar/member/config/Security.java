@@ -23,22 +23,23 @@ public class Security {
 	@Bean
 	public SecurityFilterChain authenticatePath(HttpSecurity http) throws Exception{
 		return http.csrf().disable()
-				   .formLogin()
-				   .loginPage("/loginPage") 
-				   .usernameParameter("MemberId")
-				   .passwordParameter("password")
-				   .failureForwardUrl("/error.do")
-				   .successForwardUrl("/successLogin.do")
-				   .and()
-				   .authorizeRequests()
-				   .antMatchers("/**").hasRole("USER")
-				   .and()
-				   .logout()
-				    .logoutUrl("logout")
-				    .and()
-				    .authenticationProvider(authenticationProvider())
+				.httpBasic().disable()
+//				   .formLogin()
+////				   .loginPage("/loginPage") 
+//				   .usernameParameter("MemberId")
+//				   .passwordParameter("password")
+//				   .failureForwardUrl("/error.do")
+//				   .successForwardUrl("/")
+//				   .and()
+//				   .authorizeRequests()
+//				   .antMatchers("/").hasRole("USER")
+//				   .and()
+//				   .logout()
+//				    .logoutUrl("logout")
+//				    .and()
+//				    .authenticationProvider(authenticationProvider())
 				    .build();
 				   
-				   
-	}
+		}		   
+	
 }
