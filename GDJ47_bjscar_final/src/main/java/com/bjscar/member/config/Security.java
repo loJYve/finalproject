@@ -25,8 +25,8 @@ public class Security {
 		return http.csrf().disable()
 				.httpBasic().disable()
 //				   .formLogin()
-////				   .loginPage("/loginPage") 
-//				   .usernameParameter("MemberId")
+//				   .loginPage("/member/memberLogin.do") 
+//			       .usernameParameter("MemberId")
 //				   .passwordParameter("password")
 //				   .failureForwardUrl("/error.do")
 //				   .successForwardUrl("/")
@@ -35,10 +35,10 @@ public class Security {
 //				   .antMatchers("/").hasRole("USER")
 //				   .and()
 //				   .logout()
-//				    .logoutUrl("logout")
-//				    .and()
-//				    .authenticationProvider(authenticationProvider())
-				    .build();
+//				   .logoutUrl("logout")
+//				   .and()
+//				   .authenticationProvider(authenticationProvider())
+				   .build();
 				   
 		}		   
 	

@@ -22,7 +22,13 @@
 				<th>가입일</th>
 				<th>탈퇴여부</th>
 			</tr>
-			
+			<c:if test="${not empty members }">
+            	<c:forEach var="m" items="${members }">
+            		<tr>           			
+            			<td><c:out value="${m.memberId }"/></td>           			
+            		</tr>
+            	</c:forEach>
+            </c:if>
 			
 			</table>
 		</section>
