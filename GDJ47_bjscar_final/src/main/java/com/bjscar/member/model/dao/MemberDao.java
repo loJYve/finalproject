@@ -9,7 +9,7 @@ public interface MemberDao {
 	
 	public int insertMember(SqlSession session,Member m);
 	
-	public Member selectMember(SqlSession session,Member m);
+	 Member selectMember(SqlSession session,Member m);
 	
 	Member findByMemberId(String userId,SqlSession session);
 }
