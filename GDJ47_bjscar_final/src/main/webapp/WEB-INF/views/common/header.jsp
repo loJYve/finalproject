@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html lang="en">
 <header>
@@ -33,11 +35,24 @@
 							<li>2nd menu</li>
 						</ul>
 				</li>
+				<c:if test="${loginMember == null }">
 				<ul class="login">
 				<button onclick="location.assign('${path}/member/memberPage.do')">로그인</button>
 				<button onclick="location.assign('${path}/member/memberEnroll.do')">회원가입</button>
 				<!-- <button class="login">로그인</button> -->
 				</ul>
+				</c:if> 
+				<c:if test="${loginMember != null }">
+				<ul class="login">
+				<span>
+                   <a href="${path }/member/memberView.do?userId=${loginMember.memberId}">
+                     <c:out value="${loginMember.memberName }"/>
+                   </a>님, 환영합니다.
+                </span>
+				<button onclick="location.assign('${path}/member/logout.do')">로그아웃</button>
+				<!-- <button class="login">로그인</button> -->
+				</ul>
+				</c:if>
 			</ul>
 	</nav>
 </header>

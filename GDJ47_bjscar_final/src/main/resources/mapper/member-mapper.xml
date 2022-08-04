@@ -19,7 +19,7 @@
   </insert>
   
   <select id="selectMember" parameterType="member" resultMap="memberMap">
-   SELECT * FROM MEMBER WHERE MEMBER_ID=#{memberId}
+   SELECT * FROM MEMBER WHERE MEMBER_ID=#{memberId} AND PASSWORD=#{password}
   </select>
   
   <select id="selectFindByMemberId" parameterType="string" resultMap="memberMap">
