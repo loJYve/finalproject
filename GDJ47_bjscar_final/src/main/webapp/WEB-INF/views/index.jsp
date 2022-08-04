@@ -12,7 +12,7 @@
 	<h1>main</h1>
 
 	
-	<button onclick="${path}/workplace.do">사업장관리</button>
+	<button onclick="location.assign('${path}/work/workplace.do')">사업장관리</button>
 	
 
 	  <button onclick="location.assign('${path}/member/memberLogin.do')">로그인</button>
