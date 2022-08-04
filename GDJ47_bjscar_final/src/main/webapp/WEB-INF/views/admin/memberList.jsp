@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="path" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,11 +30,12 @@
             		<tr>           			
             			<td><c:out value="${m.memberId }"/></td>
             			<td><c:out value="${m.memberName }"/></td> 
-            			<td><c:out value="${m.memberId }"/></td> 
-            			<td><c:out value="${m.memberId }"/></td> 
-            			<td><c:out value="${m.memberId }"/></td> 
-            			<td><c:out value="${m.memberId }"/></td> 
-            			<td><c:out value="${m.memberId }"/></td>            			
+            			<td><c:out value="${m.birthday }"/></td> 
+            			<td><c:out value="${m.email }"/></td> 
+            			<td><c:out value="${m.phone }"/></td> 
+            			<td><c:out value="${m.address }"/></td> 
+            			<td><c:out value="${m.enrollDate }"/></td>            			
+            			<td><c:out value="${m.secessionReason }"/></td>            			
             		</tr>
             	</c:forEach>
             </c:if>
