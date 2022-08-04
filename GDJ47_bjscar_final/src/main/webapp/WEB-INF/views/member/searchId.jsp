@@ -16,7 +16,7 @@
      <!-- Bootstrap CSS -->
  	 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>로그인 폼</title>
+    <title>아이디찾기 폼</title>
     <style>
         @import url("http://fonts.googleapis.com/earlyaccess/nanumgothic.css");
 	
@@ -79,35 +79,33 @@
   </head>
 
   <body cellpadding="0" cellspacing="0" marginleft="0" margintop="0" width="100%" height="100%" align="center">
-	
-	<div class="card align-middle" style="width:28rem;">
-	<div class="card-title" style="margin-top:30px;">
-		<div class="twelve" style="display: flex;align-items:center;text-align: center;">
-	<img src="/images/car.png" style="width:70px;height:70px;">
-		<h2>BJSCAR</h2>
-    <img src="/images/car.png" style="width:70px;height:70px;">
+
+	<div class="card align-middle" style="width:25rem;">
+		<div class="card-title" style="margin-top:30px;">   
+			<div class="twelve" style="text-align: center">
+            <h1>BJSCAR</h1>
             </div>
 		</div>
 		<br/>
-      <form action="${path }/member/login.do" class="login" method="post">
-         <div class="checkbox">
+      <form action="${path }/member/searchIdEnd.do" method="post">
+         <!-- <div class="checkbox">
             <label>
             <input type="radio" name="mode" value="admin"> 사업자
 			&nbsp;&nbsp;
 			<input type="radio" name="mode" value="member" checked> 회원
             </label>
-          </div> 
+          </div>  -->
 		<!-- <div class="card-body"> -->
         <input type="text" name="memberId" id="memberId" class="form-control" placeholder="ID" autofocus required><BR>
-        <input type="password" name="password" id="password" class="form-control" placeholder="Password"  required><br>
+        <input type="password" name="email" id="email" class="form-control" placeholder="Email"  required><br>
          <p id="check" class="check"></p><br/>
-        <input id="btn-Yes" class="btn btn-lg btn-primary btn-block" type="submit" value="로그인">
+        <input id="btn-Yes" class="btn btn-lg btn-primary btn-block" type="submit" value="아이디찾기">
       </form>
         <br/>
         <br/>
 		<!-- </div> -->
          <div class="links"> 
-            <a href="${path }/member/searchId.do" class="text-primary">아이디 찾기</a> | <a href="${path }/member/searchpw.do" class="text-primary">비밀번호 찾기</a> | <a href="/member/memberEnroll.do" class="text-primary">회원가입</a>
+            <a href="${path }/member/memberPage.do" class="text-primary">로그인</a> | <a href="${path }/member/searchpw.do" class="text-primary">비밀번호 찾기</a> | <a href="/member/memberEnroll.do" class="text-primary">회원가입</a>
 
         </div>
 	</div>
