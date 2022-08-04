@@ -11,7 +11,7 @@
        <result property="address" column="address"/>
        <result property="totalMileage" column="total_mileage"/>
        <result property="enrollDate" column="enroll_date"/>
-       <result property="secessionReason" column="secession_reason"/>
+       <result property="secessionReason" column="secession_status"/>
     </resultMap>
 
   <insert id="insertMember" parameterType="member">
@@ -19,12 +19,16 @@
   </insert>
   
   <select id="selectMember" parameterType="member" resultMap="memberMap">
-   SELECT * FROM MEMBER WHERE MEMBER_ID=#{memberId}
+   SELECT * FROM MEMBER WHERE MEMBER_ID=#{memberId} AND PASSWORD=#{password}
   </select>
   
-  <select id="findAll" parameterType="member" resultMap="memberMap">
+  <select id="selectMemberList" parameterType="member" resultMap="memberMap">
   	SELECT * FROM MEMBER
   </select>
+  
+  <select id="selectMemberCount" resultType="_int">
+		SELECT COUNT(*) FROM MEMBER
+	</select>
   
   <select id="selectFindByMemberId" parameterType="string" resultMap="memberMap">
   SELECT * FROM MEMBER WHERE MEMBER_ID=#{userId} 

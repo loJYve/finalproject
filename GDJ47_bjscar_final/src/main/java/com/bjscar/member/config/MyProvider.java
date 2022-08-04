@@ -23,8 +23,10 @@ public class MyProvider implements AuthenticationProvider{
 		String username = authentication.getName();
 		String password = (String)authentication.getCredentials();
 		Member loginMember =(Member)service.loadUserByUsername(username);
-		if(loginMember==null||encoder.matches(password, loginMember.getPassword()))
+		
+		if(loginMember==null||encoder.matches(password,loginMember.getPassword()))
 			throw new BadCredentialsException("인증실패");
+		
 		
 		return new UsernamePasswordAuthenticationToken(loginMember,
 				loginMember.getPassword(),loginMember.getAuthorities());

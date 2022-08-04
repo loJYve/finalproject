@@ -1,6 +1,7 @@
 package com.bjscar.member.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,9 @@ public class MemberController {
 	@Autowired
 	private MemberService service;
 	
+	@Autowired
+	private BCryptPasswordEncoder pwEncoder;
+	
 	@RequestMapping("/")
 	public String main() {
 		return "index";
@@ -29,6 +33,7 @@ public class MemberController {
 			
 	@RequestMapping("/enrollMemberEnd.do")
 	public String enroll(Member m,Model mv) {
+		m.setPassword(pwEncoder.encode(m.getPassword()));
 		int result = service.insertMember(m);
 		System.out.println(m);
 		mv.addAttribute("members",result);
