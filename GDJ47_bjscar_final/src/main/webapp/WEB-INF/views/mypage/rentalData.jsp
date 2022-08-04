@@ -8,68 +8,68 @@
 
 <main>
 	<div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
-	    <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
-	      <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
-	      <span class="fs-5 fw-semibold">가나라</span>
-	    </a>
-	    <ul class="list-unstyled ps-0">
-	      <li class="mb-1">
-	        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
-	          Home
-	        </button>
-	        <div class="collapse" id="home-collapse" style="">
-	          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-	            <li><a href="#" class="link-dark rounded">Overview</a></li>
-	            <li><a href="#" class="link-dark rounded">Updates</a></li>
-	            <li><a href="#" class="link-dark rounded">Reports</a></li>
-	          </ul>
-	        </div>
-	      </li>
-	      <li class="mb-1">
-	        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-	          Dashboard
-	        </button>
-	        <div class="collapse" id="dashboard-collapse" style="">
-	          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-	            <li><a href="#" class="link-dark rounded">Overview</a></li>
-	            <li><a href="#" class="link-dark rounded">Weekly</a></li>
-	            <li><a href="#" class="link-dark rounded">Monthly</a></li>
-	            <li><a href="#" class="link-dark rounded">Annually</a></li>
-	          </ul>
-	        </div>
-	      </li>
-	      <li class="mb-1">
-	        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-	          Orders
-	        </button>
-	        <div class="collapse" id="orders-collapse" style="">
-	          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-	            <li><a href="#" class="link-dark rounded">New</a></li>
-	            <li><a href="#" class="link-dark rounded">Processed</a></li>
-	            <li><a href="#" class="link-dark rounded">Shipped</a></li>
-	            <li><a href="#" class="link-dark rounded">Returned</a></li>
-	          </ul>
-	        </div>
-	      </li>
-	      <li class="border-top my-3"></li>
-	      <li class="mb-1">
-	        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
-	          Account
-	        </button>
-	        <div class="collapse" id="account-collapse">
-	          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-	            <li><a href="#" class="link-dark rounded">New...</a></li>
-	            <li><a href="#" class="link-dark rounded">Profile</a></li>
-	            <li><a href="#" class="link-dark rounded">Settings</a></li>
-	            <li><a href="#" class="link-dark rounded">Sign out</a></li>
-	          </ul>
-	        </div>
-	      </li>
-	    </ul>
-	  </div>
-	 </main>
+
+		<a href="/mypage/rentaldata.do" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
+  			<span class="fs-5 fw-semibold">마이페이지</span>
+  		</a>
+		<div class="rounded bg-secondary bg-opacity-50" style="padding: 10%">
+			<h3 class="text-center">회원이름</h2>
+			<h4 class="text-center">회원 아이디</h3>
+			<hr>
+			<span>마일리지<br>값asdasd</span>
+			<button type="button" class="btn btn-secondary">정보 수정</button>
+		</div>
+		<hr>
+		<ul class="list-unstyled ps-0">
+			<li class="mb-1">
+				<button class="btn btn-toggle align-items-center rounded " data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
+					랜트 내역
+				</button>
+				<div class="collapse show" id="home-collapse" style="">
+					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+						<li><a href="/mypage/rentaldata.do" class="link-dark rounded">랜트중인 차량</a></li>
+						<li><a href="/mypage/rentalhistory.do" class="link-dark rounded">이전 예약 조회</a></li>
+					</ul>
+				</div>
+			</li>
+			<li class="border-top my-3"></li>
+			<li class="mb-1">
+				<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+				  메뉴
+				</button>
+				<div class="collapse" id="dashboard-collapse" style="">
+					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+						<li><a href="/mypage/" class="link-dark rounded">결제 내역</a></li>
+						<li><a href="/mypage/" class="link-dark rounded">운전면허 등록</a></li>
+						<li><a href="/mypage/" class="link-dark rounded">즐겨찾는 지역</a></li>
+					</ul>
+				</div>
+			</li>
+			<li class="border-top my-3"></li>
+			<li class="mb-1">
+			<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+			  고객 센터
+			</button>
+			<div class="collapse" id="orders-collapse" style="">
+				<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+					<li><a href="/mypage/" class="link-dark rounded">문의게시판</a></li>
+					<li><a href="/mypage/" class="link-dark rounded">1대1 문의</a></li>
+					<li><a href="/mypage/" class="link-dark rounded">자주 묻는 질문</a></li>
+				</ul>
+			 </div>
+			</li>
+			<li class="border-top my-3"></li>
+		</ul>
+	</div>
+	
+	<div>
+		
+	</div>
+</main>
 	 
   <style>
+  
+  		
 	  	body {
 		  min-height: 100vh;
 		  min-height: -webkit-fill-available;
@@ -80,6 +80,8 @@
 		}
 		
 		main {
+			margin-left:10%;
+			margin-right:10%;
 		  display: flex;
 		  flex-wrap: nowrap;
 		  height: 100vh;

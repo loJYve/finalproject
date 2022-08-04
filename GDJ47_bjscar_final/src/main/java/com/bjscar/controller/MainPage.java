@@ -7,7 +7,7 @@ public class MainPage {
 	
 	@RequestMapping("/main.do")
 	public String mainPage() {
-		return "common/header";
+		return "index";
 	}
 
 }
