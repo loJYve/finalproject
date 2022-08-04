@@ -22,6 +22,10 @@
    SELECT * FROM MEMBER WHERE MEMBER_ID=#{memberId}
   </select>
   
+  <select id="findAll" parameterType="member" resultMap="memberMap">
+  	SELECT * FROM MEMBER
+  </select>
+  
   <select id="selectFindByMemberId" parameterType="string" resultMap="memberMap">
   SELECT * FROM MEMBER WHERE MEMBER_ID=#{userId} 
   </select>

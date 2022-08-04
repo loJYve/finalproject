@@ -25,7 +25,13 @@
 			<c:if test="${not empty members }">
             	<c:forEach var="m" items="${members }">
             		<tr>           			
-            			<td><c:out value="${m.memberId }"/></td>           			
+            			<td><c:out value="${m.memberId }"/></td>
+            			<td><c:out value="${m.memberName }"/></td> 
+            			<td><c:out value="${m.memberId }"/></td> 
+            			<td><c:out value="${m.memberId }"/></td> 
+            			<td><c:out value="${m.memberId }"/></td> 
+            			<td><c:out value="${m.memberId }"/></td> 
+            			<td><c:out value="${m.memberId }"/></td>            			
             		</tr>
             	</c:forEach>
             </c:if>
