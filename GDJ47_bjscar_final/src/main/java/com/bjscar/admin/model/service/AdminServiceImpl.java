@@ -1,6 +1,7 @@
 package com.bjscar.admin.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,21 @@ public class AdminServiceImpl implements AdminService {
 	private SqlSessionTemplate session;
 	
 	@Override
-	public List<Member> selectMembers() {
+	public List<Member> selectMemberList() {
 		// TODO Auto-generated method stub
-		return dao.findAll(session);
+		return dao.selectMemberList(session);
+	}
+	
+	@Override
+	public List<Member> selectMemberListPage(Map param) {
+		// TODO Auto-generated method stub
+		return dao.selectMemberListPage(session, param);
+	}
+	
+	@Override
+	public int selectMemberCount() {
+		// TODO Auto-generated method stub
+		return dao.selectMemberCount(session);
 	}
 
 }
