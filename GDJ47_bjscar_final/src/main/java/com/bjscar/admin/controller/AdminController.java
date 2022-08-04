@@ -24,6 +24,7 @@ public class AdminController {
 	@RequestMapping("/admin/all")
 	@ResponseBody
 	public List<Member> getStudent(){
+		
 		return service.selectMembers();
 	}
 }

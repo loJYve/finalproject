@@ -11,7 +11,7 @@
        <result property="address" column="address"/>
        <result property="totalMileage" column="total_mileage"/>
        <result property="enrollDate" column="enroll_date"/>
-       <result property="secessionReason" column="secession_reason"/>
+       <result property="secessionReason" column="secession_status"/>
     </resultMap>
 
   <insert id="insertMember" parameterType="member">
