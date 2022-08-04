@@ -2,14 +2,19 @@ package com.bjscar.admin.model.dao;
 
 import java.util.List;
 
-import com.bjscar.member.model.vo.Member;
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.stereotype.Repository;
 
+import com.bjscar.member.model.vo.Member;
+@Repository
 public class AdminDaoImpl implements AdminDao {
 
+	
+	
 	@Override
-	public List<Member> findAll() {
+	public List<Member> findAll(SqlSessionTemplate session) {
 		// TODO Auto-generated method stub
-		return null;
+		return session.selectList("member.findAll");
 	}
 
 }
