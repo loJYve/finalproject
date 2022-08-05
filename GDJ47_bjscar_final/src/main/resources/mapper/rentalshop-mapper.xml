@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="rentalshop">
+  
+  <resultMap type="rentalshop" id="rentalshopMap">
+	<id column="RENTALSHOP_ID" property="rentalshopId"/>
+	<id column="RENTALSHOP_NAME" property="rentalshopName"/>
+	<id column="RENTALSHOP_ADDR" property="rentalshopAddr"/>
+	<id column="LATITUDE" property="latitude"/>
+	<id column="LONGTITUDE" property="longitude"/>
+	<id column="BM_MEMBER" property="bmMember"/>
+</resultMap>
+  
+   <select id="selectRentalshopList" parameterType="rentalshop" resultMap="rentalshopMap">
+  	SELECT * FROM RENTALSHOP
+  </select>
+  
+  <select id="selectRentalshopCount" resultType="_int">
+		SELECT COUNT(*) FROM RENTALSHOP
+	</select>
+  
+</mapper>
