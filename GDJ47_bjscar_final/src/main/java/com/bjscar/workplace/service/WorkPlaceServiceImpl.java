@@ -5,10 +5,11 @@ import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.bjscar.rentalshop.model.vo.Rentalshop;
 import com.bjscar.workplace.dao.WorkPlaceDao;
-
+@Service
 public class WorkPlaceServiceImpl implements WorkPlaceService {
 
 	@Autowired
@@ -35,4 +36,9 @@ public class WorkPlaceServiceImpl implements WorkPlaceService {
 		return dao.selectRentalshopCount(session);
 	}
 
+	
+	@Override
+	public Rentalshop selectRentalshop(String name) {
+		return dao.selectRentalshop(session, name);
+	}
 }

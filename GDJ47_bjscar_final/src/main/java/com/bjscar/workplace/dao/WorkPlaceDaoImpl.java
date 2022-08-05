@@ -5,9 +5,10 @@ import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.bjscar.rentalshop.model.vo.Rentalshop;
-
+@Repository
 public class WorkPlaceDaoImpl implements WorkPlaceDao{
 
 	@Override
@@ -29,6 +30,11 @@ public class WorkPlaceDaoImpl implements WorkPlaceDao{
 	public int selectRentalshopCount(SqlSessionTemplate session) {
 		// TODO Auto-generated method stub
 		return session.selectOne("rentalshop.selectRentalshopCount");
+	}
+	
+	@Override
+	public Rentalshop selectRentalshop(SqlSessionTemplate session,String name) {
+		return session.selectOne("rentalshop.selectrentalshop");
 	}
 
 }

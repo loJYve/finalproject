@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bjscar.common.PageFactory;
-import com.bjscar.member.model.vo.Member;
 import com.bjscar.rentalshop.model.vo.Rentalshop;
 import com.bjscar.workplace.service.WorkPlaceService;
 
@@ -34,9 +33,17 @@ public class WorkPlaceController {
 		mv.addObject("rentalshops",list);
 		int totalData=service.selectRentalshopCount();
 		mv.addObject("totalContents",totalData);
-		mv.addObject("pageBar",PageFactory.getPageBar(totalData, numPerpage, cPage, "workplace.do"));
+		mv.addObject("pageBar",PageFactory.getPageBar(totalData, numPerpage, cPage, "/work/workplace.do"));
 		// /WEB-INF/views/viewName.jsp
 		mv.setViewName("workplace/workplacePage");
+		return mv;
+	}
+	
+	@RequestMapping("/work/workplace.do")
+	public ModelAndView workplaceView(String name,ModelAndView mv) {
+		mv.addObject("rentalshop",service.selectRentalshop(name));
+		mv.setViewName("work/workView");
+		
 		return mv;
 	}
 	

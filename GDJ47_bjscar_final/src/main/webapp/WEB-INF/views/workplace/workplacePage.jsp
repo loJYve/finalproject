@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html>
@@ -16,7 +18,7 @@
 
 	<div>
 		<section id="rentalshop-container" class="container">
-			<p>총 ${totalContents }건의 게시물이 있습니다.</p>
+			<p>총 ${totalContents }곳의 사업장이 있습니다.</p>
 			<h2>개인 사업장관리</h2>
 			<table id="tbl_rentalshop" class="table table-striped table-hover">
 				<tr>
@@ -29,7 +31,7 @@
 					<c:forEach var="r" items="${rentalshops }">
 						<tr>
 							<td><c:out value="${r.rentalshopId }"/></td>
-							<td><c:out value="${r.rentalshopName }"/></td>
+							<td><a href="${path}/work/workplace.do?name=${r.rentalshopName}"><c:out value="${r.rentalshopName }"/></a></td>
 							<td><c:out value="${r.rentalshopAddr }"/></td>
 							<td><c:out value="${r.bmMember }"/></td>
 						</tr>
@@ -46,5 +48,4 @@
 		</section>
 	</div>
 
-</body>
-</html>
+<jsp:include page="/WEB-INF/views/common/footer.jsp" />
