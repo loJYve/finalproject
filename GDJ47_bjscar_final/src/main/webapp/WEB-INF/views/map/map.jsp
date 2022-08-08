@@ -3,26 +3,28 @@
 <%@ page import="java.util.List,com.bjscar.rentalshop.model.vo.Rentalshop" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	
 	
-	<c:forEach items="${rl }" var="b">
+<%-- 	<c:forEach items="${rl }" var="b">
 	   				<tr>
 	   					<td>${ b.rentalshopId }</td>
 	   					<td>${ b.rentalshopName }</td>
 	   					<td> ${b.rentalshopAddr }<br></td>
 	       				
 	       			</tr>
-     </c:forEach>
+     </c:forEach> --%>
      
   <div id="map" style="width:100%; height: 100vh; margin-top : 5%"></div>
- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHvjSqcmNdLlLaP9dPJilDm_XgPSnoAk8&callback=initMap&region=kr"></script> <input type="hidden" id="rs0">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHvjSqcmNdLlLaP9dPJilDm_XgPSnoAk8&callback=initMap&region=kr"></script> 
+<input type="hidden" id="rs0">
      
      
 <script>
 
-const rs = new Array(5);
+<%-- const rs = new Array(5);
 	for (let i = 0; i < rs.length; i++) {
 	      rs[i] = new Array(rs);
   	}
@@ -30,7 +32,7 @@ const rs = new Array(5);
 	$(()=>{
 	  $.ajax({
 				
-		  	url:"<%=request.getContextPath()%>/ajaxsearchrentalshop.do",
+		  	url:"<%=request.getContextPath()%>/map/searchRentalshop",
 			success:data=>{
 				console.log(data);
 				console.log(data.length);
@@ -60,10 +62,34 @@ const rs = new Array(5);
 
   })  
   
-
-function initMap() {
-	  
-	  //console.log($("#rs0").val());
+ --%>
+	
+ function initMap() {
+	 const map=new google.maps.Map(document.getElementById("map"), {
+         zoom: 16,
+         center: { lat: 37.486440824 ,lng: 126.92809428	 }
+     });
+	const infoWindow=new google.maps.InfoWindow();
+	$.get("${pageContext.request.contextPath}/map/searchRentalshop",
+			data=>{
+				console.log(data);
+		data.filter(v=>{
+			const marker=new google.maps.Marker({
+				position:new google.maps.LatLng(v.latitude,v.longitude),
+				map:map,
+				label:v.rentalshopName,
+				optimized: false,
+			});
+			
+			marker.addListener("click",(e)=>{
+				infoWindow.close();
+				infoWindow.setContent(marker.getLabel()+"이혁주 바보~");
+				infoWindow.open(marker.getMap(), marker);
+			})
+		});
+	});	
+}
+	 /*  //console.log($("#rs0").val());
 	  console.log(rs[0][1]);
      
 	  const seoul = { lat: 37.5642135 ,lng: 127.0016985 };
@@ -84,12 +110,12 @@ function initMap() {
       	    position: station1,
       	    map: map,
       	    title: rs[0][1]
-      	  });
+      	  });*/
         
         /* Maker1.addEventListener("click",(e)=>{
       	  alert("이벤트");
         }); */
-        
+        /*
         Marker2 = new google.maps.Marker({
     	    position: station2,
     	    map: map,
@@ -113,8 +139,9 @@ function initMap() {
   	    map: map,
   	  	title: rs[4][1]
   	  });
-    
-    }
+     */
+    //}
+     
    </script>
      
      
