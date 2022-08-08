@@ -1,8 +1,4 @@
 package com.bjscar.rentalshop.model.vo;
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'main' of https://github.com/loJYve/finalproject.git
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,12 +16,5 @@ public class Rentalshop {
 	private String rentalshopAddr;
 	private double latitude;
 	private double longitude;
-	private String bmMember;
-	
-<<<<<<< HEAD
-	
-
-	
-=======
->>>>>>> branch 'main' of https://github.com/loJYve/finalproject.git
+	private String bmMember;	
 }
