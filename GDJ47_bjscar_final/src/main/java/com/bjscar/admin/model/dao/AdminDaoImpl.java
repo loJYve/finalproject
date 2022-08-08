@@ -36,7 +36,7 @@ public class AdminDaoImpl implements AdminDao {
 	
 	@Override
 	public List<Member> selectSearchList(SqlSessionTemplate session,Member m){
-		return session.selectList("Member.selectMemberList",m);
+		return session.selectList("member.selectSearchList2",m);
 	}
 
 }

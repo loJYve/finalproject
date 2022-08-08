@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html>
@@ -106,12 +107,12 @@
 	</div>
 	<div>
 		<form name="search-form" autocomplete="off">
-			<select name="type">
+			<select name="type" id="type_">
 				<option selected value="">검색 내용 선택</option>
-				<option value="id">아이디</option>
-				<option value="name">이름</option>
+				<option value="member_id">아이디</option>
+				<option value="member_name">이름</option>
 			</select>
-			<input type="text" name="keyword" value=""></input>
+			<input type="text" name="keyword" id="keyword_" value=""></input>
 			<input type="button" onclick="getSearchList()" class="btn btn-outline-primary mr-2" value="검색"></input>
 		</form>
 	</div>
@@ -121,11 +122,12 @@
 function getSearchList(){
 	$.ajax({
 		type: 'GET',
-		url : "/admin.do",
+		url : "/getSearchList",
 		data : $("form[name=search-form]").serialize(),
 		success : function(result){
+			console.log(result);
 			//테이블 초기화
-			$('#boardtable > tbody').empty();
+			$('#tbl_member > tbody').empty();
 			if(result.length>=1){
 				result.forEach(function(item){
 					str='<tr>'
@@ -134,12 +136,35 @@ function getSearchList(){
 					str+="<td><a href = '/admin/memberList?memberId=" + item.memberId + "'>" + item.memberName + "</a></td>";
 					str+="<td>"+item.enrollDate+"</td>";
 					str+="</tr>"
-					$('#boardtable').append(str);
+					$('#tbl_member').append(str);
         		})				 
 			}
 		}
 	})
 }
+
+/* const getSearchList=()=>{
+	$.ajax({
+		url:"${path}/getSearchList",
+		data:{type:$("#type_").val(), keyword:$("#keyword_").val()},
+		success: result=>{
+			console.log(JSON.parse(result));
+			//테이블 초기화
+			$('#tbl_member > tbody').empty();
+			if(result.length>=1){
+				result.forEach(function(item){
+					str='<tr>'
+					str += "<td>"+item.memberId+"</td>";
+					str+="<td>"+item.memberName+"</td>";
+					str+="<td><a href = '/admin/memberList?memberId=" + item.memberId + "'>" + item.memberName + "</a></td>";
+					str+="<td>"+item.enrollDate+"</td>";
+					str+="</tr>"
+					$('#tbl_member').append(str);
+        		})				 
+			}
+		}
+	});
+}*/
 </script>	
 
 </body>
