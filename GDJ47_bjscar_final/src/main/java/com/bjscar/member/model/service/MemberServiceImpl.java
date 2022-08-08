@@ -2,6 +2,8 @@ package com.bjscar.member.model.service;
 
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import org.apache.ibatis.session.SqlSession;
@@ -21,6 +23,8 @@ import net.nurigo.java_sdk.exceptions.CoolsmsException;
 public class MemberServiceImpl implements MemberService,UserDetailsService{
     @Autowired
     private MemberDao dao;
+    
+   
     
     @Autowired
     SqlSession session;
@@ -72,5 +76,18 @@ public class MemberServiceImpl implements MemberService,UserDetailsService{
     return numStr;
 
 	}
-
+	
+	@Override
+	public Member findId(Member m) {
+	
+		return dao.findId(session,m);
+	}
+	
+	@Override
+	public Member findPw(Map param) {
+		// TODO Auto-generated method stub
+		return dao.findPw(session,param);
+	}
+   
+	
 }

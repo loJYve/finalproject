@@ -1,5 +1,8 @@
 package com.bjscar.member.model.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
@@ -17,5 +20,8 @@ public interface MemberService {
 		
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
 	
+	Member findId(Member m);
+	
+	Member findPw(Map param);
 	
 }

@@ -1,23 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+ <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html lang="en">
    <head>
-        <title>로그인 폼</title>
+        <title>아이디 결과 폼</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script> 
+         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> 
 </head>
-<style type="text/css">
-* {
-margin: 0px;
-padding: 0px;
-}
+<style>
 .login {
 /* background: linear-gradient(to bottom, #0099ff 0%, #fff 100%); */
  background: -webkit-gradient(linear, left bottom, right top, from(#92b5db), to(#1d466c));
@@ -167,29 +163,30 @@ transform: rotate(45deg);
    
 </style>
 <body>
-    <div class="login">
+  <div class="login">
             <div class="account-login">
-               <h1>BJSCAR</h1>
-               <form action="${path }/member/login.do" class="login-form" method="post">
+               <h1>ID 조회 결과</h1>
+               <div class="login-form">
                   <div class="form-group">
-                      <input type="text" name="memberId" id="memberId" class="form-control" placeholder="ID" autofocus required>
-                  </div>
-                  <div class="form-group">
-                     <input type="password" name="password" id="password" class="form-control" placeholder="Password"  required>
+                    <!--   <input type="text" name="memberId" id="memberId" class="form-control" placeholder="ID" autofocus required> -->
+                   <c:if test="${not empty id }">
+                   <h4 style="text-align: center;">ID</h4><input style="text-align: center;" type="text" value="${id.memberId }">
+				    <%--  <c:out value="${id.memberId }"></c:out> --%>
+				   </c:if>
+				   <c:if test="${empty id }">
+				     <h4 style="text-align: center;">조회된 아이디가 없습니다.</h4>
+				   </c:if>
                   </div>
                   <div class="remember">
-                     <label class="custom-checkbox">아이디 저장
-                     <input type="checkbox">
-                     <span class="checkmark"></span>
-                     </label>
-                     <button class="btn" type="submit">Login</button>
-                     </form>
+                   <button class="btn" type="submit" onclick="location.href='${path}/member/memberPage.do'">로그인 화면 돌아가기</button> 
+                 
+                     </div>
                    <div class="links"> 
-            <a href="${path }/member/searchId.do" class="text-primary">아이디 찾기</a> | <a href="${path }/member/searchpw.do" class="text-primary">비밀번호 찾기</a> | <a href="/member/memberEnroll.do" class="text-primary">회원가입</a>
+                     <%--   <a href="${path }/member/memberPage.do" class="text-primary">로그인 화면 돌아가기</a> --%>
                    </div>
                   </div>
                  
             </div>
         </div>
-   </body>
+</body>
 </html>
