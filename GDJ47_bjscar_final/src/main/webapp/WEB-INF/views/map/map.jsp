@@ -83,7 +83,7 @@
 			
 			marker.addListener("click",(e)=>{
 				infoWindow.close();
-				infoWindow.setContent(marker.getLabel()+"이혁주 바보~");
+				infoWindow.setContent(marker.getLabel()+"넣을것");
 				infoWindow.open(marker.getMap(), marker);
 			})
 		});
