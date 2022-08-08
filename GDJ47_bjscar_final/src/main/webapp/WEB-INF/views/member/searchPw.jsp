@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
-        <title>로그인 폼</title>
+        <title>비밀번호찾기 폼</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -170,26 +170,21 @@ transform: rotate(45deg);
     <div class="login">
             <div class="account-login">
                <h1>BJSCAR</h1>
-               <form action="${path }/member/login.do" class="login-form" method="post">
+               <form action="${path }/member/searchPwEnd.do" class="login-form" method="post">
                   <div class="form-group">
                       <input type="text" name="memberId" id="memberId" class="form-control" placeholder="ID" autofocus required>
                   </div>
                   <div class="form-group">
-                     <input type="password" name="password" id="password" class="form-control" placeholder="Password"  required>
+                     <input type="text" name="email" id="email" class="form-control" placeholder="Email"  required>
                   </div>
                   <div class="remember">
-                     <label class="custom-checkbox">아이디 저장
-                     <input type="checkbox">
-                     <span class="checkmark"></span>
-                     </label>
-                     <button class="btn" type="submit">Login</button>
+                     <button class="btn" type="submit">비밀번호찾기</button>
                      </form>
                    <div class="links"> 
-            <a href="${path }/member/searchId.do" class="text-primary">아이디 찾기</a> | <a href="${path }/member/searchpw.do" class="text-primary">비밀번호 찾기</a> | <a href="/member/memberEnroll.do" class="text-primary">회원가입</a>
+            <a href="${path }/member/memberPage.do" class="text-primary">로그인</a> | <a href="${path }/member/searchId.do" class="text-primary">아이디 찾기</a> | <a href="/member/memberEnroll.do" class="text-primary">회원가입</a>
                    </div>
-                  </div>
-                 
+                  </div>   
             </div>
-        </div>
+     
    </body>
 </html>

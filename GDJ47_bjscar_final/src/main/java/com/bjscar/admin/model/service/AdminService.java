@@ -11,4 +11,7 @@ public interface AdminService {
 	List<Member> selectMemberListPage(Map param);
 	
 	int selectMemberCount();
+	
+	List<Member> getSearchList(Member m);
+	
 }
