@@ -1,5 +1,6 @@
 package com.bjscar.rentalshop.model.vo;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,6 +17,6 @@ public class Rentalshop {
 	private String rentalshopAddr;
 	private double latitude;
 	private double longitude;
-	private String bmMember;
-	
+	private String bmMember;	
+
 }

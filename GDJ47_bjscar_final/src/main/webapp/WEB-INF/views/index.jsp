@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
- <c:set var="path" value="${pageContext.request.contextPath}"/>
+	pageEncoding="UTF-8"%>
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +10,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+    pageEncoding="UTF-8"%>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+
 
 	
 	<button onclick="location.assign('${path}/work/workplace.do')">사업장관리</button>
@@ -22,9 +26,9 @@
 
    <h1>main</h1>
 
+
      
 
-</body>
-</html>
 
-<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+
+<jsp:include page="/WEB-INF/views/common/footer.jsp" />
