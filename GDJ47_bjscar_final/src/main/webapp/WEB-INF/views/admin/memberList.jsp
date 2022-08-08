@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <%
    List<Member> list=(List<Member>)request.getAttribute("members");
@@ -111,6 +112,7 @@
         	${pageBar }
         </div>
 	</div>
+<<<<<<< HEAD
 	<div id="search-container">
            검색타입 : 
         <select id="searchType">
@@ -149,9 +151,73 @@
       
       
    </script>
+=======
+	<div>
+		<form name="search-form" autocomplete="off">
+			<select name="type" id="type_">
+				<option selected value="">검색 내용 선택</option>
+				<option value="member_id">아이디</option>
+				<option value="member_name">이름</option>
+			</select>
+			<input type="text" name="keyword" id="keyword_" value=""></input>
+			<input type="button" onclick="getSearchList()" class="btn btn-outline-primary mr-2" value="검색"></input>
+		</form>
+	</div>
+>>>>>>> branch 'main' of https://github.com/loJYve/finalproject.git
 </div>        
 
+<<<<<<< HEAD
 
+=======
+<script>
+function getSearchList(){
+	$.ajax({
+		type: 'GET',
+		url : "/getSearchList",
+		data : $("form[name=search-form]").serialize(),
+		success : function(result){
+			console.log(result);
+			//테이블 초기화
+			$('#tbl_member > tbody').empty();
+			if(result.length>=1){
+				result.forEach(function(item){
+					str='<tr>'
+					str += "<td>"+item.memberId+"</td>";
+					str+="<td>"+item.memberName+"</td>";
+					str+="<td><a href = '/admin/memberList?memberId=" + item.memberId + "'>" + item.memberName + "</a></td>";
+					str+="<td>"+item.enrollDate+"</td>";
+					str+="</tr>"
+					$('#tbl_member').append(str);
+        		})				 
+			}
+		}
+	})
+}
+
+/* const getSearchList=()=>{
+	$.ajax({
+		url:"${path}/getSearchList",
+		data:{type:$("#type_").val(), keyword:$("#keyword_").val()},
+		success: result=>{
+			console.log(JSON.parse(result));
+			//테이블 초기화
+			$('#tbl_member > tbody').empty();
+			if(result.length>=1){
+				result.forEach(function(item){
+					str='<tr>'
+					str += "<td>"+item.memberId+"</td>";
+					str+="<td>"+item.memberName+"</td>";
+					str+="<td><a href = '/admin/memberList?memberId=" + item.memberId + "'>" + item.memberName + "</a></td>";
+					str+="<td>"+item.enrollDate+"</td>";
+					str+="</tr>"
+					$('#tbl_member').append(str);
+        		})				 
+			}
+		}
+	});
+}*/
+</script>	
+>>>>>>> branch 'main' of https://github.com/loJYve/finalproject.git
 
 </body>
 <style>

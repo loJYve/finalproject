@@ -52,13 +52,15 @@ public class MemberController {
 		
 	}
 	
-	//아이디체크
-	@RequestMapping("/idCheck.do")
-	@ResponseBody
-	public Member idCheck(Member m) {
-		return service.selectMember(m);
-	}
-	
+//	//아이디체크
+//	@RequestMapping("/searchIdEnd.do")
+//	@ResponseBody
+//	public Member idCheck(Member m) {
+//		Member m2 = service.selectMember(m);
+//		
+//		return m2;
+//	}
+//	
 	
 	
 }

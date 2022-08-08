@@ -1,5 +1,9 @@
 package com.bjscar.member.model.dao;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
@@ -25,5 +29,15 @@ public class MemberDaoImpl implements MemberDao {
 		// TODO Auto-generated method stub
 		return session.selectOne("member.selectFindByMemberId",userId);
 	}
-
+	
+	@Override
+	public Member findId(SqlSession session,Member m) {
+		// TODO Auto-generated method stub
+		return session.selectOne("member.findId",m);
+	}
+    @Override
+    public Member findPw(SqlSession session,Map param) {
+    	// TODO Auto-generated method stub
+    	return session.selectOne("member.findPw",param);
+    }
 }
