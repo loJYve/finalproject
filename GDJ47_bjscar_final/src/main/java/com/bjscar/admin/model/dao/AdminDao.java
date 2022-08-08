@@ -14,5 +14,7 @@ public interface AdminDao {
 	
 	int selectMemberCount(SqlSessionTemplate session);
 	
-	List<Member> selectSearchList(SqlSessionTemplate session,Member m);
+//	List<Member> selectSearchList(SqlSessionTemplate session,Member m);
+	
+	
 }

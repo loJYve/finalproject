@@ -34,9 +34,9 @@ public class AdminDaoImpl implements AdminDao {
 		return session.selectOne("member.selectMemberCount");
 	}
 	
-	@Override
-	public List<Member> selectSearchList(SqlSessionTemplate session,Member m){
-		return session.selectList("Member.selectMemberList",m);
-	}
-
+//	@Override
+//	public List<Member> selectSearchList(SqlSessionTemplate session,Member m){
+//		return session.selectList("Member.selectMemberList",m);
+//	}
+	
 }
