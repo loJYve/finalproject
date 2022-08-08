@@ -28,6 +28,9 @@ public class Member implements UserDetails{
     private int totalMileage;
     private Date enrollDate;
     private String secessionReason;
+    
+    private String type;
+    private String keyword;
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub

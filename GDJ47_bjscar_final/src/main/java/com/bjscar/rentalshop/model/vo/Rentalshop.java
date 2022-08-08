@@ -17,9 +17,6 @@ public class Rentalshop {
 	private String rentalshopAddr;
 	private double latitude;
 	private double longitude;
-	private String bmMember;
-	
-	
+	private String bmMember;	
 
-	
 }
