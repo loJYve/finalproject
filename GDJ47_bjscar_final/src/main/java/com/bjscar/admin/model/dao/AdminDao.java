@@ -13,8 +13,10 @@ public interface AdminDao {
 	List<Member> selectMemberListPage(SqlSessionTemplate session,Map param);
 	
 	int selectMemberCount(SqlSessionTemplate session);
+
+	List<Member> selectSearchList(SqlSessionTemplate session, Member m);
 	
-//	List<Member> selectSearchList(SqlSessionTemplate session,Member m);
+
 	
 	
 }
