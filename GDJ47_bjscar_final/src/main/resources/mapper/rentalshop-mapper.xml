@@ -19,8 +19,8 @@
 		SELECT COUNT(*) FROM RENTALSHOP
 	</select>
   
-  <select id="selectRentalshop" parameterType="_int" resultMap="rentalshopMap">
-  		SELECT * FROM RENTALSHOP R LEFT JOIN businessman B ON R.bm_member=B.bm_id where R.bm_member=#{name};
+  <select id="selectrentalshop" parameterType="string" resultMap="rentalshopMap">
+  		SELECT * FROM RENTALSHOP WHERE BM_MEMBER=#{name}
   </select>
   
 </mapper>
