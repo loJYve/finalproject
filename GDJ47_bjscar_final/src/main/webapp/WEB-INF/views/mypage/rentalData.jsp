@@ -1,69 +1,45 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
-
-
-
 <main>
-	<div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
-
-		<a href="/mypage/rentaldata.do" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
-  			<span class="fs-5 fw-semibold">마이페이지</span>
-  		</a>
-		<div class="rounded bg-secondary bg-opacity-50" style="padding: 10%">
-			<h3 class="text-center">회원이름</h2>
-			<h4 class="text-center">회원 아이디</h3>
-			<hr>
-			<span>마일리지<br>값asdasd</span>
-			<button type="button" class="btn btn-secondary">정보 수정</button>
-		</div>
-		<hr>
-		<ul class="list-unstyled ps-0">
-			<li class="mb-1">
-				<button class="btn btn-toggle align-items-center rounded " data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
-					랜트 내역
-				</button>
-				<div class="collapse show" id="home-collapse" style="">
-					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-						<li><a href="/mypage/rentaldata.do" class="link-dark rounded">랜트중인 차량</a></li>
-						<li><a href="/mypage/rentalhistory.do" class="link-dark rounded">이전 예약 조회</a></li>
-					</ul>
+	<jsp:include page="/WEB-INF/views/mypage/mypageSidebar.jsp"/>
+	<div class="ms-5 " style="width: 100%;">
+		<c:if test="${not empty rentalStatus }">
+			<h2>대여 차량 정보</h2>
+			<div style="display: flex;">
+				<c:if test="${not empty carImage}"> 
+					<div class="ratio ratio-1x1 ms-5" style="width: 40%">
+						<img alt="" src="${carImage.attechment_id }">
+					</div>
+ 				</c:if> 
+				<c:if test="${empty carImage}">
+					<div class="ratio ratio-1x1 ms-5" style="width: 35%">
+						<img alt="" src="https://cdn.pixabay.com/photo/2016/12/19/15/50/car-1918554_960_720.png">
+					</div>
+ 				</c:if>
+				<div class="mt-5 ms-5" style="width: 40%">
+					<h4>${carData.model }</h4>
+					<h4>대여 시간 : ${rentalStatus.rental_date }</h4>
+					<h4>출발 대여소 : ${rentalshopData.rentalshop_name }</h4>
+					<h4>반납 예정 시간 : ${rentalStatus.return_date }</h4>
+					<div class="d-grid gap-2 col-6 mx-auto">
+  						<button class="btn btn-secondary" type="button">반납 가능 대여소 조회하기!!</button>
+  						<button class="btn btn-secondary" type="button">반납하기!!</button>
+					</div>					
 				</div>
-			</li>
-			<li class="border-top my-3"></li>
-			<li class="mb-1">
-				<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-				  메뉴
-				</button>
-				<div class="collapse" id="dashboard-collapse" style="">
-					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-						<li><a href="/mypage/" class="link-dark rounded">결제 내역</a></li>
-						<li><a href="/mypage/" class="link-dark rounded">운전면허 등록</a></li>
-						<li><a href="/mypage/" class="link-dark rounded">즐겨찾는 지역</a></li>
-					</ul>
-				</div>
-			</li>
-			<li class="border-top my-3"></li>
-			<li class="mb-1">
-			<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-			  고객 센터
-			</button>
-			<div class="collapse" id="orders-collapse" style="">
-				<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-					<li><a href="/mypage/" class="link-dark rounded">문의게시판</a></li>
-					<li><a href="/mypage/" class="link-dark rounded">1대1 문의</a></li>
-					<li><a href="/mypage/" class="link-dark rounded">자주 묻는 질문</a></li>
-				</ul>
-			 </div>
-			</li>
-			<li class="border-top my-3"></li>
-		</ul>
-	</div>
-	
-	<div>
+			</div>
+		</c:if> 
 		
+		 <c:if test="${empty rentalStatus }">
+			<h2>대여 차량 정보</h2>
+			<h3 class="text-center mt-5 mb-5">대여한 차량이 없습니다</h3>
+			<div class="d-grid gap-2 col-6 mx-auto">
+	  			<button class="btn btn-secondary" type="button">대여하러 가기!!</button>
+			</div>	
+		</c:if>
 	</div>
 </main>
 	 
