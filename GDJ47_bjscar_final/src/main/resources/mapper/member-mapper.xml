@@ -41,4 +41,17 @@
   <select id="findPw" parameterType="map" resultMap="memberMap">
   SELECT * FROM MEMBER WHERE MEMBER_ID=#{id} AND EMAIL=#{email}
   </select>
+  <select id="selectSearchList" parameterType="member" resultMap="memberMap">
+  	SELECT * FROM MEMBER WHERE secessionReason='N'
+  	<choose>
+  		<when test="type !=null and type.equals('memberId')">
+  		AND memberId LIKE CONCAT('%',#{keyword}, '%')
+  		</when>
+  		<when test="type !=null and type.equals('memberName')">
+  		AND memberName LIKE CONCAT('%',#{keyword}, '%')
+  		</when>
+  	</choose>
+  </select>
+  
+
 </mapper>

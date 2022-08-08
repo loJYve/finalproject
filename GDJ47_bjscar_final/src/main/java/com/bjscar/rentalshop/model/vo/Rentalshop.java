@@ -19,5 +19,5 @@ public class Rentalshop {
 	private double longitude;
 	private String bmMember;
 
-	
+
 }
