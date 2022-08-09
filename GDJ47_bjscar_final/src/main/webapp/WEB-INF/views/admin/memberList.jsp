@@ -1,12 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" %>
+    <%@page import ="com.bjscar.member.model.vo.Member,java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
-
-	<div class="mt-5">
+<%
+   List<Member> list=(List<Member>)request.getAttribute("members");
+   String searchType=request.getParameter("searchType");
+   String keyword=request.getParameter("searchKeyword");
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div>
 		<section id="member-container" class="container">
 			<p style="text-align:end;">총 ${totalContents }명의 회원이 있습니다.</p>
 			<h2 style="text-align: center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;일반 회원관리</h2>
@@ -98,8 +112,49 @@
         	${pageBar }
         </div>
 	</div>
+
 </div>        
 <div id="search">
+	<div id="search-container">
+           검색타입 : 
+        <select id="searchType">
+           <option value="userId" <%=searchType!=null&&searchType.equals("userId")?"selected":"" %>>아이디</option>
+           <option value="userName" <%=searchType!=null&&searchType.equals("userName")?"selected":"" %> >회원이름</option>
+        </select>
+        <div id="search-userId">
+           <form action="<%=request.getContextPath()%>/admin.do">
+              <input type="hidden" name="searchType" value="MEMBER_ID" >
+              <input type="text" name="searchKeyword" size="25" 
+              placeholder="검색할 아이디를 입력하세요" >
+              <button type="submit">검색</button>
+           </form>
+        </div>
+        <div id="search-userName">
+           <form action="<%=request.getContextPath()%>/admin.do">
+              <input type="hidden" name="searchType" value="MEMBER_NAME">
+              <input type="text" name="searchKeyword" size="25" 
+              placeholder="검색할 이름을 입력하세요">
+              <button type="submit">검색</button>
+           </form>
+        </div>       
+      </div>
+    </div>
+   <script>
+      $(()=>{
+         $("#searchType").change(e=>{
+            /* alert("type이 변경됨"); */
+            const type=$(e.target).val();
+            console.log(type);
+            $("#search-container>div[id!=search-]").hide();
+            $("#search-"+type).css("display","inline-block");
+         });
+         $("#searchType").change();
+      })
+      
+      
+   </script>
+
+	<div>
 		<form name="search-form" autocomplete="off">
 			<select name="type" id="type_">
 				<option selected value="">검색 내용 선택</option>
@@ -109,7 +164,11 @@
 			<input type="text" name="keyword" id="keyword_" value=""></input>
 			<input type="button" onclick="getSearchList()" class="btn btn-outline-primary mr-2" value="검색"></input>
 		</form>
+
 </div>
+	</div>
+</div>        
+
 <script>
 function getSearchList(){
 	$.ajax({
@@ -164,6 +223,7 @@ function getSearchList(){
 	});
 }*/
 </script>	
+
 
 </body>
 <style>

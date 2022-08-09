@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 <meta charset="UTF-8">
@@ -25,7 +25,11 @@
         <li><a href="#" class="nav-link px-2 link-dark">Pricing</a></li>
         <li><a href="#" class="nav-link px-2 link-dark">FAQs</a></li>
         <li><a href="#" class="nav-link px-2 link-dark">About</a></li>
+
         <li><a href="<%=request.getContextPath()%>/admin.do" class="nav-link px-2 link-dark">관리자 페이지</a></li>
+        <li><a href="<%=request.getContextPath()%>/work/workplace.do" class="nav-link px-2 link-dark">사업장관리</a></li>
+        <li><a href="${path }/rental.do" class="nav-link px-2 link-dark">대여하기</a></li>
+
       </ul>
       <div class="col-md-3 text-end">
       <c:if test="${loginMember == null }">

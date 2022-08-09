@@ -42,6 +42,7 @@
    SELECT * FROM MEMBER WHERE MEMBER_NAME=#{memberName} AND EMAIL=#{email}
   </select>
   
+
   <select id="findPw" parameterType="map" resultMap="memberMap">
   SELECT * FROM MEMBER WHERE MEMBER_ID=#{id} AND EMAIL=#{email}
   </select>
@@ -57,5 +58,6 @@
   	</choose>
   </select>
   
+
 
 </mapper>

@@ -16,6 +16,6 @@
 		select * from rentalshop
 	</select>
 
-
+ 
 
 </mapper>

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bjscar.map.service.MapService;
@@ -17,7 +18,8 @@ public class MapController {
 	private MapService service;
 	
 	@RequestMapping("/map/searchRentalshop")
-	public ModelAndView searchRentalshop(ModelAndView mv) {
+	@ResponseBody
+	public List<Rentalshop> searchRentalshop(ModelAndView mv) {
 		
 		
 		List<Rentalshop> rl = service.searchRentalshop();
@@ -25,10 +27,16 @@ public class MapController {
 		for(Rentalshop r : rl) {
 			System.out.println(r);
 		}
-		mv.addObject("rl", rl);
-		mv.setViewName("/map/map");
-		return mv;
+//		mv.addObject("rl", rl);
+//		mv.setViewName("/map/map");
+		return rl;
 	}
+	
+	@RequestMapping("/map/mapview")
+	public String mapView() {
+		return "map/map";
+	}
+	
 	
 		//ModelAndView mv = new ModelAndView();
 		
