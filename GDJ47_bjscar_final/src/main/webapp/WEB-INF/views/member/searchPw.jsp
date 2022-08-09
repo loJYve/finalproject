@@ -174,9 +174,11 @@ transform: rotate(45deg);
                   <div class="form-group">
                       <input type="text" name="memberId" id="memberId" class="form-control" placeholder="ID" autofocus required>
                   </div>
+                  <p id="idch" class="check"> </p><br/>
                   <div class="form-group">
                      <input type="text" name="email" id="email" class="form-control" placeholder="Email"  required>
                   </div>
+                  <p id="emch" class="check"> </p><br/>
                   <div class="remember">
                      <button class="btn" type="submit">비밀번호찾기</button>
                      </form>
@@ -187,4 +189,38 @@ transform: rotate(45deg);
             </div>
      
    </body>
+<script>
+//아이디 정규식
+const idJ = /^[a-z0-9][a-z0-9_\-]{4,19}$/;
+// 이메일 검사 정규식
+const mailJ = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+//아이디 체크
+$("#memberId").focusout((e)=>{
+     if($('#memberId').val() == ""){
+   		$('#idch').text('*필수 정보입니다.');
+   	  	$('#idch').css('color', 'red');
+   		return false;
+	  }else if(!idJ.test($('#memberId').val())){
+  		$('#idch').text('4~19자의 영문 소문자, 숫자만 사용가능합니다')
+		$('#idch').css('color', 'red')
+		   return false;
+	  }else{ 
+		  
+       $("#idch").hide();
+       return true;
+     }
+});
+//이메일
+$("#email").focusout((e)=>{
+	  if($("#email").val()==""){
+		  $('#emch').text('*필수 정보입니다.');
+		  $('#emch').css('color','red');
+		  return false;
+	  }else{
+		 
+		  $('#emch').hide();
+			return true;
+	  } 
+});
+</script>
 </html>

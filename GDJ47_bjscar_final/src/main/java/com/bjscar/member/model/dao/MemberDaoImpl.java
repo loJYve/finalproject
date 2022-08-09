@@ -40,4 +40,15 @@ public class MemberDaoImpl implements MemberDao {
     	// TODO Auto-generated method stub
     	return session.selectOne("member.findPw",param);
     }
+    @Override
+    public int pwChange(SqlSession session,Map param) {
+    	// TODO Auto-generated method stub
+    	return session.update("member.pwChange",param);
+    }
+    
+    @Override
+    public Member idcheck(SqlSession session, Member m) {
+    	// TODO Auto-generated method stub
+    	return session.selectOne("member.idcheck",m);
+    }
 }

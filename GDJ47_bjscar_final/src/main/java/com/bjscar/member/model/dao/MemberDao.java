@@ -19,4 +19,7 @@ public interface MemberDao {
 	Member findId(SqlSession session,Member m);
 	
 	Member findPw(SqlSession session,Map param);
+	int pwChange(SqlSession session,Map param);
+	
+	Member idcheck(SqlSession session,Member m);
 }

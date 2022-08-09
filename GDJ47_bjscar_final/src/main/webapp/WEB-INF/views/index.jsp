@@ -2,8 +2,8 @@
 
 	pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
-<c:set var="path" value="${pageContext.request.contextPath}" />
 
+<c:set var="path" value="${pageContext.request.contextPath}" />
 
 	
 	
