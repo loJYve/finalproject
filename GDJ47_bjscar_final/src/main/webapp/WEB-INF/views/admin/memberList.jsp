@@ -1,23 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" %>
-    <%@page import ="com.bjscar.member.model.vo.Member,java.util.List" %>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
-<%
-   List<Member> list=(List<Member>)request.getAttribute("members");
-   String searchType=request.getParameter("searchType");
-   String keyword=request.getParameter("searchKeyword");
-%>
 <!DOCTYPE html>
 <html>
 <head>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
 </head>
 <body>
 	<div>
@@ -35,12 +28,12 @@
 		<ul class="list-unstyled ps-0">
 			<li class="mb-1">
 				<button class="btn btn-toggle align-items-center rounded " data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
-					회원 관리
+					랜트 내역
 				</button>
 				<div class="collapse show" id="home-collapse" style="">
 					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-						<li><a href="/mypage/rentaldata.do" class="link-dark rounded">일반회원 관리</a></li>
-						<li><a href="/mypage/rentalhistory.do" class="link-dark rounded">사업자 관리</a></li>
+						<li><a href="/mypage/rentaldata.do" class="link-dark rounded">랜트중인 차량</a></li>
+						<li><a href="/mypage/rentalhistory.do" class="link-dark rounded">이전 예약 조회</a></li>
 					</ul>
 				</div>
 			</li>
@@ -112,10 +105,7 @@
         	${pageBar }
         </div>
 	</div>
-
-
-	
-
+	<div>
 		<form name="search-form" autocomplete="off">
 			<select name="type" id="type_">
 				<option selected value="">검색 내용 선택</option>
@@ -125,13 +115,8 @@
 			<input type="text" name="keyword" id="keyword_" value=""></input>
 			<input type="button" onclick="getSearchList()" class="btn btn-outline-primary mr-2" value="검색"></input>
 		</form>
-
-
-</div>
 	</div>
-
 </div>        
-
 
 <script>
 function getSearchList(){
@@ -148,14 +133,8 @@ function getSearchList(){
 					str='<tr>'
 					str += "<td>"+item.memberId+"</td>";
 					str+="<td>"+item.memberName+"</td>";
-					//str+="<td><a href = '/admin/memberList?memberId=" + item.memberId + "'>" + item.memberName + "</a></td>";
-					str+="<td>"+item.birthday+"</td>";
-					str+="<td>"+item.email+"</td>";
-					str+="<td>"+item.phone+"</td>";
-					str+="<td>"+item.address+"</td>";
-					str+="<td>"+item.totalMileage+"</td>";
+					str+="<td><a href = '/admin/memberList?memberId=" + item.memberId + "'>" + item.memberName + "</a></td>";
 					str+="<td>"+item.enrollDate+"</td>";
-					str+="<td>"+item.secessionReason+"</td>";
 					str+="</tr>"
 					$('#tbl_member').append(str);
         		})				 
@@ -188,13 +167,8 @@ function getSearchList(){
 }*/
 </script>	
 
-
 </body>
 <style>
-#search{
-	width: 500px;
-    margin-left: 800px;
-}
 	  	body {
 		  min-height: 100vh;
 		  min-height: -webkit-fill-available;
