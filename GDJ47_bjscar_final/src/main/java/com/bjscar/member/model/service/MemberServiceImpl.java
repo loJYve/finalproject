@@ -88,6 +88,16 @@ public class MemberServiceImpl implements MemberService,UserDetailsService{
 		// TODO Auto-generated method stub
 		return dao.findPw(session,param);
 	}
-   
+    
+	@Override
+	public int pwChange(Map param) {
+		// TODO Auto-generated method stub
+		return dao.pwChange(session,param);
+	}
 	
+	@Override
+	public Member idcheck(Member m) {
+		// TODO Auto-generated method stub
+		return dao.idcheck(session,m);
+	}
 }

@@ -65,11 +65,15 @@
  --%>
 	
  function initMap() {
+	 
+	 const infoWindow=new google.maps.InfoWindow();
+	 
 	 const map=new google.maps.Map(document.getElementById("map"), {
-         zoom: 16,
+         zoom: 13,
          center: { lat: 37.486440824 ,lng: 126.92809428	 }
      });
-	const infoWindow=new google.maps.InfoWindow();
+	 
+	
 	$.get("${pageContext.request.contextPath}/map/searchRentalshop",
 			data=>{
 				console.log(data);
@@ -81,9 +85,27 @@
 				optimized: false,
 			});
 			
+		const addTable=()=>{	
+			const br = document.createElement("br");
+			const table=document.createElement("table");
+			
+			let tr=document.createElement("tr");
+			let td1=document.createElement("td");
+			td1.innderText="대여소명";
+			let td2=document.createElement("td");
+			td2.innerText=v.rentalshopName;
+			tr.appendChild(td1);
+			tr.appendChild(td2);
+			table.appendChild(tr);
+				
+		}
+		
+		const content=(
+				v.rentalshopName;
+		)
 			marker.addListener("click",(e)=>{
 				infoWindow.close();
-				infoWindow.setContent(marker.getLabel()+"넣을것");
+				infoWindow.setContent(marker.getLabel()+content);
 				infoWindow.open(marker.getMap(), marker);
 			})
 		});

@@ -46,6 +46,16 @@
   <select id="findPw" parameterType="map" resultMap="memberMap">
   SELECT * FROM MEMBER WHERE MEMBER_ID=#{id} AND EMAIL=#{email}
   </select>
+  
+  <update id="pwChange" parameterType="map">
+  UPDATE MEMBER SET PASSWORD=#{password} WHERE MEMBER_ID=#{memberId} AND EMAIL=#{email} 
+  
+  </update>
+  
+  <select id="idcheck" parameterType="member" resultMap="memberMap">
+  SELECT * FROM MEMBER WHERE MEMBER_ID=#{memberId} 
+  </select>
+  
   <select id="selectSearchList" parameterType="member" resultMap="memberMap">
   	SELECT * FROM MEMBER WHERE secessionReason='N'
   	<choose>

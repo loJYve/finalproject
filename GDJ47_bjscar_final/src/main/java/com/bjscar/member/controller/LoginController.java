@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -117,9 +118,9 @@ public class LoginController {
 	
 	//비밀번호찾기 FROM
 	@RequestMapping(value = "/searchPwEnd.do", method = RequestMethod.POST)
-	public ModelAndView findPw(@RequestParam(value="memberId") String id,
+	public ModelAndView findPw(@RequestParam(value="memberId") String memberId,
 			                   @RequestParam(value="email") String email,ModelAndView mv) {
-		Map param = Map.of("id",id,"email",email);
+		Map param = Map.of("id",memberId,"email",email);
 	
 		Member pw = service.findPw(param);
 		System.out.println(pw);
@@ -132,7 +133,7 @@ public class LoginController {
 //			mv.addObject("email",pw.getEmail()); throws IOException
 			
 			/* 이메일 보내기 */
-	        String setFrom = "sun00314@naver.com";
+	        String setFrom = "dydtjdeowkd@naver.com";
 	        String toMail = email;
 	        String title = "BJSCAR 비밀번호변경 인증 이메일 입니다.";
 	        String content = 
@@ -157,6 +158,8 @@ public class LoginController {
 	        }
 	        mv.setViewName("member/checkPwMail");
 	        mv.addObject("checkNum",checkNum);
+	        mv.addObject("email", email);
+	        mv.addObject("memberId",memberId);
 	        return mv;
 	     
 	     }else {
@@ -164,15 +167,37 @@ public class LoginController {
 			return mv;
 		}
 	  }
-	//인증번호 넘기기
-	@RequestMapping(value = "/confirmPw.do", method = RequestMethod.POST)
-	public String confirmPw(@RequestParam(value="emailConfirm")String emailConfirm,
-			                @RequestParam(value="checkNum")String checkNum) {
-		if(emailConfirm.equals(checkNum)) {
-			return "member/changePw";
-		}else {
-			return "member/searchPw";
-		}
-	}
+//	//인증번호 넘기기 
+//	@RequestMapping(value = "/confirmPw.do", method = RequestMethod.POST)
+//	public String confirmPw(@RequestParam(value="emailConfirm")String emailConfirm,
+//			                @RequestParam(value="checkNum")String checkNum) {
+//		if(emailConfirm.equals(checkNum)) {
+//			
+//			return "member/changePw";
+////			 mv.setViewName("member/changePw");
+////             
+////             mv.addObject("email",email);
+//		}else {
+////			mv.setViewName("member/searchPw");
+//			return "member/searchPw";
+//		}
+////		return mv;
+//	}
+	//새비밀번호설정
 	
+//	@RequestMapping(value = "/pwChange.do", method = RequestMethod.POST)
+//	public String pwChange(Member m,HttpSession session) {
+//		
+//		
+//		int result = service.pwChange(m);
+//		
+//		if(result==1) {
+//		
+//			return "member/loginPage2";
+//		}else {
+//			System.out.println("updatePw"+ result);
+//			return "member/changePw";
+//		}
+//		
+//	}
 }

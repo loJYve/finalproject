@@ -25,6 +25,13 @@ public class MemberController {
 		return "index";
 	}
 	
+	@RequestMapping("/idCheck.do")
+	@ResponseBody
+	public Member idCheck(Member m) {
+		return service.idcheck(m);
+	}
+	
+	
 	@RequestMapping("/memberEnroll.do")
 	   public String enrollLoginPage() {
 		   return "member/memberEnroll2";
