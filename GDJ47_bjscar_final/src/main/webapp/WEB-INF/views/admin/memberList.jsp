@@ -112,46 +112,7 @@
         	${pageBar }
         </div>
 	</div>
-<<<<<<< HEAD
-	<div id="search-container">
-           검색타입 : 
-        <select id="searchType">
-           <option value="userId" <%=searchType!=null&&searchType.equals("userId")?"selected":"" %>>아이디</option>
-           <option value="userName" <%=searchType!=null&&searchType.equals("userName")?"selected":"" %> >회원이름</option>
-        </select>
-        <div id="search-userId">
-           <form action="<%=request.getContextPath()%>/admin.do">
-              <input type="hidden" name="searchType" value="MEMBER_ID" >
-              <input type="text" name="searchKeyword" size="25" 
-              placeholder="검색할 아이디를 입력하세요" >
-              <button type="submit">검색</button>
-           </form>
-        </div>
-        <div id="search-userName">
-           <form action="<%=request.getContextPath()%>/admin.do">
-              <input type="hidden" name="searchType" value="MEMBER_NAME">
-              <input type="text" name="searchKeyword" size="25" 
-              placeholder="검색할 이름을 입력하세요">
-              <button type="submit">검색</button>
-           </form>
-        </div>       
-      </div>
-    </div>
-   <script>
-      $(()=>{
-         $("#searchType").change(e=>{
-            /* alert("type이 변경됨"); */
-            const type=$(e.target).val();
-            console.log(type);
-            $("#search-container>div[id!=search-]").hide();
-            $("#search-"+type).css("display","inline-block");
-         });
-         $("#searchType").change();
-      })
-      
-      
-   </script>
-=======
+
 	<div>
 		<form name="search-form" autocomplete="off">
 			<select name="type" id="type_">
@@ -163,12 +124,9 @@
 			<input type="button" onclick="getSearchList()" class="btn btn-outline-primary mr-2" value="검색"></input>
 		</form>
 	</div>
->>>>>>> branch 'main' of https://github.com/loJYve/finalproject.git
-</div>        
 
-<<<<<<< HEAD
 
-=======
+
 <script>
 function getSearchList(){
 	$.ajax({
@@ -217,7 +175,6 @@ function getSearchList(){
 	});
 }*/
 </script>	
->>>>>>> branch 'main' of https://github.com/loJYve/finalproject.git
 
 </body>
 <style>

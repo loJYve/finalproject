@@ -13,7 +13,7 @@ public interface WorkPlaceDao {
 	
 	List<Rentalshop> selectRentalshopListPage(SqlSessionTemplate session,Map param);
 	
-	Rentalshop selectRentalshop(SqlSessionTemplate session,String name);
+	Rentalshop selectRentalshop(SqlSessionTemplate session,int no);
 	
 	int selectRentalshopCount(SqlSessionTemplate session);
 }

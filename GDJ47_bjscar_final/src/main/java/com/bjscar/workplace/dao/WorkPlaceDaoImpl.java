@@ -33,8 +33,8 @@ public class WorkPlaceDaoImpl implements WorkPlaceDao{
 	}
 	
 	@Override
-	public Rentalshop selectRentalshop(SqlSessionTemplate session,String name) {
-		return session.selectOne("rentalshop.selectrentalshop");
+	public Rentalshop selectRentalshop(SqlSessionTemplate session,int no) {
+		return session.selectOne("rentalshop.selectrentalshop",no);
 	}
 
 }
