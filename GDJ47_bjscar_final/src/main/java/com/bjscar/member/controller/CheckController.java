@@ -48,7 +48,7 @@ public class CheckController {
 
 	
 		/* 이메일 보내기 */
-        String setFrom = "sun00314@naver.com";
+        String setFrom = "dydtjdeowkd@naver.com";
         String toMail = email;
         String title = "BJSCAR 회원가입 인증 이메일 입니다.";
         String content = 

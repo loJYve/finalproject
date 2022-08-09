@@ -24,4 +24,9 @@ public interface MemberService {
 	
 	Member findPw(Map param);
 	
+	
+	int pwChange(Map param);
+	
+	Member idcheck(Member m);
+	
 }
