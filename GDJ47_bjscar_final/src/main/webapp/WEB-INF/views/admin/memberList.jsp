@@ -125,6 +125,7 @@
 		</form>
 	</div>
 
+</div>        
 
 
 <script>
@@ -175,6 +176,7 @@ function getSearchList(){
 	});
 }*/
 </script>	
+
 
 </body>
 <style>
