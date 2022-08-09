@@ -24,4 +24,19 @@ public class MypageController {
 	public String rentalData() {
 		return "/mypage/rentalData";
 	}
+	
+	@RequestMapping("/rentalhistory.do")
+	public String rentalHistory() {
+		return "/mypage/rentalHistory";
+	}
+	
+	@RequestMapping("/purchasehistory.do")
+	public String purchaseHistory() {
+		return "/mypage/purchaseHistory";
+	}
+	
+	@RequestMapping("/faq.do")
+	public String faq() {
+		return "/mypage/faq";
+	}
 }
