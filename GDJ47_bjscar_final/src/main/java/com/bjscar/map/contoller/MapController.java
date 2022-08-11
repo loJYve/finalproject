@@ -37,7 +37,15 @@ public class MapController {
 		return "map/map";
 	}
 	
+	@RequestMapping("/map/maptest")
+	public String mapTest() {
+		return "map/maptest";
+	}
 	
+	@RequestMapping("/map/maptest2")
+	public String mapTest2() {
+		return "map/maptest2";
+	}
 		//ModelAndView mv = new ModelAndView();
 		
 		
