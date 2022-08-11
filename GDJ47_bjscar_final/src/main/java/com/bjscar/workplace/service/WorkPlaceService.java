@@ -13,5 +13,5 @@ public interface WorkPlaceService {
 
 	int selectRentalshopCount();
 	
-	Rentalshop selectRentalshop(String name);
+	Rentalshop selectRentalshop(int no);
 }

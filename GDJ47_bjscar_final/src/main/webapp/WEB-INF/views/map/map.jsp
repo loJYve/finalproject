@@ -78,39 +78,60 @@
 			data=>{
 				console.log(data);
 		data.filter(v=>{
+			
+			
+			
 			const marker=new google.maps.Marker({
 				position:new google.maps.LatLng(v.latitude,v.longitude),
 				map:map,
+				animation: google.maps.Animation.DROP,
 				label:v.rentalshopName,
 				optimized: false,
 			});
 			
-		const addTable=()=>{	
-			const br = document.createElement("br");
-			const table=document.createElement("table");
 			
-			let tr=document.createElement("tr");
-			let td1=document.createElement("td");
-			td1.innderText="대여소명";
-			let td2=document.createElement("td");
-			td2.innerText=v.rentalshopName;
-			tr.appendChild(td1);
-			tr.appendChild(td2);
-			table.appendChild(tr);
-				
-		}
+			/* 
+			const locations=[
+				{lat: v.latitude, lng: v.longitude}
+		];		
+		 */
 		
-		const content=(
-				v.rentalshopName;
-		)
-			marker.addListener("click",(e)=>{
-				infoWindow.close();
-				infoWindow.setContent(marker.getLabel()+content);
-				infoWindow.open(marker.getMap(), marker);
+		//합쳐진 점 숫자로 보기
+
+			/* 
+		
+		const markers = locations.map((position, j) => {
+			    //const label =  labels[j % labels.length];
+			    const marker = new google.maps.Marker({
+			      position,
+			      label:v.rentalshopName,
+			    });
+		  new MarkerClusterer({ markers, map });
+		  */
+		 
+		marker.addListener("click",(e)=>{
+			infoWindow.close();
+			infoWindow.setContent(marker.getLabel()+v.rentalshopAddr+v.bmMember);
+			infoWindow.open(marker.getMap(), marker);
 			})
-		});
-	});	
+			
+		/* 
+		 map.addListener("center_changed", () => {
+			    // 3 seconds after the center of the map has changed, pan back to the
+			    // marker.
+			    window.setTimeout(() => {
+			      map.panTo(marker.getPosition());
+			    }, 3000);
+			  }); */
+		
+		
+			
+		});//filter닫음
+		
+	});	//ajax닫음
+	//new MarkerClusterer({ marker, map });
 }
+ 
 	 /*  //console.log($("#rs0").val());
 	  console.log(rs[0][1]);
      
