@@ -169,8 +169,11 @@ transform: rotate(45deg);
                <form action="${path }/member/confirmPw.do" class="login-form" method="post">
                <div class="login-form">
                   <div class="form-group">
-                   <input type="text" name="emailConfirm" id="emailConfirm" class="form-control" placeholder="인증번호를 입력하세요." autofocus required> 
-                   <input type="hidden" name="checkNum" value="${checkNum }">
+                   <input type="text" name="emailConfirm" id="emailConfirm" class="form-control" placeholder="인증번호를 입력하세요." autofocus required>
+                     <p id="emch" class="check"> </p><br/> 
+                  <input type="hidden" name="checkNum" value="${checkNum }"> 
+                   <input type="hidden" name="email" value="${email }">  
+                   <input type="hidden" name="memberId" value="${memberId }"> 
                   </div>
                   <div class="remember">
                    <button class="btn" type="submit">확인</button> 
@@ -184,4 +187,17 @@ transform: rotate(45deg);
             </div>
         </div>
 </body>
+<script>
+$("#emailConfirm").focusout((e)=>{
+	  if($("#emailConfirm").val()==""){
+		  $('#emch').text('*필수 정보입니다.');
+		  $('#emch').css('color','red');
+		  return false;
+	  }else{
+		 
+		  $('#emch').hide();
+			return true;
+	  } 
+});
+</script>
 </html>

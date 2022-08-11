@@ -38,7 +38,7 @@ public class WorkPlaceServiceImpl implements WorkPlaceService {
 
 	
 	@Override
-	public Rentalshop selectRentalshop(String name) {
-		return dao.selectRentalshop(session, name);
+	public Rentalshop selectRentalshop(int no) {
+		return dao.selectRentalshop(session, no);
 	}
 }

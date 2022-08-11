@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="rentalshop">
+<mapper namespace="mypage">
   
   <resultMap type="rentalshop" id="rentalshopMap">
 	<id column="RENTALSHOP_ID" property="rentalshopId"/>
@@ -19,8 +19,8 @@
 		SELECT COUNT(*) FROM RENTALSHOP
 	</select>
   
-  <select id="selectrentalshop" parameterType="rentalshop" resultMap="rentalshopMap">
-  		SELECT * FROM RENTALSHOP WHERE RENTALSHOP_ID=#{no}
+  <select id="selectrentalshop" parameterType="string" resultMap="rentalshopMap">
+  		SELECT * FROM RENTALSHOP WHERE BM_MEMBER=#{name}
   </select>
   
 </mapper>

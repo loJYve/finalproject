@@ -24,9 +24,9 @@ public class MapController {
 		
 		List<Rentalshop> rl = service.searchRentalshop();
 		
-		for(Rentalshop r : rl) {
-			System.out.println(r);
-		}
+//		for(Rentalshop r : rl) {
+//			System.out.println(r);
+//		}
 //		mv.addObject("rl", rl);
 //		mv.setViewName("/map/map");
 		return rl;

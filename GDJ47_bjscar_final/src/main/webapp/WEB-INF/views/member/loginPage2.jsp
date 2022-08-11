@@ -174,9 +174,11 @@ transform: rotate(45deg);
                   <div class="form-group">
                       <input type="text" name="memberId" id="memberId" class="form-control" placeholder="ID" autofocus required>
                   </div>
+                  <p id="idch" class="check"> </p><br/>
                   <div class="form-group">
                      <input type="password" name="password" id="password" class="form-control" placeholder="Password"  required>
                   </div>
+                  <p id="pwch" class="check"> </p><br/>
                   <div class="remember">
                      <label class="custom-checkbox">아이디 저장
                      <input type="checkbox">
@@ -192,4 +194,38 @@ transform: rotate(45deg);
             </div>
         </div>
    </body>
+ <script>
+ //아이디 정규식
+ const idJ = /^[a-z0-9][a-z0-9_\-]{4,19}$/;
+ // 비밀번호 정규식
+ const pwJ = /^[A-Za-z0-9]{6,20}$/;
+//아이디 체크
+ $("#memberId").focusout((e)=>{
+	     if($('#memberId').val() == ""){
+	   		$('#idch').text('*필수 정보입니다.');
+	   	  	$('#idch').css('color', 'red');
+	   		return false;
+	  }else if(!idJ.test($('#memberId').val())){
+	  		$('#idch').text('4~19자의 영문 소문자, 숫자만 사용가능합니다')
+			$('#idch').css('color', 'red')
+		   return false;
+	  }else{ 
+		  
+	       $("#idch").hide();
+	       return true;
+	     }
+ });
+ //비밀번호 체크2
+ $("#password").focusout((e)=>{
+ 	if($('#password').val()==""){
+ 	   $('#pwch').text('*필수 정보입니다.');
+	   	   $('#pwch').css('color', 'red');
+	   	    return false;
+    }else{
+ 	  
+ 	   $("#pwch").hide();
+ 	   return true;
+    }
+ });
+ </script>
 </html>
