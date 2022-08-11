@@ -109,7 +109,7 @@
 </div>        
 <div id="search">
 	<div>
-		<form name="search-form" autocomplete="off">
+		<form name="search-form" autocomplete="off" style="margin-left:800px;margin-top:380px;position: relative;">
 			<select name="type" id="type_">
 				<option selected value="">검색 내용 선택</option>
 				<option value="member_id">아이디</option>
@@ -137,10 +137,16 @@ function getSearchList(){
 					str='<tr>'
 					str += "<td>"+item.memberId+"</td>";
 					str+="<td>"+item.memberName+"</td>";
-					str+="<td><a href = '/admin/memberList?memberId=" + item.memberId + "'>" + item.memberName + "</a></td>";
+					str+="<td>"+item.birthday+"</td>"
+					str+="<td>"+item.email+"</td>"
+					str+="<td>"+item.phone+"</td>"
+					str+="<td>"+item.address+"</td>"
+					str+="<td>"+item.totalMileage+"</td>"
+					//str+="<td><a href = '/admin/memberList?memberId=" + item.memberId + "'>" + item.memberName + "</a></td>";
 					str+="<td>"+item.enrollDate+"</td>";
+					str+="<td>"+item.secessionReason+"</td>";
 					str+="</tr>"
-					$('#tbl_member').append(str);
+					$('#tbl_member').append(str);   
         		})				 
 			}
 		}

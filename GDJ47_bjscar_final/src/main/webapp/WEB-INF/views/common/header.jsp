@@ -31,7 +31,7 @@
         <li><a href="${path }/rental.do" class="nav-link px-2 link-dark">대여하기</a></li>
 
       </ul>
-      <div class="col-md-3 text-end">
+      <div class="col-md-3 text-end" style="display:contents;">
       <c:if test="${loginMember == null }">
 				<ul class="login">
 		<button type="button" class="btn btn-outline-primary me-2" onclick="location.assign('${path}/member/memberPage.do')">Login</button>
