@@ -1,5 +1,6 @@
 package com.bjscar.member.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -8,9 +9,14 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+
+
 @Configuration
 @EnableWebSecurity
-public class Security {
+public class Security{
+	
+	
+	
    @Bean
    public AuthenticationProvider authenticationProvider() {
 	   return new MyProvider();
@@ -23,6 +29,12 @@ public class Security {
 	@Bean
 	public SecurityFilterChain authenticatePath(HttpSecurity http) throws Exception{
 		return http.csrf().disable()
+//				   .rememberMe()
+//				   .rememberMeParameter("rememeber-me")
+//				   .tokenValiditySeconds(3600)
+//				   .alwaysRemember(true)
+//				   .userDetailsService(provider)
+//				   .and()
 				   .formLogin()
 				   .loginPage("/member/memberPage.do") 
 			       .usernameParameter("MemberId")
@@ -41,5 +53,4 @@ public class Security {
 				   .build();
 				   
 		}		   
-	
 }

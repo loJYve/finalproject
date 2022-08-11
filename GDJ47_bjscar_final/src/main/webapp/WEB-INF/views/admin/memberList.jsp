@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html>
@@ -105,8 +106,10 @@
         	${pageBar }
         </div>
 	</div>
+</div>        
+<div id="search">
 	<div>
-		<form name="search-form" autocomplete="off">
+		<form name="search-form" autocomplete="off" style="margin-left:800px;margin-top:380px;position: relative;">
 			<select name="type" id="type_">
 				<option selected value="">검색 내용 선택</option>
 				<option value="member_id">아이디</option>
@@ -115,6 +118,7 @@
 			<input type="text" name="keyword" id="keyword_" value=""></input>
 			<input type="button" onclick="getSearchList()" class="btn btn-outline-primary mr-2" value="검색"></input>
 		</form>
+</div>
 	</div>
 </div>        
 
@@ -133,10 +137,16 @@ function getSearchList(){
 					str='<tr>'
 					str += "<td>"+item.memberId+"</td>";
 					str+="<td>"+item.memberName+"</td>";
-					str+="<td><a href = '/admin/memberList?memberId=" + item.memberId + "'>" + item.memberName + "</a></td>";
+					str+="<td>"+item.birthday+"</td>"
+					str+="<td>"+item.email+"</td>"
+					str+="<td>"+item.phone+"</td>"
+					str+="<td>"+item.address+"</td>"
+					str+="<td>"+item.totalMileage+"</td>"
+					//str+="<td><a href = '/admin/memberList?memberId=" + item.memberId + "'>" + item.memberName + "</a></td>";
 					str+="<td>"+item.enrollDate+"</td>";
+					str+="<td>"+item.secessionReason+"</td>";
 					str+="</tr>"
-					$('#tbl_member').append(str);
+					$('#tbl_member').append(str);   
         		})				 
 			}
 		}

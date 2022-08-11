@@ -1,17 +1,15 @@
 package com.bjscar.admin.controller;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import org.apache.maven.model.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bjscar.admin.model.service.AdminService;
@@ -42,6 +40,14 @@ public class AdminController {
 		mv.setViewName("admin/memberList");
 		return mv;
 	}
-				
+	@GetMapping("/getSearchList")
+	@ResponseBody
+	private List<Member> getSearchList(@RequestParam("type") String type,
+			@RequestParam("keyword") String keyword,Model model) throws Exception{
+		Member m = new Member();
+		m.setType(type);
+		m.setKeyword(keyword);
+		return service.getSearchList(m);
+	}	
 	
 }
