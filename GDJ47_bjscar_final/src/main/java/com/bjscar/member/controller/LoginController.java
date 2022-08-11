@@ -1,12 +1,12 @@
 package com.bjscar.member.controller;
 
 
-import java.io.IOException;
 import java.util.Map;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -43,14 +43,29 @@ public class LoginController {
 		}
 		
 	@RequestMapping("/login.do")
-	public String login(Member m,Model model) {
+	public String login(@RequestParam(value="saveId", required = false)String saveId,
+			            @RequestParam(value="memberId")String memberId,
+			            HttpServletResponse response,Member m,Model model) {
+		
+		
+		if(saveId!=null) {
+			Cookie idCookie = new Cookie("saveId", memberId);
+				idCookie.setMaxAge(60*60*24*7);
+		    response.addCookie(idCookie);
+		}else {
+			Cookie idCookie = new Cookie("saveId",memberId);
+			idCookie.setMaxAge(0);
+			response.addCookie(idCookie);
+		}
 		Member loginMember = service.selectMember(m);
+		
 		String viewName="redirect:/";
 		System.out.println(loginMember);
-	
+		
 		if(loginMember!=null) {
 			//로그인성공
 			model.addAttribute("loginMember",loginMember);
+			
 		}else {
 			//로그인실패
 			 model.addAttribute("msg","로그인실패!");
