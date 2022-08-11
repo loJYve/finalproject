@@ -40,8 +40,8 @@ public class WorkPlaceController {
 	}
 	
 	@RequestMapping("/work/workplaceView.do")
-	public ModelAndView workplaceView(String name,ModelAndView mv) {
-		mv.addObject("rentalshop",service.selectRentalshop(name));
+	public ModelAndView workplaceView(int no,ModelAndView mv) {
+		mv.addObject("rentalshop",service.selectRentalshop(no));
 		mv.setViewName("workplace/workView");
 		
 		return mv;

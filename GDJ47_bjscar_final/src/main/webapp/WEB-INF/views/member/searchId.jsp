@@ -171,9 +171,11 @@ transform: rotate(45deg);
                   <div class="form-group">
                       <input type="text" name="memberName" id="memberName" class="form-control" placeholder="Name" autofocus required>
                   </div>
+                  <p id="namech" class="check"> </p><br/>
                   <div class="form-group">
                      <input type="text" name="email" id="email" class="form-control" placeholder="Email"  required>
                   </div>
+                  <p id="emch" class="check"> </p><br/>
                   <!-- <p class="check" id="check"></p><br/> -->
                      <div class="remember"> 
                      <button class="btn" type="submit" id="send" >아이디찾기</button>
@@ -187,7 +189,39 @@ transform: rotate(45deg);
          
    </body>
  <script>
- 
+ // 이름 정규식
+ const nameJ = /^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/;
+ // 이메일 검사 정규식
+ const mailJ = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+ //이름 체크
+ $("#memberName").focusout((e)=>{
+	  if($('#memberName').val()==""){
+		  $('#namech').text('*필수 정보입니다.');
+		  $('#namech').css('color', 'red');
+		  return false;
+	  }else if(!nameJ.test($("#memberName").val())){
+		  $('#namech').text('한글 2~4자 이내로 입력하세요. (특수기호, 공백 사용 불가)');
+	      $('#namech').css('color', 'red');
+	      return false;
+	  }else{
+		 
+		  $('#namech').hide();
+		  return true;
+	  }
+	  
+ });
+ //이메일
+ $("#email").focusout((e)=>{
+	  if($("#email").val()==""){
+		  $('#emch').text('*필수 정보입니다.');
+		  $('#emch').css('color','red');
+		  return false;
+	  }else{
+		 
+		  $('#emch').hide();
+			return true;
+	  } 
+ });
 /*       $('#send').click((e)=>{
 		const name=$('#memberName').val();
 		const email=$('#email').val();
