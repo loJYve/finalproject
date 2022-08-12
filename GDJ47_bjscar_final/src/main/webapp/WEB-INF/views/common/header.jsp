@@ -19,7 +19,7 @@
       <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
         <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
       </a> 
-      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0" style="width:-webkit-fill-available;">
         <li><a href="<%=request.getContextPath()%>/" class="nav-link px-2 link-secondary">Home</a></li>
         <li><a href="#" class="nav-link px-2 link-dark">Features</a></li>
         <li><a href="#" class="nav-link px-2 link-dark">Pricing</a></li>
@@ -30,7 +30,7 @@
         <li><a href="<%=request.getContextPath()%>/work/workplace.do" class="nav-link px-2 link-dark">사업장관리</a></li>
         <li><a href="${path }/rental.do" class="nav-link px-2 link-dark">대여하기</a></li>
 		<li><a href="${path }/map/mapview" class="nav-link px-2 link-dark">대여소보기</a></li>
-      </ul>
+      
       <div class="col-md-3 text-end" style="display:contents;">
       <c:if test="${loginMember == null }">
 				<ul class="login">
@@ -53,6 +53,7 @@
 				</ul>
 				</c:if>
       </div>
+      </ul>
     </header>
   </div>
 

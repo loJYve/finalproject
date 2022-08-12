@@ -5,14 +5,6 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
-<!DOCTYPE html>
-<html>
-<head>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
 <body>
 	<div>
 		<section id="member-container" class="container">
@@ -29,12 +21,13 @@
 		<ul class="list-unstyled ps-0">
 			<li class="mb-1">
 				<button class="btn btn-toggle align-items-center rounded " data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
-					랜트 내역
+					회원 조회
 				</button>
 				<div class="collapse show" id="home-collapse" style="">
 					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-						<li><a href="/mypage/rentaldata.do" class="link-dark rounded">랜트중인 차량</a></li>
-						<li><a href="/mypage/rentalhistory.do" class="link-dark rounded">이전 예약 조회</a></li>
+						<li><a href="<%=request.getContextPath()%>/admin.do" class="link-dark rounded">일반회원 조회</a></li>
+						<li><a href="<%=request.getContextPath()%>/business.do" class="link-dark rounded">사업자회원 조회</a></li>
+						<li><a href="<%=request.getContextPath()%>/secession.do" class="link-dark rounded">탈퇴회원 조회</a></li>
 					</ul>
 				</div>
 			</li>
