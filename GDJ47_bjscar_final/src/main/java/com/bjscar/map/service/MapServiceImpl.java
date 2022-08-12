@@ -18,8 +18,14 @@ public class MapServiceImpl implements MapService{
 	@Autowired
 	private SqlSessionTemplate session;
 	
+	@Override
 	public List<Rentalshop> searchRentalshop(){
 		return dao.searchRentalshop(session);
 	}
 
+	@Override
+	public int selectVehicle() {
+		// TODO Auto-generated method stub
+		return dao.selectVehicleCount(session);
+	}
 }

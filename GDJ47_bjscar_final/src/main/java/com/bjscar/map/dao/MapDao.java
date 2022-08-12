@@ -10,4 +10,5 @@ public interface MapDao {
 	
 	List<Rentalshop> searchRentalshop(SqlSessionTemplate session);
 
+	public int selectVehicleCount(SqlSessionTemplate session);
 }

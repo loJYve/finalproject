@@ -15,4 +15,9 @@ public class MapDaoImpl implements MapDao{
 		return session.selectList("map.searchRentalshop");
 	}
 
+	@Override
+	public int selectVehicleCount(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("map.selectMapCount");
+	}
 }

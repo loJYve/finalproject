@@ -15,7 +15,10 @@
 	<select id="searchRentalshop" resultMap="rentalshopMap">
 		select * from rentalshop
 	</select>
-
+	
+	<select id="selectVehicleCount" resultType="int">
+		SELECT COUNT(*) FROM VEHICLE
+	</select>
  
 
 </mapper>

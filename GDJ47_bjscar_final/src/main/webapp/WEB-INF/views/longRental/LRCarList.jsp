@@ -6,7 +6,7 @@
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <%@ page import="java.util.List" %>
 <%@ page import="com.bjscar.vehicle.model.vo.Vehicle" %>
-	
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>	
 	
 
 	  
@@ -137,6 +137,18 @@
 			});
 			$("#searchType").change();
 		})
+		
+		$.get("${pageContext.request.contextPath}/map/searchRentalshop",
+			data=>{
+				console.log(data);
+		data.filter(v=>{
+			const marker=new google.maps.Marker({
+				position:new google.maps.LatLng(v.latitude,v.longitude),
+				map:map,
+				animation: google.maps.Animation.DROP,
+				label:v.rentalshopName,
+				optimized: false,
+			});
 	</script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 

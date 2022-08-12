@@ -8,6 +8,6 @@ public interface MapService {
 
 	List<Rentalshop> searchRentalshop();
 	
-	
+	public int selectVehicleCount();
 	
 }
