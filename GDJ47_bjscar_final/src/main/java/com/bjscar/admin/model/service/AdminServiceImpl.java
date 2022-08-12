@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.bjscar.admin.model.dao.AdminDao;
 import com.bjscar.member.model.vo.Member;
+import com.bjscar.member.model.vo.SecessionMember;
 @Service
 public class AdminServiceImpl implements AdminService {
 
@@ -39,6 +40,23 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<Member> getSearchList(Member m){
 		return dao.selectSearchList(session, m);
+	}
+	
+	@Override
+	public List<SecessionMember> selectSecessionMemberList(){
+		return dao.selectSecessionMemberList(session);
+	}
+	
+	@Override
+	public List<SecessionMember> selectSecessionMemberListPage(Map param) {
+		// TODO Auto-generated method stub
+		return dao.selectSecessionMemberListPage(session, param);
+	}
+
+	@Override
+	public List<SecessionMember> selectSecessionMemberListPage() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 
