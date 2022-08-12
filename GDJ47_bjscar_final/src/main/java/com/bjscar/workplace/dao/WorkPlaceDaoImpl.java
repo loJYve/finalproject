@@ -37,4 +37,8 @@ public class WorkPlaceDaoImpl implements WorkPlaceDao{
 		return session.selectOne("rentalshop.selectrentalshop",no);
 	}
 
+	@Override
+	public int insertRentalshop(SqlSessionTemplate session,Rentalshop r) {
+		return session.insert("rentalshop.insertRentalshop",r);
+	}
 }

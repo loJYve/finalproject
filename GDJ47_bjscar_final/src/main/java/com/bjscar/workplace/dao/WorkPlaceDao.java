@@ -16,4 +16,7 @@ public interface WorkPlaceDao {
 	Rentalshop selectRentalshop(SqlSessionTemplate session,int no);
 	
 	int selectRentalshopCount(SqlSessionTemplate session);
+	
+	int insertRentalshop(SqlSessionTemplate session,Rentalshop r);
+	
 }

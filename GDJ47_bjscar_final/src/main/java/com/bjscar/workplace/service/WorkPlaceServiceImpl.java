@@ -41,4 +41,9 @@ public class WorkPlaceServiceImpl implements WorkPlaceService {
 	public Rentalshop selectRentalshop(int no) {
 		return dao.selectRentalshop(session, no);
 	}
+	
+	@Override
+	public int insertRentalshop(Rentalshop r) {
+		return dao.insertRentalshop(session, r);
+	}
 }
