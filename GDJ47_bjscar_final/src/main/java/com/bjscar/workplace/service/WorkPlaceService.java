@@ -14,4 +14,7 @@ public interface WorkPlaceService {
 	int selectRentalshopCount();
 	
 	Rentalshop selectRentalshop(int no);
+	
+	int insertRentalshop(Rentalshop r);
+	
 }

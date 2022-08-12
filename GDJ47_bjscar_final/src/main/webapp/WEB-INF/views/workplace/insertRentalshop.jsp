@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<jsp:include page="/WEB-INF/views/common/header.jsp" />
+    pageEncoding="UTF-8"%>
+    <jsp:include page="/WEB-INF/views/common/header.jsp" />
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
@@ -9,9 +9,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-
 <style type="text/css">
 .tg {
 	border-collapse: collapse;
@@ -58,35 +55,34 @@
 }
 </style>
 </head>
-<body style="text-align:center">
-
-	<form action="${path }/alterworplace.do" method="get">
+<body style="text-align:center;">
+<form action="${path }/insertworkplaceEnd.do" method="post">
 		<table class="tg" style="margin-left: auto; margin-right: auto; background-color: #ffffc7;">
-			<h2>개인 사업장관리</h2>
+			<h2>개인 사업장만들기</h2>
 			<thead>
-				<c:if test="${not empty rentalshop }">
+				
 					<tr>
 						<th class="tg-af47" colspan="10">사업장이름 :<input type="text"
-							value="${rentalshop.rentalshopName }" readonly style="background-color: #ffffc7;"/></th>
+							 name="rentalshopName" style="background-color: #ffffc7;"/></th>
 					</tr>
 			</thead>
 			<tbody>
 				<tr>
 					<td class="tg-af47" colspan="5">대여소일련번호</td>
 					<td class="tg-n9g5" colspan="5"><input type="text"
-						value="${rentalshop.rentalshopId }" readonly style="background-color: #ffffc7;"/></td>
+						  style="background-color: #ffffc7;" readonly/></td>
 				</tr>
 				<tr>
 					<td class="tg-n9g5" colspan="10">대여소주소 : <input type="text"
-						value="${rentalshop.rentalshopAddr }" readonly style="background-color: #ffffc7;"/></td>
+						name="rentalshopAddr" style="background-color: #ffffc7;"/></td>
 				</tr>
 				<tr>
 					<td class="tg-n9g5" colspan="10">위도 : <input type="text"
-						value="${rentalshop.latitude }" readonly style="background-color: #ffffc7;"/></td>
+						name="latitude" style="background-color: #ffffc7;"/></td>
 				</tr>
 				<tr>
 					<td class="tg-n9g5" colspan="10">경도 : <input type="text"
-						value="${rentalshop.longitude }" readonly style="background-color: #ffffc7;"/></td>
+					name="longitude"	style="background-color: #ffffc7;"/></td>
 				</tr>
 				<tr>
 					<td class="tg-n9g5" colspan="10">사업장 이미지</td>
@@ -99,11 +95,13 @@
 				<tr>
 				</tr>
 				<tr>
-					<td class="tg-n9g5" colspan="10"><input type="file" /></td>
+					<td class="tg-n9g5" colspan="5"><input type="file" /></td>
+					<td class="tg-n9g5" colspan="5"><input type="text" name="bmMember" /></td>
 				</tr>
-				</c:if>
+				
 			</tbody>
 		</table>
+		<button type="submit" >만들기</button>
 	</form>
 </body>
 </html>

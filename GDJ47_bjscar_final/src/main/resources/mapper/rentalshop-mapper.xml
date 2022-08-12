@@ -23,4 +23,9 @@
   		SELECT * FROM RENTALSHOP WHERE RENTALSHOP_ID=#{no}
   </select>
   
+  <insert id="insertRentalshop"  parameterType="rentalshop" >
+  INSERT INTO RENTALSHOP VALUES (SEQ_RENTALSHOP_ID.NEXTVAL,#{rentalshopName},
+  	#{rentalshopAddr},#{latitude},#{longitude},#{bmMember})
+  </insert>
+  
 </mapper>
