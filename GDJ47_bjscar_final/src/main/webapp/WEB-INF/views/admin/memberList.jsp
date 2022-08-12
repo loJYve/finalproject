@@ -3,15 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
-<!DOCTYPE html>
-<html>
-<head>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
 <body>
 	<div>
 		<section id="member-container" class="container">
@@ -28,12 +21,13 @@
 		<ul class="list-unstyled ps-0">
 			<li class="mb-1">
 				<button class="btn btn-toggle align-items-center rounded " data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
-					랜트 내역
+					회원 조회
 				</button>
 				<div class="collapse show" id="home-collapse" style="">
 					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-						<li><a href="/mypage/rentaldata.do" class="link-dark rounded">랜트중인 차량</a></li>
-						<li><a href="/mypage/rentalhistory.do" class="link-dark rounded">이전 예약 조회</a></li>
+						<li><a href="<%=request.getContextPath()%>/admin.do" class="link-dark rounded">일반회원 조회</a></li>
+						<li><a href="<%=request.getContextPath()%>/business.do" class="link-dark rounded">사업자회원 조회</a></li>
+						<li><a href="<%=request.getContextPath()%>/secession.do" class="link-dark rounded">탈퇴회원 조회</a></li>
 					</ul>
 				</div>
 			</li>
@@ -105,8 +99,10 @@
         	${pageBar }
         </div>
 	</div>
+</div>        
+<div id="search">
 	<div>
-		<form name="search-form" autocomplete="off">
+		<form name="search-form" autocomplete="off" style="margin-left:800px;margin-top:380px;position: relative;">
 			<select name="type" id="type_">
 				<option selected value="">검색 내용 선택</option>
 				<option value="member_id">아이디</option>
@@ -115,6 +111,7 @@
 			<input type="text" name="keyword" id="keyword_" value=""></input>
 			<input type="button" onclick="getSearchList()" class="btn btn-outline-primary mr-2" value="검색"></input>
 		</form>
+</div>
 	</div>
 </div>        
 
@@ -133,10 +130,16 @@ function getSearchList(){
 					str='<tr>'
 					str += "<td>"+item.memberId+"</td>";
 					str+="<td>"+item.memberName+"</td>";
-					str+="<td><a href = '/admin/memberList?memberId=" + item.memberId + "'>" + item.memberName + "</a></td>";
+					str+="<td>"+item.birthday+"</td>"
+					str+="<td>"+item.email+"</td>"
+					str+="<td>"+item.phone+"</td>"
+					str+="<td>"+item.address+"</td>"
+					str+="<td>"+item.totalMileage+"</td>"
+					//str+="<td><a href = '/admin/memberList?memberId=" + item.memberId + "'>" + item.memberName + "</a></td>";
 					str+="<td>"+item.enrollDate+"</td>";
+					str+="<td>"+item.secessionReason+"</td>";
 					str+="</tr>"
-					$('#tbl_member').append(str);
+					$('#tbl_member').append(str);   
         		})				 
 			}
 		}
