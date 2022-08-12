@@ -61,7 +61,7 @@
 		</ul>
 	</div>
 </main>	
-	<div style="float:left;">	
+	<div style="float:left;" id="tbl_memberDiv">	
 		<table id="tbl_member" class="table table-striped table-hover">	
 			<tr>
 				<th>아이디</th>
@@ -108,8 +108,8 @@
 				<option value="member_id">아이디</option>
 				<option value="member_name">이름</option>
 			</select>
-			<input type="text" name="keyword" id="keyword_" value=""></input>
-			<input type="button" onclick="getSearchList()" class="btn btn-outline-primary mr-2" value="검색"></input>
+			<input type="text" name="keyword" id="keyword_" ></input>
+			<input type="button" onclick="getSearchList()" class="btn btn-outline-primary mr-2" value="검색"/>
 		</form>
 </div>
 	</div>
@@ -124,10 +124,11 @@ function getSearchList(){
 		success : function(result){
 			console.log(result);
 			//테이블 초기화
-			$('#tbl_member > tbody').empty();
-			$('#pageBar').empty();
+			/* $('#tbl_member > tbody').empty();
+			$('#pageBar').empty(); */
+			$('#tbl_memberDiv').empty();
 			if(result.length>=1){
-				result.forEach(function(item){
+				/* result.forEach(function(item){
 					str='<tr>'
 					str += "<td>"+item.memberId+"</td>";
 					str+="<td>"+item.memberName+"</td>";
@@ -141,7 +142,10 @@ function getSearchList(){
 					str+="<td>"+item.secessionReason+"</td>";
 					str+="</tr>"
 					$('#tbl_member').append(str);   
-        		})				 
+					})
+					*/
+					$('#tbl_memberDiv').append(result);
+        		/* $('#pageBar').append("${result.pageBar2}"); */
 			}
 		}
 	})

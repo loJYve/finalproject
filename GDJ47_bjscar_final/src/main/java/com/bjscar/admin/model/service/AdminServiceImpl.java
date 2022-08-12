@@ -38,8 +38,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
-	public List<Member> getSearchList(Member m){
-		return dao.selectSearchList(session, m);
+	public List<Member> getSearchList(Map param, Member m){
+		return dao.getSearchList(session, param, m);
 	}
 	
 	@Override
@@ -57,6 +57,12 @@ public class AdminServiceImpl implements AdminService {
 	public List<SecessionMember> selectSecessionMemberListPage() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public int selectSearchMemberCount(Member m) {
+		// TODO Auto-generated method stub
+		return dao.selectSearchMemberCount(session, m);
 	}
 	
 

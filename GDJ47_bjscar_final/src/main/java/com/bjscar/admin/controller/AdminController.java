@@ -41,15 +41,45 @@ public class AdminController {
 		mv.setViewName("admin/memberList");
 		return mv;
 	}
-	@GetMapping("/getSearchList")
-	@ResponseBody
-	private List<Member> getSearchList(@RequestParam("type") String type,
-			@RequestParam("keyword") String keyword,Model model) throws Exception{
-		Member m = new Member();
-		m.setType(type);
-		m.setKeyword(keyword);
-		return service.getSearchList(m);
-	}	
+	
+	/*
+	 * @GetMapping("/getSearchList")
+	 * 
+	 * @ResponseBody private List<Member> getSearchList(@RequestParam("type") String
+	 * type,
+	 * 
+	 * @RequestParam("keyword") String keyword,ModelAndView
+	 * mv,@RequestParam(name="cPage",defaultValue="1") int cPage,
+	 * 
+	 * @RequestParam(name="numPerpage",defaultValue="5")int numPerpage) throws
+	 * Exception{ Member m = new Member(); m.setType(type); m.setKeyword(keyword);
+	 * Map param=Map.of("cPage",cPage,"numPerpage",numPerpage); List<Member>
+	 * list=service.selectMemberListPage(param); mv.addObject("members",list); int
+	 * totalData=service.selectMemberCount();
+	 * mv.addObject("totalContents",totalData);
+	 * mv.addObject("pageBar",PageFactory.getPageBar(totalData, numPerpage, cPage,
+	 * "admin.do")); m.setType(type); m.setKeyword(keyword); return
+	 * service.getSearchList(m); }
+	 */
+	 
+	
+	  @GetMapping("/getSearchList")
+	  @ResponseBody
+	  private ModelAndView getSearchList(@RequestParam("type") String type, @RequestParam("keyword") String keyword,
+			  ModelAndView mv,@RequestParam(name="cPage",defaultValue="1") int cPage, @RequestParam(name="numPerpage",defaultValue="5") int numPerpage) throws Exception { 
+		  Member m = new Member();
+		  m.setType(type);
+		  m.setKeyword(keyword);
+		  Map param=Map.of("cPage",cPage,"numPerpage",numPerpage);
+		  List<Member> list=service.getSearchList(param,m);
+		  mv.addObject("members",list);
+		  int totalData=service.selectSearchMemberCount(m);
+		  mv.addObject("totalContents",totalData);
+		  mv.addObject("pageBar",PageFactory.getPageBar(totalData, numPerpage, cPage, "getSearchList"));
+		  mv.setViewName("admin/getSearchList");
+		  return mv; 
+	  }
+	 
 	
 	@RequestMapping("/business.do")
 	public ModelAndView selectMemberList2(@RequestParam(name="cPage",defaultValue="1") int cPage,
