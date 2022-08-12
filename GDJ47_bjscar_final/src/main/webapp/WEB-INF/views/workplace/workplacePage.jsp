@@ -15,8 +15,8 @@
 </head>
 <body>
 
-
-
+	
+	
 	<div>
 		<section id="rentalshop-container" class="container">
 			<p>총 ${totalContents }곳의 사업장이 있습니다.</p>
