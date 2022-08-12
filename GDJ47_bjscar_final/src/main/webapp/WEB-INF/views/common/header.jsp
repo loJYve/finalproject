@@ -2,9 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.bjscar.member.model.vo.Member"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-	Member loginMember = (Member)session.getAttribute("loginMember"); 
-%>
+
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
@@ -47,7 +45,7 @@
 				<c:if test="${loginMember != null }">
 				<ul class="login">
 				<span>
-                   <a href="${path }/mypage/rentaldata.do?userId=${loginMember.memberId}">
+                   <a href="${path }/mypage/rentaldata.do?memberId=${loginMember.memberId}">
                      <c:out value="${loginMember.memberName }"/>
                    </a>님, 환영합니다.
                 </span>
