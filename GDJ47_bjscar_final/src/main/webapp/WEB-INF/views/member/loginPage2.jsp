@@ -167,12 +167,15 @@ transform: rotate(45deg);
    
 </style>
 <body>
+<!-- 쿠키값부르기 -->
+	
     <div class="login">
             <div class="account-login">
                <h1>BJSCAR</h1>
                <form action="${path }/member/login.do" class="login-form" method="post">
                   <div class="form-group">
-                      <input type="text" name="memberId" id="memberId" class="form-control" placeholder="ID" autofocus required>
+                      <input type="text" name="memberId" id="memberId" class="form-control" placeholder="ID"  
+                      value="${cookie.get("saveId")!=null?cookie.get('saveId').getValue():''}" autofocus required>
                   </div>
                   <p id="idch" class="check"> </p><br/>
                   <div class="form-group">
@@ -181,10 +184,11 @@ transform: rotate(45deg);
                   <p id="pwch" class="check"> </p><br/>
                   <div class="remember">
                      <label class="custom-checkbox">아이디 저장
-                     <input type="checkbox">
+                     <input type="checkbox" id="saveId" name="saveId" ${cookie.get("saveId")!=null?"checked":""}>
+                     
                      <span class="checkmark"></span>
                      </label>
-                     <button class="btn" type="submit">Login</button>
+                     <button class="btn" type="submit" name="save" id="save">Login</button>
                      </form>
                    <div class="links"> 
             <a href="${path }/member/searchId.do" class="text-primary">아이디 찾기</a> | <a href="${path }/member/searchpw.do" class="text-primary">비밀번호 찾기</a> | <a href="/member/memberEnroll.do" class="text-primary">회원가입</a>
@@ -195,6 +199,8 @@ transform: rotate(45deg);
         </div>
    </body>
  <script>
+//아이디저장
+     
  //아이디 정규식
  const idJ = /^[a-z0-9][a-z0-9_\-]{4,19}$/;
  // 비밀번호 정규식

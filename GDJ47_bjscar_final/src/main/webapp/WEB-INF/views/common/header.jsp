@@ -1,7 +1,10 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.bjscar.member.model.vo.Member"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	Member loginMember = (Member)session.getAttribute("loginMember"); 
+%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
@@ -19,7 +22,7 @@
       <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
         <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
       </a> 
-      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0" style="width:-webkit-fill-available;">
         <li><a href="<%=request.getContextPath()%>/" class="nav-link px-2 link-secondary">Home</a></li>
         <li><a href="#" class="nav-link px-2 link-dark">Features</a></li>
         <li><a href="#" class="nav-link px-2 link-dark">Pricing</a></li>
@@ -31,8 +34,8 @@
         <li><a href="${path }/rental.do" class="nav-link px-2 link-dark">대여하기</a></li>
         <li><a href="${path }/longRental/LRCarList.do" class="nav-link px-2 link-dark">장기렌트하기</a></li>
 		<li><a href="${path }/map/mapview" class="nav-link px-2 link-dark">대여소보기</a></li>
-      </ul>
-      <div class="col-md-3 text-end">
+      
+      <div class="col-md-3 text-end" style="display:contents;">
       <c:if test="${loginMember == null }">
 				<ul class="login">
 		<button type="button" class="btn btn-outline-primary me-2" onclick="location.assign('${path}/member/memberPage.do')">Login</button>
@@ -45,7 +48,7 @@
 				<c:if test="${loginMember != null }">
 				<ul class="login">
 				<span>
-                   <a href="${path }/member/memberView.do?userId=${loginMember.memberId}">
+                   <a href="${path }/mypage/rentaldata.do?userId=${loginMember.memberId}">
                      <c:out value="${loginMember.memberName }"/>
                    </a>님, 환영합니다.
                 </span>
@@ -54,6 +57,7 @@
 				</ul>
 				</c:if>
       </div>
+      </ul>
     </header>
   </div>
 
