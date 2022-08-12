@@ -2,9 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.bjscar.member.model.vo.Member"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-	Member loginMember = (Member)session.getAttribute("loginMember"); 
-%>
+
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
@@ -32,6 +30,7 @@
         <li><a href="<%=request.getContextPath()%>/admin.do" class="nav-link px-2 link-dark">관리자 페이지</a></li>
         <li><a href="<%=request.getContextPath()%>/work/workplace.do" class="nav-link px-2 link-dark">사업장관리</a></li>
         <li><a href="${path }/rental.do" class="nav-link px-2 link-dark">대여하기</a></li>
+        <li><a href="${path }/longRental/LRCarList.do" class="nav-link px-2 link-dark">장기렌트하기</a></li>
 		<li><a href="${path }/map/mapview" class="nav-link px-2 link-dark">대여소보기</a></li>
       
       <div class="col-md-3 text-end" style="display:contents;">
@@ -47,7 +46,7 @@
 				<c:if test="${loginMember != null }">
 				<ul class="login">
 				<span>
-                   <a href="${path }/mypage/rentaldata.do?userId=${loginMember.memberId}">
+                   <a href="${path }/mypage/rentaldata.do?memberId=${loginMember.memberId}">
                      <c:out value="${loginMember.memberName }"/>
                    </a>님, 환영합니다.
                 </span>

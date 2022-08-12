@@ -125,6 +125,7 @@ function getSearchList(){
 			console.log(result);
 			//테이블 초기화
 			$('#tbl_member > tbody').empty();
+			$('#pageBar').empty();
 			if(result.length>=1){
 				result.forEach(function(item){
 					str='<tr>'

@@ -9,7 +9,7 @@
 	<div>
 		<section id="member-container" class="container">
 			<p style="text-align:end;">총 ${totalContents }명의 회원이 있습니다.</p>
-			<h2 style="text-align: center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;사업자 회원관리</h2>
+			<h2 style="text-align: center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;탈퇴한 회원관리</h2>
 		</section>
 	</div>
 <div>
@@ -64,32 +64,20 @@
 	<div style="float:left;">	
 		<table id="tbl_member" class="table table-striped table-hover">	
 			<tr>
-				<th>아이디</th>
-				<th>이름</th>
-				<th>생년월일</th>
-				<th>이메일</th>
-				<th>전화번호</th>
-				<th>주소</th>
-				<th>마일리지</th>
-				<th>가입일</th>
-				<th>탈퇴여부</th>
+				<th>탈퇴사유</th>
+				<th>탈퇴한날짜</th>
+				<th>회원아이디</th>
 			</tr>
-			<c:if test="${not empty members }">
-            	<c:forEach var="m" items="${members }">
+			<c:if test="${not empty secessionmembers }">
+            	<c:forEach var="s" items="${secessionmembers }">
             		<tr>           			
-            			<td><c:out value="${m.memberId }"/></td>
-            			<td><c:out value="${m.memberName }"/></td> 
-            			<td><c:out value="${m.birthday }"/></td> 
-            			<td><c:out value="${m.email }"/></td> 
-            			<td><c:out value="${m.phone }"/></td> 
-            			<td><c:out value="${m.address }"/></td> 
-            			<td><c:out value="${m.totalMileage }"/></td> 
-            			<td><c:out value="${m.enrollDate }"/></td>            			
-            			<td><c:out value="${m.secessionReason }"/></td>            			
+            			<td><c:out value="${s.secessionReason }"/></td>
+            			<td><c:out value="${s.secessionDate }"/></td> 
+            			<td><c:out value="${s.memberId }"/></td>          			
             		</tr>
             	</c:forEach>
             </c:if>
-			<c:if test="${empty members }">
+			<c:if test="${empty secessionmembers }">
             	<tr>
             		<td colspan="6">조회결과없음</td>
             	</tr>

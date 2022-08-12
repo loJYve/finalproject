@@ -15,8 +15,9 @@
 	       				
 	       			</tr>
      </c:forEach> --%>
-     
-  <div id="map" style="width:100%; height: 100vh; margin-top : 5%"></div>
+  <div style="height: 130vh">
+  		<div id="map" style="width:100%; height: 100vh; margin-top : 5%"></div>
+  </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHvjSqcmNdLlLaP9dPJilDm_XgPSnoAk8&callback=initMap&region=kr"></script> 
 <input type="hidden" id="rs0">
@@ -65,6 +66,9 @@
  --%>
 	
  function initMap() {
+	
+	 //검색기능, 링크로 페이지 이동 추가
+	 
 	 
 	 const infoWindow=new google.maps.InfoWindow();
 	 
