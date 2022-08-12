@@ -76,7 +76,7 @@
 		  flex-wrap: nowrap;
 		  height: 100vh;
 		  height: -webkit-fill-available;
-		  max-height: 100vh;
+		  min-height: 70vh;
 		  overflow-x: auto;
 		  overflow-y: hidden;
 		}

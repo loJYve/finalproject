@@ -47,6 +47,7 @@ public class MypageController {
 		mv.addObject("rentalHistory", service.selectrentalHistory(memberId));
 		
 		mv.setViewName("/mypage/rentalHistory");
+		
 		return mv;
 	}
 	
