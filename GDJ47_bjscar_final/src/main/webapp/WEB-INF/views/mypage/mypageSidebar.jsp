@@ -12,7 +12,7 @@
 			<h4 class="text-center"><c:out value="${loginMember.memberId }"/></h3>
 			<hr>
 			<div class="text-center">마일리지<br><c:out value="${loginMember.totalMileage }"/></div>
-			<button type="button" class="btn btn-secondary">정보 수정</button>
+			<button type="button" class="btn btn-secondary" onclick="location.href='/mypage/memberdata.do?memberId=${loginMember.memberId}'">정보 수정</button>
 		</div>
 		<hr>
 		<ul class="list-unstyled ps-0">

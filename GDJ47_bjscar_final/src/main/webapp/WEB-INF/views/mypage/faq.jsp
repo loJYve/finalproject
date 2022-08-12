@@ -5,10 +5,11 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
 <main>
-	<jsp:include page="/WEB-INF/views/mypage/mypageSidebar.jsp"/>
+	<%-- <jsp:include page="/WEB-INF/views/mypage/mypageSidebar.jsp"/> --%>
+		
+		<div class="accordion mt-5" id="accordionExample" style="width: 60%; margin-left: 20%";margin-right: 20%">
 		<h2>자주 묻는 질문</h2>
-		<div class="accordion mt-5" id="accordionExample">
-  			<div class="accordion-item">
+  			<div class="accordion-item mt-5">
     			<h2 class="accordion-header" id="headingOne">
       				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
         				Accordion Item #1
@@ -34,7 +35,7 @@
 			</div>
 		</div>
 		
-	</div>
+	<!-- </div> -->
 </main>
   
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
