@@ -35,7 +35,7 @@ body {
 
 footer {
 
-    position: absolute;
+    
 
     left: 0;
 

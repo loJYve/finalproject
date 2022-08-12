@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
 <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
 
@@ -8,11 +8,11 @@
   			<span class="fs-5 fw-semibold">마이페이지</span>
   		</a>
 		<div class="rounded bg-secondary bg-opacity-50 d-grid gap-2" style="padding: 10%">
-			<h3 class="text-center">회원이름</h2>
-			<h4 class="text-center">회원 아이디</h3>
+			<h3 class="text-center"><c:out value="${loginMember.memberName }"/></h2>
+			<h4 class="text-center"><c:out value="${loginMember.memberId }"/></h3>
 			<hr>
-			<div class="text-center">마일리지<br>값asdasd</div>
-			<button type="button" class="btn btn-secondary">정보 수정</button>
+			<div class="text-center">마일리지<br><c:out value="${loginMember.totalMileage }"/></div>
+			<button type="button" class="btn btn-secondary" onclick="location.href='/mypage/memberdata.do?memberId=${loginMember.memberId}'">정보 수정</button>
 		</div>
 		<hr>
 		<ul class="list-unstyled ps-0">
@@ -22,8 +22,8 @@
 				</button>
 				<div class="collapse " id="home-collapse" style="">
 					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-						<li><a href="/mypage/rentaldata.do" class="link-dark rounded">랜트중인 차량</a></li>
-						<li><a href="/mypage/rentalhistory.do" class="link-dark rounded">이전 예약 조회</a></li>
+						<li><a href="/mypage/rentaldata.do?memberId=${loginMember.memberId}" class="link-dark rounded">랜트중인 차량</a></li>
+						<li><a href="/mypage/rentalhistory.do?memberId=${loginMember.memberId}" class="link-dark rounded">이전 예약 조회</a></li>
 					</ul>
 				</div>
 			</li>
@@ -34,8 +34,8 @@
 				</button>
 				<div class="collapse" id="dashboard-collapse" style="">
 					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-						<li><a href="/mypage/purchasehistory.do" class="link-dark rounded">결제 내역</a></li>
-						<li><a href="/mypage/enrolllisence.do" class="link-dark rounded">운전면허 등록</a></li>
+						<li><a href="/mypage/purchasehistory.do?memberId=${loginMember.memberId}" class="link-dark rounded">결제 내역</a></li>
+						<li><a href="/mypage/enrolllisence.do?memberId=${loginMember.memberId}" class="link-dark rounded">운전면허 등록</a></li>
 					</ul>
 				</div>
 			</li>
@@ -76,7 +76,7 @@
 		  flex-wrap: nowrap;
 		  height: 100vh;
 		  height: -webkit-fill-available;
-		  max-height: 100vh;
+		  min-height: 70vh;
 		  overflow-x: auto;
 		  overflow-y: hidden;
 		}
