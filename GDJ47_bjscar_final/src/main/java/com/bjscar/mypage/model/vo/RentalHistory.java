@@ -15,4 +15,9 @@ public class RentalHistory {
 	private int rentalId;
 	private Date rentalDate;
 	private Date returnDate;
+	private String status;
+	private int vehicleId;
+	private String memberId;
+	private Date bookingDate;
+	private String insuranceCode;
 }

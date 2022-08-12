@@ -21,9 +21,9 @@
 		  		<tbody>
 		  			<c:forEach var="rh" items="${rentalHistory }">
 			    		<tr>
-							<th scope="row">${rh.rental_id }</th>
-							<td>${rh.booking_date }</td>
-							<td>${rh.vehicle_id }</td>
+							<th scope="row">${rh.rentalId }</th>
+							<td>${rh.bookingDate }</td>
+							<td>${rh.vehicleId }</td>
 							<td>${rh.status }</td>
 			    		</tr>
 		    		</c:forEach>
