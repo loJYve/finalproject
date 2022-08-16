@@ -1,6 +1,7 @@
 package com.bjscar.mypage.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -43,5 +44,11 @@ public class MypageDaoImpl implements MypageDao {
 	@Override
 	public Member selectMember(SqlSessionTemplate session, String memberId) {
 		return session.selectOne("mypage.selectMember", memberId);
+	}
+	
+	@Override
+	public void memSecessionEnd(SqlSessionTemplate session, Map param) {
+		session.insert("mypage.memSecessionEnd", param);
+		session.update("mypage.secessionMemData", param);
 	}
 }

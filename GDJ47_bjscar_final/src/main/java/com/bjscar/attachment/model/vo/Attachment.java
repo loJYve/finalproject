@@ -7,10 +7,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+
 public class Attachment {
 
 	private int attachmentId;
@@ -18,5 +19,6 @@ public class Attachment {
 	private Date attchamentDate;
 	private String originalFilename;
 	private String renamedFilename;
-	
+	private int boardNo;
+
 }

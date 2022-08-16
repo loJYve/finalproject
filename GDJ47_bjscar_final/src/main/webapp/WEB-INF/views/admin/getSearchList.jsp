@@ -40,3 +40,39 @@
         	${pageBar }
         </div>
 	</div>
+<script>
+function getSearchList(){
+	$.ajax({
+		type: 'GET',
+		url : "/getSearchList",
+		data : $("form[name=search-form]").serialize(),
+		success : function(result){
+			console.log(result);
+			//테이블 초기화
+			/* $('#tbl_member > tbody').empty();
+			$('#pageBar').empty(); */
+			$('#tbl_memberDiv').empty();
+			if(result.length>=1){
+				/* result.forEach(function(item){
+					str='<tr>'
+					str += "<td>"+item.memberId+"</td>";
+					str+="<td>"+item.memberName+"</td>";
+					str+="<td>"+item.birthday+"</td>"
+					str+="<td>"+item.email+"</td>"
+					str+="<td>"+item.phone+"</td>"
+					str+="<td>"+item.address+"</td>"
+					str+="<td>"+item.totalMileage+"</td>"
+					//str+="<td><a href = '/admin/memberList?memberId=" + item.memberId + "'>" + item.memberName + "</a></td>";
+					str+="<td>"+item.enrollDate+"</td>";
+					str+="<td>"+item.secessionReason+"</td>";
+					str+="</tr>"
+					$('#tbl_member').append(str);   
+					})
+					*/
+					$('#tbl_memberDiv').append(result);
+        		/* $('#pageBar').append("${result.pageBar2}"); */
+			}
+		}
+	})
+}
+</script>
