@@ -168,7 +168,7 @@ transform: rotate(45deg);
 </style>
 <body>
 <!-- 쿠키값부르기 -->
-	
+	 
     <div class="login">
             <div class="account-login">
                <h1>BJSCAR</h1>
@@ -188,19 +188,24 @@ transform: rotate(45deg);
                      
                      <span class="checkmark"></span>
                      </label>
-                     <button class="btn" type="submit" name="save" id="save">Login</button>
+                     <button class="btn" type="submit" name="save" id="save">로그인</button>
                      </form>
+                     
+                    <!--  <button class="btn" type="submit" onclick="">kakao Login</button> -->
+                     <a href="https://kauth.kakao.com/oauth/authorize?client_id=c092a856fb0ff2740a4131083dd48690&redirect_uri=http://localhost:9090/oauth2/code/kakao&response_type=code""><img src="/images/kakao2.png" style="width:100%"></a>
                    <div class="links"> 
-            <a href="${path }/member/searchId.do" class="text-primary">아이디 찾기</a> | <a href="${path }/member/searchpw.do" class="text-primary">비밀번호 찾기</a> | <a href="/member/memberEnroll.do" class="text-primary">회원가입</a>
+                   <br/>
+            <a href="${path }/member/searchId.do" class="text-primary">아이디 찾기</a> | <a href="${path }/member/searchpw.do" class="text-primary">비밀번호 찾기</a> | <a href="/member/memberEnroll.do" class="text-primary">회원가입</a> | <a href="${path }/businessman/login.do" class="text-primary">사업자 로그인</a>
                    </div>
                   </div>
                  
             </div>
         </div>
+      
    </body>
+
  <script>
-//아이디저장
-     
+
  //아이디 정규식
  const idJ = /^[a-z0-9][a-z0-9_\-]{4,19}$/;
  // 비밀번호 정규식

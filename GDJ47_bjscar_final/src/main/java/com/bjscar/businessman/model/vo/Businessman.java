@@ -13,12 +13,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Businessman {
 
-	private String bmId;
-	private String companyName;
-	private String bmEmail;
-	private String bmPhone;
-	private String companyAddress;
-	private String registrationNumber;
-	private Date bmenrollDate;
-	private String permissionStatus;
+   private String bmId;
+   private String bmPassword;
+   private String companyName;
+   private String bmEmail;
+   private String bmPhone;
+   private String companyAddress;
+   private String registrationNumber;
+   private Date bmenrollDate;
+   private String permissionStatus;
 }

@@ -62,7 +62,7 @@ public class LoginController {
 		String viewName="redirect:/";
 		System.out.println(loginMember);
 		
-		if(loginMember!=null) {
+		if(loginMember!=null&&loginMember.getSecessionReason().equals("N")) {
 			//로그인성공
 			model.addAttribute("loginMember",loginMember);
 			

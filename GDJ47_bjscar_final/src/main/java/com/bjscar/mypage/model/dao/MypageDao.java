@@ -1,6 +1,7 @@
 package com.bjscar.mypage.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
@@ -23,4 +24,6 @@ public interface MypageDao {
 	List<RentalHistory> selectrentalHistory(SqlSessionTemplate session, String memberId);
 
 	Member selectMember(SqlSessionTemplate session, String memberId);
+
+	void memSecessionEnd(SqlSessionTemplate session, Map param);
 }
