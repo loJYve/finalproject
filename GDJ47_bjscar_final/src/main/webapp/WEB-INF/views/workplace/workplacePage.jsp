@@ -20,7 +20,7 @@
 	<div>
 		<section id="rentalshop-container" class="container">
 			<p>총 ${totalContents }곳의 사업장이 있습니다.</p>
-			<h2>개인 사업장관리</h2>	
+			<h2>개인 사업장관리</h2>
 			<table id="tbl_rentalshop" class="table table-striped table-hover">
 				<tr>
 					<th>대여소 일련번호</th>
@@ -32,7 +32,9 @@
 					<c:forEach var="r" items="${rentalshops }">
 						<tr>
 							<td><c:out value="${r.rentalshopId }" /></td>
-							<td><a href="${path}/work/workplaceView.do?no=${r.rentalshopId}"><c:out value="${r.rentalshopName }" /></a></td>										
+							<td><a
+								href="${path}/work/workplaceView.do?no=${r.rentalshopId}"><c:out
+										value="${r.rentalshopName }" /></a></td>
 							<td><c:out value="${r.rentalshopAddr }" /></td>
 							<td><c:out value="${r.bmMember }" /></td>
 						</tr>
@@ -44,11 +46,10 @@
 					</tr>
 				</c:if>
 			</table>
-			
-			<div id="pageBar">${pageBar }</div>
-			
+
+			<div id="pageBar">${pageBar }</div>			
+			<button onclick="location.assign('<%=request.getContextPath()%>/work/insertRentalshop.do')" class="btn btn-primary" >사업장 만들기</button>
 		</section>
 	</div>
 
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
-	

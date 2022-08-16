@@ -13,7 +13,7 @@ public interface AdminService {
 	
 	int selectMemberCount();
 	
-	List<Member> getSearchList(Member m);
+	List<Member> getSearchList(Map param, Member m);
 	
 	//List<Member> searchMemberList(Member m);
 
@@ -22,6 +22,8 @@ public interface AdminService {
 	List<SecessionMember> selectSecessionMemberListPage();
 
 	List<SecessionMember> selectSecessionMemberListPage(Map param);
+
+	int selectSearchMemberCount(Member m);
 	
 
 	

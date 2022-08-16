@@ -6,18 +6,10 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	
-	
-<%-- 	<c:forEach items="${rl }" var="b">
-	   				<tr>
-	   					<td>${ b.rentalshopId }</td>
-	   					<td>${ b.rentalshopName }</td>
-	   					<td> ${b.rentalshopAddr }<br></td>
-	       				
-	       			</tr>
-     </c:forEach> --%>
   <div style="height: 130vh">
   		<div id="map" style="width:100%; height: 100vh; margin-top : 5%"></div>
   </div>
+	
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHvjSqcmNdLlLaP9dPJilDm_XgPSnoAk8&callback=initMap&region=kr"></script> 
 <input type="hidden" id="rs0">
@@ -78,13 +70,10 @@
      });
 	 
 	
-	$.get("${pageContext.request.contextPath}/map/searchRentalshop",
+	$.get("${pageContext.request.contextPath}/map/mapRentalshop.do",
 			data=>{
 				console.log(data);
 		data.filter(v=>{
-			
-			
-			
 			const marker=new google.maps.Marker({
 				position:new google.maps.LatLng(v.latitude,v.longitude),
 				map:map,
@@ -93,49 +82,36 @@
 				optimized: false,
 			});
 			
-			
-			/* 
-			const locations=[
-				{lat: v.latitude, lng: v.longitude}
-		];		
-		 */
-		
-		//합쳐진 점 숫자로 보기
-
-			/* 
-		
-		const markers = locations.map((position, j) => {
-			    //const label =  labels[j % labels.length];
-			    const marker = new google.maps.Marker({
-			      position,
-			      label:v.rentalshopName,
-			    });
-		  new MarkerClusterer({ markers, map });
-		  */
-		 
-		marker.addListener("click",(e)=>{
-			infoWindow.close();
-			infoWindow.setContent(marker.getLabel()+v.rentalshopAddr+v.bmMember);
-			infoWindow.open(marker.getMap(), marker);
-			})
-			
-		/* 
-		 map.addListener("center_changed", () => {
-			    // 3 seconds after the center of the map has changed, pan back to the
-			    // marker.
-			    window.setTimeout(() => {
-			      map.panTo(marker.getPosition());
-			    }, 3000);
-			  }); */
-		
-		
+			marker.addListener("click",(e)=>{
+				infoWindow.close();
+				infoWindow.setContent(marker.getLabel()+window.open('/map/showRentalshop.do?no=${v.rentalshopId}'));
+				infoWindow.open(marker.getMap(), marker);
+			});
 			
 		});//filter닫음
-		
 	});	//ajax닫음
 	//new MarkerClusterer({ marker, map });
 }
- 
+	/* 
+ map.addListener("center_changed", () => {
+	    // 3 seconds after the center of the map has changed, pan back to the
+	    // marker.
+	    window.setTimeout(() => {
+	      map.panTo(marker.getPosition());
+	    }, 3000);
+	  }); 
+	//합쳐진 점 숫자로 보기
+
+const markers = locations.map((position, j) => {
+	    //const label =  labels[j % labels.length];
+	    const marker = new google.maps.Marker({
+	      position,
+	      label:v.rentalshopName,
+	    });
+  new MarkerClusterer({ markers, map });
+  */
+
+	
 	 /*  //console.log($("#rs0").val());
 	  console.log(rs[0][1]);
      

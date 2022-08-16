@@ -3,6 +3,7 @@ package com.bjscar.workplace.controller;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.maven.model.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,6 +46,19 @@ public class WorkPlaceController {
 		mv.setViewName("workplace/workView");
 		
 		return mv;
+	}
+	
+	//작성하는 페이지로 가는
+	@RequestMapping("/work/insertRentalshop.do")
+	public String insertRentalshopPage() {
+		return "workplace/insertRentalshop";
+	}
+	@RequestMapping("/insertworkplaceEnd.do")
+	public String insertRentalshop(Rentalshop r) {
+		int result=service.insertRentalshop(r);
+		
+		return "/work/workplacePage";
+		
 	}
 	
 }

@@ -43,8 +43,12 @@ public class AdminDaoImpl implements AdminDao {
 	
 
 	@Override
-	public List<Member> selectSearchList(SqlSessionTemplate session,Member m){
-		return session.selectList("member.selectSearchList2",m);
+	public List<Member> getSearchList(SqlSessionTemplate session, Map param, Member m){
+		int offSet=(int)param.get("cPage");
+		int limit=(int)param.get("numPerpage");
+		
+//		return session.selectList("member.selectSearchList2",m);
+		return session.selectList("member.selectSearchList2",m,new RowBounds((offSet-1)*limit,limit));
 	}
 	
 	@Override
@@ -59,6 +63,12 @@ public class AdminDaoImpl implements AdminDao {
 		int limit=(int)param.get("numPerpage");
 		
 		return session.selectList("secessionmember.selectSecessionMemberList",null,new RowBounds((offSet-1)*limit,limit));
+	}
+
+	@Override
+	public int selectSearchMemberCount(SqlSessionTemplate session, Member m) {
+		// TODO Auto-generated method stub
+		return session.selectOne("member.selectSearchMemberCount",m);
 	}
 
 }

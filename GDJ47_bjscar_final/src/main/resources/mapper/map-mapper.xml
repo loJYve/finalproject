@@ -4,18 +4,37 @@
 
 <resultMap type="rentalshop" id="rentalshopMap">
 	<id column="RENTALSHOP_ID" property="rentalshopId"/>
-	<id column="RENTALSHOP_NAME" property="rentalshopName"/>
-	<id column="RENTALSHOP_ADDR" property="rentalshopAddr"/>
-	<id column="LATITUDE" property="latitude"/>
-	<id column="LONGTITUDE" property="longitude"/>
-	<id column="BM_MEMBER" property="bmMember"/>
+	<result column="RENTALSHOP_NAME" property="rentalshopName"/>
+	<result column="RENTALSHOP_ADDR" property="rentalshopAddr"/>
+	<result column="LATITUDE" property="latitude"/>
+	<result column="LONGTITUDE" property="longitude"/>
+	<result column="BM_MEMBER" property="bmMember"/>
 </resultMap>
 
+<resultMap type="vehicle" id="vehicleMap">
+	<id column="VEHICLE_ID" property="vehicleId"/>
+	<result column="MODEL" property="model"/>
+	<result column="NUMBER_PLATE" property="numberPlate"/>
+	<result column="RENTAL_STATUS" property="rentalStatus"/>
+	<result column="PRODUCT_YEAR" property="productYear"/>
+	<result column="RENTALSHOP_ID" property="rentalshopId"/>
+	<result column="ACCIDENT_STATUS" property="accidentStatus"/>
+	<result column="PRICE" property="price"/>
+	<result column="FUEL" property="fuel"/>
+	<result column="BOARDING_PERSONNEL" property="boardingPersonnel"/>
+	<result column="VEHICLE_GRADE" property="vehicleGrade"/>
+	<association property="rentalShop" resultMap="rentalshopMap"/>
+</resultMap>
 
 	<select id="searchRentalshop" resultMap="rentalshopMap">
-		select * from rentalshop
+		SELECT * FROM RENTALSHOP
+		<!-- SELECT count(*) FROM VEHICLE JOIN RENTALSHOP USING(RENTALSHOP_ID) -->
 	</select>
-
+	
+	
+	<select id="selectVehicle" parameterType="_int" resultMap="vehicleMap">
+		SELECT * FROM VEHICLE JOIN RENTALSHOP USING(RENTALSHOP_ID) WHERE RENTALSHOP_ID=#{no} AND rental_Status LIKE '대여가능'
+	</select>
  
 
 </mapper>

@@ -15,11 +15,13 @@ public interface AdminDao {
 	
 	int selectMemberCount(SqlSessionTemplate session);
 
-	List<Member> selectSearchList(SqlSessionTemplate session, Member m);
+	List<Member> getSearchList(SqlSessionTemplate session, Map param, Member m);
 	
 	List<SecessionMember> selectSecessionMemberList(SqlSessionTemplate session);
 	
 	List<SecessionMember> selectSecessionMemberListPage(SqlSessionTemplate session,Map param);
+
+	int selectSearchMemberCount(SqlSessionTemplate session, Member m);
 	
 	
 }

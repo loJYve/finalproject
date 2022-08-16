@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bjscar.attachment.model.vo.Attachment;
+import com.bjscar.member.model.vo.Member;
 import com.bjscar.mypage.model.dao.MypageDao;
 import com.bjscar.mypage.model.vo.RentalHistory;
 import com.bjscar.rentalshop.model.vo.Rentalshop;
@@ -44,5 +45,10 @@ public class MypageServiceImpl implements MypageService {
 	@Override
 	public List<RentalHistory> selectrentalHistory(String memberId) {
 		return dao.selectrentalHistory(session, memberId);
+	}
+	
+	@Override
+	public Member selectMember(String memberId) {
+		return dao.selectMember(session, memberId);
 	}
 }

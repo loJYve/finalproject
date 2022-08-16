@@ -33,7 +33,7 @@ public class MypageController {
 			 mv.addObject("carData", service.selectCarData(rh.getVehicleId()));
 			 mv.addObject("rentalshopData", service.selectRentalshopData(rh.getVehicleId()));
 		} catch (NullPointerException e) {
-			e.printStackTrace();
+			
 		}
 	
 		mv.setViewName("/mypage/rentalData");
@@ -47,6 +47,7 @@ public class MypageController {
 		mv.addObject("rentalHistory", service.selectrentalHistory(memberId));
 		
 		mv.setViewName("/mypage/rentalHistory");
+		
 		return mv;
 	}
 	
@@ -62,5 +63,15 @@ public class MypageController {
 	@RequestMapping("/faq.do")
 	public String faq() {
 		return "/mypage/faq";
+	}
+	
+	@RequestMapping("/memberdata.do")
+	public ModelAndView memberData(@RequestParam String memberId, ModelAndView mv) {
+		
+		mv.addObject("memberData", service.selectMember(memberId));
+		
+		mv.setViewName("/mypage/memberData");
+		
+		return mv;
 	}
 }
