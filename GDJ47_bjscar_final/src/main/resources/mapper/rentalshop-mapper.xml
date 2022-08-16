@@ -38,7 +38,12 @@
   
   <select id="selectrentalshop" parameterType="_int" resultMap="attachmentMap">
  	
-		SELECT * FROM ATTACHMENT WHERE ATTACHMENT_ID=(SELECT ATTACHMENT_ID FROM RENTALSHOP_ATTACHMENT WHERE RENTALSHOP_ID=${no})
+  select *
+  from attachment A
+  inner join rentalshop_attachment RA
+  on ra.attachment_id = A.attachment_id
+  inner join rentalshop R
+  on R.rentalshop_id = RA.rentalshop_id where R.rentalshop_id=#{no}
 		
   </select>
   
