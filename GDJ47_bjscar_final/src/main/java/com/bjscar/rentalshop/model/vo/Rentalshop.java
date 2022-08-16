@@ -22,6 +22,6 @@ public class Rentalshop {
 	private double latitude;
 	private double longitude;
 	private String bmMember;	
-	private List<Attachment> file;
+	private List<Attachment> files;
 
 }

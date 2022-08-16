@@ -26,7 +26,9 @@
         <li><a href="/mypage/faq.do" class="nav-link px-2 link-dark">FAQs</a></li>
 
         <li><a href="<%=request.getContextPath()%>/admin.do" class="nav-link px-2 link-dark">관리자 페이지</a></li>
+        <%-- <c:if test="${loginMember != null }"> --%>
         <li><a href="<%=request.getContextPath()%>/work/workplace.do" class="nav-link px-2 link-dark">사업장관리</a></li>
+        <%-- </c:if> --%>
         <li><a href="${path }/rental.do" class="nav-link px-2 link-dark">대여하기</a></li>
         <li><a href="${path }/longRental/LRCarList.do" class="nav-link px-2 link-dark">장기렌트하기</a></li>
 		<li><a href="${path }/map/mapview" class="nav-link px-2 link-dark">대여소보기</a></li>
