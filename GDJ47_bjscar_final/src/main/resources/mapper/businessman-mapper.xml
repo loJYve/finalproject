@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="businessman">
+  <resultMap type="businessman" id="bmMap">
+    <id property="bmId" column="bm_id"/>
+      <result property="bmPassword" column="bm_password"/>   
+      <result property="companyName" column="company_name"/> 
+      <result property="bmEmail" column="bm_email"/> 
+      <result property="bmPhone" column="bm_phone"/> 
+      <result property="companyAddress" column="company_address"/> 
+      <result property="registrationNumber" column="registration_number"/> 
+      <result property="bmenrollDate" column="bm_enroll_date"/>
+      <result property="permissionStatus" column="permission_status"/>  
+  </resultMap>
+
+<insert id="insertBusinessman" parameterType="businessman">
+  INSERT INTO BUSINESSMAN VALUES(#{bmId},#{bmPassword},#{companyName},#{bmEmail},#{bmPhone},#{companyAddress},#{registrationNumber},#{bmenrollDate},DEFAULT)
+</insert>
+
+	<select id="idCheck" parameterType="businessman" resultMap="bmMap">
+	  SELECT * FROM BUSINESSMAN WHERE BM_ID=#{bmId}
+	</select>
+	
+	<select id="selectMan" parameterType="businessman" resultMap="bmMap">
+	  SELECT * FROM BUSINESSMAN WHERE BM_ID=#{bmId} AND BM_PASSWORD=#{bmPassword}
+	</select>
+	
+</mapper>

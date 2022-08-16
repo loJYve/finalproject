@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="plan">
+	<resultMap type="plan" id="planMap">
+      <id property="planId" column="plan_id"/>
+      <result property="planTitle" column="plan_title"/>   
+      <result property="planDate" column="plan_date"/> 
+      <result property="planTheme" column="plan_theme"/> 
+      <result property="planArea" column="plan_area"/> 
+      <result property="planDate2" column="plan_date2"/>  
+    </resultMap>
+
+
+<insert id="insertPlan" parameterType="plan">
+ INSERT INTO TRAVEL_PLAN VALUES(SEQ_PLAN_ID.NEXTVAL,#{planTitle},#{planDate},#{planTheme},#{planArea},#{planDate2})
+</insert>
+</mapper>

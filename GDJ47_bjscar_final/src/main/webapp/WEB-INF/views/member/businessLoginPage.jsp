@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
-        <title>로그인 폼</title>
+        <title>사업자 로그인 폼</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -171,15 +171,15 @@ transform: rotate(45deg);
 	 
     <div class="login">
             <div class="account-login">
-               <h1>BJSCAR</h1>
-               <form action="${path }/member/login.do" class="login-form" method="post">
+               <h1>사업자 BJSCAR</h1>
+               <form action="${path }/businessman/loginEnd.do" class="login-form" method="post">
                   <div class="form-group">
-                      <input type="text" name="memberId" id="memberId" class="form-control" placeholder="ID"  
-                      value="${cookie.get("saveId")!=null?cookie.get('saveId').getValue():''}" autofocus required>
+                      <input type="text" name="bmId" id="bmId" class="form-control" placeholder="ID"  
+                      value="${cookie.get("saveId")!=null?cookie.get('saveId').getValue():''}" autofocus required> 
                   </div>
                   <p id="idch" class="check"> </p><br/>
                   <div class="form-group">
-                     <input type="password" name="password" id="password" class="form-control" placeholder="Password"  required>
+                     <input type="password" name="bmPassword" id="bmPassword" class="form-control" placeholder="Password"  required>
                   </div>
                   <p id="pwch" class="check"> </p><br/>
                   <div class="remember">
@@ -195,7 +195,7 @@ transform: rotate(45deg);
                      <a href="https://kauth.kakao.com/oauth/authorize?client_id=c092a856fb0ff2740a4131083dd48690&redirect_uri=http://localhost:9090/oauth2/code/kakao&response_type=code""><img src="/images/kakao2.png" style="width:100%"></a>
                    <div class="links"> 
                    <br/>
-            <a href="${path }/member/searchId.do" class="text-primary">아이디 찾기</a> | <a href="${path }/member/searchpw.do" class="text-primary">비밀번호 찾기</a> | <a href="/member/memberEnroll.do" class="text-primary">회원가입</a> | <a href="${path }/businessman/login.do" class="text-primary">사업자 로그인</a>
+            <a href="${path }/member/searchId.do" class="text-primary">아이디 찾기</a> | <a href="${path }/member/searchpw.do" class="text-primary">비밀번호 찾기</a> | <a href="/member/memberEnroll.do" class="text-primary">회원가입</a> | <a href="${path }/member/memberPage.do" class="text-primary">일반회원 로그인</a>
                    </div>
                   </div>
                  
@@ -211,12 +211,12 @@ transform: rotate(45deg);
  // 비밀번호 정규식
  const pwJ = /^[A-Za-z0-9]{6,20}$/;
 //아이디 체크
- $("#memberId").focusout((e)=>{
-	     if($('#memberId').val() == ""){
+ $("#emId").focusout((e)=>{
+	     if($('#emId').val() == ""){
 	   		$('#idch').text('*필수 정보입니다.');
 	   	  	$('#idch').css('color', 'red');
 	   		return false;
-	  }else if(!idJ.test($('#memberId').val())){
+	  }else if(!idJ.test($('#emId').val())){
 	  		$('#idch').text('4~19자의 영문 소문자, 숫자만 사용가능합니다')
 			$('#idch').css('color', 'red')
 		   return false;
@@ -227,8 +227,8 @@ transform: rotate(45deg);
 	     }
  });
  //비밀번호 체크2
- $("#password").focusout((e)=>{
- 	if($('#password').val()==""){
+ $("#bmPassword").focusout((e)=>{
+ 	if($('#bmPassword').val()==""){
  	   $('#pwch').text('*필수 정보입니다.');
 	   	   $('#pwch').css('color', 'red');
 	   	    return false;

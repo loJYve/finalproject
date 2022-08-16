@@ -22,7 +22,7 @@
      <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>회원가입 폼</title>
+    <title>사업자 회원가입 폼</title>
     <style>
     	div#userId-container{position:relative;padding:0px;text-align:center;}
 		div#userId-container span.guide{display : none;font-size:12px;}
@@ -104,16 +104,16 @@
 	<div class="input-form-backgroud row">
 	<div class="input-form col-md-12 mx-auto">
 		<div class="card-title" style="margin-top:30px;">
-		 <input type="button"  id="memberCheck" onClick="location.href='${path}/business/enroll.do'"  class="btn btn-primary"  value="사업자 회원가입 이동"/><br/>
+		 <input type="button"  id="memberCheck" onClick="location.href='${path}/member/memberEnroll.do'"  class="btn btn-primary"  value="일반 회원가입 이동"/><br/>
 		 <br/>
-		  <h4 class="mb-3">회원가입</h4>
+		  <h4 class="mb-3">사업자 회원가입</h4>
 		<!-- 	<h2 class="card-title" style="color:#e4932b;"><h2>회원가입</h2></h2> -->
 		</div>
 		<div class="card-body">
-      <form name="memberEnrollFrm" action="${pageContext.request.contextPath }/member/enrollMemberEnd.do" 
+      <form name="businessEnrollFrm" action="${pageContext.request.contextPath }/business/enrollEnd.do" 
 		method="post">
         <p class="text">아이디</p>
-        <input type="text" name="memberId" id="memberId"  class="form-control" placeholder="ID"
+        <input type="text" name="bmId" id="bmId"  class="form-control" placeholder="ID"
         style="padding: 10px;
   		font-size: 16px;
   		width: 250px;
@@ -127,17 +127,19 @@
 	  <span class="guide error">이 아이디는 사용 불가능 합니다.</span>
       </div>
         <p class="text">비밀번호</p>
-        <input type="password" name="password" id="password" class="form-control" placeholder="Password" required><br>
+        <input type="password" name="bmPassword" id="bmPassword" class="form-control" placeholder="Password" required><br>
         	<p id="pw2ch" class="check"> </p><br/>
         <p class="text">비밀번호 확인</p>
-        <input type="password"  id="password2" class="form-control" placeholder="Confirm Password" required><br>
+        <input type="password"  id="bmPassword2" class="form-control" placeholder="Confirm Password" required><br>
         	<p id="pwch" class="check"> </p><br/>
         <p class="text">이름</p>
-        <input type="text" name="memberName" id="memberName" class="form-control" placeholder="Name" required><br>
+        <input type="text" name="companyName" id="companyName" class="form-control" placeholder="company Name" required><br>
         	<p id="namech" class="check"> </p><br/>
-        <p class="text">생년월일</p>
-        <input type="text" name="birthday" id="birthday" class="form-control" placeholder="ex) 20000101" required><br>
+        <p class="text">사업자 번호</p>
+        <input type="text" name="registrationNumber" id="registrationNumber" class="form-control" placeholder="Registration Number" required><br>
             <p id="birthch" class="check"> </p><br/>
+        <p class="text">설립일</p>
+        <input type="date" name="bmenrollDate" id="bmenrollDate" class="form-control" placeholder="Date" required><br>      
         <!--  <p class="text">이메일</p>
          <input type="text"  name="email" id="email" class="form-control" placeholder="Email" required> -->
        <!--   &nbsp; &nbsp;
@@ -147,13 +149,13 @@
             <input type="text" class="text" name="addr1" id="addr1" placeholder="우편번호"readonly="readonly">
             <input type="button" onclick="execPostCode()"   class="btn btn-primary"  value="우편번호 찾기"><br>
             <input type="text" class="form-control" name="addr2" id="addr2"  placeholder="도로명주소"readonly="readonly">
-            <input type="text" name="address" id="addr3" class="form-control" placeholder="상세주소" required><br>
+            <input type="text" id="companyAddress" name="companyAddress" id="addr3" class="form-control" placeholder="상세주소" required><br>
             <span id="guide" style="color:#999;display:none"></span>
             <br/>
             <br/>
        <div id="contents"> 
 		 <p class="text">이메일</p> 
-		 <input type="text" id="email" name="email" class="form-control" placeholder="Email" required/>  
+		 <input type="text" id="bmEmail" name="bmEmail" class="form-control" placeholder="Email" required/>  
 		 &nbsp; 
 		<button type="button" id="emailChk" class="btn btn-primary">인증</button><br> 
 		<p id="emch" class="check"> </p><br/>
@@ -167,7 +169,7 @@
         
         <div id="contents"> 
 		 <p class="text">휴대폰번호</p> 
-		 <input type="text" id="to" name="phone" class="form-control" placeholder="Phone" required/>  
+		 <input type="text" id="to" name="bmPhone" class="form-control" placeholder="Phone" required/>  
 		 &nbsp; 
 		<button type="button" id="send" class="btn btn-primary">인증</button><br> 
 		<p id="phonech" class="check"> </p><br/>
@@ -217,7 +219,7 @@
   //아이디 중복확인
  
   const idCheck=()=>{
-	  $.get("${path}/member/idCheck.do?memberId="+$("#memberId").val(),
+	  $.get("${path}/businessman/idCheck.do?bmId="+$("#bmId").val(),
 			 data=>{console.log(data);
 			 if(data == ''){
 				$("#userId-container span.ok").show();
@@ -230,12 +232,12 @@
 			 });
   }
   //아이디 체크
-    $("#memberId").focusout((e)=>{
-	     if($('#memberId').val() == ""){
+    $("#bmId").focusout((e)=>{
+	     if($('#bmId').val() == ""){
 	   		$('#idch').text('*필수 정보입니다.');
 	   	  	$('#idch').css('color', 'red');
 	   		return false;
-  	  }else if(!idJ.test($('#memberId').val())){
+  	  }else if(!idJ.test($('#bmId').val())){
 	  		$('#idch').text('4~19자의 영문 소문자, 숫자만 사용가능합니다')
 			$('#idch').css('color', 'red')
   		   return false;
@@ -246,12 +248,12 @@
 	     }
     });
   //비밀번호 체크1
-    $("#password").focusout((e)=>{
-    	if($('#password').val()==""){
+    $("#bmPassword").focusout((e)=>{
+    	if($('#bmPassword').val()==""){
     	   $('#pw2ch').text('*필수 정보입니다.');
 	   	   $('#pw2ch').css('color', 'red');
 	   	   return false;
-      }else if(!pwJ.test($("#password").val())){
+      }else if(!pwJ.test($("#bmPassword").val())){
     	   $('#pw2ch').text('6~20자의 영문 소문자, 숫자만 사용가능합니다')
 		   $('#pw2ch').css('color', 'red') 
 			return false;
@@ -262,12 +264,12 @@
       }
     });
   //비밀번호 체크2
-    $("#password2").focusout((e)=>{
-    	if($('#password2').val()==""){
+    $("#bmPassword2").focusout((e)=>{
+    	if($('#bmPassword2').val()==""){
     	   $('#pwch').text('*필수 정보입니다.');
  	   	   $('#pwch').css('color', 'red');
  	   	    return false;
-       }else if(!pwJ.test($("#password").val())){
+       }else if(!pwJ.test($("#bmPassword").val())){
     	   $('#pwch').text('6~20자의 영문 소문자, 숫자만 사용가능합니다')
 		   $('#pwch').css('color', 'red') 
 			return false;
@@ -278,8 +280,8 @@
        }
     });
   //비밀번호 중복확인
-     $("#password2").keyup((e)=>{
-    	 if($("#password2").val()!=$("#password").val()){
+     $("#bmPassword2").keyup((e)=>{
+    	 if($("#bmPassword2").val()!=$("#bmPassword").val()){
     		 $("#pwch").html("비밀번호가 다릅니다");
 		     $("#pwch").css("color",'red');
 		    
@@ -289,8 +291,8 @@
 		 
     	 }
      });
-     $("#password").keyup((e)=>{
-    	 if($("#password").val()!=$("#password2").val()){
+     $("#bmPassword").keyup((e)=>{
+    	 if($("#bmPassword").val()!=$("#bmPassword2").val()){
     		 $("#pwch").html("비밀번호가 다릅니다");
 		     $("#pwch").css("color",'red');
 		  
@@ -303,12 +305,12 @@
     	 }
      });     
    //이름 체크
-   $("#memberName").focusout((e)=>{
-	  if($('#memberName').val()==""){
+   $("#companyName").focusout((e)=>{
+	  if($('#companyName').val()==""){
 		  $('#namech').text('*필수 정보입니다.');
 		  $('#namech').css('color', 'red');
 		  return false;
-	  }else if(!nameJ.test($("#memberName").val())){
+	  }else if(!nameJ.test($("#companyName").val())){
 		  $('#namech').text('한글 2~4자 이내로 입력하세요. (특수기호, 공백 사용 불가)');
 	      $('#namech').css('color', 'red');
 	      return false;
@@ -319,9 +321,20 @@
 	  }
 	  
    });
-   //생년월일
+   //사업자번호
+   $("#registrationNumber").focusout((e)=>{
+	  if($('#registrationNumber').val()==""){
+		  $('#birthch').text('*필수 정보입니다.');
+		  $('#birthch').css('color', 'red');
+		  return false;
+	  }else{
+		  $('#birthch').hide();
+		  return true;
+	  } 
+   });
+  /* 
   
-   $("#birthday").blur((e)=>{
+   $("#companyName").blur((e)=>{
 	   const dateStr= $("#birthday").val();
 	   const year = Number(dateStr.substr(0,4));
 	   const month = Number(dateStr.substr(4,2));
@@ -363,11 +376,11 @@
 			   $('#birthch').css('color', 'red');   
 	          }
 	  
-   });
+   }); */
    
    //이메일
-   $("#email").focusout((e)=>{
-	  if($("#email").val()==""){
+   $("#bmEmail").focusout((e)=>{
+	  if($("#bmEmail").val()==""){
 		  $('#emch').text('*필수 정보입니다.');
 		  $('#emch').css('color','red');
 		  return false;
@@ -377,9 +390,22 @@
 			return true;
 	  } 
    });
+   //이메일 인증번호
+   $("#email2").focusout((e)=>{
+	  if($("#email2").val()==""){
+		  $('#emch2').text('*필수 정보입니다.');
+		  $('#emch2').css('color','red');
+		  return false;
+	  }else{
+		 
+		  $('#emch2').hide();
+			return true;
+	  } 
+   });
+   
    //이메일 인증
    $("#emailChk").click((e)=>{
-	  const email = $('#email').val();
+	  const email = $('#bmEmail').val();
 	  $.ajax({
 		  url:'${path}/member/checkMail.do',
 		  type: 'POST',

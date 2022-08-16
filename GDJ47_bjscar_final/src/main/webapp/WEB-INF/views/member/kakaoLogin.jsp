@@ -1,23 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+ <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html lang="en">
    <head>
-        <title>로그인 폼</title>
+        <title>카카오톡 성공 폼</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script> 
+         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> 
 </head>
-<style type="text/css">
-* {
-margin: 0px;
-padding: 0px;
-}
+<style>
 .login {
 /* background: linear-gradient(to bottom, #0099ff 0%, #fff 100%); */
  background: -webkit-gradient(linear, left bottom, right top, from(#92b5db), to(#1d466c));
@@ -166,77 +162,42 @@ transform: rotate(45deg);
     }
    
 </style>
-<body>
-<!-- 쿠키값부르기 -->
-	 
+   <body>
+    <c:if test="${userId == null}">
+       <h1>카카오톡 로그인 실패입니다</h1>
+       <input type="button" value="메인화면" onclick="location.href='${path}/index'">
+    </c:if>
+    <c:if test="${userId != null}">
     <div class="login">
-            <div class="account-login">
-               <h1>BJSCAR</h1>
-               <form action="${path }/member/login.do" class="login-form" method="post">
+    <div class="account-login">
+               <h1>카카오톡 로그인 성공</h1>
+               <div class="login-form">
                   <div class="form-group">
-                      <input type="text" name="memberId" id="memberId" class="form-control" placeholder="ID"  
-                      value="${cookie.get("saveId")!=null?cookie.get('saveId').getValue():''}" autofocus required>
-                  </div>
-                  <p id="idch" class="check"> </p><br/>
-                  <div class="form-group">
-                     <input type="password" name="password" id="password" class="form-control" placeholder="Password"  required>
-                  </div>
-                  <p id="pwch" class="check"> </p><br/>
-                  <div class="remember">
-                     <label class="custom-checkbox">아이디 저장
-                     <input type="checkbox" id="saveId" name="saveId" ${cookie.get("saveId")!=null?"checked":""}>
-                     
-                     <span class="checkmark"></span>
-                     </label>
-                     <button class="btn" type="submit" name="save" id="save">로그인</button>
-                     </form>
-                     
-                    <!--  <button class="btn" type="submit" onclick="">kakao Login</button> -->
-                     <a href="https://kauth.kakao.com/oauth/authorize?client_id=c092a856fb0ff2740a4131083dd48690&redirect_uri=http://localhost:9090/oauth2/code/kakao&response_type=code""><img src="/images/kakao2.png" style="width:100%"></a>
-                   <div class="links"> 
+                   <input type="text" class="form-control" value="카카오톡 이름 : ${nickName }">
+                   <input type="text" class="form-control" value="카카오톡 이메일 : ${userId }">
+                   <div style="text-align:center;">
                    <br/>
-            <a href="${path }/member/searchId.do" class="text-primary">아이디 찾기</a> | <a href="${path }/member/searchpw.do" class="text-primary">비밀번호 찾기</a> | <a href="/member/memberEnroll.do" class="text-primary">회원가입</a> | <a href="${path }/businessman/login.do" class="text-primary">사업자 로그인</a>
+                   <p style="text-align:left;">카카오톡 프로필 사진 : </p><img src=${profile } style="width:200px;height:200px;">
                    </div>
                   </div>
-                 
-            </div>
+                  <div class="remember">
+                   <button class="btn" type="submit" onclick="location.href='${path}/oauth2/code/kakaoLogout.do'">카카오톡 로그아웃</button> 
+                     </div>
+             
+                   <div class="links"> 
+                     <%--   <a href="${path }/member/memberPage.do" class="text-primary">로그인 화면 돌아가기</a> --%>
+                   </div>
+                  </div>
         </div>
-      
-   </body>
-
- <script>
-
- //아이디 정규식
- const idJ = /^[a-z0-9][a-z0-9_\-]{4,19}$/;
- // 비밀번호 정규식
- const pwJ = /^[A-Za-z0-9]{6,20}$/;
-//아이디 체크
- $("#memberId").focusout((e)=>{
-	     if($('#memberId').val() == ""){
-	   		$('#idch').text('*필수 정보입니다.');
-	   	  	$('#idch').css('color', 'red');
-	   		return false;
-	  }else if(!idJ.test($('#memberId').val())){
-	  		$('#idch').text('4~19자의 영문 소문자, 숫자만 사용가능합니다')
-			$('#idch').css('color', 'red')
-		   return false;
-	  }else{ 
-		  
-	       $("#idch").hide();
-	       return true;
-	     }
- });
- //비밀번호 체크2
- $("#password").focusout((e)=>{
- 	if($('#password').val()==""){
- 	   $('#pwch').text('*필수 정보입니다.');
-	   	   $('#pwch').css('color', 'red');
-	   	    return false;
-    }else{
- 	  
- 	   $("#pwch").hide();
- 	   return true;
-    }
- });
- </script>
+   <%--  <div class="login-form">
+        <h1>카카오톡 로그인 성공입니다</h1>
+        <div class="form-group">
+        이름:${nickName }<br>
+        이메일:${userId }<br>
+        사진:<img src=${profile } style="width:100px;height:100px;"><br>
+        </div>
+        <input type="button"  class="btn" value="메인화면" onclick="location.href='${path}/oauth2/code/kakaoLogout.do'">
+    </div> --%>
+    </c:if>
+</body>
 </html>
