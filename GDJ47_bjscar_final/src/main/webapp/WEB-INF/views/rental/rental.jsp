@@ -204,7 +204,7 @@
 		
 		$("#vehicle_grade").change(e=>{
 			$.ajax({
-				url:"${path}/rental/searchVehicle.do",
+				url:"${path}/rental/searchVehicleByGrade.do",
 				data:{vehicleGrade:$("#vehicle_grade").val()},
 				success:data=>{
 					
