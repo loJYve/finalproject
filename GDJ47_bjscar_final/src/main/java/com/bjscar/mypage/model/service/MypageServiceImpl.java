@@ -57,4 +57,9 @@ public class MypageServiceImpl implements MypageService {
 	public void memSecessionEnd(Map param)  {
 		dao.memSecessionEnd(session, param);
 	}
+	@Override
+	public List<RentalHistory> selectPurchaseHistory(Map param) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
