@@ -36,5 +36,9 @@
 		SELECT * FROM VEHICLE JOIN RENTALSHOP USING(RENTALSHOP_ID) WHERE RENTALSHOP_ID=#{no} AND rental_Status LIKE '대여가능'
 	</select>
  
+	<select id="selectBoardCount" resultType="int">
+		SELECT COUNT(*) FROM VeHICLE
+	</select> 
+ 
 
 </mapper>

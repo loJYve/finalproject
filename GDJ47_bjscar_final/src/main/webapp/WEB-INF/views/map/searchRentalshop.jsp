@@ -51,7 +51,7 @@
 						<%-- <td><c:out value="${r.}"/></td> --%>
 						<!-- 여기서 대여가능 차량대수는 rentalshop이 
 			    아닌 vehicle 테이블에서 count로 받아와야 하는데 c:forEach로 어떻게 할 수 있음?? -->
-						<td><button type="button" onclick="window.open('/map/showRentalshop.do?no=${r.rentalshopId}');">대여소 확인하기</button></td>	
+						<td><button type="button" onclick="location.assign('/map/showRentalshop.do?no=${r.rentalshopId}');">대여소 확인하기</button></td>	
 					<%-- window.open('/map/showRentalshop.do?no=${v.rentalshopId}
 no로 rentalshopId를 넘기는데 오류가 남 - null이 들어갈수있어서 그렇다는데 어떻게 처리?
 = map 에서 클릭해서 넘어가는것에서도 똑같이. 누르고 말풍선을 눌러서 넘어가는 방식

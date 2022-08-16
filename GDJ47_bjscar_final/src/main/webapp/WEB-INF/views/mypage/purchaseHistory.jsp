@@ -13,7 +13,6 @@
 		    		<tr>
 						<th scope="col">No.</th>
 						<th scope="col">예약 날짜</th>
-						<th scope="col">차종</th>
 						<th scope="col">상태</th>
 						<th scope="col">금액</th>
 		    		</tr>
@@ -24,7 +23,6 @@
 			    		<tr>
 							<th scope="row">${ph.rentalId }</th>
 							<td>${ph.bookingDate }</td>
-							<td>${ph.vehicleId }</td>
 							<td>${ph.status }</td>
 							<td>${ph.purchaseAmount }</td>
 			    		</tr>

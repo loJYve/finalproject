@@ -1,6 +1,7 @@
 package com.bjscar.mypage.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.bjscar.attachment.model.vo.Attachment;
 import com.bjscar.member.model.vo.Member;
@@ -22,6 +23,10 @@ public interface MypageService {
 	List<RentalHistory> selectrentalHistory(String memberId);
 
 	Member selectMember(String memberId);
+
+	void memSecessionEnd(Map param);
+
+	List<RentalHistory> selectPurchaseHistory(Map param);
 
 	
 }

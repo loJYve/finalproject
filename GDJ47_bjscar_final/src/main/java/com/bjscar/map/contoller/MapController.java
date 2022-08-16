@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.bjscar.common.PageFactory;
+import com.bjscar.map.service.MapPageFactory;
 import com.bjscar.map.service.MapService;
 import com.bjscar.rentalshop.model.vo.Rentalshop;
 import com.bjscar.vehicle.model.vo.Vehicle;
@@ -64,18 +64,20 @@ public class MapController {
 	*/
 	@RequestMapping("/map/showRentalshop.do")
 	@ResponseBody
-	public ModelAndView showRentalshop(ModelAndView mv,int no){
+	public ModelAndView showRentalshop(@RequestParam(defaultValue="1") int cPage,@RequestParam(name="numPerpage",
+			defaultValue="5") int numPerpage,ModelAndView mv,int no){
 		//System.out.println(no);
-		List<Vehicle> v=service.selectRentalshop(no);
-		System.out.println(v);
+		
+		Map param=Map.of("cPage",cPage,"numPerpage",numPerpage);
+		int totalData=service.selectBoardCount();
+		
+		List<Vehicle> v=service.selectRentalshop(param,no);
+		
 		mv.addObject("vl",v);
+		mv.addObject("pageBar",MapPageFactory.getPageBar(totalData, numPerpage, cPage, "/map/showRentalshop.do?no="+no+"&"));
 		mv.setViewName("map/showRentalshop");
 		
 		return mv;
 	}
-
-		
-	
-	
 
 }
