@@ -69,7 +69,8 @@
         </tbody>
 	    </table>
 		<div id="pageBar">
-        	<%=request.getAttribute("pageBar") %>
+        	${pageBar }
+        	
         </div>
 			
 		</section>

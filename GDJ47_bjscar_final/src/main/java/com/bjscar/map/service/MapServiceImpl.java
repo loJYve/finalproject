@@ -1,6 +1,7 @@
 package com.bjscar.map.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +24,17 @@ public class MapServiceImpl implements MapService{
 	public List<Rentalshop> searchRentalshop(){
 		return dao.searchRentalshop(session);
 	}
+	
+	@Override
+	public int selectBoardCount() {
+		// TODO Auto-generated method stub
+		return dao.selectBoardCount(session);
+	}
 
 	@Override
-	public List<Vehicle> selectRentalshop(int no) {
+	public List<Vehicle> selectRentalshop(Map param, int no) {
 		// TODO Auto-generated method stub
-		return dao.selectRentalshop(session, no);
+		return dao.selectRentalshop(session, no, param);
 	}
 	
 	
