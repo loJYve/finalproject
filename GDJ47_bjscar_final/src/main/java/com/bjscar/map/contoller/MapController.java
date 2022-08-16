@@ -21,43 +21,58 @@ public class MapController {
 	@Autowired
 	private MapService service;
 	
-	@RequestMapping("/map/searchRentalshop")
+	@RequestMapping("/map/mapRentalshop.do")
 	@ResponseBody
-	public List<Rentalshop> moveRentalshop(@RequestParam(defaultValue="1") int cPage,@RequestParam(name="numPerpage",
-			defaultValue="5") int numPerpage, ModelAndView mv) {
+	public List<Rentalshop> toMap( ModelAndView mv) {
 		
-		
-		Map param=Map.of("cPage",cPage,"numPerpage",numPerpage);
 		List<Rentalshop> rl = service.searchRentalshop();
-		List<Vehicle> vl = service.selectVehicle();
-		mv.addObject("rl", rl);
-		// /WEB-INF/views/viewName.jsp
-		int totalData=service.selectVehicleCount();
-		mv.addObject("totalContents",totalData);
-		mv.addObject("vl",vl);
-		mv.addObject("pageBar",PageFactory.getPageBar(totalData, numPerpage, cPage, "boardList.do"));
-		mv.setViewName("map/map");
+		/*
+		 * List<Rentalshop> rl = service.searchRentalshop(); for(Rentalshop r : rl) {
+		 * System.out.println(r); }
+		 * 
+		 * mv.addObject("rl", rl); mv.setViewName("map/maptest");
+		 */
 		
 		return rl;
 	}
-	
-	@RequestMapping("/map/mapview")
+	/*
+
+	*/		
+			
+	@RequestMapping("/map/mapview.do")
 	public String mapView() {
 		return "map/map";
 	}
 	
-	@RequestMapping("/map/maptest")
+	@RequestMapping("/map/searchRentalshop.do")
+	@ResponseBody
+	public ModelAndView searchRentalshop(ModelAndView mv) {
+		
+		List<Rentalshop> rl = service.searchRentalshop();
+		
+		mv.addObject("rl", rl);
+		mv.setViewName("map/searchRentalshop");
+		
+		
+		return mv;
+	}
+	/*
+	@RequestMapping("/map/showRentalshop.do")
 	public String mapTest() {
-		return "map/maptest";
+		return "map/showRentalshop";
 	}
-	
-	@RequestMapping("/map/maptest2")
-	public String mapTest2() {
-		return "map/maptest2";
+	*/
+	@RequestMapping("/map/showRentalshop.do")
+	@ResponseBody
+	public ModelAndView showRentalshop(ModelAndView mv,int no){
+		//System.out.println(no);
+		List<Vehicle> v=service.selectRentalshop(no);
+		System.out.println(v);
+		mv.addObject("vl",v);
+		mv.setViewName("map/showRentalshop");
+		
+		return mv;
 	}
-	
-		
-		
 
 		
 	

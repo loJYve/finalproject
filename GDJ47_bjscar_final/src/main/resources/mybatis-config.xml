@@ -13,5 +13,5 @@
      <typeAlias type="com.bjscar.mypage.model.vo.RentalHistory" alias="rentalHistory"/>
      <typeAlias type="com.bjscar.member.model.vo.SecessionMember" alias="secessionmember"/>
      <typeAlias type="com.bjscar.attachment.model.vo.Attachment" alias="attachment"/>
-   </typeAliases>
+   </typeAliases> 
 </configuration>
