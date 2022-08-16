@@ -2,25 +2,107 @@
 <!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="mypage">
   
-  <resultMap type="rentalshop" id="rentalshopMap">
-	<id column="RENTALSHOP_ID" property="rentalshopId"/>
-	<id column="RENTALSHOP_NAME" property="rentalshopName"/>
-	<id column="RENTALSHOP_ADDR" property="rentalshopAddr"/>
-	<id column="LATITUDE" property="latitude"/>
-	<id column="LONGTITUDE" property="longitude"/>
-	<id column="BM_MEMBER" property="bmMember"/>
-</resultMap>
+  <resultMap type="member" id="memberMap">
+       <id property="memberId" column="member_id"/>
+       <result property="password" column="password"/>
+       <result property="memberName" column="member_name"/>
+       <result property="birthday" column="birthday"/>
+       <result property="email" column="email"/>
+       <result property="phone" column="phone"/>
+       <result property="address" column="address"/>
+       <result property="totalMileage" column="total_mileage"/>
+       <result property="enrollDate" column="enroll_date"/>
+       <result property="secessionReason" column="secession_status"/>
+    </resultMap>
   
-   <select id="selectRentalshopList" parameterType="rentalshop" resultMap="rentalshopMap">
-  	SELECT * FROM RENTALSHOP
-  </select>
+  	<resultMap type="rentalHistory" id="rentaldataMap">
+		<id column="RENTAL_ID" property="rentalId"/>
+		<result column="RENTAL_DATE" property="rentalDate"/>
+		<result column="RETURN_DATE" property="returnDate"/>
+		<result column="RENTAL_STATUS" property="status"/>
+		<result column="VEHICLE_ID" property="vehicleId"/>
+		<result column="MEMBER_ID" property="memberId"/>
+		<result column="BOOKING_DATE" property="bookingDate"/>
+		<result column="INSURANCE_CODE" property="insuranceCode"/>
+	</resultMap>
+	
+  	<resultMap type="attachment" id="attachmentMap">
+		<id column="ATTACHMENT_ID" property="attachmentId"/>
+		<result column="ATTACHMENT_TITLE" property="attachmentTitle"/>
+		<result column="ATTACHMENT_DATE" property="attchamentDate"/>
+		<result column="ORIGINAL_FILENAME" property="originalFilename"/>
+		<result column="RENAMED_FILENAME" property="RenamedFilename"/>
+	</resultMap>
+	
+  	<resultMap type="vehicle" id="vehicleMap">
+		<id column="VEHICLE_ID" property="vehicleId"/>
+		<result column="MODEL" property="model"/>
+		<result column="NUMBER_PLATE" property="numberPlate"/>
+		<result column="RENTAL_STATUS" property="rentalStatus"/>
+		<result column="PRODUCT_YEAR" property="productYear"/>
+		<result column="RENTALSHOP_ID" property="rentalshopId"/>
+		<result column="ACCIDENT_STATUS" property="accidentStatus"/>
+		<result column="PRICE" property="price"/>
+		<result column="FUEL" property="fuel"/>
+		<result column="BOARDING_PERSONNEL" property="boardingPersonnel"/>
+		<result column="VEHICLE_GRADE" property="vehicleGrade"/>
+	</resultMap>
+	
+	<resultMap type="rentalshop" id="rentalshopMap">
+		<id column="RENTALSHOP_ID" property="rentalshopId"/>
+		<id column="RENTALSHOP_NAME" property="rentalshopName"/>
+		<id column="RENTALSHOP_ADDR" property="rentalshopAddr"/>
+		<id column="LATITUDE" property="latitude"/>
+		<id column="LONGTITUDE" property="longitude"/>
+		<id column="BM_MEMBER" property="bmMember"/>
+	</resultMap>
+	
+	<resultMap type="secessionmember" id="secessionmemberMap">
+		<id column="SECESSION_ID" property="secessionId"/>
+		<result column="SECESSION_REASON" property="secessionReason"/>
+		<result column="SECESSION_DATE" property="secessionDate"/>
+		<result column="MEMBER_ID" property="memberId"/>
+
+	</resultMap>
+	
   
-  <select id="selectRentalshopCount" resultType="_int">
-		SELECT COUNT(*) FROM RENTALSHOP
-	</select>
+   	<select id="selectRentalData" parameterType="string" resultMap="rentaldataMap">
+  		SELECT * FROM RENTAL_HISTORY WHERE MEMBER_ID=#{memberId} AND RENTAL_STATUS='대여중'
+  	</select>
+  	
+   	<select id="selectCarImage" parameterType="_int" resultMap="attachmentMap">
+  		SELECT ORIGINAL_FILENAME FROM ATTACHMENT WHERE ATTACHMENT_ID=(SELECT ATTACHMENT_ID FROM VEHICLE_ATTACHMENT WHERE VEHICLE_ID=#{vehicleId})
+  	</select>
+  	
+   	<select id="selectCarData" parameterType="_int" resultMap="vehicleMap">
+  		SELECT * FROM VEHICLE WHERE VEHICLE_ID=#{vehicleId}
+  	</select>
+  	
+   	<select id="selectRentalshopData" parameterType="_int" resultMap="rentalshopMap">
+  		SELECT * FROM RENTALSHOP WHERE RENTALSHOP_ID=(SELECT RENTALSHOP_ID FROM VEHICLE WHERE VEHICLE_ID=#{vehicleId})
+  	</select>
+  	
+   	<select id="selectrentalHistory" parameterType="string" resultMap="rentaldataMap">
+  		SELECT * FROM RENTAL_HISTORY WHERE MEMBER_ID=#{memberId}
+  	</select>
+  	
+   	<select id="selectMember" parameterType="string" resultMap="memberMap">
+  		SELECT * FROM MEMBER WHERE MEMBER_ID=#{memberId}
+  	</select>
+  	
+   	<insert id="memSecessionEnd" parameterType="map">
+  		INSERT INTO SECESSION_MEMBER VALUES(SEQ_SECESSION_ID.NEXTVAL, #{secessionReason}, DEFAULT, #{memberId})
+  	</insert>
+  	
+   	<update id="secessionMemData" parameterType="map">
+  		UPDATE MEMBER SET PASSWORD='---', MEMBER_NAME='---', BIRTHDAY='---', EMAIL='---', PHONE='---', ADDRESS='---', TOTAL_MILEAGE=0, SECESSION_STATUS='Y' WHERE MEMBER_ID=#{memberId} 
+  	</update>
+  	
+  	
+  	
+  	
   
-  <select id="selectrentalshop" parameterType="string" resultMap="rentalshopMap">
-  		SELECT * FROM RENTALSHOP WHERE BM_MEMBER=#{name}
-  </select>
+ 
+  
   
 </mapper>

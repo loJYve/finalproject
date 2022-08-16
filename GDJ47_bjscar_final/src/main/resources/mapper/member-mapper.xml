@@ -26,12 +26,17 @@
   	SELECT * FROM MEMBER
   </select>
   
+  
   <select id="selectSearchList2" parameterType="member" resultMap="memberMap">
   	SELECT * FROM MEMBER WHERE ${type} LIKE '%'||#{keyword}||'%'
   </select>
   
   <select id="selectMemberCount" resultType="_int">
 		SELECT COUNT(*) FROM MEMBER
+	</select>
+	
+	<select id="selectSearchMemberCount" parameterType="member" resultType="_int">
+		SELECT COUNT(*) FROM MEMBER WHERE ${type} LIKE '%'||#{keyword}||'%'
 	</select>
   
   <select id="selectFindByMemberId" parameterType="string" resultMap="memberMap">

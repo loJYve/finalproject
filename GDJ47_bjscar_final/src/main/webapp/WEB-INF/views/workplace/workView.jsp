@@ -11,40 +11,100 @@
 <title>Insert title here</title>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+
+<style type="text/css">
+.tg {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.tg td {
+	border-color: black;
+	border-style: solid;
+	border-width: 1px;
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	overflow: hidden;
+	padding: 10px 5px;
+	word-break: normal;
+}
+
+.tg th {
+	border-color: black;
+	border-style: solid;
+	border-width: 1px;
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	font-weight: normal;
+	overflow: hidden;
+	padding: 10px 5px;
+	word-break: normal;
+}
+
+.tg .tg-8tj9 {
+	background-color: #ffffc7;
+	border-color: inherit;
+	color: #000000;
+	text-align: center;
+	vertical-align: top
+}
+
+.tg .tg-ksfr {
+	background-color: #ffffc7;
+	border-color: inherit;
+	color: #000000;
+	text-align: left;
+	vertical-align: top
+}
+</style>
 </head>
-<body>
-<section id="rentalshop-container" class="container">
-	<table id="tbl_rentalshop" class="table table-striped table-hover">
-	<h2>개인 사업장관리</h2>	
-		<tr>
-			<th>대여소 일련번호</th>
-			<th>대여소이름</th>
-			<th>대여소 주소</th>
-			<th>위도</th>
-			<th>경도</th>
-			
-			<th>사업장 이미지</th>
-		</tr>
-		<c:if test="${not empty rentalshop }">
-			
+<body style="text-align:center">
+
+	<form action="${path }/alterworplace.do" method="get">
+		<table class="tg" style="margin-left: auto; margin-right: auto; background-color: #ffffc7;">
+			<h2>개인 사업장관리</h2>
+			<thead>
+				<c:if test="${not empty rentalshop }">
+					<tr>
+						<th class="tg-af47" colspan="10">사업장이름 :<input type="text"
+							value="${rentalshop.rentalshopName }" readonly style="background-color: #ffffc7;"/></th>
+					</tr>
+			</thead>
+			<tbody>
 				<tr>
-					<td><input type="text" value="${rentalshop.rentalshopId }" readonly/></td>
-					<td><input type="text" value="${rentalshop.rentalshopName }" readonly/></td>
-					<td><input type="text" value="${rentalshop.rentalshopAddr }" readonly/></td>
-					<td><input type="text" value="${rentalshop.latitude }" readonly/></td>
-					<td><input type="text" value="${rentalshop.longitude }" readonly/></td>
-					
-					<td><input type="file"/></td>
+					<td class="tg-af47" colspan="5">대여소일련번호</td>
+					<td class="tg-n9g5" colspan="5"><input type="text"
+						value="${rentalshop.rentalshopId }" readonly style="background-color: #ffffc7;"/></td>
 				</tr>
-			
-		</c:if>
-		<c:if test="${empty rentalshop }">
-			<tr>
-				<td colspan="6">조회결과없음</td>
-			</tr>
-		</c:if>
-	</table>
-	</section>
+				<tr>
+					<td class="tg-n9g5" colspan="10">대여소주소 : <input type="text"
+						value="${rentalshop.rentalshopAddr }" readonly style="background-color: #ffffc7;"/></td>
+				</tr>
+				<tr>
+					<td class="tg-n9g5" colspan="10">위도 : <input type="text"
+						value="${rentalshop.latitude }" readonly style="background-color: #ffffc7;"/></td>
+				</tr>
+				<tr>
+					<td class="tg-n9g5" colspan="10">경도 : <input type="text"
+						value="${rentalshop.longitude }" readonly style="background-color: #ffffc7;"/></td>
+				</tr>
+				<tr>
+					<td class="tg-n9g5" colspan="10">사업장 이미지</td>
+				</tr>
+				<tr>
+					<td class="tg-n9g5" colspan="10" rowspan="3">사업장 이미지 표시</td>
+				</tr>
+				<tr>
+				</tr>
+				<tr>
+				</tr>
+				<tr>
+					<td class="tg-n9g5" colspan="10"><input type="file" /></td>
+				</tr>
+				</c:if>
+			</tbody>
+		</table>
+	</form>
 </body>
 </html>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

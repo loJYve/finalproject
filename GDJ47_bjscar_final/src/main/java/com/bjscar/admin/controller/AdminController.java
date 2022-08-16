@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bjscar.admin.model.service.AdminService;
 import com.bjscar.common.PageFactory;
 import com.bjscar.member.model.vo.Member;
+import com.bjscar.member.model.vo.SecessionMember;
 
 @Controller
 public class AdminController {
@@ -40,14 +41,72 @@ public class AdminController {
 		mv.setViewName("admin/memberList");
 		return mv;
 	}
-	@GetMapping("/getSearchList")
-	@ResponseBody
-	private List<Member> getSearchList(@RequestParam("type") String type,
-			@RequestParam("keyword") String keyword,Model model) throws Exception{
-		Member m = new Member();
-		m.setType(type);
-		m.setKeyword(keyword);
-		return service.getSearchList(m);
-	}	
+	
+	/*
+	 * @GetMapping("/getSearchList")
+	 * 
+	 * @ResponseBody private List<Member> getSearchList(@RequestParam("type") String
+	 * type,
+	 * 
+	 * @RequestParam("keyword") String keyword,ModelAndView
+	 * mv,@RequestParam(name="cPage",defaultValue="1") int cPage,
+	 * 
+	 * @RequestParam(name="numPerpage",defaultValue="5")int numPerpage) throws
+	 * Exception{ Member m = new Member(); m.setType(type); m.setKeyword(keyword);
+	 * Map param=Map.of("cPage",cPage,"numPerpage",numPerpage); List<Member>
+	 * list=service.selectMemberListPage(param); mv.addObject("members",list); int
+	 * totalData=service.selectMemberCount();
+	 * mv.addObject("totalContents",totalData);
+	 * mv.addObject("pageBar",PageFactory.getPageBar(totalData, numPerpage, cPage,
+	 * "admin.do")); m.setType(type); m.setKeyword(keyword); return
+	 * service.getSearchList(m); }
+	 */
+	 
+	
+	  @GetMapping("/getSearchList")
+	  @ResponseBody
+	  private ModelAndView getSearchList(@RequestParam("type") String type, @RequestParam("keyword") String keyword,
+			  ModelAndView mv,@RequestParam(name="cPage",defaultValue="1") int cPage, @RequestParam(name="numPerpage",defaultValue="5") int numPerpage) throws Exception { 
+		  Member m = new Member();
+		  m.setType(type);
+		  m.setKeyword(keyword);
+		  Map param=Map.of("cPage",cPage,"numPerpage",numPerpage);
+		  List<Member> list=service.getSearchList(param,m);
+		  mv.addObject("members",list);
+		  int totalData=service.selectSearchMemberCount(m);
+		  mv.addObject("totalContents",totalData);
+		  mv.addObject("pageBar",PageFactory.getPageBar(totalData, numPerpage, cPage, "getSearchList"));
+		  mv.setViewName("admin/getSearchList");
+		  return mv; 
+	  }
+	 
+	
+	@RequestMapping("/business.do")
+	public ModelAndView selectMemberList2(@RequestParam(name="cPage",defaultValue="1") int cPage,
+			@RequestParam(name="numPerpage",defaultValue="5")int numPerpage,ModelAndView mv) {
+		Map param=Map.of("cPage",cPage,"numPerpage",numPerpage);
+		List<Member> list=service.selectMemberListPage(param);
+		mv.addObject("members",list);
+		int totalData=service.selectMemberCount();
+		mv.addObject("totalContents",totalData);
+		mv.addObject("pageBar",PageFactory.getPageBar(totalData, numPerpage, cPage, "business.do"));
+		// /WEB-INF/views/viewName.jsp
+		mv.setViewName("admin/businessList");
+		return mv;
+	}
+	
+	@RequestMapping("/secession.do")
+	public ModelAndView selectSecessionMemberList(@RequestParam(name="cPage",defaultValue="1") int cPage,
+			@RequestParam(name="numPerpage",defaultValue="5")int numPerpage,ModelAndView mv) {
+		Map param=Map.of("cPage",cPage,"numPerpage",numPerpage);
+		List<SecessionMember> list=service.selectSecessionMemberListPage(param);
+		mv.addObject("secessionmembers",list);
+		int totalData=service.selectMemberCount();
+		mv.addObject("totalContents",totalData);
+		mv.addObject("pageBar",PageFactory.getPageBar(totalData, numPerpage, cPage, "secession.do"));
+		// /WEB-INF/views/viewName.jsp
+		mv.setViewName("admin/secessionList");
+		return mv;
+	}
 	
 }

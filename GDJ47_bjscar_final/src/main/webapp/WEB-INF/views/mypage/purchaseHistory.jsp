@@ -13,7 +13,6 @@
 		    		<tr>
 						<th scope="col">No.</th>
 						<th scope="col">예약 날짜</th>
-						<th scope="col">차종</th>
 						<th scope="col">상태</th>
 						<th scope="col">금액</th>
 		    		</tr>
@@ -22,17 +21,16 @@
 		  		<tbody>
 		  			<c:forEach var="ph" items="${purchaseHistory }">
 			    		<tr>
-							<th scope="row">${h.rental_id }</th>
-							<td>${ph.booking_date }</td>
-							<td>${ph.vehicle_id }</td>
+							<th scope="row">${ph.rentalId }</th>
+							<td>${ph.bookingDate }</td>
 							<td>${ph.status }</td>
-							<td>${ph.purchase_amount }</td>
+							<td>${ph.purchaseAmount }</td>
 			    		</tr>
 		    		</c:forEach>
 		  		</tbody>
 			</table>
 		</c:if>
-		<c:if test="${empty purchaseHistory }">
+		<c:if test="${empty rentalHistory }">
 			<h3 class="text-center mt-5 mb-5">결제 기록이 없습니다.</h3>
 		</c:if>
 	</div>

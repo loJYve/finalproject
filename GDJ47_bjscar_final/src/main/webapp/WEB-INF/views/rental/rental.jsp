@@ -1,13 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
-     <!-- Bootstrap CSS -->
+	<!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>대여하기</title>
@@ -97,6 +110,8 @@
 	}
 
     </style>
+</head>
+  <body>
 
 	<div class="input-form-backgroud row">
 	<div class="input-form col-md-12 mx-auto">
@@ -106,70 +121,38 @@
 		<div class="card-body">
       <form name="rental" action="${path }/rentalEnd.do" method="post">
         <p class="text">대여기간 선택</p>
-        <input type="date" name="rental_date" id="rental_date"  class="form-control" data-placeholder="대여일 선택" aria-required="true"
-        style="padding: 10px; font-size: 16px; width: 250px; margin-left: 100px;" required>
-        <input type="date" name="return_date" id="return_date"  class="form-control" data-placeholder="반납일 선택" aria-required="true"
-        style="padding: 10px; font-size: 16px; width: 250px; margin-left: 100px;" required>
-
-       
-        <p class="text">비밀번호</p>
-        <input type="password" name="password" id="password" class="form-control" placeholder="Password" required><br>
-        	<p id="pw2ch" class="check"> </p><br/>
-        <p class="text">비밀번호 확인</p>
-        <input type="password"  id="password2" class="form-control" placeholder="Confirm Password" required><br>
-        	<p id="pwch" class="check"> </p><br/>
-        <p class="text">이름</p>
-        <input type="text" name="memberName" id="memberName" class="form-control" placeholder="Name" required><br>
-        	<p id="namech" class="check"> </p><br/>
-        <p class="text">생년월일</p>
-        <input type="text" name="birthday" id="birthday" class="form-control" placeholder="ex) 20000101" required><br>
-            <p id="birthch" class="check"> </p><br/>
-        <!--  <p class="text">이메일</p>
-         <input type="text"  name="email" id="email" class="form-control" placeholder="Email" required> -->
-       <!--   &nbsp; &nbsp;
-        <input type="button" id="emailCheck" onclick="emailCheck();"  class="btn btn-primary"  value="인증하기"/><br/> -->
-        <br/> 
-        <p class="text">주소</p>
-            <input type="text" class="text" name="addr1" id="addr1" placeholder="우편번호"readonly="readonly">
-            <input type="button" onclick="execPostCode()"   class="btn btn-primary"  value="우편번호 찾기"><br>
-            <input type="text" class="form-control" name="addr2" id="addr2"  placeholder="도로명주소"readonly="readonly">
-            <input type="text" name="address" id="addr3" class="form-control" placeholder="상세주소" required><br>
-            <span id="guide" style="color:#999;display:none"></span>
-            <br/>
-            <br/>
-       <div id="contents"> 
-		 <p class="text">이메일</p> 
-		 <input type="text" id="email" name="email" class="form-control" placeholder="Email" required/>  
-		 &nbsp; 
-		<button type="button" id="emailChk" class="btn btn-primary">인증</button><br> 
-		<p id="emch" class="check"> </p><br/>
-		 <p class="text">인증번호</p>  
-		 <input type="text" id="email2" name="email2" class="form-control" placeholder="인증번호" required>
-		 &nbsp;   
-		<button type="button" id="enterBtn2" class="btn btn-primary">확인</button> 	
-        </div>
-        <p id="emch2" class="check"> </p>	 
-        <br/>
+        <input type="text" id="rental_date" name="rental_date" class="form-control" placeholder="대여일 선택" required/>
+        ~
+        <input type="text" id="return_date" name="return_date" class="form-control" placeholder="반납일" required readonly/>
+		<br><br>
+		<div id="totalRentalPeriod" class="form-control">총 대여기간 : 0일 0시간 0분</div>
+        <br><br>
         
-        <div id="contents"> 
-		 <p class="text">휴대폰번호</p> 
-		 <input type="text" id="to" name="phone" class="form-control" placeholder="Phone" required/>  
-		 &nbsp; 
-		<button type="button" id="send" class="btn btn-primary">인증</button><br> 
-		<p id="phonech" class="check"> </p><br/>
-		 <p class="text">인증번호</p>  
-		 <input type="text" id="userNum" class="form-control" placeholder="인증번호" required>
-		 &nbsp;   
-		<button type="button" id="enterBtn" class="btn btn-primary">확인</button> 	
-        </div>	 
-        <p id="phonech2" class="check"> </p><br/>
+        <p class="text">차량 선택</p>
+        <select id="vehicle_grade" name="vehicle_grade" class="form-control" required>
+			<option value="">차종</option>
+			<option value="경차">경차</option>
+			<option value="소형">소형</option>
+			<option value="준중형">준중형</option>
+			<option value="중형">중형</option>
+			<option value="준대형">준대형</option>
+			<option value="대형">대형</option>
+			<option value="SUV">SUV</option>
+			<option value="승합차">승합차</option>
+			<option value="스포츠카">스포츠카</option>
+		</select>
+		<br>
+        <select id="model" name="model" class="form-control" required disabled>
+			<option value="">차량</option>
+		</select>
+        
         <hr class="mb-4">
           <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" id="aggrement" required>
             <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
           </div>
         <br/>
-          <button type="submit" id="btn-Yes" class="btn btn-lg btn-primary btn-block">회원가입</button>
+          <button type="submit" id="btn-Yes" class="btn btn-lg btn-primary btn-block">결제하기</button>
         <br>
         <br>
     </form>
@@ -179,6 +162,57 @@
        </div>
        </div>
 	</div>
-   
+   </body>
 
+	<script>
+	$(function() {
+		
+		$('#rental_date').daterangepicker({
+			"autoUpdateInput": false,
+			"minDate": new Date(),
+			"timePicker": true,
+			"timePickerIncrement": 30,
+			"timePicker24Hour": true,
+            "locale": {
+                "format": "YYYY-MM-DD hh:mm",
+                "separator": " ~ ",
+                "applyLabel": "선택",
+                "cancelLabel": "취소",
+                "fromLabel": "From",
+                "toLabel": "To",
+                "customRangeLabel": "Custom",
+                "weekLabel": "W",
+                "daysOfWeek": ["일", "월", "화", "수", "목", "금", "토"],
+                "monthNames": ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+                "firstDay": 1
+            },
+            "maxSpan": {
+            	"days": 29
+            },
+            "drops": "down"
+        }, function (start, end, label) {
+            $("#return_date").attr("value",end.format('YYYY-MM-DD HH:mm'));
+            $("#rental_date").attr("value",start.format('YYYY-MM-DD HH:mm'));
+            const endDate = new Date(end.format('YYYY-MM-DD HH:mm'));
+            const startDate = new Date(start.format('YYYY-MM-DD HH:mm'));
+            const totalTime = (endDate.getTime()-startDate.getTime()) / (1000*60*60);
+            const totalDay = Math.trunc(totalTime / 24);
+            const totalHour = Math.trunc(totalTime % 24);
+            const totalMinute = (totalTime % 24)%1==0.5?"30분":"0분";
+            $("#totalRentalPeriod").text("총 대여기간 : "+ totalDay + "일 " + totalHour + "시간 " + totalMinute);
+        });
+		
+		$("#vehicle_grade").change(e=>{
+			$.ajax({
+				url:"${path}/rental/searchVehicleByGrade.do",
+				data:{vehicleGrade:$("#vehicle_grade").val()},
+				success:data=>{
+					
+				}
+			})
+		})
+		
+	});
+	</script>
+</html>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

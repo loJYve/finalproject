@@ -1,5 +1,7 @@
 package com.bjscar.vehicle.model.vo;
 
+import com.bjscar.rentalshop.model.vo.Rentalshop;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,5 +22,6 @@ public class Vehicle {
 	private String fuel;
 	private int boardingPersonnel;
 	private String vehicleGrade;
+	private Rentalshop rentalShop;
 	
 }
