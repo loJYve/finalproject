@@ -65,31 +65,29 @@
 		<table id="tbl_member" class="table table-striped table-hover">	
 			<tr>
 				<th>아이디</th>
-				<th>이름</th>
-				<th>생년월일</th>
+				<th>회사이름</th>
 				<th>이메일</th>
 				<th>전화번호</th>
-				<th>주소</th>
-				<th>마일리지</th>
+				<th>회사주소</th>
+				<th>사업자 등록번호</th>
 				<th>가입일</th>
-				<th>탈퇴여부</th>
+				<th>승인여부</th>
 			</tr>
-			<c:if test="${not empty members }">
-            	<c:forEach var="m" items="${members }">
+			<c:if test="${not empty businessmans }">
+            	<c:forEach var="b" items="${businessmans }">
             		<tr>           			
-            			<td><c:out value="${m.memberId }"/></td>
-            			<td><c:out value="${m.memberName }"/></td> 
-            			<td><c:out value="${m.birthday }"/></td> 
-            			<td><c:out value="${m.email }"/></td> 
-            			<td><c:out value="${m.phone }"/></td> 
-            			<td><c:out value="${m.address }"/></td> 
-            			<td><c:out value="${m.totalMileage }"/></td> 
-            			<td><c:out value="${m.enrollDate }"/></td>            			
-            			<td><c:out value="${m.secessionReason }"/></td>            			
+            			<td><c:out value="${b.bmId }"/></td>
+            			<td><c:out value="${b.companyName }"/></td> 
+            			<td><c:out value="${b.bmEmail }"/></td> 
+            			<td><c:out value="${b.bmPhone }"/></td> 
+            			<td><c:out value="${b.companyAddress }"/></td> 
+            			<td><c:out value="${b.registrationNumber }"/></td> 
+            			<td><c:out value="${b.bmenrollDate }"/></td>            			
+            			<td><c:out value="${b.permissionStatus }"/></td>            			
             		</tr>
             	</c:forEach>
             </c:if>
-			<c:if test="${empty members }">
+			<c:if test="${empty businessmans }">
             	<tr>
             		<td colspan="6">조회결과없음</td>
             	</tr>
@@ -146,28 +144,6 @@ function getSearchList(){
 	})
 }
 
-/* const getSearchList=()=>{
-	$.ajax({
-		url:"${path}/getSearchList",
-		data:{type:$("#type_").val(), keyword:$("#keyword_").val()},
-		success: result=>{
-			console.log(JSON.parse(result));
-			//테이블 초기화
-			$('#tbl_member > tbody').empty();
-			if(result.length>=1){
-				result.forEach(function(item){
-					str='<tr>'
-					str += "<td>"+item.memberId+"</td>";
-					str+="<td>"+item.memberName+"</td>";
-					str+="<td><a href = '/admin/memberList?memberId=" + item.memberId + "'>" + item.memberName + "</a></td>";
-					str+="<td>"+item.enrollDate+"</td>";
-					str+="</tr>"
-					$('#tbl_member').append(str);
-        		})				 
-			}
-		}
-	});
-}*/
 </script>	
 
 </body>

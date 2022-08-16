@@ -9,7 +9,21 @@
     </resultMap>
 
   <select id="selectSecessionMemberList" parameterType="secessionmember" resultMap="secessionmemberMap">
-  	SELECT * FROM MEMBER WHERE SECESSION_STATUS='Y'
+  	SELECT * FROM SECESSION_MEMBER
   </select>
+  
+  <select id="selectSecessionMemberCount" resultType="_int">
+		SELECT COUNT(*) FROM SECESSION_MEMBER
+	</select>
+	
+	
+  <select id="selectSearchSecessionMember" parameterType="secessionmember" resultMap="secessionmemberMap">
+  	SELECT * FROM SECESSION_MEMBER WHERE ${type} LIKE '%'||#{keyword}||'%'
+  </select>
+  
+	
+	<select id="selectSearchSecessionMemberCount" parameterType="secessionmember" resultType="_int">
+		SELECT COUNT(*) FROM SECESSION_MEMBER WHERE ${type} LIKE '%'||#{keyword}||'%'
+	</select>
 
 </mapper>

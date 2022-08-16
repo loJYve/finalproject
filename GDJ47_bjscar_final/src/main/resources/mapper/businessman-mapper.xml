@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="businessman">
+ <resultMap type="businessman" id="businessmanMap">
+       <id property="bmId" column="bm_id"/>
+       <result property="companyName" column="company_name"/>
+       <result property="bmEmail" column="bm_email"/>
+       <result property="bmPhone" column="bm_phone"/>
+       <result property="companyAddress" column="company_address"/>
+       <result property="registrationNumber" column="registration_number"/>
+       <result property="bmenrollDate" column="bm_enroll_date"/>
+       <result property="permissionStatus" column="permission_status"/>
+    </resultMap>
+
+  <select id="selectBusinessmanList" parameterType="businessman" resultMap="businessmanMap">
+  	SELECT * FROM BUSINESSMAN
+  </select>
+
+  <select id="selectBusinessmanCount" resultType="_int">
+		SELECT COUNT(*) FROM BUSINESSMAN
+	</select>
+	
+	
+  <select id="selectSearchBusinessman" parameterType="businessman" resultMap="businessmanMap">
+  	SELECT * FROM BUSINESSMAN WHERE ${type} LIKE '%'||#{keyword}||'%'
+  </select>
+  
+	
+	<select id="selectSearchBusinessmanCount" parameterType="businessman" resultType="_int">
+		SELECT COUNT(*) FROM BUSINESSMAN WHERE ${type} LIKE '%'||#{keyword}||'%'
+	</select>
+
+
+</mapper>
