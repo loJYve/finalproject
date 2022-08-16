@@ -36,6 +36,7 @@
 					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 						<li><a href="/mypage/purchasehistory.do?memberId=${loginMember.memberId}" class="link-dark rounded">결제 내역</a></li>
 						<li><a href="/mypage/enrolllisence.do?memberId=${loginMember.memberId}" class="link-dark rounded">운전면허 등록</a></li>
+						<li><a href="/mypage/secession.do?memberId=${loginMember.memberId}" class="link-dark rounded">회원 탈퇴</a></li>
 					</ul>
 				</div>
 			</li>

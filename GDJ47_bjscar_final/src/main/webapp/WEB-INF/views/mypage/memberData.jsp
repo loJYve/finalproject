@@ -16,10 +16,8 @@
 	   	<p class="text">이름</p>
 	   	<input type="text" name="memberName" id="memberName" class="form-control" value="${memberData.memberName }" required><br>
 	   	
-	   	<p id="namech" class="check"> </p>
 	   	<p class="text">생년월일</p>
 	   	<input type="text" name="birthday" id="birthday" class="form-control" placeholder="ex) 20000101" value="${memberData.birthday }" required><br>
-	   	<p id="birthch" class="check"> </p>
 	        
 	
 	   	<p class="text">주소</p>

@@ -1,6 +1,7 @@
 package com.bjscar.mypage.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,5 +51,10 @@ public class MypageServiceImpl implements MypageService {
 	@Override
 	public Member selectMember(String memberId) {
 		return dao.selectMember(session, memberId);
+	}
+	
+	@Override
+	public void memSecessionEnd(Map param)  {
+		dao.memSecessionEnd(session, param);
 	}
 }
