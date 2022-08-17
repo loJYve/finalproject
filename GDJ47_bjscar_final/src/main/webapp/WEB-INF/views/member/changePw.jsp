@@ -3,34 +3,45 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <!DOCTYPE html>
 <html lang="en">
    <head>
         <title>비밀번호변경 폼</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <style type="text/css">
-* {
+/*  {
 margin: 0px;
 padding: 0px;
-}
+} */
 .login {
 /* background: linear-gradient(to bottom, #0099ff 0%, #fff 100%); */
- background: -webkit-gradient(linear, left bottom, right top, from(#92b5db), to(#1d466c));
+/*  background: -webkit-gradient(linear, left bottom, right top, from(#92b5db), to(#1d466c));
       background: -webkit-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
       background: -moz-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
       background: -o-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-      background: linear-gradient(to top right, #92b5db 0%, #1d466c 100%);
-height: 100vh;
-width: 100%;
+      background: linear-gradient(to top right, #92b5db 0%, #1d466c 100%); */
+/* height: 100vh;
+width: 100%; */
 justify-content: center;
 align-items: center;
 display: flex;
 }
+   body {
+      min-height: 100vh;
+
+      background: -webkit-gradient(linear, left bottom, right top, from(#92b5db), to(#1d466c));
+      background: -webkit-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
+      background: -moz-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
+      background: -o-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
+      background: linear-gradient(to top right, #92b5db 0%, #1d466c 100%);
+    }
 .account-login {
 width: 500px;
 }
@@ -67,16 +78,13 @@ width: 100%;
 padding: 40px;
 border-radius: 5px;
 }
-button.btn {
-width: 100%;
-background: #009cff;
-font-size: 20px;
-padding: 11px;
-color: #fff;
-border: 0px;
-margin: 10px 0px 20px;
-}
-.btn:hover{
+#btn-Yes,#btn_login{
+        border: none;
+        width: 25rem;
+        margin: auto;
+        
+    }
+#btn-Yes:hover{
     color: #fff;
     opacity: 0.8;
 }
@@ -183,8 +191,9 @@ transform: rotate(45deg);
                       <input type="hidden" name="memberId" id="memberId" value="${memberId }"> 
                   </div>
                   <div class="remember">
-                     <button class="btn" type="submit">비밀번호변경</button>
+                     <button id="btn-Yes"  type="submit" class="btn btn-lg btn-primary btn-block">비밀번호변경</button>
                      </form>
+                     <br/>
                    <div class="links"> 
             <a href="${path }/member/memberPage.do" class="text-primary">로그인</a> | <a href="${path }/member/searchId.do" class="text-primary">아이디 찾기</a> | <a href="/member/memberEnroll.do" class="text-primary">회원가입</a>
                    </div>

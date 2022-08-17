@@ -3,6 +3,7 @@ package com.bjscar.admin.model.service;
 import java.util.List;
 import java.util.Map;
 
+import com.bjscar.admin.model.vo.Admin;
 import com.bjscar.businessman.model.vo.Businessman;
 import com.bjscar.member.model.vo.Member;
 import com.bjscar.member.model.vo.SecessionMember;
@@ -41,7 +42,7 @@ public interface AdminService {
 	
 	int selectSearchSecessionMemberCount(SecessionMember s);
 
-	
+	Admin selectAdmin(Admin a);
 	
 
 	

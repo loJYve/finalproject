@@ -34,7 +34,7 @@ public class OAuthService{
 //          setDoOutput URLConnection이 서버에 데이터를 보내는데 사용할수있는지 여부를 설정한다(기본값 false -> ture로 변경)
             conn.setDoOutput(true);
             
-            //    POST 요청에 필요로 요구하는 파라미터 스트림을 통해 전송 IOException 사용, 
+            // POST 요청에 필요로 요구하는 파라미터 스트림을 통해 전송 IOException 사용, 
             //BufferedWriter: 버퍼를 이용한 출력
             //System.out.println()과 유사 속도가 빠르다.
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
@@ -58,6 +58,7 @@ public class OAuthService{
             String line = "";
             String result = "";
             
+            //여기서부터다시설명보기
             while ((line = br.readLine()) != null) {
                 result += line;
             }

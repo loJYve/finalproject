@@ -4,9 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.bjscar.admin.model.vo.Admin;
 import com.bjscar.businessman.model.vo.Businessman;
 import com.bjscar.member.model.vo.Member;
 import com.bjscar.member.model.vo.SecessionMember;
@@ -130,6 +132,10 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	
-	
+	@Override
+	public Admin selectAdmin(SqlSession session, Admin a) {
+		// TODO Auto-generated method stub
+		return session.selectOne("admin.selectAdmin",a);
+	}
 
 }

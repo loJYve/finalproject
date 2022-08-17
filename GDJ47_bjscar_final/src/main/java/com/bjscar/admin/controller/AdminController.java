@@ -5,19 +5,24 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bjscar.admin.model.service.AdminService;
+import com.bjscar.admin.model.vo.Admin;
 import com.bjscar.businessman.model.vo.Businessman;
 import com.bjscar.common.PageFactory;
 import com.bjscar.member.model.vo.Member;
 import com.bjscar.member.model.vo.SecessionMember;
 
 @Controller
+@SessionAttributes({"loginAdmin"})
 public class AdminController {
 	
 	@Autowired 
@@ -88,6 +93,44 @@ public class AdminController {
 		return mv;
 	}
 	
-
+   @RequestMapping("/admin/login.do")
+	public String login() {
+	   return "member/adminLoginpage";
+   }
+   
+   @RequestMapping("/admin/loginEnd.do")
+   public String loginEnd(Admin a,Model model) {
+	  Admin loginAdmin = service.selectAdmin(a);
+		
+		String viewName="redirect:/";
+		System.out.println(loginAdmin);
+		
+		if(loginAdmin!=null) {
+			//로그인성공
+			model.addAttribute("loginAdmin",loginAdmin);
+			
+		}else {
+			//로그인실패
+			 model.addAttribute("msg","로그인실패!");
+			 model.addAttribute("loc","/");
+			 viewName="common/msg";
+		}
+		
+		return viewName;
+		
 	
+   }
+ //로그아웃
+ 		@RequestMapping("/admin/logout")
+ 		//Model에서 @SessionAttributes값으로 session을 관리할때는
+ 		//SessionStatus객체를 이용해서 관리한다.
+ 		//public String logout(HttpSession session) {
+ 		public String logout(SessionStatus status) {
+ 			if(!status.isComplete()) {
+ 				status.setComplete();//session데이터 삭제
+ 			}
+ 			//session.invalidate();
+ 			return "redirect:/";
+ 		}
+ 
 }

@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -60,15 +61,14 @@
 		</div>
 		<div class="card-body">
       <form action="${path }/suggestEnd.do" class="form-signin" method="post" >
-        <h5 class="form-signin-heading" style="text-align: center">경로 입력</h5>
         <br>
         <!-- <label for="inputEmail" class="sr-only">Your ID</label> -->
         <p>제목</p><input type="text" id="planTitle" name="planTitle" class="form-control" placeholder="Title" required autofocus><br>
         <!-- <input type="text" id="planTheme" name="planTheme" class="form-control" placeholder="Theme" required><br> -->
         <p>테마</p><select class="form-control" id="planTheme" name="planTheme" style="width:250px;height:50px;">
-        <option  value="여행">여행</option>
+        <option  value="출장">출장</option>
          <option value="휴가">휴가</option>
-         <option value="패키지">패키지</option>
+         <option value="여행">여행</option>
         </select>
         <br/>
         <p>출발</p><input type="date" id="planDate" name="planDate" class="form-control" placeholder="출발" required><br>
@@ -93,9 +93,10 @@
         </div>
         <br/>
         <br/>
-        <button id="btn-Yes" class="btn btn-lg btn-primary btn-block" type="submit">click</button>
+        <button id="btn-Yes" class="btn btn-lg btn-primary btn-block" type="submit">입력</button>
       </form>
-      
+      <br/>
+      <br/>
 		</div>
 	</div>
 

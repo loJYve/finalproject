@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bjscar.admin.model.dao.AdminDao;
+import com.bjscar.admin.model.vo.Admin;
 import com.bjscar.businessman.model.vo.Businessman;
 import com.bjscar.member.model.vo.Member;
 import com.bjscar.member.model.vo.SecessionMember;
@@ -109,7 +110,11 @@ public class AdminServiceImpl implements AdminService {
 		return dao.selectSearchSecessionMemberCount(session, s);
 	}
 	
-	
+	@Override
+	public Admin selectAdmin(Admin a) {
+		// TODO Auto-generated method stub
+		return dao.selectAdmin(session,a);
+	}
 	
 	
 

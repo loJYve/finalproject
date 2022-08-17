@@ -31,7 +31,7 @@
 
 	<!-- mg -->
 	<select id="selectBusinessmanList" parameterType="businessman"
-		resultMap="businessmanMap">
+		resultMap="bmMap">
 		SELECT * FROM BUSINESSMAN
 	</select>
 
@@ -42,7 +42,7 @@
 
 
 	<select id="selectSearchBusinessman" parameterType="businessman"
-		resultMap="businessmanMap">
+		resultMap="bmMap">
 		SELECT * FROM BUSINESSMAN WHERE ${type} LIKE '%'||#{keyword}||'%'
 	</select>
 
