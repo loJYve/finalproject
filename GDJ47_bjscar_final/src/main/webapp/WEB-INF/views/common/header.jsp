@@ -24,7 +24,7 @@
         <li><a href="<%=request.getContextPath()%>/" class="nav-link px-2 link-secondary">Home</a></li>
 
         <li><a href="/mypage/faq.do" class="nav-link px-2 link-dark">FAQs</a></li>
-
+		<li><a href="<%=request.getContextPath()%>/boardList.do" class="nav-link px-2 link-dark">문의사항</a></li>
         <li><a href="<%=request.getContextPath()%>/admin.do" class="nav-link px-2 link-dark">관리자 페이지</a></li>
         <li><a href="<%=request.getContextPath()%>/work/workplace.do" class="nav-link px-2 link-dark">사업장관리</a></li>
         <li><a href="${path }/rental/rental.do" class="nav-link px-2 link-dark">대여하기</a></li>

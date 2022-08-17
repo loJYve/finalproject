@@ -28,27 +28,22 @@ public class BoardDaoImpl implements BoardDao {
 	}
 
 	@Override
-	public Board selectBoard(SqlSessionTemplate session,int no) {
-		// TODO Auto-generated method stub
-		return session.selectOne("board.selectBoard",no);
-	}
-
-	@Override
 	public int selectBoardCount(SqlSessionTemplate session) {
 		// TODO Auto-generated method stub
 		return session.selectOne("board.selectBoardCount");
 	}
-
+	
 	@Override
 	public int insertBoard(SqlSessionTemplate session, Board b) {
 		// TODO Auto-generated method stub
 		return session.insert("board.insertBoard",b);
 	}
-
+	
 	@Override
 	public int insertAttachment(SqlSessionTemplate session, Attachment a) {
 		// TODO Auto-generated method stub
 		return session.insert("board.insertAttachment",a);
 	}
+
 
 }

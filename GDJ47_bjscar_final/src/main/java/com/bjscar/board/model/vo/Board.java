@@ -17,8 +17,8 @@ public class Board {
 	private int ibPostId;
 	private String ibPostTitle;
 	private String ibPostWriter;
-	private Date ibPostDate;
 	private String ibPostCategory;
 	private String ibPostContent;
+	private Date ibPostDate;
 	private List<Attachment> files;
 }

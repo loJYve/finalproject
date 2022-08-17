@@ -17,8 +17,8 @@ public class Attachment {
 
 	private int attachmentId;
 	private String attachmentTitle;
-	private Date attchamentDate;
 	private String originalFilename;
-	private String RenamedFilename;
+	private String renamedFilename;
+	private Date attchamentDate;
 	private int boardNo;
 }

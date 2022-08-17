@@ -33,11 +33,6 @@ public class BoardServiceImpl implements BoardService {
 		return dao.selectBoardListPage(session, param);
 	}
 
-	@Override
-	public Board selectBoard(int no) {
-		// TODO Auto-generated method stub
-		return dao.selectBoard(session,no);
-	}
 
 	@Override
 	public int selectBoardCount() {
@@ -56,14 +51,13 @@ public class BoardServiceImpl implements BoardService {
 				for(Attachment a: b.getFiles()) {
 					a.setAttachmentId(b.getIbPostId());
 					result=dao.insertAttachment(session,a);
+					System.out.println(result);
 					if(result==0) throw new RuntimeException("작성실패");
 				}
 			}
 		}catch(RuntimeException e) {
 			throw new RuntimeException("입력실패");
 		}
-//		result=dao.insertAttachment(b.getFiles().get(0));
-//		result=dao.insertAttachment(b.getFiles().get(1));
 		return result;
 	}
 

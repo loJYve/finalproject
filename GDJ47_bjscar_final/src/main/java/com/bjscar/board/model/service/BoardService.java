@@ -6,11 +6,10 @@ import java.util.Map;
 import com.bjscar.board.model.vo.Board;
 
 public interface BoardService {
-List<Board> selectBoardList();
 	
-	List<Board> selectBoardListPage(Map param);
+	List<Board> selectBoardList();
 	
-	Board selectBoard(int no);
+	List<Board> selectBoardListPage(Map param);	
 	
 	int selectBoardCount();
 	
