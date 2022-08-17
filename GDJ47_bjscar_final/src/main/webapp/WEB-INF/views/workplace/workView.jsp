@@ -64,7 +64,7 @@
 		<table class="tg" style="margin-left: auto; margin-right: auto; background-color: #ffffc7;">
 			<h2>개인 사업장관리</h2>
 			<thead>
-				<c:if test="${not empty rentalshop }">
+				
 					<tr>
 						<th class="tg-af47" colspan="10">사업장이름 :<input type="text"
 							value="${rentalshop.rentalshopName }" readonly style="background-color: #ffffc7;"/></th>
@@ -88,20 +88,18 @@
 					<td class="tg-n9g5" colspan="10">경도 : <input type="text"
 						value="${rentalshop.longitude }" readonly style="background-color: #ffffc7;"/></td>
 				</tr>
+				
 				<tr>
 					<td class="tg-n9g5" colspan="10">사업장 이미지</td>
 				</tr>
+								
+				 <c:if test="${not empty rentalshop.files }">
+					<c:forEach items="${ rentalshop.files}" var="a">
 				<tr>
-					<td class="tg-n9g5" colspan="10" rowspan="3">사업장 이미지 표시</td>
-				</tr>
-				<tr>
-				</tr>
-				<tr>
-				</tr>
-				<tr>
-					<td class="tg-n9g5" colspan="10"><input type="file" /></td>
-				</tr>
-				</c:if>
+					<td class="tg-n9g5" colspan="10" rowspan="3" ><c:out value="${a.originalFilename }"/></td>			
+				</tr></c:forEach>
+				
+				</c:if> 
 			</tbody>
 		</table>
 	</form>

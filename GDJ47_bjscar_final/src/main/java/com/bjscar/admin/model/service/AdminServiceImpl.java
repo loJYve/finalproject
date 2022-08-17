@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bjscar.admin.model.dao.AdminDao;
+import com.bjscar.businessman.model.vo.Businessman;
 import com.bjscar.member.model.vo.Member;
 import com.bjscar.member.model.vo.SecessionMember;
 @Service
@@ -42,28 +43,74 @@ public class AdminServiceImpl implements AdminService {
 		return dao.getSearchList(session, param, m);
 	}
 	
-	@Override
-	public List<SecessionMember> selectSecessionMemberList(){
-		return dao.selectSecessionMemberList(session);
-	}
-	
-	@Override
-	public List<SecessionMember> selectSecessionMemberListPage(Map param) {
-		// TODO Auto-generated method stub
-		return dao.selectSecessionMemberListPage(session, param);
-	}
-
-	@Override
-	public List<SecessionMember> selectSecessionMemberListPage() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public int selectSearchMemberCount(Member m) {
 		// TODO Auto-generated method stub
 		return dao.selectSearchMemberCount(session, m);
 	}
+	
+	
+	
+	
+	//businessman
+	@Override
+	public List<Businessman> selectBusinessmanList() {
+		// TODO Auto-generated method stub
+		return dao.selectBusinessmanList(session);
+	}
+	@Override
+	public List<Businessman> selectBusinessmanListPage(Map param) {
+		// TODO Auto-generated method stub
+		return dao.selectBusinessmanListPage(session, param);
+	}
+	@Override
+	public int selectBusinessmanCount() {
+		// TODO Auto-generated method stub
+		return dao.selectBusinessmanCount(session);
+	}
+	@Override
+	public List<Businessman> selectSearchBusinessman(Map param, Businessman b) {
+		// TODO Auto-generated method stub
+		return dao.selectSearchBusinessman(session, param, b);
+	}
+	@Override
+	public int selectSearchBusinessmanCount(Businessman b) {
+		// TODO Auto-generated method stub
+		return dao.selectSearchBusinessmanCount(session, b);
+	}
+	
+	
+	
+	//secessionmember
+	@Override
+	public List<SecessionMember> selectSecessionMemberList() {
+		// TODO Auto-generated method stub
+		return dao.selectSecessionMemberList(session);
+	}
+	@Override
+	public List<SecessionMember> selectSecessionMemberListPage(Map param) {
+		// TODO Auto-generated method stub
+		return dao.selectSecessionMemberListPage(session, param);
+	}
+	@Override
+	public int selectSecessionMemberCount() {
+		// TODO Auto-generated method stub
+		return dao.selectSecessionMemberCount(session);
+	}
+	@Override
+	public List<SecessionMember> selectSearchSecessionMember(Map param, SecessionMember s) {
+		// TODO Auto-generated method stub
+		return dao.selectSearchSecessionMember(session, param, s);
+	}
+	@Override
+	public int selectSearchSecessionMemberCount(SecessionMember s) {
+		// TODO Auto-generated method stub
+		return dao.selectSearchSecessionMemberCount(session, s);
+	}
+	
+	
+	
 	
 
 	

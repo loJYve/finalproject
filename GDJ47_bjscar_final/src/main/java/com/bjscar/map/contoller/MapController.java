@@ -79,5 +79,25 @@ public class MapController {
 		
 		return mv;
 	}
+	
+	@RequestMapping("/map/searchBar.do")
+	@ResponseBody
+	public ModelAndView searchBar(@RequestParam(defaultValue="1") int cPage,@RequestParam(name="numPerpage",
+			defaultValue="5") int numPerpage,ModelAndView mv,String searchKeyword, String searchType, int no){
+		//System.out.println(no);
+		Map param=Map.of("cPage",cPage,"numPerpage",numPerpage,"searchType",searchType,"searchKeyword",searchKeyword, "no",no);
+		
+		int totalData=service.selectBoardCount();
+		
+		List<Vehicle> v=service.searchBar(param);
+		
+		mv.addObject("vl",v);
+		mv.addObject("pageBar",MapPageFactory.getPageBar(totalData, numPerpage, cPage, "/map/searchBar.do?searchType="+searchType+"&searchKeyword"+searchKeyword+"&no"+no));
+		mv.setViewName("map/showRentalshop");
+		
+		return mv;
+	}
+	
+	
 
 }

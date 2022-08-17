@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.bjscar.businessman.model.vo.Businessman;
 import com.bjscar.member.model.vo.Member;
 import com.bjscar.member.model.vo.SecessionMember;
 
@@ -16,12 +17,32 @@ public interface AdminDao {
 	int selectMemberCount(SqlSessionTemplate session);
 
 	List<Member> getSearchList(SqlSessionTemplate session, Map param, Member m);
+
+	int selectSearchMemberCount(SqlSessionTemplate session, Member m);
+	
+	//businessman
+	List<Businessman> selectBusinessmanList(SqlSessionTemplate session);
+	
+	List<Businessman> selectBusinessmanListPage(SqlSessionTemplate session,Map param);
+	
+	int selectBusinessmanCount(SqlSessionTemplate session);
+
+	List<Businessman> selectSearchBusinessman(SqlSessionTemplate session, Map param, Businessman b);
+	
+	int selectSearchBusinessmanCount(SqlSessionTemplate session, Businessman b);
+	
+	//secessionmember
 	
 	List<SecessionMember> selectSecessionMemberList(SqlSessionTemplate session);
 	
 	List<SecessionMember> selectSecessionMemberListPage(SqlSessionTemplate session,Map param);
+	
+	int selectSecessionMemberCount(SqlSessionTemplate session);
 
-	int selectSearchMemberCount(SqlSessionTemplate session, Member m);
+	List<SecessionMember> selectSearchSecessionMember(SqlSessionTemplate session, Map param, SecessionMember s);
+	
+	int selectSearchSecessionMemberCount(SqlSessionTemplate session, SecessionMember s);
+	
 	
 	
 }
