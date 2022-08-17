@@ -75,8 +75,8 @@ public class AdminController {
 		  mv.addObject("members",list);
 		  int totalData=service.selectSearchMemberCount(m);
 		  mv.addObject("totalContents",totalData);
-		  mv.addObject("pageBar",PageFactory.getPageBar(totalData, numPerpage, cPage, "getSearchList"));
-		  mv.setViewName("admin/getSearchList");
+		  mv.addObject("pageBar",PageFactory.getPageBar(totalData, numPerpage, cPage, "getSearchList?type="+type+"&keyword="+keyword));
+		  mv.setViewName("admin/getSearchList"); 
 		  return mv; 
 	  }
 	 
