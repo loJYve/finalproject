@@ -4,10 +4,24 @@
 	<resultMap type="board" id="boardMap">
 		<id property="ibPostId" column="ib_post_id" />
 		<result property="ibPostTitle" column="ib_post_title" />
-		<result property="ibPostWriter" column="ib_post_writer" />
 		<result property="ibPostDate" column="ib_post_date" />
 		<result property="ibPostCategory" column="ib_post_category" />
 		<result property="ibPostContent" column="ib_post_content" />
+		<result property="ibPostWriter" column="ib_post_writer" />
+		<collection property="files" ofType="attachment">
+			<id column="attachment_id" property="attachmentId"/>
+					<result column="attachment_title" property="attachmentTitle"/>
+					<result column="attachment_date" property="attchamentDate"/>
+					<result column="original_filename" property="originalFilename"/>
+					<result column="renamed_filename" property="renamedFilename"/>				
+		</collection>
+	</resultMap>
+	<resultMap type="attachment" id="attachmentMap">
+		<id column="ATTACHMENT_ID" property="attachmentId"/>
+					<result column="ATTACHMENT_TITLE" property="attachmentTitle"/>
+					<result column="ATTACHMENT_DATE" property="attchamentDate"/>
+					<result column="ORIGINAL_FILENAME" property="originalFilename"/>
+					<result column="RENAMED_FILENAME" property="renamedFilename"/>
 	</resultMap>
 	<select id="selectBoardList" parameterType="board" resultMap="boardMap">
 		SELECT * FROM INQUIRE_BOARD ORDER BY IB_POST_DATE DESC
@@ -18,12 +32,14 @@
 	</select>
 		
 	<insert id="insertBoard" parameterType="board">
-		INSERT INTO INQUIRE_BOARD VALUES(SEQ_IB_POST_ID.NEXTVAL,#{ibPostTitle},#{ibPostWriter},#{ibPostCategory},#{ibPostContent},default)
-		<selectKey keyProperty="ibPostId" resultType="_int" order="AFTER">
-			SELECT SEQ_IB_POST_ID.CURRVAL FROM DUAL
-		</selectKey>
+		INSERT INTO INQUIRE_BOARD VALUES(SEQ_IB_POST_ID.NEXTVAL,#{ibPostTitle},SYSDATE,#{ibPostCategory},#{ibPostContent},#{ibPostWriter})
 	</insert>
 	<insert id="insertAttachment" parameterType="attachment">
-		INSERT INTO ATTACHMENT VALUES(SEQ_ATTACHMENT_ID.NEXTVAL,#{attachmentTitle},#{originalFilename},#{renamedFilename},default)
+		INSERT INTO ATTACHMENT VALUES(SEQ_ATTACHMENT_ID.NEXTVAL,#{attachmentTitle},default,#{originalFilename},#{renamedFilename})
 	</insert>
+	
+	<select id="selectBoard" parameterType="_int" resultMap="boardMap">
+		SELECT * FROM INQUIRE_BOARD B LEFT JOIN ATTACHMENT A ON B.IB_POST_ID=A.ATTACHMENT_ID
+		WHERE B.IB_POST_ID=#{no}
+	</select>
 </mapper>

@@ -12,13 +12,12 @@
         <button onclick="location.assign('${path}/boardWrite.do')">글쓰기</button>
         <table id="tbl-board" class="table table-striped table-hover">
             <tr>
-                <th>번호</th>
                 <th>제목</th>
+                <th>번호</th>
                 <th>작성자</th>
-                <th>작성일</th>
                 <th>카테고리</th>
                 <th>내용</th>
-                <th>첨부파일</th>
+                <th>작성일</th>
             </tr>
             <c:if test="${not empty boards }">
             	<c:forEach var="b" items="${boards }">
@@ -29,7 +28,6 @@
             				</a>
             			</td>          		
             			<td><c:out value="${b.ibPostId }"/></td>
-            			<td><c:out value="${b.ibPostTitle }"/></td>
             			<td><c:out value="${b.ibPostWriter }"/></td>
             			<td><c:out value="${b.ibPostCategory }"/></td>
             			<td><c:out value="${b.ibPostContent }"/></td>

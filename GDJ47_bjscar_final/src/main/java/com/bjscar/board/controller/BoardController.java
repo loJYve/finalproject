@@ -79,7 +79,7 @@ public class BoardController {
 					try{
 						f.transferTo(new File(path+rename));
 						//생성된 파일 list에 저장하기
-						files.add(Attachment.builder().originalFilename(originalFilename).renamedFilename(rename).build());
+						files.add(Attachment.builder().originalFilename(originalFilename).renamedFilename(rename).attachmentTitle(originalFilename).build());
 					}catch(IOException e) {
 						e.printStackTrace();
 					}
@@ -103,13 +103,22 @@ public class BoardController {
 				if(deleteFile.exists()) deleteFile.delete();
 			}
 		}
-		
+		System.out.println(b.getFiles());
+		System.out.println(b);
 		m.addAttribute("msg",msg);
 		m.addAttribute("loc",loc);
 		
 		
-//		}
 		return "common/msg";
+	}
+	
+	@RequestMapping("/boardView.do")
+	public ModelAndView getBoard(int no,ModelAndView mv) {
+		
+		mv.addObject("board",service.selectBoard(no));
+		mv.setViewName("ibBoard/boardView");
+
+		return mv;
 	}
 }
 

@@ -19,5 +19,7 @@ public interface BoardDao {
 	int insertBoard(SqlSessionTemplate session,Board b);
 	
 	int insertAttachment(SqlSessionTemplate session,Attachment a);
+	
+	Board selectBoard(SqlSessionTemplate session,int no);
 
 }
