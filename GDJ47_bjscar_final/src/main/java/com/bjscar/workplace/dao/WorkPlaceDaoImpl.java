@@ -7,6 +7,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.bjscar.attachment.model.vo.Attachment;
 import com.bjscar.rentalshop.model.vo.Rentalshop;
 @Repository
 public class WorkPlaceDaoImpl implements WorkPlaceDao{
@@ -40,5 +41,11 @@ public class WorkPlaceDaoImpl implements WorkPlaceDao{
 	@Override
 	public int insertRentalshop(SqlSessionTemplate session,Rentalshop r) {
 		return session.insert("rentalshop.insertRentalshop",r);
+	}
+	
+	@Override
+	public int insertAttachment(SqlSessionTemplate session, Attachment a) {
+		// TODO Auto-generated method stub
+		return session.insert("rentalshop.insertAttachment",a);
 	}
 }
