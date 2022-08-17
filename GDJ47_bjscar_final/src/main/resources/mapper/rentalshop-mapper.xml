@@ -9,7 +9,24 @@
 	<id column="LATITUDE" property="latitude"/>
 	<id column="LONGTITUDE" property="longitude"/>
 	<id column="BM_MEMBER" property="bmMember"/>
+	<collection property="files" ofType="attachment">
+			<id column="attachmentId" property="attachmentId"/>
+			<result column="attachmentTitle" property="attachmentTitle"/>
+			<result column="attchamentDate" property="attchamentDate"/>
+			<result column="originalfilename" property="originalFilename"/>
+			<result column="renamedFilename" property="renamedFilename"/>
+			<result column="uploaddate" property="uploadDate"/>						
+		</collection>
 </resultMap>
+<resultMap type="attachment" id="attachmentMap">
+<id column="attachmentId" property="attachmentId"/>
+			<result column="attachmentTitle" property="attachmentTitle"/>
+			<result column="attchamentDate" property="attchamentDate"/>
+			<result column="originalfilename" property="originalFilename"/>
+			<result column="renamedFilename" property="renamedFilename"/>
+			<result column="uploaddate" property="uploadDate"/>		
+</resultMap>
+	
   
    <select id="selectRentalshopList" parameterType="rentalshop" resultMap="rentalshopMap">
   	SELECT * FROM RENTALSHOP
@@ -19,13 +36,29 @@
 		SELECT COUNT(*) FROM RENTALSHOP
 	</select>
   
-  <select id="selectrentalshop" parameterType="rentalshop" resultMap="rentalshopMap">
-  		SELECT * FROM RENTALSHOP WHERE RENTALSHOP_ID=#{no}
+  <select id="selectrentalshop" parameterType="_int" resultMap="attachmentMap">
+ 	
+  select *
+  from attachment A
+  inner join rentalshop_attachment RA
+  on ra.attachment_id = A.attachment_id
+  inner join rentalshop R
+  on R.rentalshop_id = RA.rentalshop_id where R.rentalshop_id=#{no}
+		
   </select>
   
   <insert id="insertRentalshop"  parameterType="rentalshop" >
   INSERT INTO RENTALSHOP VALUES (SEQ_RENTALSHOP_ID.NEXTVAL,#{rentalshopName},
   	#{rentalshopAddr},#{latitude},#{longitude},#{bmMember})
+  </insert>
+  
+   <insert id="insertAttachment" parameterType="attachment">
+ 	INSERT INTO ATTACHMENT VALUES(SEQ_ATTACHMENT_ID.NEXTVAL,#{attachmentTitle},default,#{originalFilename},#{renamedFilename})
+ 	
+ </insert>
+  
+  <insert id="insertId" parameterType="attachment">
+  	INSERT INTO RENTALSHOP_ATTACHMENT VALUES(SEQ_RENTALSHOP_ID.NEXTVAL,SEQ_ATTACHMENT_ID.NEXTVAL)
   </insert>
   
 </mapper>

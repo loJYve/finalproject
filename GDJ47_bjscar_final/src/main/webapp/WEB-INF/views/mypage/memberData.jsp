@@ -17,7 +17,7 @@
 	   	<input type="text" name="memberName" id="memberName" class="form-control" value="${memberData.memberName }" required><br>
 	   	
 	   	<p class="text">생년월일</p>
-	   	<input type="text" name="birthday" id="birthday" class="form-control" placeholder="ex) 20000101" value="${memberData.birthday }" required><br>
+	   	<input type="text" name="birthday" id="birthday" class="form-control" placeholder="ex) 20000101" value="${memberData.birthday }" maxlength="8" required><br>
 	        
 	
 	   	<p class="text">주소</p>

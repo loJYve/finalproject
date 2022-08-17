@@ -17,4 +17,5 @@ public interface WorkPlaceService {
 	
 	int insertRentalshop(Rentalshop r);
 	
+	
 }
