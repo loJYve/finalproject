@@ -108,7 +108,7 @@ public class BoardController {
 					try{
 						f.transferTo(new File(path+rename));
 						//생성된 파일 list에 저장하기
-						files.add(Attachment.builder().originalFilename(originalFilename).RenamedFilename(rename).build());
+						files.add(Attachment.builder().originalFilename(originalFilename).renamedFilename(rename).build());
 					}catch(IOException e) {
 						e.printStackTrace();
 					}
