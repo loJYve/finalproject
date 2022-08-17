@@ -56,7 +56,7 @@
 </style>
 </head>
 <body style="text-align:center;">
-<form action="${path }/insertworkplaceEnd.do" method="post">
+<form action="${path }/insertworkplaceEnd.do" method="post" enctype="multipart/form-data">
 		<table class="tg" style="margin-left: auto; margin-right: auto; background-color: #ffffc7;">
 			<h2>개인 사업장만들기</h2>
 			<thead>
@@ -67,11 +67,7 @@
 					</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td class="tg-af47" colspan="5">대여소일련번호</td>
-					<td class="tg-n9g5" colspan="5"><input type="text"
-						  style="background-color: #ffffc7;" readonly/></td>
-				</tr>
+				
 				<tr>
 					<td class="tg-n9g5" colspan="10">대여소주소 : <input type="text"
 						name="rentalshopAddr" style="background-color: #ffffc7;"/></td>
@@ -88,21 +84,28 @@
 					<td class="tg-n9g5" colspan="10">사업장 이미지</td>
 				</tr>
 				<tr>
-					<td class="tg-n9g5" colspan="10" rowspan="3">사업장 이미지 표시</td>
+				
 				</tr>
 				<tr>
 				</tr>
 				<tr>
-				</tr>
-				<tr>
-					<td class="tg-n9g5" colspan="5"><input type="file" /></td>
+					<td class="tg-n9g5" colspan="5"><input type="file" id="upFile" name="upFile"/></td>
 					<td class="tg-n9g5" colspan="5"><input type="text" name="bmMember" /></td>
 				</tr>
 				
 			</tbody>
 		</table>
-		<button type="submit" >만들기</button>
+		<input type="submit" class="btn btn-outline-success" value="저장"/>
 	</form>
 </body>
+ <script>
+    	$(()=>{
+    		$("[name=upFile]").change(e=>{
+    			const fileName=$(e.target).prop('files')[0].name;
+    			$(e.target).next(".custom-file-label").html(fileName);
+    		});
+    	});
+    </script>
 </html>
+
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

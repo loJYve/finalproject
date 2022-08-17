@@ -33,4 +33,14 @@ public class MapDaoImpl implements MapDao{
 		return session.selectOne("map.selectBoardCount");
 	}
 	
+	@Override
+	public List<Vehicle> searchBar(SqlSessionTemplate session, Map param) {
+		// TODO Auto-generated method stub
+		int offSet=(int)param.get("cPage");
+		int limit=(int)param.get("numPerpage");
+		
+		return session.selectList("map.searchVehicle",param,
+				new RowBounds((offSet-1)*limit,limit));
+	}
+	
 }
