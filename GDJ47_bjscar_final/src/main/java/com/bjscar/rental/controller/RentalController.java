@@ -16,6 +16,7 @@ public class RentalController {
 	
 	@Autowired(required=false)
 	   private RentalService service;
+
 	
 	@RequestMapping("/rental.do")
 	public String rental() {

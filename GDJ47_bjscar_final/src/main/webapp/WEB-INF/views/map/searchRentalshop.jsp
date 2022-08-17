@@ -65,39 +65,6 @@ no로 rentalshopId를 넘기는데 오류가 남 - null이 들어갈수있어서
 		</section>
 		</div>
 		
-		<div id="search-container">
-	        	검색타입 : 
-	        <select id="searchType">
-	        	<option value="rentalshopName"  ${searchType!=null&&searchType.equals("rentalshopName")?"checked":""} >대여소이름</option>
-	        	<option value="rentalshopAddr" ${searchType!=null&&searchType.equals("rentalshopAddr")?"checked":""} >대여소 주소</option>
-	        	<option value="bmMember" ${searchType!=null&&searchType.equals("bmMember")?"checked":""} >사업자이름</option>
-	        </select>
-
-	        <div id="search-rentalshopName">
-	        	<form action="${path }/map/bikesearch.do">
-	        		<input type="hidden" name="searchType" value="rentalshopName">
-	        		<input type="text" name="searchKeyword" size="25" 
-	        		placeholder="검색할 대여소 명을 입력하세요" >
-	        		<button type="submit">검색</button>
-	        	</form>
-	        </div>
-	        <div id="search-rentalshopAddr">
-	        	<form action="${path }/map/bikesearch.do">
-	        		<input type="hidden" name="searchType" value="rentalshopAddr">
-	        		<input type="text" name="searchKeyword" size="25" 
-	        		placeholder="검색할 대여소의 주소를 입력하세요" >
-	        		<button type="submit">검색</button>
-	        	</form>
-	        </div>
-	        <div id="search-bmMember">
-	        	<form action="${path }/map/bikesearch.do">
-	        		<input type="hidden" name="searchType" value="bmMember">
-	        		<input type="text" name="searchKeyword" size="25" 
-	        		placeholder="검색할 사업자명을 입력하세요" >
-	        		<button type="submit">검색</button>
-	        	</form>
-	        </div>
-	      </div>
 	    </div>		
 	 
 	<script>

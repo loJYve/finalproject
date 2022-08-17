@@ -50,11 +50,11 @@
 	
 	<resultMap type="rentalshop" id="rentalshopMap">
 		<id column="RENTALSHOP_ID" property="rentalshopId"/>
-		<id column="RENTALSHOP_NAME" property="rentalshopName"/>
-		<id column="RENTALSHOP_ADDR" property="rentalshopAddr"/>
-		<id column="LATITUDE" property="latitude"/>
-		<id column="LONGTITUDE" property="longitude"/>
-		<id column="BM_MEMBER" property="bmMember"/>
+		<result column="RENTALSHOP_NAME" property="rentalshopName"/>
+		<result column="RENTALSHOP_ADDR" property="rentalshopAddr"/>
+		<result column="LATITUDE" property="latitude"/>
+		<result column="LONGTITUDE" property="longitude"/>
+		<result column="BM_MEMBER" property="bmMember"/>
 	</resultMap>
 	
 	<resultMap type="secessionmember" id="secessionmemberMap">
@@ -62,7 +62,14 @@
 		<result column="SECESSION_REASON" property="secessionReason"/>
 		<result column="SECESSION_DATE" property="secessionDate"/>
 		<result column="MEMBER_ID" property="memberId"/>
-
+	</resultMap>
+	
+	<resultMap type="purchaseHistory" id="purchaseHistoryMap">
+		<id column="PURCHASE_ID" property="purchaseId"/>
+		<result column="BOOKING_DATE" property="bookingDate"/>
+		<result column="MODEL" property="model"/>
+		<result column="RENTAL_STATUS" property="status"/>
+		<result column="PURCHASE_AMOUNT" property="purchaseAmount"/>
 	</resultMap>
 	
   
@@ -82,7 +89,7 @@
   		SELECT * FROM RENTALSHOP WHERE RENTALSHOP_ID=(SELECT RENTALSHOP_ID FROM VEHICLE WHERE VEHICLE_ID=#{vehicleId})
   	</select>
   	
-   	<select id="selectrentalHistory" parameterType="string" resultMap="rentaldataMap">
+   	<select id="selectrentalHistory" parameterType="map" resultMap="rentaldataMap">
   		SELECT * FROM RENTAL_HISTORY WHERE MEMBER_ID=#{memberId}
   	</select>
   	
@@ -98,7 +105,25 @@
   		UPDATE MEMBER SET PASSWORD='---', MEMBER_NAME='---', BIRTHDAY='---', EMAIL='---', PHONE='---', ADDRESS='---', TOTAL_MILEAGE=0, SECESSION_STATUS='Y' WHERE MEMBER_ID=#{memberId} 
   	</update>
   	
+  	<select id="selectPurchaseHistory" parameterType="map" resultMap="purchaseHistoryMap">
+  		SELECT PH.PURCHASE_ID, RH.BOOKING_DATE, V.MODEL, RH.RENTAL_STATUS, PH.PURCHASE_AMOUNT 
+  		FROM RENTAL_HISTORY RH 
+  			INNER JOIN VEHICLE V ON RH.VEHICLE_ID=V.VEHICLE_ID
+  			INNER JOIN RENTAL_PURCHASE_HISTORY RPH ON RH.RENTAL_ID=RPH.RENTAL_ID
+  			INNER JOIN PURCHASE_HISTORY PH ON RPH.PURCHASE_ID=PH.PURCHASE_ID
+  		WHERE RH.MEMBER_ID=#{memberId}
+  	</select>
   	
+  	<select id="selectPHCount" parameterType="string" resultType="_int">
+  		SELECT COUNT(*) FROM PURCHASE_HISTORY PH 
+  			INNER JOIN RENTAL_PURCHASE_HISTORY RPH ON PH.PURCHASE_ID=RPH.PURCHASE_ID
+  			INNER JOIN RENTAL_HISTORY RH ON RPH.RENTAL_ID=RH.RENTAL_ID
+  		WHERE RH.MEMBER_ID=#{memberId}
+  	</select>
+  	
+  	<select id="selectRHCount" parameterType="string" resultType="_int">
+  		SELECT COUNT(*) FROM RENTAL_HISTORY WHERE MEMBER_ID=#{memberId}
+  	</select>
   	
   	
   
