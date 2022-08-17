@@ -9,6 +9,7 @@
      <typeAlias type="com.bjscar.vehicle.model.vo.Vehicle" alias="vehicle"/>
      <typeAlias type="com.bjscar.member.model.vo.Member" alias="member"/>
   	 <typeAlias type="com.bjscar.rentalshop.model.vo.Rentalshop" alias="rentalshop"/>
+  	 <typeAlias type="com.bjscar.rentalshop.model.vo.RentalshopAttachment" alias="rentalshopattachment"/>
      <typeAlias type="com.bjscar.mypage.model.vo.RentalHistory" alias="rentalHistory"/>
      <typeAlias type="com.bjscar.member.model.vo.SecessionMember" alias="secessionmember"/>
      <typeAlias type="com.bjscar.attachment.model.vo.Attachment" alias="attachment"/>

@@ -40,7 +40,9 @@ public class WorkPlaceDaoImpl implements WorkPlaceDao{
 
 	@Override
 	public int insertRentalshop(SqlSessionTemplate session,Rentalshop r) {
-		return session.insert("rentalshop.insertRentalshop",r);
+		 
+		return session.insert("rentalshop.insertRentalshop",r);		
+		  //session.insert("rentalshop.insertId");
 	}
 	
 	@Override

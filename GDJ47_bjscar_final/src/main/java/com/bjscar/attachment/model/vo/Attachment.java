@@ -19,6 +19,5 @@ public class Attachment {
 	private Date attchamentDate;
 	private String originalFilename;
 	private String renamedFilename;
-	private int boardNo;
 
 }
