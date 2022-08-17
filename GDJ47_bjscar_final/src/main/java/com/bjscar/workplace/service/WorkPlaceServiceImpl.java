@@ -58,6 +58,7 @@ public class WorkPlaceServiceImpl implements WorkPlaceService {
 				result=dao.insertAttachment(session,a);
 //				if(result==0) throw new RuntimeException();
 				
+				
 			}
 			}
 		}catch (RuntimeException e) {
@@ -65,6 +66,8 @@ public class WorkPlaceServiceImpl implements WorkPlaceService {
 		}
 //		result=dao.insertAttachment(b.getFiles().get(0));
 //		result=dao.insertAttachment(b.getFiles().get(1));
+		
+		
 		return result;
 	}
 }

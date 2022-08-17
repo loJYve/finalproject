@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.bjscar.attachment.model.vo.Attachment;
 import com.bjscar.member.model.vo.Member;
 import com.bjscar.mypage.model.dao.MypageDao;
+import com.bjscar.mypage.model.vo.PurchaseHistory;
 import com.bjscar.mypage.model.vo.RentalHistory;
 import com.bjscar.rentalshop.model.vo.Rentalshop;
 import com.bjscar.vehicle.model.vo.Vehicle;
@@ -44,8 +45,8 @@ public class MypageServiceImpl implements MypageService {
 	}
 	
 	@Override
-	public List<RentalHistory> selectrentalHistory(String memberId) {
-		return dao.selectrentalHistory(session, memberId);
+	public List<RentalHistory> selectrentalHistory(Map param) {
+		return dao.selectrentalHistory(session, param);
 	}
 	
 	@Override
@@ -58,8 +59,19 @@ public class MypageServiceImpl implements MypageService {
 		dao.memSecessionEnd(session, param);
 	}
 	@Override
-	public List<RentalHistory> selectPurchaseHistory(Map param) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<PurchaseHistory> selectPurchaseHistory(Map param) {
+		return dao.selectPurchaseHistory(session, param);
 	}
+	
+	@Override
+	public int selectPHCount(String memberId) {
+		return dao.selectPHCount(session, memberId);
+	}
+	
+	@Override
+	public int selectRHCount(String memberId) {
+		return dao.selectRHCount(session, memberId);
+	}
+	
+	
 }

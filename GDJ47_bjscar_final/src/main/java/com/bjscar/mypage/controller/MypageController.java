@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bjscar.common.PageFactory;
 import com.bjscar.member.model.vo.Member;
 import com.bjscar.mypage.model.service.MypageService;
 import com.bjscar.mypage.model.vo.RentalHistory;
@@ -46,9 +47,14 @@ public class MypageController {
 	
 	
 	@RequestMapping("/rentalhistory.do")
-	public ModelAndView rentalHistory(@RequestParam String memberId, ModelAndView mv) {
+	public ModelAndView rentalHistory(@RequestParam(name="cPage",defaultValue="1") int cPage,
+			@RequestParam(name="numPerpage",defaultValue="5")int numPerpage, @RequestParam String memberId, ModelAndView mv) {
+		Map param=Map.of("cPage",cPage,"numPerpage",numPerpage,"memberId",memberId);
 		
-		mv.addObject("rentalHistory", service.selectrentalHistory(memberId));
+		mv.addObject("rentalHistory", service.selectrentalHistory(param));
+		
+		int totalData=service.selectRHCount(memberId);
+		mv.addObject("pageBar",PageFactory.getPageBar(totalData, numPerpage, cPage, "rentalhistory.do"));
 		
 		mv.setViewName("/mypage/rentalHistory");
 		
@@ -58,8 +64,11 @@ public class MypageController {
 	@RequestMapping("/purchasehistory.do")
 	public ModelAndView purchaseHistory(@RequestParam(name="cPage",defaultValue="1") int cPage,
 			@RequestParam(name="numPerpage",defaultValue="5")int numPerpage, @RequestParam String memberId, ModelAndView mv) {
-		Map param=Map.of("cPage",cPage,"numPerpage",numPerpage,"memberId",memberId);
-		//mv.addObject("rentalHistory", service.selectPurchaseHistory(param));
+		Map param=Map.of("cPage",cPage,"numPerpage",numPerpage,"memberId",memberId);	
+		mv.addObject("purchasehistory", service.selectPurchaseHistory(param));
+		
+		int totalData=service.selectPHCount(memberId);
+		mv.addObject("pageBar",PageFactory.getPageBar(totalData, numPerpage, cPage, "purchasehistory.do"));
 		
 		mv.setViewName("/mypage/purchaseHistory");
 		return mv;

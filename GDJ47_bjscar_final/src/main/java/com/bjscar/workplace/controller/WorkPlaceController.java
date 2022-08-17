@@ -51,12 +51,13 @@ public class WorkPlaceController {
 	}
 
 	@RequestMapping("/work/workplaceView.do")
-	public ModelAndView workplaceView(@RequestParam int no, ModelAndView mv) {
-		mv.addObject("rentalshops", service.selectRentalshop(no));
+	public ModelAndView workplaceView(int no, ModelAndView mv) {
+		mv.addObject("rentalshop", service.selectRentalshop(no));
 		mv.setViewName("workplace/workView");
 		
 	    
 	   
+		System.out.println(no);
 		System.out.println(service.selectRentalshop(no));
 		return mv;
 	}
@@ -93,9 +94,9 @@ public class WorkPlaceController {
 					// 업로드처리하기
 					try {
 						f.transferTo(new File(path + rename));
-						files.add(Attachment.builder().attachmentId(rndNum).originalFilename(originalFilename).renamedFilename(rename).attachmentTitle(originalFilename)
+						files.add(Attachment.builder().originalFilename(originalFilename).renamedFilename(rename).attachmentTitle(originalFilename)
 								.build());
-
+						
 					} catch (IOException e) {
 						e.printStackTrace();
 					}

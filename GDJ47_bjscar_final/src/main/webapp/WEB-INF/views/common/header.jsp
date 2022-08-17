@@ -14,7 +14,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
    <div class="container">
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
       <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
@@ -35,14 +34,14 @@
 		<li><a href="${path }/map/searchRentalshop.do" class="nav-link px-2 link-dark">대여소검색</a></li>
 		<li><a href="${path }/suggest.do" class="nav-link px-2 link-dark">경로추천</a></li>
       </ul>
-      <div class="col-md-3 text-end" style="display:contents;">
-      <c:if test="${loginMember == null }">
+     <!--  <div class="col-md-3 text-end" style="display:contents;"> -->
+     <div> 
+      <c:if test="${loginMember == null&&loginMan == null&&loginAdmin == null }">
 				<ul class="login">
-		<button type="button" class="btn btn-outline-primary me-2" onclick="location.assign('${path}/member/memberPage.do')">Login</button>
-        <button type="button" class="btn btn-primary" onclick="location.assign('${path}/member/memberEnroll.do')">Sign-up</button>
-				<%-- <button onclick="location.assign('${path}/member/memberPage.do')">로그인</button>
-				<button onclick="location.assign('${path}/member/memberEnroll.do')">회원가입</button> --%>
-				<!-- <button class="login">로그인</button> -->
+		 <button type="button"  class="btn btn-outline-primary me-2" onclick="location.assign('${path}/member/memberPage.do')">Login</button>
+        <button type="button" class="btn btn-primary" onclick="location.assign('${path}/member/memberEnroll.do')">Sign-up</button> 
+       <!--  <button type="button"  class="btn btn-outline-primary onclick="location.assign('${path}/member/memberPage.do')">Login</button>
+        <button type="button" class="btn btn-outline-primary onclick="location.assign('${path}/member/memberEnroll.do')">Sign-up</button> -->
 				</ul>
 				</c:if> 
 				<c:if test="${loginMember != null }">
@@ -53,11 +52,11 @@
                    </a>님, 환영합니다.
                 </span>
 				<button  class="btn btn-outline-primary me-2"  onclick="location.assign('${path}/member/logout')">로그아웃</button>
-				<!-- <button class="login">로그인</button> -->
 				</ul>
 				</c:if>
 				<!-- 사업자 --> 
-				<c:if test="${loginMan != null }">
+			   
+		       <c:if test="${loginMan != null }">
 				<ul class="login">
 				<span>
                    <a href="${path }/member/memberView.do?userId=${loginMan.bmId}">
@@ -65,7 +64,17 @@
                    </a>님, 환영합니다.
                 </span>
 				<button  class="btn btn-outline-primary me-2"  onclick="location.assign('${path}/businessman/logout')">로그아웃</button>
-				<!-- <button class="login">로그인</button> -->
+				</ul>
+				</c:if>
+				<!-- 관리자 -->
+		       <c:if test="${loginAdmin != null }">
+				<ul class="login">
+				<span>
+                   <a href="${path }/member/memberView.do?userId=${loginAdmin.adminId}">
+                     <c:out value="${loginAdmin.adminName }"/>
+                   </a>님, 환영합니다.
+                </span>
+				<button  class="btn btn-outline-primary me-2"  onclick="location.assign('${path}/admin/logout')">로그아웃</button>
 				</ul>
 				</c:if>
       </div>

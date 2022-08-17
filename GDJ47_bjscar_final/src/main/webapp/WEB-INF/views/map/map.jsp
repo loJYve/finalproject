@@ -60,7 +60,7 @@
  function initMap() {
 	
 	 //검색기능, 링크로 페이지 이동 추가
-	 
+	 //https://apis.map.kakao.com/web/sample/markerWithInfoWindow  참고
 	 
 	 const infoWindow=new google.maps.InfoWindow();
 	 

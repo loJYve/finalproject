@@ -3,8 +3,10 @@ package com.bjscar.admin.model.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.bjscar.admin.model.vo.Admin;
 import com.bjscar.businessman.model.vo.Businessman;
 import com.bjscar.member.model.vo.Member;
 import com.bjscar.member.model.vo.SecessionMember;
@@ -43,6 +45,6 @@ public interface AdminDao {
 	
 	int selectSearchSecessionMemberCount(SqlSessionTemplate session, SecessionMember s);
 	
-	
+	Admin selectAdmin(SqlSession session,Admin a);
 	
 }

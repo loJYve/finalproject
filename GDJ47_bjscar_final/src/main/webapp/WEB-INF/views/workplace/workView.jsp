@@ -67,40 +67,39 @@
 				
 					<tr>
 						<th class="tg-af47" colspan="10">사업장이름 :<input type="text"
-							value="${rentalshops.rentalshopName }" readonly style="background-color: #ffffc7;"/></th>
+							value="${rentalshop.rentalshopName }" readonly style="background-color: #ffffc7;"/></th>
 					</tr>
 			</thead>
 			<tbody>
 				<tr>
 					<td class="tg-af47" colspan="5">대여소일련번호</td>
 					<td class="tg-n9g5" colspan="5"><input type="text"
-						value="${rentalshops.rentalshopId }" readonly style="background-color: #ffffc7;"/></td>
+						value="${rentalshop.rentalshopId }" readonly style="background-color: #ffffc7;"/></td>
 				</tr>
 				<tr>
 					<td class="tg-n9g5" colspan="10">대여소주소 : <input type="text"
-						value="${rentalshops.rentalshopAddr }" readonly style="background-color: #ffffc7;"/></td>
+						value="${rentalshop.rentalshopAddr }" readonly style="background-color: #ffffc7;"/></td>
 				</tr>
 				<tr>
 					<td class="tg-n9g5" colspan="10">위도 : <input type="text"
-						value="${rentalshops.latitude }" readonly style="background-color: #ffffc7;"/></td>
+						value="${rentalshop.latitude }" readonly style="background-color: #ffffc7;"/></td>
 				</tr>
 				<tr>
 					<td class="tg-n9g5" colspan="10">경도 : <input type="text"
-						value="${rentalshops.longitude }" readonly style="background-color: #ffffc7;"/></td>
+						value="${rentalshop.longitude }" readonly style="background-color: #ffffc7;"/></td>
 				</tr>
 				
 				<tr>
 					<td class="tg-n9g5" colspan="10">사업장 이미지</td>
 				</tr>
 								
-				<c:if test="${not empty rentalshops }">
-				
+				 <c:if test="${not empty rentalshop.files }">
+					<c:forEach items="${ rentalshop.files}" var="a">
 				<tr>
-					<td class="tg-n9g5" colspan="10" rowspan="3" ><c:out value="${rentalshops.originalFilename }"/></td>			
-				</tr>
+					<td class="tg-n9g5" colspan="10" rowspan="3" ><c:out value="${a.originalFilename }"/></td>			
+				</tr></c:forEach>
 				
-				</c:if>
-				
+				</c:if> 
 			</tbody>
 		</table>
 	</form>

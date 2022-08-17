@@ -37,5 +37,10 @@ public class MapServiceImpl implements MapService{
 		return dao.selectRentalshop(session, no, param);
 	}
 	
+	@Override
+	public List<Vehicle> searchBar(Map param) {
+		// TODO Auto-generated method stub
+		return dao.searchBar(session, param);
+	}
 	
 }
