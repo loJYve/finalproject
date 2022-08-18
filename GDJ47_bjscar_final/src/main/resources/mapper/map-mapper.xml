@@ -37,11 +37,18 @@
 	</select>
  
 	<select id="selectBoardCount" resultType="int">
-		SELECT COUNT(*) FROM VeHICLE
+		SELECT COUNT(*) FROM VeHICLE WHERE RENTALSHOP_ID = #{no}
 	</select> 
  	
  
 	<select id="searchVehicle" parameterType="map" resultMap="vehicleMap">
-		SELECT * FROM VEHICLE JOIN RENTALSHOP USING(RENTALSHOP_ID) WHERE ${searchType} like '%'||#{searchKeyword}||'%' and RENTALSHOP_ID=#{no} AND rental_Status LIKE '대여가능'
+		SELECT * FROM VEHICLE v JOIN RENTALSHOP USING(RENTALSHOP_ID) WHERE ${searchType} like '%'||#{searchKeyword}||'%' and RENTALSHOP_ID=#{no} AND rental_Status LIKE '대여가능'
 	</select>
+	
+	<select id="searchVehicleCount" parameterType="map" resultType="_int">
+		<!-- SELECT COUNT(*) FROM VEHICLE v WHERE ${searchType} LIKE '%'||#{searchKeyword}||'%' and RENTALSHOP_ID=#{no} AND rental_Status LIKE '대여가능' -->
+		SELECT COUNT(*) FROM VEHICLE v JOIN RENTALSHOP USING(RENTALSHOP_ID) WHERE ${searchType} like '%'||#{searchKeyword}||'%' AND RENTALSHOP_ID=#{no} AND rental_Status LIKE '대여가능'
+	</select>
+	
+
 </mapper>

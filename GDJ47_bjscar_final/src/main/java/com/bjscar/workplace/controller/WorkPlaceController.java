@@ -38,10 +38,11 @@ public class WorkPlaceController {
 
 	@RequestMapping("/work/workplace.do")
 	public ModelAndView selectMemberList(@RequestParam(name = "cPage", defaultValue = "1") int cPage,
-			@RequestParam(name = "numPerpage", defaultValue = "5") int numPerpage, ModelAndView mv) {
+			@RequestParam(name = "numPerpage", defaultValue = "5") int numPerpage, ModelAndView mv,String memberId) {
 		Map param = Map.of("cPage", cPage, "numPerpage", numPerpage);
 		List<Rentalshop> list = service.selectRentalshopListPage(param);
 		mv.addObject("rentalshops", list);
+//		int totalData = service.selectRentalshopCount(memberId);
 		int totalData = service.selectRentalshopCount();
 		mv.addObject("totalContents", totalData);
 		mv.addObject("pageBar", PageFactory.getPageBar(totalData, numPerpage, cPage, "/work/workplace.do"));
@@ -49,6 +50,8 @@ public class WorkPlaceController {
 		mv.setViewName("workplace/workplacePage");
 		return mv;
 	}
+	
+	
 
 	@RequestMapping("/work/workplaceView.do")
 	public ModelAndView workplaceView(int no, ModelAndView mv) {
@@ -71,7 +74,7 @@ public class WorkPlaceController {
 	@RequestMapping("/insertworkplaceEnd.do")
 	public String insertRentalshop(Rentalshop r, MultipartFile[] upFile, Model m, HttpServletRequest rs) {
 		// int result = service.insertRentalshop(r);
-		String path = rs.getServletContext().getRealPath("/WEB-INF/views/upload/rentalshopImg/");
+		String path = rs.getServletContext().getRealPath("resources/upload/rentalshopImg/");
 		File uploadDir = new File(path);
 		// 폴더가 없으면 만들어주기
 		if (!uploadDir.exists())
@@ -109,11 +112,12 @@ public class WorkPlaceController {
 			String loc = "";
 			try {
 				service.insertRentalshop(r);
-				msg = "게시글 입력성공!";
+				msg = "렌탈샵등록!";
 				loc = "/work/workplace.do";
 				
 			} catch (RuntimeException e) {
-				msg = "게시글 입력실패!";
+				e.printStackTrace();
+				msg = "등록실패!";
 				loc = "/work/insertRentalshop.do";
 				for (Attachment a : r.getFiles()) {
 					File deleteFile = new File(path + a.getRenamedFilename());
@@ -127,6 +131,7 @@ public class WorkPlaceController {
 
 		}
 		System.out.println(r.getFiles());
+		System.out.println(r);
 		return "common/msg";
 
 	}

@@ -204,7 +204,7 @@ transform: rotate(45deg);
                      <a href="https://kauth.kakao.com/oauth/authorize?client_id=c092a856fb0ff2740a4131083dd48690&redirect_uri=http://localhost:9090/oauth2/code/kakao&response_type=code""><img src="/images/kakao2.png" style="width:100%"></a>
                    <div class="links"> 
                    <br/>
-            <a href="${path }/member/searchId.do" class="text-primary">아이디 찾기</a> | <a href="${path }/member/searchpw.do" class="text-primary">비밀번호 찾기</a> | <a href="/member/memberEnroll.do" class="text-primary">회원가입</a> | <a href="${path }/member/memberPage.do" class="text-primary">일반회원 로그인</a>
+            <a href="${path }/member/searchId.do" class="text-primary">아이디 찾기</a> | <a href="${path }/member/searchpw.do" class="text-primary">비밀번호 찾기</a> | <a href="/member/memberEnroll.do" class="text-primary">회원가입</a> | <a href="${path }/member/memberPage.do" class="text-primary">회원</a>
                    </div>
                   </div>
                  
