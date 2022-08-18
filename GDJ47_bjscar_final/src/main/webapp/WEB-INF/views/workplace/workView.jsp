@@ -58,49 +58,60 @@
 }
 </style>
 </head>
-<body style="text-align:center">
+<body style="text-align: center">
 
-	<form action="${path }/alterworplace.do" method="get">
-		<table class="tg" style="margin-left: auto; margin-right: auto; background-color: #ffffc7;">
+	<form action="${path }/alterworplace.do" method="get" enctype="multipart/form-data">
+		<table class="tg"
+			style="margin-left: auto; margin-right: auto; background-color: #ffffc7;">
 			<h2>개인 사업장관리</h2>
 			<thead>
-				<c:if test="${not empty rentalshop }">
-					<tr>
-						<th class="tg-af47" colspan="10">사업장이름 :<input type="text"
-							value="${rentalshop.rentalshopName }" readonly style="background-color: #ffffc7;"/></th>
-					</tr>
+
+				<tr>
+					<th class="tg-af47" colspan="10">사업장이름 :<input type="text"
+						value="${rentalshop.rentalshopName }" readonly
+						style="background-color: #ffffc7;" /></th>
+				</tr>
 			</thead>
 			<tbody>
 				<tr>
 					<td class="tg-af47" colspan="5">대여소일련번호</td>
 					<td class="tg-n9g5" colspan="5"><input type="text"
-						value="${rentalshop.rentalshopId }" readonly style="background-color: #ffffc7;"/></td>
+						value="${rentalshop.rentalshopId }" readonly
+						style="background-color: #ffffc7;" /></td>
 				</tr>
 				<tr>
 					<td class="tg-n9g5" colspan="10">대여소주소 : <input type="text"
-						value="${rentalshop.rentalshopAddr }" readonly style="background-color: #ffffc7;"/></td>
+						value="${rentalshop.rentalshopAddr }" readonly
+						style="background-color: #ffffc7;" /></td>
 				</tr>
 				<tr>
 					<td class="tg-n9g5" colspan="10">위도 : <input type="text"
-						value="${rentalshop.latitude }" readonly style="background-color: #ffffc7;"/></td>
+						value="${rentalshop.latitude }" readonly
+						style="background-color: #ffffc7;" /></td>
 				</tr>
 				<tr>
 					<td class="tg-n9g5" colspan="10">경도 : <input type="text"
-						value="${rentalshop.longitude }" readonly style="background-color: #ffffc7;"/></td>
+						value="${rentalshop.longitude }" readonly
+						style="background-color: #ffffc7;" /></td>
 				</tr>
-				<tr>
-					<td class="tg-n9g5" colspan="10">사업장 이미지</td>
+
+				
+
+				<c:if test="${not empty rentalshop.files }">
+					<c:forEach items="${ rentalshop.files}" var="a">
+						<tr>
+							<td class="tg-n9g5" colspan="10" rowspan="3"><c:out
+									value="${a.originalFilename }" /></td>
+
+
+						</tr>
+						<tr>
+					<td class="tg-n9g5" colspan="10"><p><img src="/resources/upload/rentalshopImg/${a.renamedFilename }" alt="이미지"/><p></td>
 				</tr>
-				<tr>
-					<td class="tg-n9g5" colspan="10" rowspan="3">사업장 이미지 표시</td>
-				</tr>
-				<tr>
-				</tr>
-				<tr>
-				</tr>
-				<tr>
-					<td class="tg-n9g5" colspan="10"><input type="file" /></td>
-				</tr>
+								
+							
+					</c:forEach>
+
 				</c:if>
 			</tbody>
 		</table>

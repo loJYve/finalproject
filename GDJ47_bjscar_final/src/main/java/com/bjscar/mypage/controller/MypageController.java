@@ -1,5 +1,7 @@
 package com.bjscar.mypage.controller;
 
+import java.util.Map;
+
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpSession;
 
@@ -7,9 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bjscar.common.PageFactory;
 import com.bjscar.member.model.vo.Member;
 import com.bjscar.mypage.model.service.MypageService;
 import com.bjscar.mypage.model.vo.RentalHistory;
@@ -42,9 +47,14 @@ public class MypageController {
 	
 	
 	@RequestMapping("/rentalhistory.do")
-	public ModelAndView rentalHistory(@RequestParam String memberId, ModelAndView mv) {
+	public ModelAndView rentalHistory(@RequestParam(name="cPage",defaultValue="1") int cPage,
+			@RequestParam(name="numPerpage",defaultValue="5")int numPerpage, @RequestParam String memberId, ModelAndView mv) {
+		Map param=Map.of("cPage",cPage,"numPerpage",numPerpage,"memberId",memberId);
 		
-		mv.addObject("rentalHistory", service.selectrentalHistory(memberId));
+		mv.addObject("rentalHistory", service.selectrentalHistory(param));
+		
+		int totalData=service.selectRHCount(memberId);
+		mv.addObject("pageBar",PageFactory.getPageBar(totalData, numPerpage, cPage, "rentalhistory.do"));
 		
 		mv.setViewName("/mypage/rentalHistory");
 		
@@ -52,9 +62,13 @@ public class MypageController {
 	}
 	
 	@RequestMapping("/purchasehistory.do")
-	public ModelAndView purchaseHistory(@RequestParam String memberId, ModelAndView mv) {
+	public ModelAndView purchaseHistory(@RequestParam(name="cPage",defaultValue="1") int cPage,
+			@RequestParam(name="numPerpage",defaultValue="5")int numPerpage, @RequestParam String memberId, ModelAndView mv) {
+		Map param=Map.of("cPage",cPage,"numPerpage",numPerpage,"memberId",memberId);	
+		mv.addObject("purchasehistory", service.selectPurchaseHistory(param));
 		
-		mv.addObject("rentalHistory", service.selectrentalHistory(memberId));
+		int totalData=service.selectPHCount(memberId);
+		mv.addObject("pageBar",PageFactory.getPageBar(totalData, numPerpage, cPage, "purchasehistory.do"));
 		
 		mv.setViewName("/mypage/purchaseHistory");
 		return mv;
@@ -75,6 +89,7 @@ public class MypageController {
 		return mv;
 	}
 	
+
 	@RequestMapping("/rhdetail.do")
 	public ModelAndView rhDetail(@RequestParam String rhId, ModelAndView mv) {
 		
@@ -84,4 +99,58 @@ public class MypageController {
 		
 		return mv;
 	}
+
+	@RequestMapping("/secession.do")
+	public String memSecession(@RequestParam String memberId, ModelAndView mv) {
+		
+		return "/mypage/secession";
+	}
+	
+	@RequestMapping("/secessionEnd.do")
+	public ModelAndView memSecessionEnd(@RequestParam String memberId, @RequestParam String secessionReason,
+			ModelAndView mv, SessionStatus status) {
+		if(secessionReason==null||secessionReason=="") {
+			secessionReason="사유없음";
+		}
+		Map param = Map.of("memberId",memberId,"secessionReason",secessionReason);
+		
+		service.memSecessionEnd(param);
+		
+		if(!status.isComplete()) {
+			status.setComplete();//session데이터 삭제
+		}
+		
+		mv.addObject("msg", "탈퇴 완료");
+		mv.addObject("loc", "/");
+		mv.setViewName("common/msg");
+		
+		return mv;
+	}
+	
+	@RequestMapping("/updateMember.do")
+	public ModelAndView updateMember(@RequestParam String memberId, ModelAndView mv) {
+		
+		
+		
+		mv.addObject("msg", "정보 수정 완료");
+		mv.addObject("loc", "/");
+		mv.setViewName("common/msg");
+		
+		return mv;
+	}
+	
+	
+	
+	@RequestMapping("/enrolllisence.do")
+	public ModelAndView enrollLisence(@RequestParam String memberId, ModelAndView mv) {
+		
+		mv.addObject(mv);
+		
+		//mv.setViewName(mv);
+		
+		
+		return mv;
+	}
+
+
 }

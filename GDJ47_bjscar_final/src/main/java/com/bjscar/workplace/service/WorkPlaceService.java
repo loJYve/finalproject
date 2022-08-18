@@ -12,9 +12,13 @@ public interface WorkPlaceService {
 	List<Rentalshop> selectRentalshopListPage(Map param);
 
 	int selectRentalshopCount();
+//	int selectRentalshopCount(String memberId);
 	
 	Rentalshop selectRentalshop(int no);
 	
 	int insertRentalshop(Rentalshop r);
+
+	
+	
 	
 }

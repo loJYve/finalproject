@@ -1,11 +1,13 @@
 package com.bjscar.mypage.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.bjscar.attachment.model.vo.Attachment;
 import com.bjscar.member.model.vo.Member;
+import com.bjscar.mypage.model.vo.PurchaseHistory;
 import com.bjscar.mypage.model.vo.RentalHistory;
 import com.bjscar.rentalshop.model.vo.Rentalshop;
 import com.bjscar.vehicle.model.vo.Vehicle;
@@ -20,9 +22,18 @@ public interface MypageDao {
 
 	Rentalshop selectRentalshopData(SqlSessionTemplate session, int vehicleId);
 
-	List<RentalHistory> selectrentalHistory(SqlSessionTemplate session, String memberId);
+	List<RentalHistory> selectrentalHistory(SqlSessionTemplate session, Map param);
 
 	Member selectMember(SqlSessionTemplate session, String memberId);
 
 	RentalHistory selectrentalHistoryDetail(SqlSessionTemplate session, String rhId);
+
+	void memSecessionEnd(SqlSessionTemplate session, Map param);
+
+	List<PurchaseHistory> selectPurchaseHistory(SqlSessionTemplate session, Map param);
+
+	int selectPHCount(SqlSessionTemplate session, String memberId);
+
+	int selectRHCount(SqlSessionTemplate session, String memberId);
+
 }

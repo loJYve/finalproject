@@ -33,6 +33,10 @@
 		<c:if test="${empty rentalHistory }">
 			<h3 class="text-center mt-5 mb-5">예약 기록이 없습니다.</h3>
 		</c:if>
+		
+		<div id="pageBar">${pageBar }</div>	
+		
+		
 	</div>
 </main>
   

@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
-
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -99,11 +99,13 @@
     </style>
   </head>
   <body>
-
+    
 	<!-- <div class="card" style="width:40rem;"> -->
 	<div class="input-form-backgroud row">
 	<div class="input-form col-md-12 mx-auto">
 		<div class="card-title" style="margin-top:30px;">
+		 <input type="button"  id="memberCheck" onClick="location.href='${path}/business/enroll.do'"  class="btn btn-primary"  value="사업자 회원가입 이동"/><br/>
+		 <br/>
 		  <h4 class="mb-3">회원가입</h4>
 		<!-- 	<h2 class="card-title" style="color:#e4932b;"><h2>회원가입</h2></h2> -->
 		</div>
@@ -196,7 +198,6 @@
 
   <script>
 //모든 공백 체크 정규식
-	   
   
   const empJ = /\s/g;
   //아이디 정규식

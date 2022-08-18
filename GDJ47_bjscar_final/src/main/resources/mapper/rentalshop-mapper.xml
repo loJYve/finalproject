@@ -1,31 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="rentalshop">
-  
-  <resultMap type="rentalshop" id="rentalshopMap">
-	<id column="RENTALSHOP_ID" property="rentalshopId"/>
-	<id column="RENTALSHOP_NAME" property="rentalshopName"/>
-	<id column="RENTALSHOP_ADDR" property="rentalshopAddr"/>
-	<id column="LATITUDE" property="latitude"/>
-	<id column="LONGTITUDE" property="longitude"/>
-	<id column="BM_MEMBER" property="bmMember"/>
-</resultMap>
-  
-   <select id="selectRentalshopList" parameterType="rentalshop" resultMap="rentalshopMap">
-  	SELECT * FROM RENTALSHOP
-  </select>
-  
-  <select id="selectRentalshopCount" resultType="_int">
-		SELECT COUNT(*) FROM RENTALSHOP
+
+	<resultMap type="rentalshop" id="rentalshopMap">
+		<id column="RENTALSHOP_ID" property="rentalshopId" />
+		<result column="RENTALSHOP_NAME" property="rentalshopName" />
+		<result column="RENTALSHOP_ADDR" property="rentalshopAddr" />
+		<result column="LATITUDE" property="latitude" />
+		<result column="LONGTITUDE" property="longitude" />
+		<result column="BM_MEMBER" property="bmMember" />
+		<collection property="files" ofType="attachment">
+			<id column="ATTACHMENT_ID" property="attachmentId" />
+			<result column="ATTACHMENT_TITLE" property="attachmentTitle" />
+			<result column="ATTACHMENT_DATE" property="attchamentDate" />
+			<result column="ORIGINAL_FILENAME" property="originalFilename" />
+			<result column="RENAMED_FILENAME" property="renamedFilename" />
+		</collection>
+	</resultMap>
+	<resultMap type="attachment" id="attachmentMap">
+		<id column="ATTACHMENT_ID" property="attachmentId" />
+		<result column="ATTACHMENT_TITLE" property="attachmentTitle" />
+		<result column="ATTACHMENT_DATE" property="attchamentDate" />
+		<result column="ORIGINAL_FILENAME" property="originalFilename" />
+		<result column="RENAMED_FILENAME" property="renamedFilename" />
+
+	</resultMap>
+	<resultMap type="rentalshopattachment" id="raMap">
+		<id column="RENTALSHOP_ID" property="rentalshopId"/>
+		<id column="ATTACHMENT_ID" property="attachmentId"/>
+	</resultMap>
+	<resultMap type="businessman" id="bmMap">
+		<id property="bmId" column="bm_id" />
+		<result property="bmPassword" column="bm_password" />
+		<result property="companyName" column="company_name" />
+		<result property="bmEmail" column="bm_email" />
+		<result property="bmPhone" column="bm_phone" />
+		<result property="companyAddress" column="company_address" />
+		<result property="registrationNumber"
+			column="registration_number" />
+		<result property="bmenrollDate" column="bm_enroll_date" />
+		<result property="permissionStatus" column="permission_status" />
+	</resultMap>
+
+	<select id="selectRentalshopList" parameterType="rentalshop"
+		resultMap="rentalshopMap">
+		SELECT * FROM RENTALSOHP 
 	</select>
-  
-  <select id="selectrentalshop" parameterType="rentalshop" resultMap="rentalshopMap">
-  		SELECT * FROM RENTALSHOP WHERE RENTALSHOP_ID=#{no}
-  </select>
-  
-  <insert id="insertRentalshop"  parameterType="rentalshop" >
-  INSERT INTO RENTALSHOP VALUES (SEQ_RENTALSHOP_ID.NEXTVAL,#{rentalshopName},
-  	#{rentalshopAddr},#{latitude},#{longitude},#{bmMember})
-  </insert>
-  
+	
+	
+
+	<select id="selectRentalshopCount"  resultType="_int">
+		SELECT COUNT(*)
+		FROM RENTALSHOP
+	</select>
+
+	<select id="selectrentalshop" parameterType="_int"
+		resultMap="rentalshopMap">
+
+		SELECT *
+		FROM ATTACHMENT A
+		INNER JOIN RENTALSHOP_ATTACHMENT RA
+		ON RA.ATTACHMENT_ID=A.ATTACHMENT_ID
+		INNER JOIN RENTALSHOP R
+		ON R.RENTALSHOP_ID=RA.RENTALSHOP_ID WHERE R.RENTALSHOP_ID=${no}
+				
+
+
+	</select>
+
+
+	<insert id="insertAttachment" parameterType="attachment">
+		INSERT INTO ATTACHMENT
+		VALUES(SEQ_ATTACHMENT_ID.NEXTVAL,#{attachmentTitle},default,#{originalFilename},#{renamedFilename})
+
+	</insert>
+
+	 <insert id="rentalshopidInsert" parameterType="rentalshopattachment">
+	
+		INSERT INTO RENTALSHOP_ATTACHMENT VALUES((SELECT MAX(RENTALSHOP_ID) FROM RENTALSHOP ),(SELECT MAX(ATTACHMENT_ID) FROM ATTACHMENT))
+		
+	</insert> 
+
+
+
+	<insert id="insertRentalshop" parameterType="rentalshop">
+		INSERT INTO RENTALSHOP VALUES (SEQ_RENTALSHOP_ID.NEXTVAL,#{rentalshopName},
+		#{rentalshopAddr},#{latitude},#{longitude},#{bmMember})
+	</insert>
+
+
+
+	<!-- <insert id="insertId" parameterType="_int">
+		INSERT INTO RENTALSHOP_ATTACHMENT
+		VALUES(SEQ_RENTALSHOP_ID.NEXTVAL,SEQ_ATTACHMENT_ID.NEXTVAL)
+	</insert> -->
+
 </mapper>
