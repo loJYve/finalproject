@@ -51,8 +51,8 @@ public class BoardServiceImpl implements BoardService {
 				for(Attachment a: b.getFiles()) {
 					a.setAttachmentId(b.getIbPostId());
 					result=dao.insertAttachment(session,a);
-					System.out.println(result);
-					if(result==0) throw new RuntimeException("작성실패");
+					dao.ibinsertboard(session);
+
 				}
 			}
 		}catch(RuntimeException e) {

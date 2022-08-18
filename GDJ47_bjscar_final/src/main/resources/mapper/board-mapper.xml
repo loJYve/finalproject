@@ -9,12 +9,16 @@
 		<result property="ibPostContent" column="ib_post_content" />
 		<result property="ibPostWriter" column="ib_post_writer" />
 		<collection property="files" ofType="attachment">
-			<id column="attachment_id" property="attachmentId"/>
-					<result column="attachment_title" property="attachmentTitle"/>
-					<result column="attachment_date" property="attchamentDate"/>
-					<result column="original_filename" property="originalFilename"/>
-					<result column="renamed_filename" property="renamedFilename"/>				
-		</collection>
+	         <id column="ATTACHMENT_ID" property="attachmentId" />
+	         <result column="ATTACHMENT_TITLE" property="attachmentTitle" />
+	         <result column="ATTACHMENT_DATE" property="attchamentDate" />
+	         <result column="ORIGINAL_FILENAME" property="originalFilename" />
+	         <result column="RENAMED_FILENAME" property="renamedFilename" />
+      </collection>
+	</resultMap>
+	<resultMap type="ibattachment" id="ib_attachment">
+		<id property="attachmentId" column="attachment_id"></id>
+		<id property="ibPostId" column="ib_post_id"></id>
 	</resultMap>
 	<resultMap type="attachment" id="attachmentMap">
 		<id column="ATTACHMENT_ID" property="attachmentId"/>
@@ -38,8 +42,18 @@
 		INSERT INTO ATTACHMENT VALUES(SEQ_ATTACHMENT_ID.NEXTVAL,#{attachmentTitle},default,#{originalFilename},#{renamedFilename})
 	</insert>
 	
-	<select id="selectBoard" parameterType="_int" resultMap="boardMap">
+	<!-- <select id="selectBoard" parameterType="_int" resultMap="boardMap">
 		SELECT * FROM INQUIRE_BOARD B LEFT JOIN ATTACHMENT A ON B.IB_POST_ID=A.ATTACHMENT_ID
 		WHERE B.IB_POST_ID=#{no}
+	</select> -->
+	<select id="selectBoard" parameterType="_int" resultMap="boardMap">
+		SELECT * FROM ATTACHMENT A
+      INNER JOIN IB_ATTACHMENT IA
+      ON IA.ATTACHMENT_ID=A.ATTACHMENT_ID
+      INNER JOIN INQUIRE_BOARD IB
+      ON IB.IB_POST_ID=IA.IB_POST_ID WHERE IB.IB_POST_ID=#{no}
 	</select>
+	<insert id="ibinsertboard" parameterType="ibattachment">
+		insert into ib_attachment values((select max(attachment_id) from attachment),(select max(IB_POST_ID) from inquire_board))
+	</insert>
 </mapper>

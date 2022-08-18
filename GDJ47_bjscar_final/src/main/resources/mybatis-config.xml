@@ -14,6 +14,7 @@
      <typeAlias type="com.bjscar.mypage.model.vo.PurchaseHistory" alias="purchaseHistory"/>
      <typeAlias type="com.bjscar.member.model.vo.SecessionMember" alias="secessionmember"/>
      <typeAlias type="com.bjscar.attachment.model.vo.Attachment" alias="attachment"/>
+     <typeAlias type="com.bjscar.board.model.vo.IbAttachment" alias="ibattachment"/>
      <typeAlias type="com.bjscar.plan.model.vo.Plan" alias="plan"/>
      <typeAlias type="com.bjscar.board.model.vo.Board" alias="board"/>
      <typeAlias type="com.bjscar.businessman.model.vo.Businessman" alias="businessman"/>

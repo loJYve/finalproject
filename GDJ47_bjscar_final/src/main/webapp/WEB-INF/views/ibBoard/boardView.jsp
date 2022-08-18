@@ -18,9 +18,9 @@
 	                    onclick="location.assign('${path}/filedownload.do?oriname=${a.originalFilename }&rename=${a.renamedFilename }')">
 	                    <c:out value="${a.originalFilename }"/>
 	            </button>
+        <p><img src="resources/upload/board/${a.renamedFilename }"></p>
             </c:forEach>
         </c:if>
-        
         <textarea class="form-control" name="boardContent" placeholder="내용" readonly required><c:out value="${board.ibPostContent }" /></textarea>
     </div>
  <style>

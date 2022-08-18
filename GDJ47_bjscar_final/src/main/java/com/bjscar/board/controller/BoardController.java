@@ -1,18 +1,24 @@
 package com.bjscar.board.controller;
 
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -120,5 +126,35 @@ public class BoardController {
 
 		return mv;
 	}
+	
+	@RequestMapping("/filedownload.do")
+	public void filedownload(String oriname,String rename,HttpServletResponse res,
+			HttpServletRequest req,@RequestHeader("User-agent") String header)  {
+		String path=req.getServletContext().getRealPath("/resources/upload/board/");
+		File saveFile=new File(path+rename);
+		try(BufferedInputStream bis=new BufferedInputStream(new FileInputStream(saveFile));
+				ServletOutputStream sos=res.getOutputStream();){
+			
+			boolean isMS=header.contains("Trident")||header.contains("MSIE");
+			String encodeFilename="";
+			if(isMS) {
+				encodeFilename=URLEncoder.encode(oriname,"UTF-8");
+				encodeFilename=encodeFilename.replaceAll("\\+","%20");
+			}else {
+				encodeFilename=new String(oriname.getBytes("UTF-8"),"ISO-8859-1");
+			}
+			
+			res.setContentType("application/octet-stream;charset=utf-8");
+			res.setHeader("Content-Disposition", "attachment;filename=\""+encodeFilename+"\"");
+			int read=-1;
+			while((read=bis.read())!=-1) {
+				sos.write(read);
+			}
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 }
 

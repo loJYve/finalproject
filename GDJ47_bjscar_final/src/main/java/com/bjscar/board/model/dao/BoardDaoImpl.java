@@ -50,6 +50,12 @@ public class BoardDaoImpl implements BoardDao {
 		// TODO Auto-generated method stub
 		return session.selectOne("board.selectBoard",no);
 	}
+	
+	@Override
+	public void ibinsertboard(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		session.insert("board.ibinsertboard");
+	}
 
 
 }
