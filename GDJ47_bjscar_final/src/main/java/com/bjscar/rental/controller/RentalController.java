@@ -17,6 +17,8 @@ import com.bjscar.vehicle.model.vo.Vehicle;
 @Controller
 @RequestMapping("/rental")
 public class RentalController {
+
+
 	
 	@Autowired
 	   private RentalService service;

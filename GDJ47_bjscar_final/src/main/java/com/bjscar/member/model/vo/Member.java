@@ -3,7 +3,12 @@ package com.bjscar.member.model.vo;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,10 +19,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 @Data
+
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Member implements UserDetails{
+	
+
 	private String memberId;
     private String password;
     private String memberName;
@@ -28,15 +36,15 @@ public class Member implements UserDetails{
     private int totalMileage;
     private Date enrollDate;
     private String secessionReason;
-    
-    private String type;
-    private String keyword;
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
-		List<GrantedAuthority> auth=new ArrayList();
-		auth.add(new SimpleGrantedAuthority("ROLE_USER"));
-		return auth;
+		/*
+		 * List<GrantedAuthority> auth=new ArrayList(); auth.add(new
+		 * SimpleGrantedAuthority("ROLE_USER")); return auth;
+		 */
+		return Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
 	}
 	@Override
 	public String getUsername() {

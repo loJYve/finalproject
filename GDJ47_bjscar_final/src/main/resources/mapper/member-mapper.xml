@@ -73,6 +73,17 @@
   	</choose>
   </select>
   
+  <update id="successId">
+      UPDATE BUSINESSMAN
+      SET PERMISSION_STATUS='승인완료'
+      WHERE BM_ID = #{bmId}
+   </update>
+   <!-- 가입 승인 -->
+   <update id="failed">
+      UPDATE BUSINESSMAN
+      SET PERMISSION_STATUS='승인거'
+      WHERE BM_ID = #{bmId}
+   </update>
 
 
 </mapper>

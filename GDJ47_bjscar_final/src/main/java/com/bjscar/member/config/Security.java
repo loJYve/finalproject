@@ -36,6 +36,13 @@ public class Security{
 //				   .alwaysRemember(true)
 //				   .userDetailsService(provider)
 //				   .and()
+					.authorizeRequests()
+		                .antMatchers( "/index", "/member", "/singUp", "/access_denied", "/resources/**").permitAll() // 로그인 권한은 누구나, resources파일도 모든권한
+		                // USER, ADMIN 접근 허용
+		                //.antMatchers("/mypage/**").hasRole("USER")
+		                //.antMatchers("/admin").hasRole("ADMIN")
+		                //.antMatchers("/userAccess").hasRole("ADMIN")
+		                .and()
 				   .formLogin()
 				   //로그인 페이지
 				   .loginPage("/member/memberPage.do") 

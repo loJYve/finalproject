@@ -137,5 +137,18 @@ public class AdminDaoImpl implements AdminDao {
 		// TODO Auto-generated method stub
 		return session.selectOne("admin.selectAdmin",a);
 	}
+	
+	//permission
+	@Override
+	public int successId(SqlSession session, String id) {
+		// TODO Auto-generated method stub
+		return session.selectOne("businessman.successId",id);
+	}
+	
+	@Override
+	public int failed(SqlSession session, String id) {
+		// TODO Auto-generated method stub
+		return session.selectOne("businessman.failed",id);
+	}
 
 }

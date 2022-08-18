@@ -44,7 +44,9 @@ public interface AdminService {
 
 	Admin selectAdmin(Admin a);
 	
-
+	int successId(String id);
+	
+	int failed(String id);
 	
 	
 }

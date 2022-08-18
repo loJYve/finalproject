@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -52,9 +53,7 @@ public class AdminController {
 	  private ModelAndView getSearchList(@RequestParam("type") String type, @RequestParam("keyword") String keyword,
 			  ModelAndView mv,@RequestParam(name="cPage",defaultValue="1") int cPage, @RequestParam(name="numPerpage",defaultValue="5") int numPerpage) throws Exception { 
 		  Member m = new Member();
-		  m.setType(type);
-		  m.setKeyword(keyword);
-		  Map param=Map.of("cPage",cPage,"numPerpage",numPerpage);
+		  Map param=Map.of("cPage",cPage,"numPerpage",numPerpage, "type",type, "keyword",keyword);
 		  List<Member> list=service.getSearchList(param,m);
 		  mv.addObject("members",list);
 		  int totalData=service.selectSearchMemberCount(m);
@@ -93,6 +92,7 @@ public class AdminController {
 		return mv;
 	}
 	
+
    @RequestMapping("/admin/login.do")
 	public String login() {
 	   return "member/adminLoginpage";
@@ -132,5 +132,8 @@ public class AdminController {
  			//session.invalidate();
  			return "redirect:/";
  		}
+ 	    
+ 	    
+ 			
  
 }
