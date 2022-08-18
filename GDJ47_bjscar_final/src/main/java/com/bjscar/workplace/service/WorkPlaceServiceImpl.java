@@ -29,6 +29,7 @@ public class WorkPlaceServiceImpl implements WorkPlaceService {
 	@Override
 	public List<Rentalshop> selectRentalshopListPage(Map param) {
 		// TODO Auto-generated method stub
+		
 		return dao.selectRentalshopListPage(session, param);
 	}
 
@@ -37,6 +38,12 @@ public class WorkPlaceServiceImpl implements WorkPlaceService {
 		// TODO Auto-generated method stub
 		return dao.selectRentalshopCount(session);
 	}
+
+//	@Override
+//	public int selectRentalshopCount(String memberId) {
+//		// TODO Auto-generated method stub
+//		return dao.selectRentalshopCount(session,memberId);
+//	}
 
 	
 	@Override

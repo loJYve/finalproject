@@ -27,12 +27,18 @@ public class WorkPlaceDaoImpl implements WorkPlaceDao{
 		
 		return session.selectList("rentalshop.selectRentalshopList",null,new RowBounds((offSet-1)*limit,limit));
 	}
-
+	
 	@Override
 	public int selectRentalshopCount(SqlSessionTemplate session) {
 		// TODO Auto-generated method stub
 		return session.selectOne("rentalshop.selectRentalshopCount");
 	}
+
+//	@Override
+//	public int selectRentalshopCount(SqlSessionTemplate session,String memberId) {
+//		// TODO Auto-generated method stub
+//		return session.selectOne("rentalshop.selectRentalshopCount",memberId);
+//	}
 	
 	@Override
 	public Rentalshop selectRentalshop(SqlSessionTemplate session,int no) {
@@ -61,4 +67,6 @@ public class WorkPlaceDaoImpl implements WorkPlaceDao{
 		
 		return session.insert("rentalshop.insertAttachment",a);
 	}
+
+	
 }

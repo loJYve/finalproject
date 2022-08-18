@@ -17,12 +17,19 @@ public interface WorkPlaceDao {
 	Rentalshop selectRentalshop(SqlSessionTemplate session,int no);
 	
 	int selectRentalshopCount(SqlSessionTemplate session);
+//	int selectRentalshopCount(SqlSessionTemplate session,String memberId);
 	
 	int insertRentalshop(SqlSessionTemplate session,Rentalshop r);
 	
 	int insertAttachment(SqlSessionTemplate session, Attachment a);
 
 	void insertRentalshopId(SqlSessionTemplate session);
+
+	
+
+
+
+//	List<Rentalshop> selectRentalshopListPage(SqlSessionTemplate session, Map param, String memberId);
 
 	
 	

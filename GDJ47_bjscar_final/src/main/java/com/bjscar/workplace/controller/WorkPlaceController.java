@@ -38,10 +38,11 @@ public class WorkPlaceController {
 
 	@RequestMapping("/work/workplace.do")
 	public ModelAndView selectMemberList(@RequestParam(name = "cPage", defaultValue = "1") int cPage,
-			@RequestParam(name = "numPerpage", defaultValue = "5") int numPerpage, ModelAndView mv) {
+			@RequestParam(name = "numPerpage", defaultValue = "5") int numPerpage, ModelAndView mv,String memberId) {
 		Map param = Map.of("cPage", cPage, "numPerpage", numPerpage);
 		List<Rentalshop> list = service.selectRentalshopListPage(param);
 		mv.addObject("rentalshops", list);
+//		int totalData = service.selectRentalshopCount(memberId);
 		int totalData = service.selectRentalshopCount();
 		mv.addObject("totalContents", totalData);
 		mv.addObject("pageBar", PageFactory.getPageBar(totalData, numPerpage, cPage, "/work/workplace.do"));
@@ -49,6 +50,8 @@ public class WorkPlaceController {
 		mv.setViewName("workplace/workplacePage");
 		return mv;
 	}
+	
+	
 
 	@RequestMapping("/work/workplaceView.do")
 	public ModelAndView workplaceView(int no, ModelAndView mv) {

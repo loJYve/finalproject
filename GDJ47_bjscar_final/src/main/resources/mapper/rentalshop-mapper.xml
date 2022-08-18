@@ -29,13 +29,27 @@
 		<id column="RENTALSHOP_ID" property="rentalshopId"/>
 		<id column="ATTACHMENT_ID" property="attachmentId"/>
 	</resultMap>
+	<resultMap type="businessman" id="bmMap">
+		<id property="bmId" column="bm_id" />
+		<result property="bmPassword" column="bm_password" />
+		<result property="companyName" column="company_name" />
+		<result property="bmEmail" column="bm_email" />
+		<result property="bmPhone" column="bm_phone" />
+		<result property="companyAddress" column="company_address" />
+		<result property="registrationNumber"
+			column="registration_number" />
+		<result property="bmenrollDate" column="bm_enroll_date" />
+		<result property="permissionStatus" column="permission_status" />
+	</resultMap>
 
 	<select id="selectRentalshopList" parameterType="rentalshop"
 		resultMap="rentalshopMap">
-		SELECT * FROM RENTALSHOP ORDER BY RENTALSHOP_ID DESC
+		SELECT * FROM RENTALSOHP 
 	</select>
+	
+	
 
-	<select id="selectRentalshopCount" resultType="_int">
+	<select id="selectRentalshopCount"  resultType="_int">
 		SELECT COUNT(*)
 		FROM RENTALSHOP
 	</select>
