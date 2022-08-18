@@ -81,6 +81,10 @@
    	<select id="selectMember" parameterType="string" resultMap="memberMap">
   		SELECT * FROM MEMBER WHERE MEMBER_ID=#{memberId}
   	</select>
+  	
+   	<select id="selectrentalHistoryDetail" parameterType="_int" resultMap="rentaldataMap">
+  		SELECT * FROM RENTAL_HISTORY WHERE RENTAL_ID=#{rhId}
+  	</select>
   
  
   

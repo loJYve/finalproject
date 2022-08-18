@@ -51,4 +51,9 @@ public class MypageServiceImpl implements MypageService {
 	public Member selectMember(String memberId) {
 		return dao.selectMember(session, memberId);
 	}
+	
+	@Override
+	public RentalHistory selectrentalHistoryDetail(String rhId) {
+		return dao.selectrentalHistoryDetail(session, rhId);
+	}
 }

@@ -23,5 +23,7 @@ public interface MypageService {
 
 	Member selectMember(String memberId);
 
+	RentalHistory selectrentalHistoryDetail(String rhId);
+
 	
 }

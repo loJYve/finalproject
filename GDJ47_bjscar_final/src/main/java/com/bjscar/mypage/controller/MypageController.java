@@ -74,4 +74,14 @@ public class MypageController {
 		
 		return mv;
 	}
+	
+	@RequestMapping("/rhdetail.do")
+	public ModelAndView rhDetail(@RequestParam String rhId, ModelAndView mv) {
+		
+		mv.addObject("rhdetail", service.selectrentalHistoryDetail(rhId));
+		
+		mv.setViewName("mypage/rentalHistoryDetail");
+		
+		return mv;
+	}
 }

@@ -44,4 +44,9 @@ public class MypageDaoImpl implements MypageDao {
 	public Member selectMember(SqlSessionTemplate session, String memberId) {
 		return session.selectOne("mypage.selectMember", memberId);
 	}
+	
+	@Override
+	public RentalHistory selectrentalHistoryDetail(SqlSessionTemplate session, String rhId) {
+		return session.selectOne("mypage.selectrentalHistoryDetail", rhId);
+	}
 }

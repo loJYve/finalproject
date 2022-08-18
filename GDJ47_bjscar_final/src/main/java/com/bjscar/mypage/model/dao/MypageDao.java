@@ -23,4 +23,6 @@ public interface MypageDao {
 	List<RentalHistory> selectrentalHistory(SqlSessionTemplate session, String memberId);
 
 	Member selectMember(SqlSessionTemplate session, String memberId);
+
+	RentalHistory selectrentalHistoryDetail(SqlSessionTemplate session, String rhId);
 }
