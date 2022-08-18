@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bjscar.common.PageFactory;
+import com.bjscar.mypage.model.vo.RentalHistory;
 import com.bjscar.rental.model.service.RentalService;
 import com.bjscar.vehicle.model.vo.Vehicle;
 
@@ -42,8 +43,19 @@ public class RentalController {
 		mv.addObject("vehicles",list);
 		int totalData=service.selectSearchvehicleCount(vehicleGrade);
 		mv.addObject("totalContents",totalData);
-		mv.addObject("pageBar",PageFactory.getPageBar(totalData, numPerpage, cPage, "searchVehicleByGrade.do?vehicleGrade="+vehicleGrade+"&numPerpage=10"));
+		mv.addObject("pageBar",PageFactory.getPageBar(totalData, numPerpage, cPage, "searchVehicleByGrade.do?vehicleGrade="+vehicleGrade+"&numPerpage=12"));
 		mv.setViewName("rental/vehicleChoice");
+		return mv;
+	}
+	
+	@RequestMapping("/rentalEnd.do")
+	@ResponseBody
+	public ModelAndView rentalEnd(ModelAndView mv, RentalHistory rh, @RequestParam(name="purchaseAmount") int purchaseAmount) {
+//		System.out.println(rh);
+//		System.out.println(purchaseAmount);
+		mv.addObject("RentalHistory",rh);
+		mv.addObject("purchaseAmount",purchaseAmount);
+		mv.setViewName("rental/purchase");
 		return mv;
 	}
 

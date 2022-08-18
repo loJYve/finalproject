@@ -1,8 +1,7 @@
 package com.bjscar.mypage.model.vo;
 
-import java.util.Date;
-
-import com.bjscar.vehicle.model.vo.Vehicle;
+import java.sql.Date;
+import java.sql.Timestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,8 +12,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class RentalHistory {
 	private int rentalId;
-	private Date rentalDate;
-	private Date returnDate;
+	private Timestamp rentalDate;
+	private Timestamp returnDate;
 	private String status;
 	private int vehicleId;
 	private String memberId;

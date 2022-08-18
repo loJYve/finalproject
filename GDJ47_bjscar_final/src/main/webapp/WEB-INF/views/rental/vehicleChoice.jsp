@@ -34,7 +34,7 @@
 				<th>가격(시간당)</th>
 			</tr>
             	<c:forEach var="v" items="${vehicles }">
-            		<tr class="choVehicleTr">
+            		<%-- <tr class="choVehicleTr">
             			<td><input type="radio" id="${v.vehicleId }" name="choVehicle" value="${v.vehicleId }" style="cursor:pointer"></td>
             			<td><label for="${v.vehicleId }"><c:out value="${v.rentalStatus }"/></label></td>
             			<td><label for="${v.vehicleId }"><c:out value="${v.model }"/></label></td> 
@@ -42,6 +42,15 @@
             			<td><label for="${v.vehicleId }"><c:out value="${v.fuel }"/></label></td> 
             			<td><label for="${v.vehicleId }"><c:out value="${v.boardingPersonnel }"/></label></td> 
             			<td><label for="${v.vehicleId }"><c:out value="${v.price }"/></label></td>
+            		</tr> --%>
+            		<tr class="choVehicleTr">
+            			<td><input type="radio" id="${v.vehicleId }" name="choVehicle" value="${v.vehicleId },${v.model }(${v.fuel }),${v.rentalShop.rentalshopAddr },${v.price }" style="cursor:pointer"></td>
+            			<td><c:out value="${v.rentalStatus }"/></td>
+            			<td><c:out value="${v.model }"/></td> 
+            			<td><c:out value="${v.rentalShop.rentalshopAddr }"/></td> 
+            			<td><c:out value="${v.fuel }"/></td> 
+            			<td><c:out value="${v.boardingPersonnel }"/></td> 
+            			<td><c:out value="${v.price }"/></td>
             		</tr>
             		<%-- <tr class="choVehicleTr">
             			<td><c:out value="${v.rentalStatus }"/></td>
@@ -55,7 +64,7 @@
             </c:if>
 			<c:if test="${empty vehicles }">
             	<tr>
-            		<td colspan="6">조회결과없음</td>
+            		<td colspan="6">대여가능한 차량이 없습니다.</td>
             	</tr>
             </c:if>
         </table> 
@@ -68,7 +77,26 @@
 <script>
 	$(function(){
 		
-		
+		$("input[name='choVehicle']").click(e=>{
+			let data = 0;
+			const list = $("input[name='choVehicle']");
+			for(let i=0; i<list.length; i++){
+				if(list[i].checked){
+					data = list[i].value;
+				}
+			}
+			let [vehicleId, model, rentalshop, price] = data.split(",");
+			/* console.log(vehicleId);
+			console.log(model);
+			console.log(rentalshop); */
+			opener.rentalFrm.vehicleId.value=vehicleId;
+			opener.rentalFrm.rentalVehicel.value=model;
+			opener.rentalFrm.rentalPlace.value=rentalshop;
+			opener.rentalFrm.returnPlace.value=rentalshop;
+			opener.rentalFrm.price.value=price;
+			opener.rentalFrm.insuranceCode.disabled='';
+			close();
+		})
 		
 	})
 </script>
