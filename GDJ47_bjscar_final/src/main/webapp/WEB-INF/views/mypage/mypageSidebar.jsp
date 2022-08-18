@@ -12,7 +12,7 @@
 			<h4 class="text-center"><c:out value="${loginMember.memberId }"/></h3>
 			<hr>
 			<div class="text-center">마일리지<br><c:out value="${loginMember.totalMileage }"/></div>
-			<button type="button" class="btn btn-secondary" onclick="location.href='/mypage/memberdata.do?memberId=${loginMember.memberId}'">정보 수정</button>
+			<button type="button" class="btn btn-secondary" onclick="location.href='${path }/mypage/memberdata.do?memberId=${loginMember.memberId}'">정보 수정</button>
 		</div>
 		<hr>
 		<ul class="list-unstyled ps-0">
@@ -22,8 +22,8 @@
 				</button>
 				<div class="collapse " id="home-collapse" style="">
 					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-						<li><a href="/mypage/rentaldata.do?memberId=${loginMember.memberId}" class="link-dark rounded">랜트중인 차량</a></li>
-						<li><a href="/mypage/rentalhistory.do?memberId=${loginMember.memberId}" class="link-dark rounded">이전 예약 조회</a></li>
+						<li><a href="${path }/mypage/rentaldata.do?memberId=${loginMember.memberId}" class="link-dark rounded">랜트중인 차량</a></li>
+						<li><a href="${path }/mypage/rentalhistory.do?memberId=${loginMember.memberId}" class="link-dark rounded">이전 예약 조회</a></li>
 					</ul>
 				</div>
 			</li>
@@ -34,9 +34,9 @@
 				</button>
 				<div class="collapse" id="dashboard-collapse" style="">
 					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-						<li><a href="/mypage/purchasehistory.do?memberId=${loginMember.memberId}" class="link-dark rounded">결제 내역</a></li>
-						<li><a href="/mypage/enrolllisence.do?memberId=${loginMember.memberId}" class="link-dark rounded">운전면허 등록</a></li>
-						<li><a href="/mypage/secession.do?memberId=${loginMember.memberId}" class="link-dark rounded">회원 탈퇴</a></li>
+						<li><a href="${path }/mypage/purchasehistory.do?memberId=${loginMember.memberId}" class="link-dark rounded">결제 내역</a></li>
+						<li><a href="${path }/mypage/enrolllisence.do?memberId=${loginMember.memberId}" class="link-dark rounded">운전면허 등록</a></li>
+						<li><a href="${path }/mypage/secession.do?memberId=${loginMember.memberId}" class="link-dark rounded">회원 탈퇴</a></li>
 					</ul>
 				</div>
 			</li>
@@ -49,7 +49,7 @@
 				<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 					<li><a href="" class="link-dark rounded">문의게시판</a></li>
 					<li><a href="" class="link-dark rounded">1대1 문의</a></li>
-					<li><a href="/mypage/faq.do" class="link-dark rounded">자주 묻는 질문</a></li>
+					<li><a href="${path }/mypage/faq.do" class="link-dark rounded">자주 묻는 질문</a></li>
 				</ul>
 			 </div>
 			</li>

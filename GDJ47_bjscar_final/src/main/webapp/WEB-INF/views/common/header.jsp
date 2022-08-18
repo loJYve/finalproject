@@ -22,7 +22,7 @@
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0" style="width:-webkit-fill-available;">
         <li><a href="<%=request.getContextPath()%>/" class="nav-link px-2 link-secondary">Home</a></li>
 
-        <li><a href="/mypage/faq.do" class="nav-link px-2 link-dark">FAQs</a></li>
+        <li><a href="${path }/mypage/faq.do" class="nav-link px-2 link-dark">FAQs</a></li>
 
         <li><a href="<%=request.getContextPath()%>/admin.do" class="nav-link px-2 link-dark">관리자 페이지</a></li>
 
@@ -38,13 +38,13 @@
      <div> 
       <c:if test="${loginMember == null&&loginMan == null&&loginAdmin == null }">
 				<ul class="login">
-		 <button type="button"  class="btn btn-outline-primary me-2" onclick="location.assign('${path}/member/memberPage.do')">Login</button>
-        <button type="button" class="btn btn-primary" onclick="location.assign('${path}/member/memberEnroll.do')">Sign-up</button> 
-       <!--  <button type="button"  class="btn btn-outline-primary onclick="location.assign('${path}/member/memberPage.do')">Login</button>
-        <button type="button" class="btn btn-outline-primary onclick="location.assign('${path}/member/memberEnroll.do')">Sign-up</button> -->
+					 <button type="button"  class="btn btn-outline-primary me-2" onclick="location.assign('${path}/member/memberPage.do')">Login</button>
+			        <button type="button" class="btn btn-primary" onclick="location.assign('${path}/member/memberEnroll.do')">Sign-up</button> 
+			       <!--  <button type="button"  class="btn btn-outline-primary onclick="location.assign('${path}/member/memberPage.do')">Login</button>
+			        <button type="button" class="btn btn-outline-primary onclick="location.assign('${path}/member/memberEnroll.do')">Sign-up</button> -->
 				</ul>
-				</c:if> 
-				<c:if test="${loginMember != null }">
+		</c:if> 
+			<c:if test="${loginMember != null }">
 				<ul class="login">
 				<span>
                    <a href="${path }/mypage/rentaldata.do?memberId=${loginMember.memberId}">
@@ -53,10 +53,10 @@
                 </span>
 				<button  class="btn btn-outline-primary me-2"  onclick="location.assign('${path}/member/logout')">로그아웃</button>
 				</ul>
-				</c:if>
+			</c:if>
 				<!-- 사업자 --> 
 			   
-		       <c:if test="${loginMan != null }">
+		    <c:if test="${loginMan != null }">
 				<ul class="login">
 				<span>
                    <a href="${path }/member/memberView.do?userId=${loginMan.bmId}">
@@ -65,7 +65,7 @@
                 </span>
 				<button  class="btn btn-outline-primary me-2"  onclick="location.assign('${path}/businessman/logout')">로그아웃</button>
 				</ul>
-				</c:if>
+			</c:if>
 				<!-- 관리자 -->
 		       <c:if test="${loginAdmin != null }">
 				<ul class="login">
