@@ -23,6 +23,7 @@
         <li><a href="<%=request.getContextPath()%>/" class="nav-link px-2 link-secondary">Home</a></li>
 
         <li><a href="${path }/mypage/faq.do" class="nav-link px-2 link-dark">FAQs</a></li>
+		<li><a href="<%=request.getContextPath()%>/boardList.do" class="nav-link px-2 link-dark">문의사항</a></li>
 
         <li><a href="<%=request.getContextPath()%>/admin.do" class="nav-link px-2 link-dark">관리자 페이지</a></li>
 
