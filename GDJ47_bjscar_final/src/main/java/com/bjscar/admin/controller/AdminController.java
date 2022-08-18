@@ -1,5 +1,6 @@
 package com.bjscar.admin.controller;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bjscar.admin.model.service.AdminService;
 import com.bjscar.admin.model.vo.Admin;
+import com.bjscar.attachment.model.vo.Attachment;
 import com.bjscar.businessman.model.vo.Businessman;
 import com.bjscar.common.PageFactory;
 import com.bjscar.member.model.vo.Member;
@@ -133,6 +135,26 @@ public class AdminController {
  			}
  			//session.invalidate();
  			return "redirect:/";
+ 		}
+ 		
+ 		@RequestMapping("/permisson.do")
+ 		public String permisson(Model m) {
+ 			System.out.println("zz");
+ 			String msg="";
+ 			String loc="";
+ 			try {
+ 				service.updateBusinessman(m);
+ 				msg="승인완료";	
+ 				loc="/business.do";
+ 			}catch(RuntimeException e) {
+ 				msg="승인실패";
+ 				loc="/business.do";
+ 			}
+ 			m.addAttribute("msg",msg);
+ 			m.addAttribute("loc",loc);
+ 			
+ 			
+ 			return "common/msg";
  		}
  	    
  	    

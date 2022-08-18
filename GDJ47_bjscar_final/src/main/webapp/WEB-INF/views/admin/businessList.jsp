@@ -85,7 +85,7 @@
             			<td><c:out value="${b.registrationNumber }"/></td> 
             			<td><c:out value="${b.bmenrollDate }"/></td>            			
             			<td><c:out value="${b.permissionStatus }"/></td>            		
-            			<td> <button onclick="successId(${b.bmId });" type="button" value="승인" class="appro">승인 </button>
+            			<td> <input onclick="permission()" type="button" value="승인" class="appro"></button>
 	                	<button data-user-id ="${b.bmId}" type="button" value="거부" class="deni">거부</button></td>
                 </td>	
             		</tr>
@@ -118,10 +118,10 @@
 </div>        
 
 <script>
-function successId(id){
-	var el=document.getElementById(id);
-	console.log(el);
+function permission(){
+	location.assign('${path }/permisson.do?bmId=${b.bmId }');
 }
+
 function getSearchList(){
 	$.ajax({
 		type: 'GET',

@@ -53,7 +53,7 @@
 		BUSINESSMAN WHERE ${type} LIKE '%'||#{keyword}||'%'
 	</select>
 	
-	<update id="successId" parameterType="string">
+	<update id="successId" parameterType="businessman">
       UPDATE BUSINESSMAN
       SET PERMISSION_STATUS='승인완료'
       WHERE BM_ID = #{bmId}
