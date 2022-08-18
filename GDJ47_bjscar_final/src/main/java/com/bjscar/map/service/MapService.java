@@ -9,9 +9,9 @@ import com.bjscar.vehicle.model.vo.Vehicle;
 public interface MapService {
 
 	List<Rentalshop> searchRentalshop();
-	int selectBoardCount();
+	int selectVehicleCount(int no);
 	List<Vehicle> selectRentalshop(Map param, int no);	
 	List<Vehicle> searchBar(Map param);
-	
+	int searchVehicleCount(Map param);
 	
 }

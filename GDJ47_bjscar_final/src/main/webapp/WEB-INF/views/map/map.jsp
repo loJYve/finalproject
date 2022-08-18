@@ -63,7 +63,8 @@
 	 //https://apis.map.kakao.com/web/sample/markerWithInfoWindow  참고
 	 
 	 const infoWindow=new google.maps.InfoWindow();
-	 
+	 var iwContent = '<div style="padding:5px;">${v.rentalshopName}<br><a href="/map/showRentalshop.do?no=${v.rentalshopId}" style="color:blue" target="_blank">대여소 확인하기</a>'
+	 var cv = "대여가능한 차량 대수 :  + ${count}"
 	 const map=new google.maps.Map(document.getElementById("map"), {
          zoom: 13,
          center: { lat: 37.486440824 ,lng: 126.92809428	 }
@@ -79,15 +80,24 @@
 				map:map,
 				animation: google.maps.Animation.DROP,
 				label:v.rentalshopName,
+				//content:v.rentalshopId,
 				optimized: false,
 			});
 			
-			marker.addListener("click",(e)=>{
+			  marker.addListener("click",(e)=>{
 				infoWindow.close();
-				infoWindow.setContent(marker.getLabel()+window.open('/map/showRentalshop.do?no=${v.rentalshopId}'));
+				infoWindow.setContent(marker.getLabel()+iwContent);
 				infoWindow.open(marker.getMap(), marker);
-			});
+			}); 
 			
+			/*  marker.addListener("click",(e)=>{
+				infoWindow.close();
+				infoWindow.setContent(marker.getLabel()+location.assign('/map/showRentalshop.do?no='+${v.rentalshopId}));
+				infoWindow.open(marker.getMap(), marker);
+			});  */
+			 
+		    
+		  
 		});//filter닫음
 	});	//ajax닫음
 	//new MarkerClusterer({ marker, map });

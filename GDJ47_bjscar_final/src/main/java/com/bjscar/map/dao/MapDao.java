@@ -12,6 +12,7 @@ public interface MapDao {
 	
 	List<Rentalshop> searchRentalshop(SqlSessionTemplate session);
 	List<Vehicle> selectRentalshop(SqlSessionTemplate session, int no, Map param);
-	int selectBoardCount(SqlSessionTemplate session);
+	int selectVehicleCount(int no, SqlSessionTemplate session);
 	List<Vehicle> searchBar(SqlSessionTemplate session, Map param);
+	int searchVehicleCount(SqlSessionTemplate session,Map param);
 }
