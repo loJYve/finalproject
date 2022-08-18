@@ -116,6 +116,17 @@ public class AdminServiceImpl implements AdminService {
 		return dao.selectAdmin(session,a);
 	}
 	
+	@Override
+	public int successId(String id) {
+		// TODO Auto-generated method stub
+		return dao.successId(session, id);
+	}
+	
+	@Override
+	public int failed(String id) {
+		// TODO Auto-generated method stub
+		return dao.failed(session, id);
+	}
 	
 
 	

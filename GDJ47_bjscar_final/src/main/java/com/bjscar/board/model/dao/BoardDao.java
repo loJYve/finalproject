@@ -13,12 +13,15 @@ public interface BoardDao {
 	List<Board> selectBoardList(SqlSessionTemplate session);
 	
 	List<Board> selectBoardListPage(SqlSessionTemplate session,Map param);
-	
-	Board selectBoard(SqlSessionTemplate session,int no);
-	
+		
 	int selectBoardCount(SqlSessionTemplate session);
 	
 	int insertBoard(SqlSessionTemplate session,Board b);
 	
 	int insertAttachment(SqlSessionTemplate session,Attachment a);
+	
+	Board selectBoard(SqlSessionTemplate session,int no);
+	
+	void ibinsertboard(SqlSessionTemplate session);
+
 }

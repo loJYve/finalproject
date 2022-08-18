@@ -47,4 +47,10 @@ public interface AdminDao {
 	
 	Admin selectAdmin(SqlSession session,Admin a);
 	
+	//permission
+	
+	int successId(SqlSession session,String id);
+	
+	int failed(SqlSession session,String id);
+	
 }
