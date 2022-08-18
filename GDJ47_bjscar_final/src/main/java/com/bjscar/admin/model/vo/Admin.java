@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Admin {
 	private String adminId;
+	private String adminPassword;
 	private String adminName;
 	private String adminEmail;
 	private String adminPhone;

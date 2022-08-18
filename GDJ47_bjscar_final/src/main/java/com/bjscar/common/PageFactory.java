@@ -45,7 +45,7 @@ public class PageFactory {
 		pageBar+="</ul>";
 		pageBar+="<script>";
 		pageBar+="function fn_paging(pageNo){";
-		pageBar+="location.assign('"+url+"?cPage='+pageNo)";
+		pageBar+="location.assign('"+url+(url.contains("?")?"&cPage='+pageNo)":"?cPage='+pageNo)");
 		pageBar+="}";		
 		pageBar+="</script>";
 		

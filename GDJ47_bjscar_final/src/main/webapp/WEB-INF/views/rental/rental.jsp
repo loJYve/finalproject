@@ -68,24 +68,6 @@
        
 	}
 
-    #rental_date {
-  		padding: 10px;
-  		font-size: 16px;
-  		width: 250px;
-        margin-left: 100px;
-	}
-    #return_date {
-  		padding: 10px;
-  		font-size: 16px;
-  		width: 250px;
-        margin-left: 100px;
-	}
-	#email{
-		padding: 10px;
-  		font-size: 16px;
-  		width: 300px;
-        margin-left: 100px;
-	}
     .check{
     	font-size: 12px;
     	text-align:center;
@@ -119,18 +101,18 @@
 		  <h4 class="mb-3">대여하기</h4>
 		</div>
 		<div class="card-body">
-      <form name="rental" action="${path }/rentalEnd.do" method="post">
+      <form name="rentalFrm" action="${path }/rentalEnd.do" method="post">
         <p class="text">대여기간 선택</p>
-        <input type="text" id="rental_date" name="rental_date" class="form-control" placeholder="대여일 선택" required/>
+        <input type="text" id="rentalDate" name="rentalDate" class="form-control" placeholder="대여일 선택" required/>
         ~
-        <input type="text" id="return_date" name="return_date" class="form-control" placeholder="반납일" required readonly/>
+        <input type="text" id="returnDate" name="returnDate" class="form-control" placeholder="반납일" required readonly/>
 		<br><br>
 		<div id="totalRentalPeriod" class="form-control">총 대여기간 : 0일 0시간 0분</div>
         <br><br>
         
         <p class="text">차량 선택</p>
-        <select id="vehicle_grade" name="vehicle_grade" class="form-control" required>
-			<option value="">차종</option>
+        <select id="vehicleGrade" name="vehicleGrade" class="form-control" required disabled>
+			<option value="">차종 선택</option>
 			<option value="경차">경차</option>
 			<option value="소형">소형</option>
 			<option value="준중형">준중형</option>
@@ -141,10 +123,22 @@
 			<option value="승합차">승합차</option>
 			<option value="스포츠카">스포츠카</option>
 		</select>
-		<br>
-        <select id="model" name="model" class="form-control" required disabled>
-			<option value="">차량</option>
+		<br><br>
+		
+		<p class="text">대여차량</p>
+        <input type="hidden" id="vehicleId" name="vehicleId" required/>
+        <input type="text" id="rentalVehicel" name="rentalVehicel" class="form-control" placeholder="대여차량" required readonly/>
+        <br><br>
+        
+        <p class="text">대여지점</p>
+        <input type="text" id="rentalPlace" name="rentalPlace" class="form-control" placeholder="반납일" required readonly/>
+        <br><br>
+        
+        <p class="text">반납지점 선택</p>
+        <select id="returnPlace" name="returnPlace" class="form-control" required disabled>
+        	<option value="">반납 대여소 선택</option>
 		</select>
+		<br>
         
         <hr class="mb-4">
           <div class="custom-control custom-checkbox">
@@ -167,7 +161,7 @@
 	<script>
 	$(function() {
 		
-		$('#rental_date').daterangepicker({
+		$('#rentalDate').daterangepicker({
 			"autoUpdateInput": false,
 			"minDate": new Date(),
 			"timePicker": true,
@@ -191,8 +185,8 @@
             },
             "drops": "down"
         }, function (start, end, label) {
-            $("#return_date").attr("value",end.format('YYYY-MM-DD HH:mm'));
-            $("#rental_date").attr("value",start.format('YYYY-MM-DD HH:mm'));
+            $("#returnDate").attr("value",end.format('YYYY-MM-DD HH:mm'));
+            $("#rentalDate").attr("value",start.format('YYYY-MM-DD HH:mm'));
             const endDate = new Date(end.format('YYYY-MM-DD HH:mm'));
             const startDate = new Date(start.format('YYYY-MM-DD HH:mm'));
             const totalTime = (endDate.getTime()-startDate.getTime()) / (1000*60*60);
@@ -200,16 +194,12 @@
             const totalHour = Math.trunc(totalTime % 24);
             const totalMinute = (totalTime % 24)%1==0.5?"30분":"0분";
             $("#totalRentalPeriod").text("총 대여기간 : "+ totalDay + "일 " + totalHour + "시간 " + totalMinute);
+            $("#vehicleGrade").removeAttr("disabled");
         });
 		
-		$("#vehicle_grade").change(e=>{
-			$.ajax({
-				url:"${path}/rental/searchVehicleByGrade.do",
-				data:{vehicleGrade:$("#vehicle_grade").val()},
-				success:data=>{
-					
-				}
-			})
+		$("#vehicleGrade").change(e=>{
+			open("${path}/rental/searchVehicleByGrade.do?vehicleGrade="+$("#vehicleGrade").val()+"&numPerpage=10","차량선택","width=800,height=500,left=400,top=200,status=no,toolbar=no,scrollbars=no,titlebar=no,menubar=no,location=no");
+			
 		})
 		
 	});

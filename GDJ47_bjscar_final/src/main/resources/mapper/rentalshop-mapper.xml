@@ -4,11 +4,11 @@
 
 	<resultMap type="rentalshop" id="rentalshopMap">
 		<id column="RENTALSHOP_ID" property="rentalshopId" />
-		<id column="RENTALSHOP_NAME" property="rentalshopName" />
-		<id column="RENTALSHOP_ADDR" property="rentalshopAddr" />
-		<id column="LATITUDE" property="latitude" />
-		<id column="LONGTITUDE" property="longitude" />
-		<id column="BM_MEMBER" property="bmMember" />
+		<result column="RENTALSHOP_NAME" property="rentalshopName" />
+		<result column="RENTALSHOP_ADDR" property="rentalshopAddr" />
+		<result column="LATITUDE" property="latitude" />
+		<result column="LONGTITUDE" property="longitude" />
+		<result column="BM_MEMBER" property="bmMember" />
 		<collection property="files" ofType="attachment">
 			<id column="ATTACHMENT_ID" property="attachmentId" />
 			<result column="ATTACHMENT_TITLE" property="attachmentTitle" />

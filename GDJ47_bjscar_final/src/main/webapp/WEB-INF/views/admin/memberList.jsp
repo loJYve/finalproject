@@ -112,8 +112,7 @@
 			<input type="button" onclick="getSearchList()" class="btn btn-outline-primary mr-2" value="검색"/>
 		</form>
 </div>
-	</div>
-</div>        
+	</div>     
 
 <script>
 function getSearchList(){
@@ -144,8 +143,8 @@ function getSearchList(){
 					$('#tbl_member').append(str);   
 					})
 					*/
-					$('#tbl_memberDiv').append(result);
         		/* $('#pageBar').append("${result.pageBar2}"); */
+					$('#tbl_memberDiv').append(result);
 			}
 		}
 	})

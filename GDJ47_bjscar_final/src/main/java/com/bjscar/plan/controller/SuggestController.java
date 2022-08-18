@@ -18,6 +18,11 @@ public class SuggestController {
 	
 	@RequestMapping("/suggest.do")
 	public String suggest() {
+		return "suggest/firstPlan2";
+	}
+	
+	@RequestMapping("/suggest2.do")
+	public String suggest2() {
 		return "suggest/firstPlan";
 	}
 	
@@ -43,5 +48,11 @@ public class SuggestController {
 		model.addAttribute("msg",msg);
 		model.addAttribute("loc",loc);
 		return "common/msg";
+	}
+	
+	//지도창 
+	@RequestMapping("/suggestMap.do")
+	public String map() {
+		return "suggest/map";
 	}
 }

@@ -123,7 +123,7 @@ public class LoginController {
 	public ModelAndView findId(Member m,ModelAndView mv) {
 		Member id = service.findId(m);
 //		System.out.println(id);
-	
+	  
 		mv.addObject("id",id);
 		mv.setViewName("/member/searchIdEnd");
 		

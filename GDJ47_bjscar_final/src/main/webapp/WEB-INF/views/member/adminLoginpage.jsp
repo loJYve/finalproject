@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
-        <title>비밀번호찾기 폼</title>
+        <title>관리자 로그인 폼</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -175,61 +175,26 @@ transform: rotate(45deg);
    
 </style>
 <body>
+	 
     <div class="login">
             <div class="account-login">
-               <h1>BJSCAR</h1>
-               <form action="${path }/member/searchPwEnd.do" class="login-form" method="post">
+               <h1>관리자 BJSCAR</h1>
+               <form action="${path }/admin/loginEnd.do" class="login-form" method="post">
                   <div class="form-group">
-                      <input type="text" name="memberId" id="memberId" class="form-control" placeholder="ID" autofocus required>
+                      <input type="text" name="adminId" id="adminId" class="form-control" placeholder="ID"  
+                      autofocus required>
                   </div>
                   <p id="idch" class="check"> </p><br/>
                   <div class="form-group">
-                     <input type="text" name="email" id="email" class="form-control" placeholder="Email"  required>
+                     <input type="password" name="adminPassword" id="adminPassword" class="form-control" placeholder="Password"  required>
                   </div>
-                  <p id="emch" class="check"> </p><br/>
-                  <div class="remember">
-                     <button id="btn-Yes"  type="submit" class="btn btn-lg btn-primary btn-block">비밀번호찾기</button>
-                     <br/>
+                  <p id="pwch" class="check"> </p><br/>
+                     <button id="btn-Yes"  type="submit" name="save" id="save" class="btn btn-lg btn-primary btn-block">로그인</button>
                      </form>
-                   <div class="links"> 
-            <a href="${path }/member/memberPage.do" class="text-primary">로그인</a> | <a href="${path }/member/searchId.do" class="text-primary">아이디 찾기</a> | <a href="/member/memberEnroll.do" class="text-primary">회원가입</a>
                    </div>
-                  </div>   
+                  </div>
             </div>
-     
+        </div>
+      
    </body>
-<script>
-//아이디 정규식
-const idJ = /^[a-z0-9][a-z0-9_\-]{4,19}$/;
-// 이메일 검사 정규식
-const mailJ = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-//아이디 체크
-$("#memberId").focusout((e)=>{
-     if($('#memberId').val() == ""){
-   		$('#idch').text('*필수 정보입니다.');
-   	  	$('#idch').css('color', 'red');
-   		return false;
-	  }else if(!idJ.test($('#memberId').val())){
-  		$('#idch').text('4~19자의 영문 소문자, 숫자만 사용가능합니다')
-		$('#idch').css('color', 'red')
-		   return false;
-	  }else{ 
-		  
-       $("#idch").hide();
-       return true;
-     }
-});
-//이메일
-$("#email").focusout((e)=>{
-	  if($("#email").val()==""){
-		  $('#emch').text('*필수 정보입니다.');
-		  $('#emch').css('color','red');
-		  return false;
-	  }else{
-		 
-		  $('#emch').hide();
-			return true;
-	  } 
-});
-</script>
 </html>
