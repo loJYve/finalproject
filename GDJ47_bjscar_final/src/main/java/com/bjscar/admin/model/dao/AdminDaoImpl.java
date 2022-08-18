@@ -7,6 +7,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
 
 import com.bjscar.admin.model.vo.Admin;
 import com.bjscar.businessman.model.vo.Businessman;
@@ -137,5 +138,14 @@ public class AdminDaoImpl implements AdminDao {
 		// TODO Auto-generated method stub
 		return session.selectOne("admin.selectAdmin",a);
 	}
+	
+	//permission
+	
+	@Override
+	public int updateBusinessman(SqlSession session,Model m) {
+		// TODO Auto-generated method stub
+		return session.selectOne("businessman.successId");
+	}
+	
 
 }

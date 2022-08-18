@@ -7,7 +7,7 @@
 <main>
 	<jsp:include page="/WEB-INF/views/mypage/mypageSidebar.jsp"/>
 	<h2 class="mt-5">정보수정</h2>
-	<form action="/mypage/updateMember.do" class="mt-5">
+	<form action="${path }/mypage/updateMember.do" class="mt-5">
 		<p class="text">아이디</p>
 	   	<input type="text" name="memberId" id="memberId"  class="form-control" value="${memberData.memberId }"
 	   		readonly>
@@ -35,7 +35,7 @@
 			<button type="button" id="emailChk" class="btn btn-secondary">인증</button><br> 
 			<p id="emch" class="check"> </p><br/>
 			<p class="text">인증번호</p>  
-			 <input type="text" id="email2" name="email2" class="form-control" placeholder="인증번호" required>
+			<input type="text" id="email2" name="email2" class="form-control" placeholder="인증번호" required>
 			 &nbsp;   
 			<button type="button" id="enterBtn2" class="btn btn-secondary">확인</button> 	
 	        </div>

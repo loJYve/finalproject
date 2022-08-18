@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.ui.Model;
 
 import com.bjscar.admin.model.vo.Admin;
 import com.bjscar.businessman.model.vo.Businessman;
@@ -46,5 +47,11 @@ public interface AdminDao {
 	int selectSearchSecessionMemberCount(SqlSessionTemplate session, SecessionMember s);
 	
 	Admin selectAdmin(SqlSession session,Admin a);
+	
+	//permission
+	
+	int updateBusinessman(SqlSession session, Model m);
+	
+	
 	
 }

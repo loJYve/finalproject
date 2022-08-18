@@ -29,6 +29,7 @@ public class WorkPlaceServiceImpl implements WorkPlaceService {
 	@Override
 	public List<Rentalshop> selectRentalshopListPage(Map param) {
 		// TODO Auto-generated method stub
+		
 		return dao.selectRentalshopListPage(session, param);
 	}
 
@@ -37,6 +38,12 @@ public class WorkPlaceServiceImpl implements WorkPlaceService {
 		// TODO Auto-generated method stub
 		return dao.selectRentalshopCount(session);
 	}
+
+//	@Override
+//	public int selectRentalshopCount(String memberId) {
+//		// TODO Auto-generated method stub
+//		return dao.selectRentalshopCount(session,memberId);
+//	}
 
 	
 	@Override
@@ -57,12 +64,15 @@ public class WorkPlaceServiceImpl implements WorkPlaceService {
 				a.setAttachmentId(r.getRentalshopId());
 				result=dao.insertAttachment(session,a);
 //				if(result==0) throw new RuntimeException();
-				
+				dao.insertRentalshopId(session);
 				
 			}
 			}
+		
 		}catch (RuntimeException e) {
+			e.printStackTrace();
 			throw new RuntimeException("작성실패!");
+			
 		}
 //		result=dao.insertAttachment(b.getFiles().get(0));
 //		result=dao.insertAttachment(b.getFiles().get(1));

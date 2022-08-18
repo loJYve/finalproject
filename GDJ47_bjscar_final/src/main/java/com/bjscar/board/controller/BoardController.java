@@ -21,7 +21,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -33,7 +32,6 @@ import com.bjscar.common.PageFactory;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
-@RequestMapping("/board")
 @Slf4j
 public class BoardController {
 		
@@ -50,46 +48,25 @@ public class BoardController {
 		mv.addObject("totalContents",totalData);
 		mv.addObject("pageBar",PageFactory.getPageBar(totalData, numPerpage, cPage, "boardList.do"));
 		// /WEB-INF/views/viewName.jsp
-		mv.setViewName("board/boardList");
+		mv.setViewName("ibBoard/boardList");
+		System.out.println(list);
 		return mv;
 	}
 	
 	@RequestMapping("/boardWrite.do")
 	public String boardWrite() {
-		return "board/boardWrite";
+		return "ibBoard/boardWrite";
 	}
 	
 	@RequestMapping("/boardWriteEnd.do")
-	public String insertBoard(Board b,MultipartFile[] upFile,Model m,HttpServletRequest rs) {
-//		log.debug("파일명 : {}",upFile.getOriginalFilename());
-//		log.debug("파일크기 : {}",upFile.getSize());
-		log.debug("파일명1 : {}",upFile[0].getOriginalFilename());
-		log.debug("파일크기1 : {}",upFile[0].getSize());
-		log.debug("파일명2 : {}",upFile[1].getOriginalFilename());
-		log.debug("파일크기2 : {}",upFile[1].getSize());
-		log.debug("board : {}",b);
-		
+	public String insertBoard(Board b,MultipartFile[] upFile,Model m,HttpServletRequest rs) {		
 		//저장경로를 가져오기
 		String path=rs.getServletContext().getRealPath("/resources/upload/board/");
 		File uploadDir=new File(path);
 		//폴더가 없으면 만들어주기
 		if(!uploadDir.exists()) uploadDir.mkdirs();
 		
-//		if(!upFile.isEmpty()) {
-//			//리네임드처리하기
-//			String originalFilename=upFile.getOriginalFilename();
-//			String ext=originalFilename.substring(originalFilename.lastIndexOf("."));
-//			//리네임 명칭을 정할 값 설정
-//			SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
-//			int rndNum=(int)(Math.random()*10000);
-//			String rename=sdf.format(System.currentTimeMillis())+"_"+rndNum+ext;
-//			
-//			//업로드처리하기
-//			try{
-//				upFile.transferTo(new File(path+rename));
-//			}catch(IOException e) {
-//				e.printStackTrace();
-//			}
+
 		
 		//다중파일 업로드
 		List<Attachment> files=new ArrayList();
@@ -108,7 +85,7 @@ public class BoardController {
 					try{
 						f.transferTo(new File(path+rename));
 						//생성된 파일 list에 저장하기
-						files.add(Attachment.builder().originalFilename(originalFilename).renamedFilename(rename).build());
+						files.add(Attachment.builder().originalFilename(originalFilename).renamedFilename(rename).attachmentTitle(originalFilename).build());
 					}catch(IOException e) {
 						e.printStackTrace();
 					}
@@ -123,31 +100,30 @@ public class BoardController {
 		try {
 			service.insertBoard(b);
 			msg="게시글입력성공";	
-			loc="/board/boardList.do";
+			loc="/boardList.do";
 		}catch(RuntimeException e) {
 			msg="게시글입력실패";
-			loc="/board/boardWrite.do";
+			loc="/boardWrite.do";
 			for(Attachment a : b.getFiles()) {
 				File deleteFile=new File(path+a.getRenamedFilename());
 				if(deleteFile.exists()) deleteFile.delete();
 			}
 		}
-		
+		System.out.println(b.getFiles());
+		System.out.println(b);
 		m.addAttribute("msg",msg);
 		m.addAttribute("loc",loc);
 		
 		
-//		}
 		return "common/msg";
 	}
 	
-	@RequestMapping("/ibBoardView.do")
+	@RequestMapping("/boardView.do")
 	public ModelAndView getBoard(int no,ModelAndView mv) {
 		
 		mv.addObject("board",service.selectBoard(no));
 		mv.setViewName("ibBoard/boardView");
-		
-		
+
 		return mv;
 	}
 	
@@ -177,14 +153,8 @@ public class BoardController {
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
-			
-		
 	}
 	
-	@RequestMapping("/boardAjax.do")
-	@ResponseBody
-	public List<Board> getBoard(){
-		return service.selectBoardList();
-	}
+	
 }
 

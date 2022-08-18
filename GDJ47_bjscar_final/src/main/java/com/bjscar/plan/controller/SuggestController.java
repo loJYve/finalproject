@@ -55,4 +55,14 @@ public class SuggestController {
 	public String map() {
 		return "suggest/map";
 	}
+	//로드뷰
+	@RequestMapping("/suggestlodView.do")
+	public String lodView() {
+		return "suggest/lodView";
+	}
+	//테스트
+	@RequestMapping("/suggestTest.do")
+	public String test() {
+		return "suggest/test";
+	}
 }

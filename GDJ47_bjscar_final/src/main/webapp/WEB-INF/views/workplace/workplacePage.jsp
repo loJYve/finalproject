@@ -24,6 +24,7 @@
 					<th>대여소 주소</th>
 					<th>사업자아이디</th>
 				</tr>
+				
 				<c:if test="${not empty rentalshops }">
 				
 					<c:forEach var="r" items="${rentalshops }">

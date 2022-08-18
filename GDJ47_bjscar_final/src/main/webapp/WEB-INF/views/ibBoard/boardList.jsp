@@ -9,32 +9,29 @@
 </jsp:include>
 <section id="board-container" class="container">
         <p>총 ${totalContents }건의 게시물이 있습니다.</p>
-        <button onclick="location.assign('${path}/board/boardWrite.do')">글쓰기</button>
+        <button onclick="location.assign('${path}/boardWrite.do')">글쓰기</button>
         <table id="tbl-board" class="table table-striped table-hover">
             <tr>
-                <th>번호</th>
                 <th>제목</th>
+                <th>번호</th>
                 <th>작성자</th>
-                <th>작성일</th>
                 <th>카테고리</th>
                 <th>내용</th>
-                <th>첨부파일</th>
+                <th>작성일</th>
             </tr>
             <c:if test="${not empty boards }">
             	<c:forEach var="b" items="${boards }">
             		<tr>
             			<td>
-            				<a href="${path}/board/boardView.do?no=${b.boardNo }">
-            					<c:out value="${b.ibBoardTitle }"/> 
+            				<a href="${path}/boardView.do?no=${b.ibPostId }">
+            					<c:out value="${b.ibPostTitle }"/> 
             				</a>
-            			</td>
-            		
-            			<td><c:out value="${b.boardNo }"/></td>
-            			<td><c:out value="${b.ibBoardTitle }"/></td>
-            			<td><c:out value="${b.ibBoardWriter }"/></td>
-            			<td><c:out value="${b.ibPoardDate }"/></td>
+            			</td>          		
+            			<td><c:out value="${b.ibPostId }"/></td>
+            			<td><c:out value="${b.ibPostWriter }"/></td>
             			<td><c:out value="${b.ibPostCategory }"/></td>
             			<td><c:out value="${b.ibPostContent }"/></td>
+            			<td><c:out value="${b.ibPostDate }"/></td>
             		</tr>
             	</c:forEach>
             </c:if>

@@ -16,9 +16,9 @@ import lombok.NoArgsConstructor;
 public class Board {
 	private int ibPostId;
 	private String ibPostTitle;
-	private String ibPostWriter;
 	private Date ibPostDate;
 	private String ibPostCategory;
 	private String ibPostContent;
+	private String ibPostWriter;
 	private List<Attachment> files;
 }

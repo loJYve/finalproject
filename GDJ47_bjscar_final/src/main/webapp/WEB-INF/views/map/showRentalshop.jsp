@@ -30,8 +30,16 @@
 
 	<div id="whole-container">
 	<div id="sub-container">
+		<p>총 ${totalData } 대의 차량이 있습니다.</p>
+		
 	    <section id="memberList-container">
 	        <h2><c:out value="${vl[0].rentalShop.rentalshopName }"/>    차량 보기</h2> 
+	        <c:if test="${empty vl }">
+		        <div>
+		        	<h3>검색결과가 없습니다.</h3>
+	        	</div>
+	        </c:if>
+	        <c:if test="${not empty vl }">
 	        <table id="tbl-member">
            <thead>
                <tr>
@@ -68,6 +76,7 @@
 				</c:forEach>
         </tbody>
 	    </table>
+	    </c:if>
 		<div id="pageBar">
         	${pageBar }
         	
@@ -76,34 +85,34 @@
 		<div id="search-container">
 	        	검색타입 : 
 	        <select id="searchType">
-	        	<option value="rentalshopName"  ${searchType!=null&&searchType.equals("rentalshopName")?"checked":""} >대여소이름</option>
-	        	<option value="rentalshopAddr" ${searchType!=null&&searchType.equals("rentalshopAddr")?"checked":""} >대여소 주소</option>
-	        	<option value="bmMember" ${searchType!=null&&searchType.equals("bmMember")?"checked":""} >사업자이름</option>
+	        	<option value="rentalshopName"  ${searchType!=null&&searchType.equals("rentalshopName")?"checked":""} >탑승인원</option>
+	        	<option value="rentalshopAddr" ${searchType!=null&&searchType.equals("rentalshopAddr")?"checked":""} >모델</option>
+	        	<option value="bmMember" ${searchType!=null&&searchType.equals("bmMember")?"checked":""} >차급</option>
 	        </select>
 
 	        <div id="search-rentalshopName">
 	        	<form action="${path }/map/searchBar.do">
-	        		<input type="hidden" name="searchType" value="RENTALSHOP_NAME">
+	        		<input type="hidden" name="searchType" value="BOARDING_PERSONNEL">
 	        		<input type="text" name="searchKeyword" size="25" 
-	        		placeholder="검색할 대여소 명을 입력하세요" >
+	        		placeholder="탑승인원을 입력하세요" >
 	        		<input type="hidden" name="no" value="${vl[0].rentalShop.rentalshopId}"/>
 	        		<button type="submit">검색</button>
 	        	</form>
 	        </div>
 	        <div id="search-rentalshopAddr">
 	        	<form action="${path }/map/searchBar.do">
-	        		<input type="hidden" name="searchType" value="RENTALSHOP_ADDR">
+	        		<input type="hidden" name="searchType" value="MODEL">
 	        		<input type="text" name="searchKeyword" size="25" 
-	        		placeholder="검색할 대여소의 주소를 입력하세요" >
+	        		placeholder="검색할 모델을 입력하세요" >
 	        		<input type="hidden" name="no" value="${vl[0].rentalShop.rentalshopId}"/>
 	        		<button type="submit">검색</button>
 	        	</form>
 	        </div>
 	        <div id="search-bmMember">
 	        	<form action="${path }/map/searchBar.do">
-	        		<input type="hidden" name="searchType" value="BM_MEMBER">
+	        		<input type="hidden" name="searchType" value="VEHICLE_GRADE">
 	        		<input type="text" name="searchKeyword" size="25" 
-	        		placeholder="검색할 사업자명을 입력하세요" >
+	        		placeholder="차급을 입력하세요" >
 	        		<input type="hidden" name="no" value="${vl[0].rentalShop.rentalshopId}"/>
 	        		<button type="submit">검색</button>
 	        	</form>

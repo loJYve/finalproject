@@ -8,7 +8,7 @@
 	<jsp:include page="/WEB-INF/views/mypage/mypageSidebar.jsp"/>
 	
 	<h3 class="text-center mt-5 mb-5">회원 탈퇴</h3>
-		<form action="/mypage/secessionEnd.do">
+		<form action="${path }/mypage/secessionEnd.do">
 			<div class="form-check d-flex justify-content-center">
 			<label id="secessionCheckLabel">
 				  <input class="form-check-input" type="checkbox" value="" id="secessionCheck">

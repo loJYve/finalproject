@@ -26,11 +26,17 @@ public class MapServiceImpl implements MapService{
 	}
 	
 	@Override
-	public int selectBoardCount() {
+	public int selectVehicleCount(int no) {
 		// TODO Auto-generated method stub
-		return dao.selectBoardCount(session);
+		return dao.selectVehicleCount(no, session);
 	}
-
+	
+	
+	@Override
+	public int searchVehicleCount(Map param) {
+		// TODO Auto-generated method stub
+		return dao.searchVehicleCount(session, param);
+	}
 	@Override
 	public List<Vehicle> selectRentalshop(Map param, int no) {
 		// TODO Auto-generated method stub
@@ -42,5 +48,7 @@ public class MapServiceImpl implements MapService{
 		// TODO Auto-generated method stub
 		return dao.searchBar(session, param);
 	}
+	
+	
 	
 }

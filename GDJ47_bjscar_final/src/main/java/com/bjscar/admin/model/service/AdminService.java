@@ -3,6 +3,8 @@ package com.bjscar.admin.model.service;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.ui.Model;
+
 import com.bjscar.admin.model.vo.Admin;
 import com.bjscar.businessman.model.vo.Businessman;
 import com.bjscar.member.model.vo.Member;
@@ -45,6 +47,7 @@ public interface AdminService {
 	Admin selectAdmin(Admin a);
 	
 
+	int updateBusinessman(Model m);
 	
 	
 }
