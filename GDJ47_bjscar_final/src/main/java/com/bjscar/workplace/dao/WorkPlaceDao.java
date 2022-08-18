@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 
 import com.bjscar.attachment.model.vo.Attachment;
 import com.bjscar.rentalshop.model.vo.Rentalshop;
+import com.bjscar.rentalshop.model.vo.RentalshopAttachment;
 
 public interface WorkPlaceDao {
 	List<Rentalshop> selectRentalshop(SqlSessionTemplate session);
@@ -20,4 +21,9 @@ public interface WorkPlaceDao {
 	int insertRentalshop(SqlSessionTemplate session,Rentalshop r);
 	
 	int insertAttachment(SqlSessionTemplate session, Attachment a);
+
+	void insertRentalshopId(SqlSessionTemplate session);
+
+	
+	
 }

@@ -49,6 +49,7 @@
 		ON RA.ATTACHMENT_ID=A.ATTACHMENT_ID
 		INNER JOIN RENTALSHOP R
 		ON R.RENTALSHOP_ID=RA.RENTALSHOP_ID WHERE R.RENTALSHOP_ID=${no}
+				
 
 
 	</select>
@@ -60,11 +61,11 @@
 
 	</insert>
 
-	<!-- <insert id="insertId" parameterType="rentalshopattachment">
-		
+	 <insert id="rentalshopidInsert" parameterType="rentalshopattachment">
 	
-		INSERT INTO RENTALSHOP_ATTACHMENT VALUES((SELECT MAX(RNETALSHOP_ID) FROM RENTALSHOP ),(SELECT MAX(ATTACHMENT_ID) FROM ATTACHMENT))
-	</insert> -->
+		INSERT INTO RENTALSHOP_ATTACHMENT VALUES((SELECT MAX(RENTALSHOP_ID) FROM RENTALSHOP ),(SELECT MAX(ATTACHMENT_ID) FROM ATTACHMENT))
+		
+	</insert> 
 
 
 
@@ -75,9 +76,9 @@
 
 
 
-	<insert id="insertId" parameterType="_int">
+	<!-- <insert id="insertId" parameterType="_int">
 		INSERT INTO RENTALSHOP_ATTACHMENT
 		VALUES(SEQ_RENTALSHOP_ID.NEXTVAL,SEQ_ATTACHMENT_ID.NEXTVAL)
-	</insert>
+	</insert> -->
 
 </mapper>
