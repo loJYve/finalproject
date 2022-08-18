@@ -55,9 +55,15 @@ public class RentalController {
 	public ModelAndView rentalEnd(ModelAndView mv, RentalHistory rh, @RequestParam(name="purchaseAmount") int purchaseAmount) {
 //		System.out.println(rh);
 //		System.out.println(purchaseAmount);
-		mv.addObject("RentalHistory",rh);
+		mv.addObject("rentalHistory",rh);
 		mv.addObject("purchaseAmount",purchaseAmount);
 		mv.setViewName("rental/purchase");
+		return mv;
+	}
+	
+	@RequestMapping("/purchase.do")
+	@ResponseBody
+	public ModelAndView purchase(ModelAndView mv) {
 		return mv;
 	}
 

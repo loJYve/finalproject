@@ -53,6 +53,10 @@
         margin: auto;
         
     }
+    #btn_mileage{
+    	border: none;
+        margin: auto;
+    }
 	
 	.form-control {
   		display: inline;
@@ -99,9 +103,16 @@
 		
 		<div class="card-body">
       <form name="purchaseFrm" action="${path }/rental/purchase.do" method="post">
+      
+      	<input type="hidden" id="rentalHistory" name="rentalHistory" value="${rentalHistory }" required/>
 		
 		<p class="text">마일리지 (* 천원 단위로 사용가능)</p>
-		<div id="totalMileage" class="form-control">내 마일리지 : <fmt:formatNumber value="${loginMember.totalMileage }"/>원</div>
+		<div id="totalMileageStr" class="form-control">
+			내 마일리지 : <fmt:formatNumber value="${loginMember.totalMileage }"/>원 
+			<!-- &nbsp;&nbsp;&nbsp;<button id="btn_mileage">전액 사용</button> -->
+			&nbsp;&nbsp;&nbsp;<input type="button" id="btn_mileage" name="btn_mileage" value="전액사용">
+			<input type="hidden" id="totalMileage" name="totalMileage" value="${loginMember.totalMileage }" required/>
+		</div>
 		<br><br>
 		<div class="form-control">
 		사용할 마일리지 : 
@@ -156,11 +167,41 @@
 		
 		$("#useMileage").keyup(e=>{
 			const val = e.target.value;
-			console.log(val);
-			const purchaseAmount = $("beforeMileage").val() - val;
+			/* console.log(val);
+			console.log($("#beforeMileage").val()); */
+			const purchaseAmount = $("#beforeMileage").val() - val;
 			const purchaseAmountStr = addComma(String(purchaseAmount));
-			$("purchaseAmountStr").text("총 결제금액 : "+purchaseAmountStr+"원");
+			$("#purchaseAmountStr").text("총 결제금액 : "+purchaseAmountStr+"원");
 			$("#purchaseAmount").val(purchaseAmount);
+		})
+		
+		$("#useMileage").blur(e=>{
+			/* console.log(e.target.value); */
+			const val = e.target.value;
+			if(val%1000>0){
+				alert("마일리지는 천원 단위로 사용이 가능합니다.");
+				e.target.value=0;
+				$("#purchaseAmountStr").text("총 결제금액 : "+addComma(String($("#beforeMileage").val()))+"원");
+				$("#purchaseAmount").val($("#beforeMileage").val());
+				e.target.focus();
+			}else if(val>$("#totalMileage").val()){
+				alert("보유한 마일리지 이상의 마일리지는 사용할 수 없습니다.");
+				e.target.value=0;
+				$("#purchaseAmountStr").text("총 결제금액 : "+addComma(String($("#beforeMileage").val()))+"원");
+				$("#purchaseAmount").val($("#beforeMileage").val());
+				e.target.focus();
+			}else if(val==''){
+				e.target.value=0;
+			}
+		})
+		
+		$("#btn_mileage").click(e=>{
+			const val = $("#totalMileage").val();
+			/* console.log(val); */
+			/* Math.floor(121.123) / 10) * 10; */
+			$("#useMileage").val((Math.floor(val)/1000)*1000);
+		})
+		
 	});
 	</script>
 </html>
