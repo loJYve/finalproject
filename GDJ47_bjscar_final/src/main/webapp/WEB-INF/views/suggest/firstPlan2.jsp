@@ -40,31 +40,42 @@
                     <div class="col-lg-6 col-xxl-4 mb-5">
                         <div class="card bg-light border-0 h-100">
                             <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-collection"></i></div>
-                                <h2 class="fs-4 fw-bold">검색</h2>
-                                	<button id="btn-Yes" class="btn btn-lg btn-primary btn-block" onClick="location.href='${path}/suggestMap.do'"  >검색</button>
-                                <p class="mb-0">주변을 살피세요.</p>
+                             <!--    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-collection"></i></div>-->
+                                <br/>
+                                	<button id="btn-Yes" class="btn btn-lg btn-primary btn-block" onClick="location.href='${path}/suggestMap.do'">click</button>
+                                	<br/>
+                                	<br/>
+                                <h2 class="fs-4 fw-bold">길찾기</h2>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-xxl-4 mb-5">
                         <div class="card bg-light border-0 h-100">
                             <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-cloud-download"></i></div>
-                                <h2 class="fs-4 fw-bold">Free to download</h2>
-                                <p class="mb-0">As always, Start Bootstrap has a powerful collectin of free templates.</p>
+                                <!-- <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-cloud-download"></i></div> -->
+                                 <br/>
+                                	<button id="btn-Yes" class="btn btn-lg btn-primary btn-block" onClick="location.href='${path}/suggestlodView.do'">click</button>
+                                	<br/>
+                                	<br/>
+                                <h2 class="fs-4 fw-bold">로드뷰</h2>
+                                <!-- <p class="mb-0">As always, Start Bootstrap has a powerful collectin of free templates.</p> -->
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-xxl-4 mb-5">
+                     <div class="col-lg-6 col-xxl-4 mb-5">
                         <div class="card bg-light border-0 h-100">
                             <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-card-heading"></i></div>
-                                <h2 class="fs-4 fw-bold">Jumbotron hero header</h2>
-                                <p class="mb-0">The heroic part of this template is the jumbotron hero header!</p>
+                                <!-- <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-cloud-download"></i></div> -->
+                                 <br/>
+                                	<button id="btn-Yes" class="btn btn-lg btn-primary btn-block" onClick="location.href='${path}/suggestTest.do'">click</button>
+                                	<br/>
+                                	<br/>
+                                <h2 class="fs-4 fw-bold">test</h2>
+                                <!-- <p class="mb-0">As always, Start Bootstrap has a powerful collectin of free templates.</p> -->
                             </div>
                         </div>
                     </div>
+                   <!--  
                     <div class="col-lg-6 col-xxl-4 mb-5">
                         <div class="card bg-light border-0 h-100">
                             <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
@@ -91,7 +102,7 @@
                                 <p class="mb-0">Start Bootstrap has been the leader in free Bootstrap templates since 2013!</p>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </section>
