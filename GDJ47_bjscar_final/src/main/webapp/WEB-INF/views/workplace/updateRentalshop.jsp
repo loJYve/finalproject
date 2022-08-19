@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<jsp:include page="/WEB-INF/views/common/header.jsp" />
+    pageEncoding="UTF-8"%>
+    <jsp:include page="/WEB-INF/views/common/header.jsp" />
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
@@ -58,13 +58,9 @@
 }
 </style>
 </head>
+<body style="text-align: center">
 
-<body>
-<main>
-<jsp:include page="/WEB-INF/views/workplace/mypageSidebar.jsp"/>
-<div style="display: flex; text-align: center;" >
-<!-- style="text-align: center" -->
-	<form action="${path }/alterworplace.do" method="get" enctype="multipart/form-data">
+	<form action="${path }/UpdateEndRentalshop.do" method="get" enctype="multipart/form-data">
 		<table class="tg"
 			style="margin-left: auto; margin-right: auto; background-color: #ffffc7;">
 			<h2>개인 사업장관리</h2>
@@ -85,17 +81,17 @@
 				</tr>
 				<tr>
 					<td class="tg-n9g5" colspan="10">대여소주소 : <input type="text"
-						value="${rentalshop.rentalshopAddr }" readonly
+						value="${rentalshop.rentalshopAddr }" name="rentalshopAddr"
 						style="background-color: #ffffc7;" /></td>
 				</tr>
 				<tr>
 					<td class="tg-n9g5" colspan="10">위도 : <input type="text"
-						value="${rentalshop.latitude }" readonly
+						value="${rentalshop.latitude }" name="latitude"
 						style="background-color: #ffffc7;" /></td>
 				</tr>
 				<tr>
 					<td class="tg-n9g5" colspan="10">경도 : <input type="text"
-						value="${rentalshop.longitude }" readonly
+						value="${rentalshop.longitude }" name="longitude"
 						style="background-color: #ffffc7;" /></td>
 				</tr>
 
@@ -121,7 +117,6 @@
 			
 		</table>
 	</form>
-	</div>
-	</main>
-
+</body>
+</html>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

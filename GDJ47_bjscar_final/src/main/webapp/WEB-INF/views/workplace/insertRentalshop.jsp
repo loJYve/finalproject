@@ -90,7 +90,9 @@
 				</tr>
 				<tr>
 					<td class="tg-n9g5" colspan="5"><input type="file" id="upFile" name="upFile"/></td>
-					<td class="tg-n9g5" colspan="5"><input type="text" name="bmMember" /></td>
+					<c:if test="${loginMan != null }">
+					<td class="tg-n9g5" colspan="5"><c:out value="${loginMan.bmId }"/> 님 환영합니다.</td>
+					</c:if>
 				</tr>
 				
 			</tbody>

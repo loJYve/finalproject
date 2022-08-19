@@ -27,7 +27,8 @@
 
         <li><a href="<%=request.getContextPath()%>/admin.do" class="nav-link px-2 link-dark">관리자 페이지</a></li>
 	<c:if test="${loginMan != null }">
-        <li><a href="<%=request.getContextPath()%>/work/workplace.do" class="nav-link px-2 link-dark">사업장관리</a></li>
+        <li><a href="<%=request.getContextPath()%>/work/workplace.do?bmId=${loginMan.bmId}" class="nav-link px-2 link-dark">사업장관리</a></li>
+       
         </c:if>
         <li><a href="${path }/rental/rental.do" class="nav-link px-2 link-dark">대여하기</a></li>
 	

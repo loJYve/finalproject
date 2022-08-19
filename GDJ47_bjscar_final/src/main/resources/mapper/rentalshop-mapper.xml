@@ -42,16 +42,17 @@
 		<result property="permissionStatus" column="permission_status" />
 	</resultMap>
 
-	<select id="selectRentalshopList" parameterType="rentalshop"
+		<!-- 리스트 출력 -->
+	<select id="selectRentalshopList" parameterType="Map"
 		resultMap="rentalshopMap">
-		SELECT * FROM RENTALSOHP 
+		SELECT * FROM RENTALSHOP WHERE BM_MEMBER=#{bmId}
 	</select>
 	
 	
 
-	<select id="selectRentalshopCount"  resultType="_int">
+	<select id="selectRentalshopCount" resultType="_int">
 		SELECT COUNT(*)
-		FROM RENTALSHOP
+		FROM RENTALSHOP WHERE BM_MEMBER=#{bmId}
 	</select>
 
 	<select id="selectrentalshop" parameterType="_int"
@@ -94,5 +95,9 @@
 		INSERT INTO RENTALSHOP_ATTACHMENT
 		VALUES(SEQ_RENTALSHOP_ID.NEXTVAL,SEQ_ATTACHMENT_ID.NEXTVAL)
 	</insert> -->
+	
+	<!-- 수정 -->
+	
+	
 
 </mapper>

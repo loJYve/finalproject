@@ -2,6 +2,7 @@ package com.bjscar.workplace.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class WorkPlaceController {
 
+	
 	@Autowired
 	private WorkPlaceService service;
 
@@ -36,22 +38,25 @@ public class WorkPlaceController {
 	 * "workplace/workplacePage"; }
 	 */
 
+	//랜탈샵등록
+	//페이징
 	@RequestMapping("/work/workplace.do")
 	public ModelAndView selectMemberList(@RequestParam(name = "cPage", defaultValue = "1") int cPage,
-			@RequestParam(name = "numPerpage", defaultValue = "5") int numPerpage, ModelAndView mv,String memberId) {
-		Map param = Map.of("cPage", cPage, "numPerpage", numPerpage);
+			@RequestParam(name = "numPerpage", defaultValue = "5") int numPerpage, ModelAndView mv,@RequestParam String bmId) {
+		Map param = Map.of("cPage", cPage, "numPerpage", numPerpage,"bmId",bmId);
 		List<Rentalshop> list = service.selectRentalshopListPage(param);
 		mv.addObject("rentalshops", list);
-//		int totalData = service.selectRentalshopCount(memberId);
-		int totalData = service.selectRentalshopCount();
+		int totalData = service.selectRentalshopCount(bmId);
+//		int totalData = service.selectRentalshopCount();
 		mv.addObject("totalContents", totalData);
-		mv.addObject("pageBar", PageFactory.getPageBar(totalData, numPerpage, cPage, "/work/workplace.do"));
+		mv.addObject("pageBar", PageFactory.getPageBar(totalData, numPerpage, cPage, "/work/workplace.do?bmId="+bmId));
 		// /WEB-INF/views/viewName.jsp
+//		System.out.println(bmId);
 		mv.setViewName("workplace/workplacePage");
 		return mv;
 	}
 	
-	
+	//페
 
 	@RequestMapping("/work/workplaceView.do")
 	public ModelAndView workplaceView(int no, ModelAndView mv) {
@@ -135,5 +140,42 @@ public class WorkPlaceController {
 		return "common/msg";
 
 	}
+	
+	@RequestMapping("/work/updateRentalshop.do")
+	public ModelAndView updateView(int no, ModelAndView mv) {
+		mv.addObject("rentalshop", service.selectRentalshop(no));
+		mv.setViewName("workplace/workView");
+		
+		return mv;
+	}
+	
+	@RequestMapping("/work/updateEndRentalshop.do")
+	public String updateEndRentalshop (int no,Model m) {
+		
+		String msg = "";
+		String loc = "";
+		try {
+			service.updateRentalshopEnd(no);
+			msg="수정완료";
+			loc="/work/workplace.do";
+			
+		} catch (RuntimeException e) {
+			msg = "등록실패!";
+			loc = "/work/updateRentalshop.do";
+		}
+		m.addAttribute("msg", msg);
+		m.addAttribute("loc", loc);
+
+		
+		
+		 return "common/msg";
+	}
+	
+	
+	
+	
+	//자동차 등록 
+	
+	
 
 }

@@ -15,7 +15,7 @@
 				<div class="collapse " id="home-collapse" style="">
 					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 						<li><a href="/work/insertRentalshop.do" class="link-dark rounded" >사업장 만들기</a></li>
-						<li><a href="/" class="link-dark rounded">사업장 내용수정</a></li>
+						<li><a href="/work/updateRentalshop.do?no=${rentalshop.rentalshopId }" class="link-dark rounded">사업장 내용수정</a></li>
 					</ul>
 				</div>
 			</li>

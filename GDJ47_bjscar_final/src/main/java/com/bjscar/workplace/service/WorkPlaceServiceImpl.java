@@ -21,9 +21,9 @@ public class WorkPlaceServiceImpl implements WorkPlaceService {
 	private SqlSessionTemplate session;
 	
 	@Override
-	public List<Rentalshop> selectRentalshop() {
+	public List<Rentalshop> selectRentalshop(String bmId) {
 		// TODO Auto-generated method stub
-		return dao.selectRentalshop(session);
+		return dao.selectRentalshop(session,bmId);
 	}
 
 	@Override
@@ -33,17 +33,17 @@ public class WorkPlaceServiceImpl implements WorkPlaceService {
 		return dao.selectRentalshopListPage(session, param);
 	}
 
-	@Override
-	public int selectRentalshopCount() {
-		// TODO Auto-generated method stub
-		return dao.selectRentalshopCount(session);
-	}
-
 //	@Override
-//	public int selectRentalshopCount(String memberId) {
+//	public int selectRentalshopCount() {
 //		// TODO Auto-generated method stub
-//		return dao.selectRentalshopCount(session,memberId);
+//		return dao.selectRentalshopCount(session);
 //	}
+
+	@Override
+	public int selectRentalshopCount(String bmId) {
+		// TODO Auto-generated method stub
+		return dao.selectRentalshopCount(session,bmId);
+	}
 
 	
 	@Override
@@ -80,4 +80,12 @@ public class WorkPlaceServiceImpl implements WorkPlaceService {
 		
 		return result;
 	}
+	
+	@Override
+	public int updateRentalshopEnd(int no) {
+		return dao.updateRentalshopEnd(session, no);
+	}
+
 }
+
+	

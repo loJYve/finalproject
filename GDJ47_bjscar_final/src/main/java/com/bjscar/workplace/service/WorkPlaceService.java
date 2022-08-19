@@ -7,16 +7,18 @@ import com.bjscar.rentalshop.model.vo.Rentalshop;
 
 public interface WorkPlaceService {
 
-	List<Rentalshop> selectRentalshop();
+	List<Rentalshop> selectRentalshop(String bmId);
 
 	List<Rentalshop> selectRentalshopListPage(Map param);
 
-	int selectRentalshopCount();
-//	int selectRentalshopCount(String memberId);
+//	int selectRentalshopCount();
+	int selectRentalshopCount(String bmId);
 	
 	Rentalshop selectRentalshop(int no);
 	
 	int insertRentalshop(Rentalshop r);
+
+	int updateRentalshopEnd(int no);
 
 	
 	

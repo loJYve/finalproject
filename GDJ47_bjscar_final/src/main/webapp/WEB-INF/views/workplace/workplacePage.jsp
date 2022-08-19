@@ -22,7 +22,7 @@
 					<th>대여소 일련번호</th>
 					<th>대여소이름</th>
 					<th>대여소 주소</th>
-					<th>사업자아이디</th>
+					<!-- <th>사업자아이디</th> -->
 				</tr>
 				
 				<c:if test="${not empty rentalshops }">
@@ -34,7 +34,7 @@
 								href="${path}/work/workplaceView.do?no=${r.rentalshopId}"><c:out
 										value="${r.rentalshopName }" /></a></td>
 							<td><c:out value="${r.rentalshopAddr }" /></td>
-							<td><c:out value="${r.bmMember }" /></td>
+							<%-- <td><c:out value="${r.bmMember }" /></td> --%>
 						</tr>
 					</c:forEach>
 				</c:if>
@@ -46,7 +46,6 @@
 			</table>
 
 			<div id="pageBar">${pageBar }</div>			
-			<button onclick="location.assign('<%=request.getContextPath()%>/work/insertRentalshop.do')" class="btn btn-primary" >사업장 만들기</button>
 		</section>
 	</div>
 	</main>
