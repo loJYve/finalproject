@@ -21,4 +21,6 @@ public interface RentalService {
 
 	int insertRentalPurchaseHistory(Map param);
 
+	int updateMember(Map paramM);
+
 }

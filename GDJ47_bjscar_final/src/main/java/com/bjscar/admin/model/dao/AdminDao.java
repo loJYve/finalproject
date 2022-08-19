@@ -19,9 +19,9 @@ public interface AdminDao {
 	
 	int selectMemberCount(SqlSessionTemplate session);
 
-	List<Member> getSearchList(SqlSessionTemplate session, Map param, Member m);
+	List<Member> getSearchList(SqlSessionTemplate session, Map param);
 
-	int selectSearchMemberCount(SqlSessionTemplate session, Member m);
+	int selectSearchMemberCount(SqlSessionTemplate session, Map param);
 	
 	//businessman
 	List<Businessman> selectBusinessmanList(SqlSessionTemplate session);

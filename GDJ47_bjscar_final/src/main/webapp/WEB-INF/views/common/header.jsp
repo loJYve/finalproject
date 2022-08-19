@@ -14,7 +14,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-   <div class="container">
+   <div class="container" style="background-color: white">
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
       <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
         <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
@@ -28,7 +28,8 @@
         <li><a href="<%=request.getContextPath()%>/admin.do" class="nav-link px-2 link-dark">관리자 페이지</a></li>
     </c:if>
 	<c:if test="${loginMan != null }">
-        <li><a href="<%=request.getContextPath()%>/work/workplace.do" class="nav-link px-2 link-dark">사업장관리</a></li>
+        <li><a href="<%=request.getContextPath()%>/work/workplace.do?bmId=${loginMan.bmId}" class="nav-link px-2 link-dark">사업장관리</a></li>
+       
         </c:if>
         <li><a href="${path }/rental/rental.do" class="nav-link px-2 link-dark">대여하기</a></li>
 	

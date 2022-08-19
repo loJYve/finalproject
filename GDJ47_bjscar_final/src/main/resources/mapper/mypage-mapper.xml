@@ -64,24 +64,33 @@
 		<result column="MEMBER_ID" property="memberId"/>
 	</resultMap>
 	
-	<!-- <resultMap type="purchaseHistory" id="purchaseHistoryMap">
+	<resultMap type="purchaseDataList" id="purchaseDataListMap">
 		<id column="PURCHASE_ID" property="purchaseId"/>
 		<result column="BOOKING_DATE" property="bookingDate"/>
 		<result column="MODEL" property="model"/>
 		<result column="RENTAL_STATUS" property="status"/>
-		<result column="PURCHASE_AMOUNT" property="purchaseAmount"/>
-	</resultMap> -->
-	<resultMap type="purchaseHistory" id="purchaseHistoryMap">
-		<id column="PURCHASE_ID" property="purchaseId"/>
-		<result column="PURCHASE_AMOUNT" property="purchaseAmount"/>
-		<result column="ADD_MILEAGE" property="addMileage"/>
-		<result column="USE_MILEAGE" property="useMileage"/>
-		<result column="PURCHASE_METHOD" property="purchaseMethod"/>
+		<result column="PURCHASE_AMOUNT" property="amount"/>
+	</resultMap> 
+	
+	<resultMap type="rentalDataList" id="rentalDataListMap">
+		<result column="ORIGINAL_FILENAME" property="carImage"/>
+		<result column="MODEL" property="model"/>
+		<result column="RENTAL_DATE" property="rentalDate"/>
+		<result column="RENTALSHOP_NAME" property="rentalshopName"/>
+		<result column="RETURN_DATE" property="returnDate"/>
 	</resultMap>
 	
+	<!-- <resultMap type="purchaseDataList" id="purchaseDataListMap">
+		<id column="PURCHASE_ID" property="purchaseId"/>
+		<result column="PURCHASE_AMOUNT" property="bookingDate"/>
+		<result column="ADD_MILEAGE" property="model"/>
+		<result column="USE_MILEAGE" property="status"/>
+		<result column="PURCHASE_AMOUNT" property="amount"/>
+	</resultMap>-->
+	
   
-   	<select id="selectRentalData" parameterType="string" resultMap="rentaldataMap">
-  		SELECT * FROM RENTAL_HISTORY WHERE MEMBER_ID=#{memberId} AND RENTAL_STATUS='대여중'
+   	<!-- <select id="selectRentalData" parameterType="string" resultMap="rentaldataMap">
+  		SELECT * FROM RENTAL_HISTORY WHERE MEMBER_ID=#{memberId} AND RENTAL_STATUS='대여중' AND RENTAL_STATUS='예약완료'
   	</select>
   	
    	<select id="selectCarImage" parameterType="_int" resultMap="attachmentMap">
@@ -94,10 +103,12 @@
   	
    	<select id="selectRentalshopData" parameterType="_int" resultMap="rentalshopMap">
   		SELECT * FROM RENTALSHOP WHERE RENTALSHOP_ID=(SELECT RENTALSHOP_ID FROM VEHICLE WHERE VEHICLE_ID=#{vehicleId})
-  	</select>
+  	</select> -->
+  	
+  	<!-- <select id="selectRentalDataList" parameterType="string" resultMap=""></select> -->
   	
    	<select id="selectrentalHistory" parameterType="map" resultMap="rentaldataMap">
-  		SELECT * FROM RENTAL_HISTORY WHERE MEMBER_ID=#{memberId}
+  		SELECT * FROM RENTAL_HISTORY WHERE MEMBER_ID=#{memberId} AND RENTAL_STATUS='반납완료'
   	</select>
   	
    	<select id="selectMember" parameterType="string" resultMap="memberMap">
@@ -112,7 +123,7 @@
   		UPDATE MEMBER SET PASSWORD='---', MEMBER_NAME='---', BIRTHDAY='---', EMAIL='---', PHONE='---', ADDRESS='---', TOTAL_MILEAGE=0, SECESSION_STATUS='Y' WHERE MEMBER_ID=#{memberId} 
   	</update>
   	
-  	<select id="selectPurchaseHistory" parameterType="map" resultMap="purchaseHistoryMap">
+  	<select id="selectPurchaseHistory" parameterType="map" resultMap="purchaseDataListMap">
   		SELECT PH.PURCHASE_ID, RH.BOOKING_DATE, V.MODEL, RH.RENTAL_STATUS, PH.PURCHASE_AMOUNT 
   		FROM RENTAL_HISTORY RH 
   			INNER JOIN VEHICLE V ON RH.VEHICLE_ID=V.VEHICLE_ID

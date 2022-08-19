@@ -4,20 +4,34 @@ import java.util.List;
 import java.util.Map;
 
 import com.bjscar.rentalshop.model.vo.Rentalshop;
+import com.bjscar.vehicle.model.vo.Vehicle;
 
 public interface WorkPlaceService {
+	
+	List<Vehicle> selectRentalshopCar(int rentalshopId);
+	
+	List<Vehicle> selectRentalshopCarListPage(Map param);
 
-	List<Rentalshop> selectRentalshop();
+	int selectRentalshopCarCount(int rentalshopId);
+
+
+	
+	//-----------------------------------------------------------------------------------------
+	List<Rentalshop> selectRentalshop(String bmId);
 
 	List<Rentalshop> selectRentalshopListPage(Map param);
 
-	int selectRentalshopCount();
-//	int selectRentalshopCount(String memberId);
+//	int selectRentalshopCount();
+	int selectRentalshopCount(String bmId);
 	
 	Rentalshop selectRentalshop(int no);
 	
 	int insertRentalshop(Rentalshop r);
 
+	int updateRentalshopEnd(Map param);
+
+
+	
 	
 	
 	

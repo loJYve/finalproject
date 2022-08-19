@@ -20,7 +20,7 @@
     form#numperPageFrm{display:inline;} 
     div.center{align-items: center;}
     div#search-container{justify-content: center; margin: 20px}
-    div#whole-container{margin-top: 150px; text-align: center;}
+    div#whole-container{margin-top: 50px; text-align: center;}
 	table#tbl-member{justify-content: center;}
 	section#memberlist-container{margin-left: 150px; align-content: center;}
 	select#searchType{height:30px;}
@@ -30,9 +30,9 @@
 
 	<div id="whole-container">
 	<div id="sub-container">
-	    <section id="memberList-container">
+	    <section id="memberList-container" class="container">
 	        <h2>대여소검색</h2> 
-	        <table id="tbl-member">
+	        <table id="tbl-member" class="table table-striped table-hover">
            <thead>
                <tr>
                 <th>대여소이름</th>
@@ -51,10 +51,7 @@
 						<!-- 여기서 대여가능 차량대수는 rentalshop이 
 			    아닌 vehicle 테이블에서 count로 받아와야 하는데 c:forEach로 어떻게 할 수 있음?? -->
 						<td><button type="button" onclick="location.assign('/map/showRentalshop.do?no=${r.rentalshopId}');">대여소 확인하기</button></td>	
-					<%-- window.open('/map/showRentalshop.do?no=${v.rentalshopId}
-no로 rentalshopId를 넘기는데 오류가 남 - null이 들어갈수있어서 그렇다는데 어떻게 처리?
-= map 에서 클릭해서 넘어가는것에서도 똑같이. 누르고 말풍선을 눌러서 넘어가는 방식
- (a href)사용하는 방법 --%>
+
 					</tr>
 				</c:forEach>
         </tbody>
@@ -63,7 +60,32 @@ no로 rentalshopId를 넘기는데 오류가 남 - null이 들어갈수있어서
 			
 		</section>
 		</div>
-		
+		<div id="search-container">
+	        	검색타입 : 
+	        <select id="searchType">
+	        	<option value="rentalshopName" ${searchType!=null&&searchType.equals("rentalshopName")?"checked":""} >대여소명</option>
+	        	<option value="rentalshopAddr" ${searchType!=null&&searchType.equals("rentalshopAddr")?"checked":""} >지역</option>
+	        </select>
+
+			<div id="search-rentalshopName">
+	        	<form action="${path }/map/searchSearchRentalShop.do">
+	        		<input type="hidden" name="searchType" value="RENTALSHOP_NAME">
+	        		<input type="text" name="searchKeyword" size="25" 
+	        		placeholder="검색할 대여소명을 입력하세요" >
+	        		<button type="submit" id="submit">검색</button>
+	        	</form>
+	        </div>
+	        
+	        <div id="search-rentalshopAddr">
+	        	<form action="${path }/map/searchSearchRentalShop.do">
+	        		<input type="hidden" name="searchType" value="RENTALSHOP_ADDR">
+	        		<input type="text" name="searchKeyword" size="25" 
+	        		placeholder="지역을 입력하세요" >
+	        		<button type="submit" id="submit">검색</button>
+	        	</form>
+	        </div>
+	        
+	      </div>
 	    </div>		
 	 
 	<script>
@@ -77,7 +99,10 @@ no로 rentalshopId를 넘기는데 오류가 남 - null이 들어갈수있어서
 			});
 			$("#searchType").change();
 		})
-		
+		/* $("#submit").click(e=>{
+			open("${path}/map/wholeVehicleSearch.do?searchType="+$("#searchType").val()+"&numPerpage=10","차량선택","width=800,height=500,left=400,top=200,status=no,toolbar=no,scrollbars=no,titlebar=no,menubar=no,location=no");
+			
+		}) */
 		
 	</script>
         	

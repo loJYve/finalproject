@@ -48,4 +48,9 @@ public class RentalDaoImpl implements RentalDao{
 		return session.insert("rental.insertRentalPurchaseHistory", param);
 	}
 
+	@Override
+	public int updateMember(SqlSessionTemplate session, Map paramM) {
+		return session.update("rental.updateMember", paramM);
+	}
+
 }

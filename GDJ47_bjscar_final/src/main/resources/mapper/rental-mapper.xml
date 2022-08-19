@@ -78,5 +78,9 @@
 	<insert id="insertRentalPurchaseHistory" parameterType="map">
 		INSERT INTO RENTAL_PURCHASE_HISTORY VALUES(#{rentalId}, #{purchaseId})
 	</insert>
-
+	
+	<update id="updateMember" parameterType="map">
+		UPDATE MEMBER SET TOTAL_MILEAGE=(TOTAL_MILEAGE-${useMileage}+(SELECT ADD_MILEAGE FROM PURCHASE_HISTORY WHERE PURCHASE_ID=#{purchaseId})) WHERE MEMBER_ID=#{memberId}
+	</update>
+	
 </mapper>

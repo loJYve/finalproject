@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="rentalshop">
-
 	<resultMap type="rentalshop" id="rentalshopMap">
 		<id column="RENTALSHOP_ID" property="rentalshopId" />
 		<result column="RENTALSHOP_NAME" property="rentalshopName" />
@@ -26,8 +25,8 @@
 
 	</resultMap>
 	<resultMap type="rentalshopattachment" id="raMap">
-		<id column="RENTALSHOP_ID" property="rentalshopId"/>
-		<id column="ATTACHMENT_ID" property="attachmentId"/>
+		<id column="RENTALSHOP_ID" property="rentalshopId" />
+		<id column="ATTACHMENT_ID" property="attachmentId" />
 	</resultMap>
 	<resultMap type="businessman" id="bmMap">
 		<id property="bmId" column="bm_id" />
@@ -42,16 +41,51 @@
 		<result property="permissionStatus" column="permission_status" />
 	</resultMap>
 
-	<select id="selectRentalshopList" parameterType="rentalshop"
-		resultMap="rentalshopMap">
-		SELECT * FROM RENTALSOHP 
+	<resultMap type="vehicle" id="vehicleMap">
+		<id column="VEHICLE_ID" property="vehicleId" />
+		<result column="MODEL" property="model" />
+		<result column="NUMBER_PLATE" property="numberPlate" />
+		<result column="RENTAL_STATUS" property="rentalStatus" />
+		<result column="PRODUCT_YEAR" property="productYear" />
+		<result column="RENTALSHOP_ID" property="rentalshopId" />
+		<result column="ACCIDENT_STATUS" property="accidentStatus" />
+		<result column="PRICE" property="price" />
+		<result column="FUEL" property="fuel" />
+		<result column="BOARDING_PERSONNEL"
+			property="boardingPersonnel" />
+		<result column="VEHICLE_GRADE" property="vehicleGrade" />
+	</resultMap>
+	<!-- 자동차 리스트 -->
+	<select id="selectRentalshopCarList" parameterType="Map"
+		resultMap="vehicleMap">
+		SELECT * FROM VEHICLE WHERE RENTALSHOP_ID=#{rentalshopId}
 	</select>
-	
-	
 
-	<select id="selectRentalshopCount"  resultType="_int">
+
+	<select id="selectRentalshopCarCount" resultType="_int">
 		SELECT COUNT(*)
-		FROM RENTALSHOP
+		FROM VEHICLE WHERE RENTALSHOP_ID=#{rentalshopId}
+	</select>
+
+
+
+
+
+
+
+
+
+	<!-- 리스트 출력 -->
+	<select id="selectRentalshopList" parameterType="Map"
+		resultMap="rentalshopMap">
+		SELECT * FROM RENTALSHOP WHERE BM_MEMBER=#{bmId}
+	</select>
+
+
+
+	<select id="selectRentalshopCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM RENTALSHOP WHERE BM_MEMBER=#{bmId}
 	</select>
 
 	<select id="selectrentalshop" parameterType="_int"
@@ -62,37 +96,52 @@
 		INNER JOIN RENTALSHOP_ATTACHMENT RA
 		ON RA.ATTACHMENT_ID=A.ATTACHMENT_ID
 		INNER JOIN RENTALSHOP R
-		ON R.RENTALSHOP_ID=RA.RENTALSHOP_ID WHERE R.RENTALSHOP_ID=${no}
-				
+		ON
+		R.RENTALSHOP_ID=RA.RENTALSHOP_ID WHERE R.RENTALSHOP_ID=${no}
+
 
 
 	</select>
 
 
 	<insert id="insertAttachment" parameterType="attachment">
-		INSERT INTO ATTACHMENT
+		INSERT INTO
+		ATTACHMENT
 		VALUES(SEQ_ATTACHMENT_ID.NEXTVAL,#{attachmentTitle},default,#{originalFilename},#{renamedFilename})
 
 	</insert>
 
-	 <insert id="rentalshopidInsert" parameterType="rentalshopattachment">
-	
-		INSERT INTO RENTALSHOP_ATTACHMENT VALUES((SELECT MAX(RENTALSHOP_ID) FROM RENTALSHOP ),(SELECT MAX(ATTACHMENT_ID) FROM ATTACHMENT))
-		
-	</insert> 
+	<insert id="rentalshopidInsert"
+		parameterType="rentalshopattachment">
+
+		INSERT INTO RENTALSHOP_ATTACHMENT VALUES((SELECT
+		MAX(RENTALSHOP_ID) FROM
+		RENTALSHOP ),(SELECT MAX(ATTACHMENT_ID) FROM
+		ATTACHMENT))
+
+	</insert>
 
 
 
 	<insert id="insertRentalshop" parameterType="rentalshop">
-		INSERT INTO RENTALSHOP VALUES (SEQ_RENTALSHOP_ID.NEXTVAL,#{rentalshopName},
+		INSERT INTO
+		RENTALSHOP VALUES (SEQ_RENTALSHOP_ID.NEXTVAL,#{rentalshopName},
 		#{rentalshopAddr},#{latitude},#{longitude},#{bmMember})
 	</insert>
 
 
 
-	<!-- <insert id="insertId" parameterType="_int">
-		INSERT INTO RENTALSHOP_ATTACHMENT
-		VALUES(SEQ_RENTALSHOP_ID.NEXTVAL,SEQ_ATTACHMENT_ID.NEXTVAL)
-	</insert> -->
+	<!-- <insert id="insertId" parameterType="_int"> INSERT INTO RENTALSHOP_ATTACHMENT 
+		VALUES(SEQ_RENTALSHOP_ID.NEXTVAL,SEQ_ATTACHMENT_ID.NEXTVAL) </insert> -->
+
+	<!-- 수정 -->
+
+	<update id="updateEndRentalshop" parameterType="Map">
+		UPDATE RENTALSHOP
+		SET
+		RENTALSHOP_NAME=#{rentalshopName},RENTALSHOP_ADDR=#{rentalshopAddr},LATITUDE=#{latitude},LONGTITUDE=#{longitude}
+		WHERE RENTALSHOP_ID=#{rentalshopId}
+	</update>
+
 
 </mapper>
