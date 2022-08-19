@@ -35,7 +35,7 @@
         <li><a href="${path }/longRental/LRCarList.do" class="nav-link px-2 link-dark">장기렌트하기</a></li>
 		<li><a href="${path }/map/mapview.do" class="nav-link px-2 link-dark">대여소보기</a></li>
 		<li><a href="${path }/map/searchRentalshop.do" class="nav-link px-2 link-dark">대여소검색</a></li>
-		<li><a href="${path }/suggest.do" class="nav-link px-2 link-dark">경로추천</a></li>
+		<li><a href="${path }/suggest.do" class="nav-link px-2 link-dark">계획하기</a></li>
      <!--  <div class="col-md-3 text-end" style="display:contents;"> -->
      <div> 
       <c:if test="${loginMember == null&&loginMan == null&&loginAdmin == null }">
