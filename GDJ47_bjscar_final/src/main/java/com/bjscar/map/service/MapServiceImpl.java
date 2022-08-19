@@ -50,5 +50,14 @@ public class MapServiceImpl implements MapService{
 	}
 	
 	
-	
+	@Override
+	public List<Vehicle> searchSearchRentalShop(Map param) {
+		// TODO Auto-generated method stub
+		return dao.searchSearchRentalShop(session, param);
+	}
+	@Override
+	public int searchSearchRentalShopCount(Map param) {
+		// TODO Auto-generated method stub
+		return dao.searchSearchRentalShopCount(session, param);
+	}
 }

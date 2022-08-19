@@ -49,4 +49,18 @@ public class MapDaoImpl implements MapDao{
 				new RowBounds((offSet-1)*limit,limit));
 	}
 	
+	@Override
+	public List<Vehicle> searchSearchRentalShop(SqlSessionTemplate session,Map param) {
+		// TODO Auto-generated method stub
+		int offSet=(int)param.get("cPage");
+		int limit=(int)param.get("numPerpage");
+		return session.selectList("map.searchSearchRentalShop",param,new RowBounds((offSet-1)*limit,limit));
+	}
+	
+	@Override
+	public int searchSearchRentalShopCount(SqlSessionTemplate session,Map param) {
+		// TODO Auto-generated method stub
+		return session.selectOne("map.searchSearchRentalShopCount",param);
+	}
+	
 }

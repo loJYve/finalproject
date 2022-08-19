@@ -20,7 +20,7 @@
     form#numperPageFrm{display:inline;} 
     div.center{align-items: center;}
     div#search-container{justify-content: center; margin: 20px}
-    div#whole-container{margin-top: 50px; text-align: center;}
+    div#whole-container{margin-top: 150px; text-align: center;}
 	table#tbl-member{justify-content: center;}
 	section#memberlist-container{margin-left: 150px; align-content: center;}
 	select#searchType{height:30px;}
@@ -30,37 +30,62 @@
 
 	<div id="whole-container">
 	<div id="sub-container">
-	    <section id="memberList-container" class="container">
-	        <h2>대여소검색</h2> 
-	        <table id="tbl-member" class="table table-striped table-hover">
+		<p>총 ${totalData } 대의 차량이 있습니다.</p>
+		
+	    <section id="memberList-container">
+	        <h2><c:out value="${vl[0].rentalShop.rentalshopName }"/>    차량 보기</h2> 
+	        <c:if test="${empty vl }">
+		        <div>
+		        	<h3>검색결과가 없습니다.</h3>
+	        	</div>
+	        </c:if>
+	        <c:if test="${not empty vl }">
+	        <table id="tbl-member">
            <thead>
                <tr>
                 <th>대여소이름</th>
-			    <th>대여소 주소</th>
-			    <th>대여소 확인하기</th>
-			    
+			    <th>모델명</th>
+			    <th>가격</th>
+			    <th>차급</th>
+			    <th>연료</th>
+			    <th>탑승인원</th>
+			     <th>연식</th>
+			    <th>등록번호</th>
+			    <th>대여상태</th>
+			    <!-- 여기서 대여가능 차량대수는 rentalshop이 
+			    아닌 vehicle 테이블에서 count로 받아와야 하는데 c:forEach로 어떻게 할 수 있음?? -->
                </tr>
            </thead>
            <tbody>
       		
-      		<c:forEach var="r" items="${rl }">
+      		<c:forEach var="v" items="${vl }">
 					<tr>
-						<td><c:out value="${r.rentalshopName }"/></td>
-						<td><c:out value="${r.rentalshopAddr }"/></td>	
-						<%-- <td><c:out value="${r.}"/></td> --%>
-						<!-- 여기서 대여가능 차량대수는 rentalshop이 
-			    아닌 vehicle 테이블에서 count로 받아와야 하는데 c:forEach로 어떻게 할 수 있음?? -->
-						<td><button type="button" onclick="location.assign('/map/showRentalshop.do?no=${r.rentalshopId}');">대여소 확인하기</button></td>	
-
+						<td><c:out value="${v.rentalShop.rentalshopName }"/></td>
+						<td><c:out value="${v.model }"/></td>	
+						<td><c:out value="${v.price }"/></td>	
+						<td><c:out value="${v.vehicleGrade }"/></td>
+						<td><c:out value="${v.fuel }"/></td>	
+						<td><c:out value="${v.boardingPersonnel }"/></td>	
+						<td><c:out value="${v.productYear }"/></td>	
+						<td><c:out value="${v.numberPlate }"/></td>	
+						<td><c:out value="${v.rentalStatus }"/></td>
+						
+								<%-- <td><a href="${path }/board/boardView.do?no=${v.rentalshopId}">대여하기</a></td> --%>
+								
+						<!-- <button type="button" onclick="rental();">대여하기</button>	 -->
+						
 					</tr>
 				</c:forEach>
         </tbody>
 	    </table>
-		
-			
-		</section>
-		</div>
-		<div id="search-container">
+	    <button type="button" onclick="window.open('/map/showRentalshop.do?no=${v.rentalshopId}');" style="float: right; margin: 10px; margin-right: 5%;">대여하러가기</button>
+	    </c:if>
+		<div id="pageBar" style="margin-left:10%;">
+        	${pageBar }
+        	
+        </div>
+        
+	        <div id="search-container">
 	        	검색타입 : 
 	        <select id="searchType">
 	        	<option value="rentalshopName" ${searchType!=null&&searchType.equals("rentalshopName")?"checked":""} >대여소명</option>
@@ -86,8 +111,13 @@
 	        </div>
 	        
 	      </div>
-	    </div>		
-	 
+	        
+	      </div>
+			
+		</section>
+		</div>
+		
+		
 	<script>
 		$(()=>{
 			$("#searchType").change(e=>{
@@ -99,12 +129,8 @@
 			});
 			$("#searchType").change();
 		})
-		/* $("#submit").click(e=>{
-			open("${path}/map/wholeVehicleSearch.do?searchType="+$("#searchType").val()+"&numPerpage=10","차량선택","width=800,height=500,left=400,top=200,status=no,toolbar=no,scrollbars=no,titlebar=no,menubar=no,location=no");
-			
-		}) */
+		
 		
 	</script>
         	
-	
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
