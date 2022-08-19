@@ -54,7 +54,7 @@ public class MypageController {
 		mv.addObject("rentalHistory", service.selectrentalHistory(param));
 		
 		int totalData=service.selectRHCount(memberId);
-		mv.addObject("pageBar",PageFactory.getPageBar(totalData, numPerpage, cPage, "rentalhistory.do"));
+		mv.addObject("pageBar",PageFactory.getPageBar(totalData, numPerpage, cPage, "rentalhistory.do?memberId="+memberId));
 		
 		mv.setViewName("/mypage/rentalHistory");
 		
@@ -68,7 +68,7 @@ public class MypageController {
 		mv.addObject("purchasehistory", service.selectPurchaseHistory(param));
 		
 		int totalData=service.selectPHCount(memberId);
-		mv.addObject("pageBar",PageFactory.getPageBar(totalData, numPerpage, cPage, "purchasehistory.do"));
+		mv.addObject("pageBar",PageFactory.getPageBar(totalData, numPerpage, cPage, "purchasehistory.do?memberId="+memberId));
 		
 		mv.setViewName("/mypage/purchaseHistory");
 		return mv;
@@ -118,8 +118,6 @@ public class MypageController {
 	
 	@RequestMapping("/updateMember.do")
 	public ModelAndView updateMember(@RequestParam String memberId, ModelAndView mv) {
-		
-		
 		
 		mv.addObject("msg", "정보 수정 완료");
 		mv.addObject("loc", "/");

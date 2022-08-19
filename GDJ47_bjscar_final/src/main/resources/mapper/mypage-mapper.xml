@@ -74,7 +74,7 @@
 	
   
    	<select id="selectRentalData" parameterType="string" resultMap="rentaldataMap">
-  		SELECT * FROM RENTAL_HISTORY WHERE MEMBER_ID=#{memberId} AND RENTAL_STATUS='대여중'
+  		SELECT * FROM RENTAL_HISTORY WHERE MEMBER_ID=#{memberId} AND RENTAL_STATUS='예약완료'
   	</select>
   	
    	<select id="selectCarImage" parameterType="_int" resultMap="attachmentMap">
