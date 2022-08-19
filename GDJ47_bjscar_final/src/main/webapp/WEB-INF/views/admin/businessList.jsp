@@ -85,11 +85,7 @@
             			<td><c:out value="${b.registrationNumber }"/></td> 
             			<td><c:out value="${b.bmenrollDate }"/></td>            			
             			<td><c:out value="${b.permissionStatus }"/></td>            		
-<<<<<<< HEAD
-            			<td> <input onclick="permission()" type="button" value="승인" class="appro"></button>
-=======
-            			<td> <button onclick="location.href='/ppap.do?asdasdid=${b.bmId }')" type="button" value="승인" class="appro">승인 </button>
->>>>>>> branch 'main' of https://github.com/loJYve/finalproject.git
+            			<td> <button onclick="successId(${b.bmId });" type="button" value="승인" class="appro">승인 </button>
 	                	<button data-user-id ="${b.bmId}" type="button" value="거부" class="deni">거부</button></td>
                 </td>	
             		</tr>
@@ -117,16 +113,15 @@
 			<input type="text" name="keyword" id="keyword_" value=""></input>
 			<input type="button" onclick="getSearchList()" class="btn btn-outline-primary mr-2" value="검색"></input>
 		</form>
-		</div>
 </div>
+	</div>
 </div>        
 
 <script>
-function permission(){
-	location.assign('${path }/permisson.do?bmId=${b.bmId }');
+function successId(id){
+	var el=document.getElementById(id);
+	console.log(el);
 }
-=======
-
 function getSearchList(){
 	$.ajax({
 		type: 'GET',
