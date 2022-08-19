@@ -23,7 +23,7 @@ public class MapController {
 	
 	@RequestMapping("/map/mapRentalshop.do")
 	@ResponseBody
-	public List<Rentalshop> toMap( ModelAndView mv) {
+	public List<Rentalshop> toMap( ModelAndView mv ) {
 		
 		List<Rentalshop> rl = service.searchRentalshop();
 		/*
@@ -48,9 +48,10 @@ public class MapController {
 	@ResponseBody
 	public ModelAndView searchRentalshop(ModelAndView mv) {
 		
-		List<Rentalshop> rl = service.searchRentalshop();
 		
+		List<Rentalshop> rl = service.searchRentalshop();
 		mv.addObject("rl", rl);
+		
 		mv.setViewName("map/searchRentalshop");
 		
 		
@@ -69,10 +70,10 @@ public class MapController {
 		//System.out.println(no);
 		
 		Map param=Map.of("cPage",cPage,"numPerpage",numPerpage);
-		int totalData=service.selectBoardCount();
+		int totalData=service.selectVehicleCount(no);
 		
 		List<Vehicle> v=service.selectRentalshop(param,no);
-		
+		mv.addObject("totalData",totalData);
 		mv.addObject("vl",v);
 		mv.addObject("pageBar",MapPageFactory.getPageBar(totalData, numPerpage, cPage, "/map/showRentalshop.do?no="+no+"&"));
 		mv.setViewName("map/showRentalshop");
@@ -87,12 +88,12 @@ public class MapController {
 		//System.out.println(no);
 		Map param=Map.of("cPage",cPage,"numPerpage",numPerpage,"searchType",searchType,"searchKeyword",searchKeyword, "no",no);
 		
-		int totalData=service.selectBoardCount();
+		int totalData=service.searchVehicleCount(param);
 		
 		List<Vehicle> v=service.searchBar(param);
-		
 		mv.addObject("vl",v);
-		mv.addObject("pageBar",MapPageFactory.getPageBar(totalData, numPerpage, cPage, "/map/searchBar.do?searchType="+searchType+"&searchKeyword"+searchKeyword+"&no"+no));
+		mv.addObject("totalData",totalData);
+		mv.addObject("pageBar",MapPageFactory.getPageBar(totalData, numPerpage, cPage, "/map/searchBar.do?searchType="+searchType+"&searchKeyword="+searchKeyword+"&no="+no+"&"));
 		mv.setViewName("map/showRentalshop");
 		
 		return mv;

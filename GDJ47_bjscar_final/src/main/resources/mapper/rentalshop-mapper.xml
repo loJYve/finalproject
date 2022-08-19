@@ -29,13 +29,27 @@
 		<id column="RENTALSHOP_ID" property="rentalshopId"/>
 		<id column="ATTACHMENT_ID" property="attachmentId"/>
 	</resultMap>
+	<resultMap type="businessman" id="bmMap">
+		<id property="bmId" column="bm_id" />
+		<result property="bmPassword" column="bm_password" />
+		<result property="companyName" column="company_name" />
+		<result property="bmEmail" column="bm_email" />
+		<result property="bmPhone" column="bm_phone" />
+		<result property="companyAddress" column="company_address" />
+		<result property="registrationNumber"
+			column="registration_number" />
+		<result property="bmenrollDate" column="bm_enroll_date" />
+		<result property="permissionStatus" column="permission_status" />
+	</resultMap>
 
 	<select id="selectRentalshopList" parameterType="rentalshop"
 		resultMap="rentalshopMap">
-		SELECT * FROM RENTALSHOP ORDER BY RENTALSHOP_ID DESC
+		SELECT * FROM RENTALSOHP 
 	</select>
+	
+	
 
-	<select id="selectRentalshopCount" resultType="_int">
+	<select id="selectRentalshopCount"  resultType="_int">
 		SELECT COUNT(*)
 		FROM RENTALSHOP
 	</select>
@@ -49,6 +63,7 @@
 		ON RA.ATTACHMENT_ID=A.ATTACHMENT_ID
 		INNER JOIN RENTALSHOP R
 		ON R.RENTALSHOP_ID=RA.RENTALSHOP_ID WHERE R.RENTALSHOP_ID=${no}
+				
 
 
 	</select>
@@ -60,11 +75,11 @@
 
 	</insert>
 
-	<!-- <insert id="insertId" parameterType="rentalshopattachment">
-		
+	 <insert id="rentalshopidInsert" parameterType="rentalshopattachment">
 	
-		INSERT INTO RENTALSHOP_ATTACHMENT VALUES((SELECT MAX(RNETALSHOP_ID) FROM RENTALSHOP ),(SELECT MAX(ATTACHMENT_ID) FROM ATTACHMENT))
-	</insert> -->
+		INSERT INTO RENTALSHOP_ATTACHMENT VALUES((SELECT MAX(RENTALSHOP_ID) FROM RENTALSHOP ),(SELECT MAX(ATTACHMENT_ID) FROM ATTACHMENT))
+		
+	</insert> 
 
 
 
@@ -75,9 +90,9 @@
 
 
 
-	<insert id="insertId" parameterType="_int">
+	<!-- <insert id="insertId" parameterType="_int">
 		INSERT INTO RENTALSHOP_ATTACHMENT
 		VALUES(SEQ_RENTALSHOP_ID.NEXTVAL,SEQ_ATTACHMENT_ID.NEXTVAL)
-	</insert>
+	</insert> -->
 
 </mapper>
