@@ -5,8 +5,8 @@ import java.util.Map;
 
 import com.bjscar.attachment.model.vo.Attachment;
 import com.bjscar.member.model.vo.Member;
-import com.bjscar.mypage.model.vo.PurchaseHistory;
 import com.bjscar.mypage.model.vo.RentalHistory;
+import com.bjscar.rental.model.vo.PurchaseHistory;
 import com.bjscar.rentalshop.model.vo.Rentalshop;
 import com.bjscar.vehicle.model.vo.Vehicle;
 

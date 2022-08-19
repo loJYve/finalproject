@@ -6,6 +6,7 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.bjscar.admin.model.dao.AdminDao;
 import com.bjscar.admin.model.vo.Admin;
@@ -116,16 +117,10 @@ public class AdminServiceImpl implements AdminService {
 		return dao.selectAdmin(session,a);
 	}
 	
-	@Override
-	public int successId(String id) {
-		// TODO Auto-generated method stub
-		return dao.successId(session, id);
-	}
 	
 	@Override
-	public int failed(String id) {
-		// TODO Auto-generated method stub
-		return dao.failed(session, id);
+	public int updateBusinessman(Model m) {
+		return dao.updateBusinessman(session, m);
 	}
 	
 

@@ -64,12 +64,19 @@
 		<result column="MEMBER_ID" property="memberId"/>
 	</resultMap>
 	
-	<resultMap type="purchaseHistory" id="purchaseHistoryMap">
+	<!-- <resultMap type="purchaseHistory" id="purchaseHistoryMap">
 		<id column="PURCHASE_ID" property="purchaseId"/>
 		<result column="BOOKING_DATE" property="bookingDate"/>
 		<result column="MODEL" property="model"/>
 		<result column="RENTAL_STATUS" property="status"/>
 		<result column="PURCHASE_AMOUNT" property="purchaseAmount"/>
+	</resultMap> -->
+	<resultMap type="purchaseHistory" id="purchaseHistoryMap">
+		<id column="PURCHASE_ID" property="purchaseId"/>
+		<result column="PURCHASE_AMOUNT" property="purchaseAmount"/>
+		<result column="ADD_MILEAGE" property="addMileage"/>
+		<result column="USE_MILEAGE" property="useMileage"/>
+		<result column="PURCHASE_METHOD" property="purchaseMethod"/>
 	</resultMap>
 	
   

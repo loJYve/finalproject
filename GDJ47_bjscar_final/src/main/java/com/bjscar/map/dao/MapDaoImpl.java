@@ -27,10 +27,16 @@ public class MapDaoImpl implements MapDao{
 		return session.selectList("map.selectVehicle",no,
 				new RowBounds((offSet-1)*limit,limit));
 	}
-	
-	public int selectBoardCount(SqlSessionTemplate session) {
+	@Override
+	public int selectVehicleCount(int no, SqlSessionTemplate session) {
 		// TODO Auto-generated method stub
-		return session.selectOne("map.selectBoardCount");
+		return session.selectOne("map.selectBoardCount",no);
+	}
+	
+	@Override
+	public int searchVehicleCount(SqlSessionTemplate session,Map param) {
+		// TODO Auto-generated method stub
+		return session.selectOne("map.searchVehicleCount",param);
 	}
 	
 	@Override

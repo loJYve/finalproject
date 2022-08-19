@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
@@ -51,7 +52,7 @@
       
     }
 	
-    #btn-Yes,#btn_login{
+    #btn-Yes,#btn_login,#btn_home{
         border: none;
         width: 25rem;
         margin: auto;
@@ -100,14 +101,47 @@
 		<div class="card-title" style="margin-top:30px;">
 		  <h4 class="mb-3">대여하기</h4>
 		</div>
+		
+		<c:if test="${loginMember == null&&loginMan == null&&loginAdmin == null }">
+			<div class="card-body">
+				<h1 style="text-align: center;">로그인이 필요합니다.</h1>
+				<br><br>
+				<button type="button" id="btn_login" class="btn btn-lg btn-primary btn-block">로그인하기</button>
+			</div>
+		</c:if>
+		
+		<c:if test="${loginMember == null&&loginMan != null||loginAdmin != null }">
+			<div class="card-body">
+				<h1 style="text-align: center;">일반회원 계정에서만 대여할 수 있습니다.</h1>
+				<br><br>
+				<button type="button" id="btn_home" class="btn btn-lg btn-primary btn-block">home으로 가기</button>
+			</div>
+		</c:if>
+		
+		<%-- <c:if test="${loginMember != null||loginMan != null||loginAdmin != null }"> --%>
+		<c:if test="${loginMember != null&&loginMan == null&&loginAdmin == null }">
 		<div class="card-body">
-      <form name="rentalFrm" action="${path }/rentalEnd.do" method="post">
+      <form name="rentalFrm" action="${path }/rental/rentalEnd.do" method="post">
+      	
+      	<%-- <c:if test="${loginMember != null }">
+      	<input type="hidden" id="memberId" name="memberId" value="${loginMember.memberId }" required/>
+      	</c:if>
+      	<c:if test="${loginMan != null }">
+      	<input type="hidden" id="memberId" name="memberId" value="${loginMan.bmId }" required/>
+      	</c:if>
+      	<c:if test="${loginAdmin != null }">
+      	<input type="hidden" id="memberId" name="memberId" value="${loginAdmin.adminId }" required/>
+      	</c:if> --%>
+      
+      	<input type="hidden" id="memberId" name="memberId" value="${loginMember.memberId }" required/>
+      
         <p class="text">대여기간 선택</p>
-        <input type="text" id="rentalDate" name="rentalDate" class="form-control" placeholder="대여일 선택" required/>
+        <input type="text" id="rentalDate" name="rentalDate" class="form-control" placeholder="대여일 선택" required autocomplete='off'/>
         ~
         <input type="text" id="returnDate" name="returnDate" class="form-control" placeholder="반납일" required readonly/>
 		<br><br>
 		<div id="totalRentalPeriod" class="form-control">총 대여기간 : 0일 0시간 0분</div>
+		<input type="hidden" id="totalTime" name="totalTime" class="form-control" required readonly/>
         <br><br>
         
         <p class="text">차량 선택</p>
@@ -127,19 +161,32 @@
 		
 		<p class="text">대여차량</p>
         <input type="hidden" id="vehicleId" name="vehicleId" required/>
+        <input type="hidden" id="price" name="price" required/>
         <input type="text" id="rentalVehicel" name="rentalVehicel" class="form-control" placeholder="대여차량" required readonly/>
         <br><br>
         
         <p class="text">대여지점</p>
-        <input type="text" id="rentalPlace" name="rentalPlace" class="form-control" placeholder="반납일" required readonly/>
+        <input type="text" id="rentalPlace" name="rentalPlace" class="form-control" placeholder="대여지점" required readonly/>
         <br><br>
         
-        <p class="text">반납지점 선택</p>
-        <select id="returnPlace" name="returnPlace" class="form-control" required disabled>
-        	<option value="">반납 대여소 선택</option>
+        <p class="text">반납지점</p>
+        <input type="text" id="returnPlace" name="returnPlace" class="form-control" placeholder="반납지점" required readonly/>
+		<br><br>
+		
+		<p class="text">차량손해면책제도(보험) 선택</p>
+        <select id="insuranceCode" name="insuranceCode" class="form-control" disabled="disabled" required>
+			<option value="">보험 선택</option>
+			<option value="super">슈퍼자차 | 고객부담금 최대 5만원</option>
+			<option value="complete">완전자차 | 고객부담금 최대 10만원</option>
+			<option value="normal">일반자차 | 고객부담금 최대30만원</option>
+			<option value="notselect">선택안함 | 고객부담금 전액</option>
 		</select>
-		<br>
-        
+		<br><br><br>
+		
+		<!-- <div id="purchaseAmount" class="form-control">총 결제금액 : 0원</div> -->
+		<div id="purchaseAmountStr" class="form-control">총 결제금액 : 0원</div>
+		<input type="hidden" id="purchaseAmount" name="purchaseAmount" required/>
+		
         <hr class="mb-4">
           <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" id="aggrement" required>
@@ -154,12 +201,18 @@
         
 		<!-- </div> -->
        </div>
+       </c:if>
        </div>
 	</div>
    </body>
 
 	<script>
 	$(function() {
+		
+		function addComma(value){
+	        value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	        return value; 
+	    }
 		
 		$('#rentalDate').daterangepicker({
 			"autoUpdateInput": false,
@@ -185,8 +238,10 @@
             },
             "drops": "down"
         }, function (start, end, label) {
-            $("#returnDate").attr("value",end.format('YYYY-MM-DD HH:mm'));
-            $("#rentalDate").attr("value",start.format('YYYY-MM-DD HH:mm'));
+            $("#returnDate").attr("value",end.format('YYYY-MM-DD HH:mm:ss'));
+            $("#rentalDate").attr("value",start.format('YYYY-MM-DD HH:mm:ss'));
+            /* $("#returnDate").attr("value",end.format('YYYY-MM-DD'));
+            $("#rentalDate").attr("value",start.format('YYYY-MM-DD')); */
             const endDate = new Date(end.format('YYYY-MM-DD HH:mm'));
             const startDate = new Date(start.format('YYYY-MM-DD HH:mm'));
             const totalTime = (endDate.getTime()-startDate.getTime()) / (1000*60*60);
@@ -195,11 +250,48 @@
             const totalMinute = (totalTime % 24)%1==0.5?"30분":"0분";
             $("#totalRentalPeriod").text("총 대여기간 : "+ totalDay + "일 " + totalHour + "시간 " + totalMinute);
             $("#vehicleGrade").removeAttr("disabled");
+            $("#totalTime").val(totalTime);
         });
 		
 		$("#vehicleGrade").change(e=>{
-			open("${path}/rental/searchVehicleByGrade.do?vehicleGrade="+$("#vehicleGrade").val()+"&numPerpage=10","차량선택","width=800,height=500,left=400,top=200,status=no,toolbar=no,scrollbars=no,titlebar=no,menubar=no,location=no");
-			
+			open("${path}/rental/searchVehicleByGrade.do?vehicleGrade="+$("#vehicleGrade").val()+"&numPerpage=12","차량선택","width=800,height=500,left=400,top=200,status=no,toolbar=no,scrollbars=no,titlebar=no,menubar=no,location=no");
+		})
+		 
+		$("#btn_login").click(e=>{
+			  location.assign('${path}/member/memberPage.do');
+		})
+		$("#btn_home").click(e=>{
+			  location.assign('${path}/');
+		})
+		 
+		$("#insuranceCode").change(e=>{
+			/* console.log($("#insuranceCode").val());
+			console.log($("#totalTime").val());
+			console.log($("#price").val()); */
+			const price = $("#price").val();
+			const totalTime = $("#totalTime").val();
+			if($("#insuranceCode").val()=='super'){
+				/* console.log(price*totalTime+100000); */
+				let purchaseAmount = price*totalTime+100000;
+				$("#purchaseAmount").val(purchaseAmount);
+				let purchaseAmountStr = addComma(String(purchaseAmount));
+				$("#purchaseAmountStr").text("총 결제금액 : "+purchaseAmountStr+"원");
+			}else if($("#insuranceCode").val()=='complete') {
+				let purchaseAmount = price*totalTime+60000;
+				$("#purchaseAmount").val(purchaseAmount);
+				let purchaseAmountStr = addComma(String(purchaseAmount));
+				$("#purchaseAmountStr").text("총 결제금액 : "+purchaseAmountStr+"원");
+			}else if($("#insuranceCode").val()=='normal') {
+				let purchaseAmount = price*totalTime+40000;
+				$("#purchaseAmount").val(purchaseAmount);
+				let purchaseAmountStr = addComma(String(purchaseAmount));
+				$("#purchaseAmountStr").text("총 결제금액 : "+purchaseAmountStr+"원");
+			}else {
+				let purchaseAmount = price*totalTime;
+				$("#purchaseAmount").val(purchaseAmount);
+				let purchaseAmountStr = addComma(String(purchaseAmount));
+				$("#purchaseAmountStr").text("총 결제금액 : "+purchaseAmountStr+"원");
+			}
 		})
 		
 	});
