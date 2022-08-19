@@ -142,10 +142,18 @@ public class AdminDaoImpl implements AdminDao {
 	//permission
 	
 	@Override
-	public int updateBusinessman(SqlSession session,Model m) {
+	public int updateBusinessman(SqlSession session,String bmId) {
 		// TODO Auto-generated method stub
-		return session.selectOne("businessman.successId");
+		return session.update("businessman.successId", bmId);
 	}
+	
+	@Override
+	public int updateBusinessman2(SqlSessionTemplate session, String bmId) {
+		// TODO Auto-generated method stub
+		return session.update("businessman.failed", bmId);
+	}
+	
+	
 	
 
 }

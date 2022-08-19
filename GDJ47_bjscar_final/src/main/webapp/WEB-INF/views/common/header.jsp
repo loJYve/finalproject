@@ -24,8 +24,9 @@
 
         <li><a href="${path }/mypage/faq.do" class="nav-link px-2 link-dark">FAQs</a></li>
 		<li><a href="<%=request.getContextPath()%>/boardList.do" class="nav-link px-2 link-dark">문의사항</a></li>
-
+	<c:if test="${loginAdmin != null }">
         <li><a href="<%=request.getContextPath()%>/admin.do" class="nav-link px-2 link-dark">관리자 페이지</a></li>
+    </c:if>
 	<c:if test="${loginMan != null }">
         <li><a href="<%=request.getContextPath()%>/work/workplace.do?bmId=${loginMan.bmId}" class="nav-link px-2 link-dark">사업장관리</a></li>
        
@@ -36,15 +37,15 @@
 		<li><a href="${path }/map/mapview.do" class="nav-link px-2 link-dark">대여소보기</a></li>
 		<li><a href="${path }/map/searchRentalshop.do" class="nav-link px-2 link-dark">대여소검색</a></li>
 		<li><a href="${path }/suggest.do" class="nav-link px-2 link-dark">경로추천</a></li>
-      </ul>
      <!--  <div class="col-md-3 text-end" style="display:contents;"> -->
      <div> 
       <c:if test="${loginMember == null&&loginMan == null&&loginAdmin == null }">
-				<ul class="login">
+				<li class="login">
 					 <button type="button"  class="btn btn-outline-primary me-2" onclick="location.assign('${path}/member/memberPage.do')">Login</button>
 			        <button type="button" class="btn btn-primary" onclick="location.assign('${path}/member/memberEnroll.do')">Sign-up</button> 
 			       <!--  <button type="button"  class="btn btn-outline-primary onclick="location.assign('${path}/member/memberPage.do')">Login</button>
 			        <button type="button" class="btn btn-outline-primary onclick="location.assign('${path}/member/memberEnroll.do')">Sign-up</button> -->
+				</li>
 				</ul>
 		</c:if> 
 			<c:if test="${loginMember != null }">

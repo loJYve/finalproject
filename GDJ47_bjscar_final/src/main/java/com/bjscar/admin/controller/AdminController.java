@@ -136,16 +136,38 @@ public class AdminController {
  		}
  		
  		@RequestMapping("/permisson.do")
- 		public String permisson(Model m) {
- 			System.out.println("zz");
+ 		public String permisson(Model m, @RequestParam(name="bmId") String bmId) {
+ 			System.out.println(bmId);
  			String msg="";
  			String loc="";
  			try {
- 				service.updateBusinessman(m);
+ 				service.updateBusinessman(bmId);
  				msg="승인완료";	
  				loc="/business.do";
  			}catch(RuntimeException e) {
+ 				e.printStackTrace();
  				msg="승인실패";
+ 				loc="/business.do";
+ 			}
+ 			m.addAttribute("msg",msg);
+ 			m.addAttribute("loc",loc);
+ 			
+ 			
+ 			return "common/msg";
+ 		}
+ 		
+ 		@RequestMapping("/nonpermisson.do")
+ 		public String nonpermisson(Model m, @RequestParam(name="bmId") String bmId) {
+ 			System.out.println(bmId);
+ 			String msg="";
+ 			String loc="";
+ 			try {
+ 				service.updateBusinessman2(bmId);
+ 				msg="승인거부완료";	
+ 				loc="/business.do";
+ 			}catch(RuntimeException e) {
+ 				e.printStackTrace();
+ 				msg="승인거부실패";
  				loc="/business.do";
  			}
  			m.addAttribute("msg",msg);
