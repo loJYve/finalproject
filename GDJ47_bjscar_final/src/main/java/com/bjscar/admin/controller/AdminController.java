@@ -1,5 +1,6 @@
 package com.bjscar.admin.controller;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bjscar.admin.model.service.AdminService;
 import com.bjscar.admin.model.vo.Admin;
+import com.bjscar.attachment.model.vo.Attachment;
 import com.bjscar.businessman.model.vo.Businessman;
 import com.bjscar.common.PageFactory;
 import com.bjscar.member.model.vo.Member;
@@ -54,9 +56,9 @@ public class AdminController {
 			  ModelAndView mv,@RequestParam(name="cPage",defaultValue="1") int cPage, @RequestParam(name="numPerpage",defaultValue="5") int numPerpage) throws Exception { 
 		  Member m = new Member();
 		  Map param=Map.of("cPage",cPage,"numPerpage",numPerpage, "type",type, "keyword",keyword);
-		  List<Member> list=service.getSearchList(param,m);
+		  List<Member> list=service.getSearchList(param);
 		  mv.addObject("members",list);
-		  int totalData=service.selectSearchMemberCount(m);
+		  int totalData=service.selectSearchMemberCount(param);
 		  mv.addObject("totalContents",totalData);
 		  mv.addObject("pageBar",PageFactory.getPageBar(totalData, numPerpage, cPage, "getSearchList?type="+type+"&keyword="+keyword));
 		  mv.setViewName("admin/getSearchList"); 
@@ -131,6 +133,48 @@ public class AdminController {
  			}
  			//session.invalidate();
  			return "redirect:/";
+ 		}
+ 		
+ 		@RequestMapping("/permisson.do")
+ 		public String permisson(Model m, @RequestParam(name="bmId") String bmId) {
+ 			System.out.println(bmId);
+ 			String msg="";
+ 			String loc="";
+ 			try {
+ 				service.updateBusinessman(bmId);
+ 				msg="승인완료";	
+ 				loc="/business.do";
+ 			}catch(RuntimeException e) {
+ 				e.printStackTrace();
+ 				msg="승인실패";
+ 				loc="/business.do";
+ 			}
+ 			m.addAttribute("msg",msg);
+ 			m.addAttribute("loc",loc);
+ 			
+ 			
+ 			return "common/msg";
+ 		}
+ 		
+ 		@RequestMapping("/nonpermisson.do")
+ 		public String nonpermisson(Model m, @RequestParam(name="bmId") String bmId) {
+ 			System.out.println(bmId);
+ 			String msg="";
+ 			String loc="";
+ 			try {
+ 				service.updateBusinessman2(bmId);
+ 				msg="승인거부완료";	
+ 				loc="/business.do";
+ 			}catch(RuntimeException e) {
+ 				e.printStackTrace();
+ 				msg="승인거부실패";
+ 				loc="/business.do";
+ 			}
+ 			m.addAttribute("msg",msg);
+ 			m.addAttribute("loc",loc);
+ 			
+ 			
+ 			return "common/msg";
  		}
  	    
  	    

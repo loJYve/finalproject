@@ -31,33 +31,7 @@
 					</ul>
 				</div>
 			</li>
-			<li class="border-top my-3"></li>
-			<li class="mb-1">
-				<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-				  메뉴
-				</button>
-				<div class="collapse" id="dashboard-collapse" style="">
-					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-						<li><a href="/mypage/" class="link-dark rounded">결제 내역</a></li>
-						<li><a href="/mypage/" class="link-dark rounded">운전면허 등록</a></li>
-						<li><a href="/mypage/" class="link-dark rounded">즐겨찾는 지역</a></li>
-					</ul>
-				</div>
-			</li>
-			<li class="border-top my-3"></li>
-			<li class="mb-1">
-			<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-			  고객 센터
-			</button>
-			<div class="collapse" id="orders-collapse" style="">
-				<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-					<li><a href="/mypage/" class="link-dark rounded">문의게시판</a></li>
-					<li><a href="/mypage/" class="link-dark rounded">1대1 문의</a></li>
-					<li><a href="/mypage/" class="link-dark rounded">자주 묻는 질문</a></li>
-				</ul>
-			 </div>
-			</li>
-			<li class="border-top my-3"></li>
+			
 		</ul>
 	</div>
 </main>	
@@ -85,8 +59,8 @@
             			<td><c:out value="${b.registrationNumber }"/></td> 
             			<td><c:out value="${b.bmenrollDate }"/></td>            			
             			<td><c:out value="${b.permissionStatus }"/></td>            		
-            			<td> <button onclick="location.href='/ppap.do?asdasdid=${b.bmId }')" type="button" value="승인" class="appro">승인 </button>
-	                	<button data-user-id ="${b.bmId}" type="button" value="거부" class="deni">거부</button></td>
+            			<td> <input onclick="location.assign('${path }/permisson.do?bmId=${b.bmId }');" type="button" value="승인" class="appro"></button>
+	                	<input onclick="location.assign('${path }/nonpermisson.do?bmId=${b.bmId }');" type="button" value="거부" class="appro"></button>
                 </td>	
             		</tr>
             	</c:forEach>
@@ -113,12 +87,19 @@
 			<input type="text" name="keyword" id="keyword_" value=""></input>
 			<input type="button" onclick="getSearchList()" class="btn btn-outline-primary mr-2" value="검색"></input>
 		</form>
-		</div>
 </div>
+	</div>
 </div>        
 
 <script>
+<<<<<<< HEAD
+function successId(id){
+	var el=document.getElementById(id);
+	console.log(el);
+}
+=======
 
+>>>>>>> branch 'main' of https://github.com/loJYve/finalproject.git
 function getSearchList(){
 	$.ajax({
 		type: 'GET',

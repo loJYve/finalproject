@@ -22,7 +22,7 @@
 				</button>
 				<div class="collapse " id="home-collapse" style="">
 					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-						<li><a href="${path }/mypage/rentaldata.do?memberId=${loginMember.memberId}" class="link-dark rounded">랜트중인 차량</a></li>
+						<li><a href="${path }/mypage/rentaldata.do?memberId=${loginMember.memberId}" class="link-dark rounded">예약 조회</a></li>
 						<li><a href="${path }/mypage/rentalhistory.do?memberId=${loginMember.memberId}" class="link-dark rounded">이전 예약 조회</a></li>
 					</ul>
 				</div>

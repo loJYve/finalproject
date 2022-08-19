@@ -7,7 +7,7 @@
 <main>
 	<jsp:include page="/WEB-INF/views/mypage/mypageSidebar.jsp"/>
 		<h2>결제 내역</h2>
-		<c:if test="${not empty purchaseHistory }">
+		<c:if test="${not empty purchasehistory }">
 			<table class="table">
 		  		<thead>
 		    		<tr>
@@ -20,19 +20,19 @@
 		  		</thead>
 		  		
 		  		<tbody>
-		  			<c:forEach var="ph" items="${purchaseHistory }">
+		  			<c:forEach var="ph" items="${purchasehistory }">
 			    		<tr>
 							<th scope="row">${ph.purchaseId }</th>
 							<td>${ph.bookingDate }</td>
 							<td>${ph.model }</td>
 							<td>${ph.status }</td>
-							<td>${ph.purchaseAmount }</td>
+							<td>${ph.amount }</td>
 			    		</tr>
 		    		</c:forEach>
 		  		</tbody>
 			</table>
 		</c:if>
-		<c:if test="${empty purchaseHistory }">
+		<c:if test="${empty purchasehistory }">
 			<h3 class="text-center mt-5 mb-5">결제 기록이 없습니다.</h3>
 		</c:if>
 		

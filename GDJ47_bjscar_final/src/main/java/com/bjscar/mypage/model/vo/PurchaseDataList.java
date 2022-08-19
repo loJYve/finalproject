@@ -1,5 +1,6 @@
 package com.bjscar.mypage.model.vo;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 import lombok.AllArgsConstructor;
@@ -9,11 +10,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PurchaseHistory {
+public class PurchaseDataList {
 
 	private int purchaseId;
 	private Date bookingDate;
 	private String model;
 	private String status;
-	private	String purchaseAmount;
+	private int amount;
 }

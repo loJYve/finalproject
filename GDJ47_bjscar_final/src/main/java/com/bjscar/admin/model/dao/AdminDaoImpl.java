@@ -7,6 +7,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
 
 import com.bjscar.admin.model.vo.Admin;
 import com.bjscar.businessman.model.vo.Businessman;
@@ -39,19 +40,19 @@ public class AdminDaoImpl implements AdminDao {
 	}
 	
 	@Override
-	public List<Member> getSearchList(SqlSessionTemplate session, Map param, Member m){
+	public List<Member> getSearchList(SqlSessionTemplate session, Map param){
 		int offSet=(int)param.get("cPage");
 		int limit=(int)param.get("numPerpage");
 		
 //		return session.selectList("member.selectSearchList2",m);
-		return session.selectList("member.selectSearchList2",m,new RowBounds((offSet-1)*limit,limit));
+		return session.selectList("member.selectSearchList2",param,new RowBounds((offSet-1)*limit,limit));
 	}
 	
 
 	@Override
-	public int selectSearchMemberCount(SqlSessionTemplate session, Member m) {
+	public int selectSearchMemberCount(SqlSessionTemplate session, Map param) {
 		// TODO Auto-generated method stub
-		return session.selectOne("member.selectSearchMemberCount",m);
+		return session.selectOne("member.selectSearchMemberCount",param);
 	}
 	
 	
@@ -139,16 +140,20 @@ public class AdminDaoImpl implements AdminDao {
 	}
 	
 	//permission
+	
 	@Override
-	public int successId(SqlSession session, String id) {
+	public int updateBusinessman(SqlSession session,String bmId) {
 		// TODO Auto-generated method stub
-		return session.selectOne("businessman.successId",id);
+		return session.update("businessman.successId", bmId);
 	}
 	
 	@Override
-	public int failed(SqlSession session, String id) {
+	public int updateBusinessman2(SqlSessionTemplate session, String bmId) {
 		// TODO Auto-generated method stub
-		return session.selectOne("businessman.failed",id);
+		return session.update("businessman.failed", bmId);
 	}
+	
+	
+	
 
 }

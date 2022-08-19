@@ -6,6 +6,7 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.bjscar.admin.model.dao.AdminDao;
 import com.bjscar.admin.model.vo.Admin;
@@ -40,15 +41,15 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
-	public List<Member> getSearchList(Map param, Member m){
-		return dao.getSearchList(session, param, m);
+	public List<Member> getSearchList(Map param){
+		return dao.getSearchList(session, param);
 	}
 	
 
 	@Override
-	public int selectSearchMemberCount(Member m) {
+	public int selectSearchMemberCount(Map param) {
 		// TODO Auto-generated method stub
-		return dao.selectSearchMemberCount(session, m);
+		return dao.selectSearchMemberCount(session, param);
 	}
 	
 	
@@ -116,16 +117,16 @@ public class AdminServiceImpl implements AdminService {
 		return dao.selectAdmin(session,a);
 	}
 	
+	
 	@Override
-	public int successId(String id) {
-		// TODO Auto-generated method stub
-		return dao.successId(session, id);
+	public int updateBusinessman(String bmId) {
+		return dao.updateBusinessman(session, bmId);
 	}
 	
 	@Override
-	public int failed(String id) {
+	public int updateBusinessman2(String bmId) {
 		// TODO Auto-generated method stub
-		return dao.failed(session, id);
+		return dao.updateBusinessman2(session, bmId);
 	}
 	
 

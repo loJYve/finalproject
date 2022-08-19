@@ -31,33 +31,7 @@
 					</ul>
 				</div>
 			</li>
-			<li class="border-top my-3"></li>
-			<li class="mb-1">
-				<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-				  메뉴
-				</button>
-				<div class="collapse" id="dashboard-collapse" style="">
-					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-						<li><a href="/mypage/" class="link-dark rounded">결제 내역</a></li>
-						<li><a href="/mypage/" class="link-dark rounded">운전면허 등록</a></li>
-						<li><a href="/mypage/" class="link-dark rounded">즐겨찾는 지역</a></li>
-					</ul>
-				</div>
-			</li>
-			<li class="border-top my-3"></li>
-			<li class="mb-1">
-			<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-			  고객 센터
-			</button>
-			<div class="collapse" id="orders-collapse" style="">
-				<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-					<li><a href="/mypage/" class="link-dark rounded">문의게시판</a></li>
-					<li><a href="/mypage/" class="link-dark rounded">1대1 문의</a></li>
-					<li><a href="/mypage/" class="link-dark rounded">자주 묻는 질문</a></li>
-				</ul>
-			 </div>
-			</li>
-			<li class="border-top my-3"></li>
+			
 		</ul>
 	</div>
 </main>	
@@ -116,18 +90,18 @@
 
 <script>
 function getSearchList(){
-	$.ajax({
+	/* $.ajax({
 		type: 'GET',
 		url : "/getSearchList",
 		data : $("form[name=search-form]").serialize(),
 		success : function(result){
 			console.log(result);
 			//테이블 초기화
-			/* $('#tbl_member > tbody').empty();
-			$('#pageBar').empty(); */
+			$('#tbl_member > tbody').empty();
+			$('#pageBar').empty();
 			$('#tbl_memberDiv').empty();
 			if(result.length>=1){
-				/* result.forEach(function(item){
+				result.forEach(function(item){
 					str='<tr>'
 					str += "<td>"+item.memberId+"</td>";
 					str+="<td>"+item.memberName+"</td>";
@@ -142,12 +116,13 @@ function getSearchList(){
 					str+="</tr>"
 					$('#tbl_member').append(str);   
 					})
-					*/
-        		/* $('#pageBar').append("${result.pageBar2}"); */
+					
+        		$('#pageBar').append("${result.pageBar2}");
 					$('#tbl_memberDiv').append(result);
 			}
 		}
-	})
+	}) */	
+	location.assign("${path}/getSearchList?type="+$("#type_").val()+"&keyword="+$("#keyword_").val());
 }
 
 /* const getSearchList=()=>{

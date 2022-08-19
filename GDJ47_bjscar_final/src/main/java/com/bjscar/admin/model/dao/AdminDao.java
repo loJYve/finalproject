@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.ui.Model;
 
 import com.bjscar.admin.model.vo.Admin;
 import com.bjscar.businessman.model.vo.Businessman;
@@ -18,9 +19,9 @@ public interface AdminDao {
 	
 	int selectMemberCount(SqlSessionTemplate session);
 
-	List<Member> getSearchList(SqlSessionTemplate session, Map param, Member m);
+	List<Member> getSearchList(SqlSessionTemplate session, Map param);
 
-	int selectSearchMemberCount(SqlSessionTemplate session, Member m);
+	int selectSearchMemberCount(SqlSessionTemplate session, Map param);
 	
 	//businessman
 	List<Businessman> selectBusinessmanList(SqlSessionTemplate session);
@@ -49,8 +50,10 @@ public interface AdminDao {
 	
 	//permission
 	
-	int successId(SqlSession session,String id);
+	int updateBusinessman(SqlSession session, String bmId);
+
+	int updateBusinessman2(SqlSessionTemplate session, String bmId);
 	
-	int failed(SqlSession session,String id);
+	
 	
 }

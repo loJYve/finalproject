@@ -2,20 +2,14 @@ package com.bjscar.mypage.controller;
 
 import java.util.Map;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bjscar.common.PageFactory;
-import com.bjscar.member.model.vo.Member;
 import com.bjscar.mypage.model.service.MypageService;
 import com.bjscar.mypage.model.vo.RentalHistory;
 
@@ -30,13 +24,16 @@ public class MypageController {
 	
 	@RequestMapping("/rentaldata.do")
 	public ModelAndView rentalData(@RequestParam String memberId, ModelAndView mv) {
-		mv.addObject("rentalStatus", service.selectRentalData(memberId));
+		//mv.addObject("rentalStatus", service.selectRentalData(memberId));
 		
 		try {
-			RentalHistory rh=service.selectRentalData(memberId);
-			 mv.addObject("carImage", service.selectCarImage(rh.getVehicleId()));
-			 mv.addObject("carData", service.selectCarData(rh.getVehicleId()));
-			 mv.addObject("rentalshopData", service.selectRentalshopData(rh.getVehicleId()));
+			/*
+			 * RentalHistory rh=service.selectRentalData(memberId); 
+			 * mv.addObject("carImage",service.selectCarImage(rh.getVehicleId())); 
+			 * mv.addObject("carData",service.selectCarData(rh.getVehicleId()));
+			 * mv.addObject("rentalshopData",service.selectRentalshopData(rh.getVehicleId()));
+			 */
+			mv.addObject("rentalDataList", service.selectRentalDataList(memberId));
 		} catch (NullPointerException e) {
 			
 		}
@@ -54,7 +51,7 @@ public class MypageController {
 		mv.addObject("rentalHistory", service.selectrentalHistory(param));
 		
 		int totalData=service.selectRHCount(memberId);
-		mv.addObject("pageBar",PageFactory.getPageBar(totalData, numPerpage, cPage, "rentalhistory.do"));
+		mv.addObject("pageBar",PageFactory.getPageBar(totalData, numPerpage, cPage, "rentalhistory.do?memberId="+memberId));
 		
 		mv.setViewName("/mypage/rentalHistory");
 		
@@ -66,9 +63,9 @@ public class MypageController {
 			@RequestParam(name="numPerpage",defaultValue="5")int numPerpage, @RequestParam String memberId, ModelAndView mv) {
 		Map param=Map.of("cPage",cPage,"numPerpage",numPerpage,"memberId",memberId);	
 		mv.addObject("purchasehistory", service.selectPurchaseHistory(param));
-		
+		System.out.println(service.selectPurchaseHistory(param));
 		int totalData=service.selectPHCount(memberId);
-		mv.addObject("pageBar",PageFactory.getPageBar(totalData, numPerpage, cPage, "purchasehistory.do"));
+		mv.addObject("pageBar",PageFactory.getPageBar(totalData, numPerpage, cPage, "purchasehistory.do?memberId="+memberId));
 		
 		mv.setViewName("/mypage/purchaseHistory");
 		return mv;
@@ -118,8 +115,6 @@ public class MypageController {
 	
 	@RequestMapping("/updateMember.do")
 	public ModelAndView updateMember(@RequestParam String memberId, ModelAndView mv) {
-		
-		
 		
 		mv.addObject("msg", "정보 수정 완료");
 		mv.addObject("loc", "/");
