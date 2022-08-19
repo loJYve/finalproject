@@ -53,13 +53,13 @@
 		BUSINESSMAN WHERE ${type} LIKE '%'||#{keyword}||'%'
 	</select>
 	
-	<update id="successId" parameterType="businessman">
+	<update id="successId" parameterType="string">
       UPDATE BUSINESSMAN
       SET PERMISSION_STATUS='승인완료'
       WHERE BM_ID = #{bmId}
    </update>
    <!-- 가입 승인 -->
-   <update id="failed">
+   <update id="failed" parameterType="string">
       UPDATE BUSINESSMAN
       SET PERMISSION_STATUS='승인거부'
       WHERE BM_ID = #{bmId}
