@@ -50,7 +50,9 @@ public interface AdminDao {
 	
 	//permission
 	
-	int updateBusinessman(SqlSession session, Model m);
+	int updateBusinessman(SqlSession session, String bmId);
+
+	int updateBusinessman2(SqlSessionTemplate session, String bmId);
 	
 	
 	

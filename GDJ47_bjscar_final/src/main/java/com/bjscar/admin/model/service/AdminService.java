@@ -47,7 +47,9 @@ public interface AdminService {
 	Admin selectAdmin(Admin a);
 	
 
-	int updateBusinessman(Model m);
+	int updateBusinessman(String bmId);
+	
+	int updateBusinessman2(String bmId);
 	
 	
 }
