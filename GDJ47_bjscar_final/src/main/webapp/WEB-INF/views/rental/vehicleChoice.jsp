@@ -44,7 +44,12 @@
             			<td><label for="${v.vehicleId }"><c:out value="${v.price }"/></label></td>
             		</tr> --%>
             		<tr class="choVehicleTr">
-            			<td><input type="radio" id="${v.vehicleId }" name="choVehicle" value="${v.vehicleId },${v.model }(${v.fuel }),${v.rentalShop.rentalshopAddr },${v.price }" style="cursor:pointer"></td>
+            			<c:if test="${v.rentalStatus == '대여가능'}">
+            				<td><input type="radio" id="${v.vehicleId }" name="choVehicle" value="${v.vehicleId },${v.model }(${v.fuel }),${v.rentalShop.rentalshopAddr },${v.price }" style="cursor:pointer"></td>
+            			</c:if>
+            			<c:if test="${v.rentalStatus == '대여불가능'}">
+            				<td><input type="radio" id="${v.vehicleId }" name="choVehicle" value="${v.vehicleId },${v.model }(${v.fuel }),${v.rentalShop.rentalshopAddr },${v.price }" style="cursor:pointer" disabled></td>
+            			</c:if>
             			<td><c:out value="${v.rentalStatus }"/></td>
             			<td><c:out value="${v.model }"/></td> 
             			<td><c:out value="${v.rentalShop.rentalshopAddr }"/></td> 
