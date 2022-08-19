@@ -104,7 +104,12 @@
 		<div class="card-body">
       <form name="purchaseFrm" action="${path }/rental/purchase.do" method="post">
       
-      	<input type="hidden" id="rentalHistory" name="rentalHistory" value="${rentalHistory }" required/>
+      	<%-- <input type="hidden" id="rentalHistory" name="rentalHistory" value="${rentalHistory }" required/> --%>
+      	<input type="hidden" id="rentalDate" name="rentalDate" value="${rentalHistory.rentalDate }" required/>
+      	<input type="hidden" id="returnDate" name="returnDate" value="${rentalHistory.returnDate }" required/>
+      	<input type="hidden" id="vehicleId" name="vehicleId" value="${rentalHistory.vehicleId }" required/>
+      	<input type="hidden" id="memberId" name="memberId" value="${rentalHistory.memberId }" required/>
+      	<input type="hidden" id="insuranceCode" name="insuranceCode" value="${rentalHistory.insuranceCode }" required/>
 		
 		<p class="text">마일리지 (* 천원 단위로 사용가능)</p>
 		<div id="totalMileageStr" class="form-control">
@@ -200,6 +205,10 @@
 			/* console.log(val); */
 			/* Math.floor(121.123) / 10) * 10; */
 			$("#useMileage").val((Math.floor(val)/1000)*1000);
+			const purchaseAmount = $("#beforeMileage").val() - ((Math.floor(val)/1000)*1000);
+			const purchaseAmountStr = addComma(String(purchaseAmount));
+			$("#purchaseAmountStr").text("총 결제금액 : "+purchaseAmountStr+"원");
+			$("#purchaseAmount").val(purchaseAmount);
 		})
 		
 	});
