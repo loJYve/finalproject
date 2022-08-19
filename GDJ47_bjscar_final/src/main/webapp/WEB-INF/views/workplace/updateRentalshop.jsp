@@ -60,15 +60,17 @@
 </head>
 <body style="text-align: center">
 
-	<form action="${path }/UpdateEndRentalshop.do" method="get" enctype="multipart/form-data">
+	<form action="${path }/work/updateEndRentalshop.do" method="get" enctype="multipart/form-data">
+	
 		<table class="tg"
 			style="margin-left: auto; margin-right: auto; background-color: #ffffc7;">
 			<h2>개인 사업장관리</h2>
+			
 			<thead>
 
 				<tr>
 					<th class="tg-af47" colspan="10">사업장이름 :<input type="text"
-						value="${rentalshop.rentalshopName }" readonly
+						value="${rentalshop.rentalshopName }" name="rentalshopName"
 						style="background-color: #ffffc7;" /></th>
 				</tr>
 			</thead>
@@ -77,6 +79,7 @@
 					<td class="tg-af47" colspan="5">대여소일련번호</td>
 					<td class="tg-n9g5" colspan="5"><input type="text"
 						value="${rentalshop.rentalshopId }" readonly
+						name="rentalshopId"
 						style="background-color: #ffffc7;" /></td>
 				</tr>
 				<tr>
@@ -95,7 +98,11 @@
 						style="background-color: #ffffc7;" /></td>
 				</tr>
 
-				
+				<tr>
+					<th class="tg-af47" colspan="10">사업자이름 :<input type="text"
+						value="${rentalshop.bmMember }" name="bmId"
+						style="background-color: #ffffc7;" /></th>
+				</tr>
 
 				<c:if test="${not empty rentalshop.files }">
 					<c:forEach items="${ rentalshop.files}" var="a">
@@ -108,7 +115,7 @@
 						<tr>
 					<td class="tg-n9g5" colspan="10"><p><img src="/resources/upload/rentalshopImg/${a.renamedFilename }" alt="이미지"/><p></td>
 				</tr>
-								
+							
 							
 					</c:forEach>
 
@@ -116,6 +123,9 @@
 			</tbody>
 			
 		</table>
+		
+		
+		<input type="submit" class="btn btn-outline-success" value="수정"/>
 	</form>
 </body>
 </html>

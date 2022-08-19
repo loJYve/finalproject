@@ -15,21 +15,10 @@
 				<div class="collapse " id="home-collapse" style="">
 					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 						<li><a href="/work/insertRentalshop.do" class="link-dark rounded" >사업장 만들기</a></li>
-						<li><a href="/work/updateRentalshop.do?no=${rentalshop.rentalshopId }" class="link-dark rounded">사업장 내용수정</a></li>
+						
 					</ul>
 				</div>
 			</li>
-			<li class="border-top my-3"></li>
-			<li class="mb-1">
-				<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-				  메뉴
-				</button>
-				<div class="collapse" id="dashboard-collapse" style="">
-					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-						<li><a href="/mypage/purchasehistory.do?memberId=${loginMember.memberId}" class="link-dark rounded">결제 내역</a></li>
-						<li><a href="/mypage/enrolllisence.do?memberId=${loginMember.memberId}" class="link-dark rounded">운전면허 등록</a></li>
-					</ul>
-				</div>
 			</li>
 			<li class="border-top my-3"></li>
 			<li class="mb-1">

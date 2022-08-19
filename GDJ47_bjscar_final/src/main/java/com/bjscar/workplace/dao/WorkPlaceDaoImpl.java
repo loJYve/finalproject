@@ -9,10 +9,31 @@ import org.springframework.stereotype.Repository;
 
 import com.bjscar.attachment.model.vo.Attachment;
 import com.bjscar.rentalshop.model.vo.Rentalshop;
-import com.bjscar.rentalshop.model.vo.RentalshopAttachment;
+import com.bjscar.vehicle.model.vo.Vehicle;
 @Repository
 public class WorkPlaceDaoImpl implements WorkPlaceDao{
 
+	@Override
+	public List<Vehicle> selectRentalshopCar(SqlSessionTemplate session,int rentalshopId){
+		return session.selectList("vehicle.selectRentalshopCar",rentalshopId);
+	}
+	
+	@Override
+	public int selectRentalshopCarCount(SqlSessionTemplate session,int rentalshopId) {
+		// TODO Auto-generated method stub
+		return session.selectOne("rentalshop.selectRentalshopCarCount",rentalshopId);
+	}
+	
+	@Override
+	public List<Vehicle> selectRentalshopCarListPage(SqlSessionTemplate session, Map param) {
+		// TODO Auto-generated method stub
+		int offSet=(int)param.get("cPage");
+		int limit=(int)param.get("numPerpage");
+		
+		return session.selectList("rentalshop.selectRentalshopCarList",param,new RowBounds((offSet-1)*limit,limit));
+	}
+	
+	//---------------------------------------------------------------
 	@Override
 	public List<Rentalshop> selectRentalshop(SqlSessionTemplate session,String memberId) {
 		// TODO Auto-generated method stub
@@ -70,8 +91,10 @@ public class WorkPlaceDaoImpl implements WorkPlaceDao{
 
 
 	@Override
-	public int updateRentalshopEnd(SqlSessionTemplate session,int no) {
-		return session.update("rentalshop.updateEndRentalshop",no);
+	public int updateRentalshopEnd(SqlSessionTemplate session, Map param) {
+
+		
+		return session.update("rentalshop.updateEndRentalshop",param);
 	}
 	
 }

@@ -64,7 +64,8 @@
 <jsp:include page="/WEB-INF/views/workplace/mypageSidebar.jsp"/>
 <div style="display: flex; text-align: center;" >
 <!-- style="text-align: center" -->
-	<form action="${path }/alterworplace.do" method="get" enctype="multipart/form-data">
+	<div>
+	
 		<table class="tg"
 			style="margin-left: auto; margin-right: auto; background-color: #ffffc7;">
 			<h2>개인 사업장관리</h2>
@@ -120,7 +121,13 @@
 			</tbody>
 			
 		</table>
-	</form>
+		
+	<button	class="btn btn-success" onclick=" location.assign('${path}/work/updateRentalshop.do?no=${rentalshop.rentalshopId }')">수정</button>
+		<button	class="btn btn-success" onclick=" location.assign('${path}/car/carview.do?rentalshopId=${rentalshop.rentalshopId }')">자동차관리</button>
+		<%-- </form><form action="/work/updateRentalshop.do?no=${rentalshop.rentalshopId }"> --%>
+			<%-- <li><a href="/work/updateRentalshop.do?no=${rentalshop.rentalshopId }" class="link-dark rounded">사업장 내용수정</a></li> --%>
+			
+	</div>
 	</div>
 	</main>
 

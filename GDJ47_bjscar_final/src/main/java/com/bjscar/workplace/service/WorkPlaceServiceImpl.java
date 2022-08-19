@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.bjscar.attachment.model.vo.Attachment;
 import com.bjscar.rentalshop.model.vo.Rentalshop;
+import com.bjscar.vehicle.model.vo.Vehicle;
 import com.bjscar.workplace.dao.WorkPlaceDao;
 @Service
 public class WorkPlaceServiceImpl implements WorkPlaceService {
@@ -20,6 +21,28 @@ public class WorkPlaceServiceImpl implements WorkPlaceService {
 	@Autowired
 	private SqlSessionTemplate session;
 	
+	
+	
+	@Override
+	public List<Vehicle> selectRentalshopCar(int rentalshopId){
+		return dao.selectRentalshopCar(session, rentalshopId);
+	}
+	
+	@Override
+	public int selectRentalshopCarCount(int rentalshopId) {
+		// TODO Auto-generated method stub
+		return dao.selectRentalshopCarCount(session,rentalshopId);
+	}
+	
+	@Override
+	public List<Vehicle> selectRentalshopCarListPage(Map param) {
+		// TODO Auto-generated method stub
+		
+		return dao.selectRentalshopCarListPage(session, param);
+	}
+	
+	
+	//---------------------------------------------------------
 	@Override
 	public List<Rentalshop> selectRentalshop(String bmId) {
 		// TODO Auto-generated method stub
@@ -82,8 +105,10 @@ public class WorkPlaceServiceImpl implements WorkPlaceService {
 	}
 	
 	@Override
-	public int updateRentalshopEnd(int no) {
-		return dao.updateRentalshopEnd(session, no);
+	public int updateRentalshopEnd(Map param) {
+		
+		
+		return dao.updateRentalshopEnd(session, param);
 	}
 
 }
