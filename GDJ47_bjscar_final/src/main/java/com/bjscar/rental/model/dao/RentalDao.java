@@ -23,4 +23,6 @@ public interface RentalDao {
 
 	int insertRentalPurchaseHistory(SqlSessionTemplate session, Map param);
 
+	int updateMember(SqlSessionTemplate session, Map paramM);
+
 }

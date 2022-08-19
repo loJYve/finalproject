@@ -51,4 +51,9 @@ public class RentalServiceImpl implements RentalService{
 		return dao.insertRentalPurchaseHistory(session, param);
 	}
 
+	@Override
+	public int updateMember(Map paramM) {
+		return dao.updateMember(session, paramM);
+	}
+
 }

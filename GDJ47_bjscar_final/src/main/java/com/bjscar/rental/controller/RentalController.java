@@ -90,11 +90,13 @@ public class RentalController {
 			int resultV = service.updateVehicle(rh.getVehicleId());
 			Map param=Map.of("rentalId",rh.getRentalId(), "purchaseId",ph.getPurchaseId());
 			int resultRPH = service.insertRentalPurchaseHistory(param);
+			Map paramM=Map.of("memberId",rh.getMemberId(), "purchaseId",ph.getPurchaseId(),"useMileage",ph.getUseMileage());
+			int resultM = service.updateMember(paramM);
 			
 			mv.addObject("msg", "결제완료!");
 			mv.addObject("loc", "/");
 		} catch (Exception e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 			mv.addObject("msg", "결제실패!");
 			mv.addObject("loc", "/rental/rental.do");
 			
@@ -102,6 +104,11 @@ public class RentalController {
 		}
 		
 		mv.setViewName("common/msg");
+		return mv;
+	}
+	
+	@RequestMapping("/returnEnd.do")
+	public ModelAndView returnEnd(ModelAndView mv) {
 		return mv;
 	}
 
