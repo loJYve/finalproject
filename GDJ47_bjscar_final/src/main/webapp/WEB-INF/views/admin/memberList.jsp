@@ -90,18 +90,18 @@
 
 <script>
 function getSearchList(){
-	$.ajax({
+	/* $.ajax({
 		type: 'GET',
 		url : "/getSearchList",
 		data : $("form[name=search-form]").serialize(),
 		success : function(result){
 			console.log(result);
 			//테이블 초기화
-			/* $('#tbl_member > tbody').empty();
-			$('#pageBar').empty(); */
+			$('#tbl_member > tbody').empty();
+			$('#pageBar').empty();
 			$('#tbl_memberDiv').empty();
 			if(result.length>=1){
-				/* result.forEach(function(item){
+				result.forEach(function(item){
 					str='<tr>'
 					str += "<td>"+item.memberId+"</td>";
 					str+="<td>"+item.memberName+"</td>";
@@ -116,12 +116,13 @@ function getSearchList(){
 					str+="</tr>"
 					$('#tbl_member').append(str);   
 					})
-					*/
-        		/* $('#pageBar').append("${result.pageBar2}"); */
+					
+        		$('#pageBar').append("${result.pageBar2}");
 					$('#tbl_memberDiv').append(result);
 			}
 		}
-	})
+	}) */	
+	location.assign("${path}/getSearchList?type="+$("#type_").val()+"&keyword="+$("#keyword_").val());
 }
 
 /* const getSearchList=()=>{
