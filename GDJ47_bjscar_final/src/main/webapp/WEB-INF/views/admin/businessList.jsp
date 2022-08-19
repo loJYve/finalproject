@@ -87,12 +87,19 @@
 			<input type="text" name="keyword" id="keyword_" value=""></input>
 			<input type="button" onclick="getSearchList()" class="btn btn-outline-primary mr-2" value="검색"></input>
 		</form>
-		</div>
 </div>
+	</div>
 </div>        
 
 <script>
+<<<<<<< HEAD
+function successId(id){
+	var el=document.getElementById(id);
+	console.log(el);
+}
+=======
 
+>>>>>>> branch 'main' of https://github.com/loJYve/finalproject.git
 function getSearchList(){
 	$.ajax({
 		type: 'GET',
