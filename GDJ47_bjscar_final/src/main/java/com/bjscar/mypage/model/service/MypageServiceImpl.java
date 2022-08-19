@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.bjscar.attachment.model.vo.Attachment;
 import com.bjscar.member.model.vo.Member;
 import com.bjscar.mypage.model.dao.MypageDao;
+import com.bjscar.mypage.model.vo.PurchaseDataList;
+import com.bjscar.mypage.model.vo.RentalDataList;
 import com.bjscar.mypage.model.vo.RentalHistory;
 import com.bjscar.rental.model.vo.PurchaseHistory;
 import com.bjscar.rentalshop.model.vo.Rentalshop;
@@ -24,24 +26,23 @@ public class MypageServiceImpl implements MypageService {
 	@Autowired
 	private MypageDao dao;
 	
-	@Override
-	public RentalHistory selectRentalData(String memberId) {
-		return dao.selectRentalData(session, memberId);
-	}
-
-	@Override
-	public Attachment selectCarImage(int vehicleId) {
-		return dao.selectCarImage(session, vehicleId);
-	}
+	/*
+	 * @Override public RentalHistory selectRentalData(String memberId) { return
+	 * dao.selectRentalData(session, memberId); }
+	 * 
+	 * @Override public Attachment selectCarImage(int vehicleId) { return
+	 * dao.selectCarImage(session, vehicleId); }
+	 * 
+	 * @Override public Vehicle selectCarData(int vehicleId) { return
+	 * dao.selectCarData(session, vehicleId); }
+	 * 
+	 * @Override public Rentalshop selectRentalshopData(int vehicleId) { return
+	 * dao.selectRentalshopData(session, vehicleId); }
+	 */
 	
 	@Override
-	public Vehicle selectCarData(int vehicleId) {
-		return dao.selectCarData(session, vehicleId);
-	}
-	
-	@Override
-	public Rentalshop selectRentalshopData(int vehicleId) {
-		return dao.selectRentalshopData(session, vehicleId);
+	public List<RentalDataList> selectRentalDataList(String memberId) {
+		return dao.selectRentalDataList(session, memberId);
 	}
 	
 	@Override
@@ -59,7 +60,7 @@ public class MypageServiceImpl implements MypageService {
 		dao.memSecessionEnd(session, param);
 	}
 	@Override
-	public List<PurchaseHistory> selectPurchaseHistory(Map param) {
+	public List<PurchaseDataList> selectPurchaseHistory(Map param) {
 		return dao.selectPurchaseHistory(session, param);
 	}
 	

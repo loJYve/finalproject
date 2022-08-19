@@ -13,5 +13,6 @@ public interface MapService {
 	List<Vehicle> selectRentalshop(Map param, int no);	
 	List<Vehicle> searchBar(Map param);
 	int searchVehicleCount(Map param);
-	
+	List<Vehicle> searchSearchRentalShop(Map param);
+	int searchSearchRentalShopCount(Map param);
 }

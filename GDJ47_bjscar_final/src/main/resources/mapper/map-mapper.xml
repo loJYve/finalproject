@@ -49,6 +49,12 @@
 		<!-- SELECT COUNT(*) FROM VEHICLE v WHERE ${searchType} LIKE '%'||#{searchKeyword}||'%' and RENTALSHOP_ID=#{no} AND rental_Status LIKE '대여가능' -->
 		SELECT COUNT(*) FROM VEHICLE v JOIN RENTALSHOP USING(RENTALSHOP_ID) WHERE ${searchType} like '%'||#{searchKeyword}||'%' AND RENTALSHOP_ID=#{no} AND rental_Status LIKE '대여가능'
 	</select>
-	
+
+	<select id="searchSearchRentalShop" parameterType="map" resultMap="vehicleMap">
+		SELECT * FROM VEHICLE v JOIN RENTALSHOP USING(RENTALSHOP_ID) WHERE ${searchType} like '%'||#{searchKeyword}||'%' AND rental_Status LIKE '대여가능' ORDER BY RENTALSHOP_NAME
+	</select>
+	<select id="searchSearchRentalShopCount" parameterType="map" resultType="_int">
+		SELECT COUNT(*) FROM VEHICLE v JOIN RENTALSHOP USING(RENTALSHOP_ID) WHERE ${searchType} like '%'||#{searchKeyword}||'%' AND rental_Status LIKE '대여가능'
+	</select>
 
 </mapper>

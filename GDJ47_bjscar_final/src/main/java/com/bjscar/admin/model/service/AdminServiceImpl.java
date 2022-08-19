@@ -41,15 +41,15 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
-	public List<Member> getSearchList(Map param, Member m){
-		return dao.getSearchList(session, param, m);
+	public List<Member> getSearchList(Map param){
+		return dao.getSearchList(session, param);
 	}
 	
 
 	@Override
-	public int selectSearchMemberCount(Member m) {
+	public int selectSearchMemberCount(Map param) {
 		// TODO Auto-generated method stub
-		return dao.selectSearchMemberCount(session, m);
+		return dao.selectSearchMemberCount(session, param);
 	}
 	
 	
@@ -119,8 +119,14 @@ public class AdminServiceImpl implements AdminService {
 	
 	
 	@Override
-	public int updateBusinessman(Model m) {
-		return dao.updateBusinessman(session, m);
+	public int updateBusinessman(String bmId) {
+		return dao.updateBusinessman(session, bmId);
+	}
+	
+	@Override
+	public int updateBusinessman2(String bmId) {
+		// TODO Auto-generated method stub
+		return dao.updateBusinessman2(session, bmId);
 	}
 	
 

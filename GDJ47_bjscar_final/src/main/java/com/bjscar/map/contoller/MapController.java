@@ -50,6 +50,7 @@ public class MapController {
 		
 		
 		List<Rentalshop> rl = service.searchRentalshop();
+		
 		mv.addObject("rl", rl);
 		
 		mv.setViewName("map/searchRentalshop");
@@ -66,7 +67,7 @@ public class MapController {
 	@RequestMapping("/map/showRentalshop.do")
 	@ResponseBody
 	public ModelAndView showRentalshop(@RequestParam(defaultValue="1") int cPage,@RequestParam(name="numPerpage",
-			defaultValue="5") int numPerpage,ModelAndView mv,int no){
+			defaultValue="10") int numPerpage,ModelAndView mv,int no){
 		//System.out.println(no);
 		
 		Map param=Map.of("cPage",cPage,"numPerpage",numPerpage);
@@ -84,7 +85,7 @@ public class MapController {
 	@RequestMapping("/map/searchBar.do")
 	@ResponseBody
 	public ModelAndView searchBar(@RequestParam(defaultValue="1") int cPage,@RequestParam(name="numPerpage",
-			defaultValue="5") int numPerpage,ModelAndView mv,String searchKeyword, String searchType, int no){
+			defaultValue="10") int numPerpage,ModelAndView mv,String searchKeyword, String searchType, int no){
 		//System.out.println(no);
 		Map param=Map.of("cPage",cPage,"numPerpage",numPerpage,"searchType",searchType,"searchKeyword",searchKeyword, "no",no);
 		
@@ -99,6 +100,24 @@ public class MapController {
 		return mv;
 	}
 	
+	@RequestMapping("/map/searchSearchRentalShop.do")
+	@ResponseBody
+	public ModelAndView searchSearchRentalShop(@RequestParam(defaultValue="1") int cPage,@RequestParam(name="numPerpage",
+			defaultValue="10") int numPerpage,ModelAndView mv,String searchKeyword, String searchType){
+		//System.out.println(no);
+		searchKeyword=searchKeyword.toUpperCase();
+		Map param=Map.of("cPage",cPage,"numPerpage",numPerpage,"searchType",searchType,"searchKeyword",searchKeyword);
+		int totalData=service.searchSearchRentalShopCount(param);
+		List<Vehicle> vl=service.searchSearchRentalShop(param);
+		
+		mv.addObject("vl",vl);
+		mv.addObject("totalData",totalData);
+		mv.addObject("pageBar",MapPageFactory.getPageBar(totalData, numPerpage, cPage, "/map/searchSearchRentalShop.do?searchType="+searchType+"&searchKeyword="+searchKeyword+"&"));
+		
+		mv.setViewName("map/showWholeVehicle");
+		
+		return mv;
+	}
 	
 
 }

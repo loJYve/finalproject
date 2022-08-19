@@ -17,9 +17,9 @@ public interface AdminService {
 	
 	int selectMemberCount();
 	
-	List<Member> getSearchList(Map param, Member m);
+	List<Member> getSearchList(Map param);
 	
-	int selectSearchMemberCount(Member m);
+	int selectSearchMemberCount(Map param);
 	
 	//businessman
 	List<Businessman> selectBusinessmanList();
@@ -47,7 +47,9 @@ public interface AdminService {
 	Admin selectAdmin(Admin a);
 	
 
-	int updateBusinessman(Model m);
+	int updateBusinessman(String bmId);
+	
+	int updateBusinessman2(String bmId);
 	
 	
 }
