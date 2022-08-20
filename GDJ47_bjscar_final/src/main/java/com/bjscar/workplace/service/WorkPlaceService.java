@@ -14,7 +14,7 @@ public interface WorkPlaceService {
 
 	int selectRentalshopCarCount(int rentalshopId);
 
-
+	int insertRentalshopCar(Vehicle v);
 	
 	//-----------------------------------------------------------------------------------------
 	List<Rentalshop> selectRentalshop(String bmId);

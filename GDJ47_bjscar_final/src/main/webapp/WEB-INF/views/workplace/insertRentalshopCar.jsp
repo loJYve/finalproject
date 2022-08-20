@@ -56,41 +56,53 @@
 </style>
 </head>
 <body style="text-align:center;">
-<form action="${path }/insertworkplaceEnd.do" method="post" enctype="multipart/form-data">
+<form action="${path }/insertworkplaceCarEnd.do" method="post" enctype="multipart/form-data">
 		<table class="tg" style="margin-left: auto; margin-right: auto; background-color: #ffffc7;">
 			<h2>사업장 자동차등록</h2>
 			<thead>
 				
 					<tr>
-						<th class="tg-af47" colspan="10">사업장이름 :<input type="text"
-							 name="rentalshopName" style="background-color: #ffffc7;"/></th>
+					<th class="tg-n9g5" colspan="10">사업장 일련번호 : <input type="text" name="rentalshopId" style="background-color: #ffffc7;"/></th>
+						
 					</tr>
 			</thead>
 			<tbody>
 			<tr>
-					<td class="tg-n9g5" colspan="10">대여소번호 : <input type="text"
-						value="${rentalshops.rentalshopId }" style="background-color: #ffffc7;"/></td>
+					
 				</tr>
-				
+				<td class="tg-af47" colspan="10">차종 :<input type="text"
+							 name="model" style="background-color: #ffffc7;"/></td>
 				<tr>
-					<td class="tg-n9g5" colspan="10">대여소주소 : <input type="text"
-						name="rentalshopAddr" style="background-color: #ffffc7;"/></td>
-				</tr>
-				<tr>
-					<td class="tg-n9g5" colspan="10">위도 : <input type="text"
-						name="latitude" style="background-color: #ffffc7;"/></td>
+					<td class="tg-n9g5" colspan="10">번호판 : <input type="text"
+						name="numberPlate" style="background-color: #ffffc7;"/></td>
 				</tr>
 				<tr>
-					<td class="tg-n9g5" colspan="10">경도 : <input type="text"
-					name="longitude"	style="background-color: #ffffc7;"/></td>
+					<td class="tg-n9g5" colspan="10">연식 : <input type="text"
+						name="productYear" style="background-color: #ffffc7;"/></td>
 				</tr>
 				<tr>
-					<td class="tg-n9g5" colspan="10">사업장 이미지</td>
+					<td class="tg-n9g5" colspan="10">사고상태 : <input type="text"
+					name="accidentStatus"	style="background-color: #ffffc7;"/></td>
 				</tr>
 				<tr>
-				
+				<td class="tg-n9g5" colspan="10">대여상태 : <input type="text"
+					name="rentalStatus"	style="background-color: #ffffc7;"/>
 				</tr>
 				<tr>
+					<td class="tg-n9g5" colspan="10">가격 : <input type="text"
+					name="price"	style="background-color: #ffffc7;"/></td>
+				</tr>
+				<tr>
+				<td class="tg-n9g5" colspan="10">연료 : <input type="text"
+					name="fuel"	style="background-color: #ffffc7;"/></td>
+				</tr>
+				<tr>
+				<td class="tg-n9g5" colspan="10">탑승인원 : <input type="text"
+					name="boardingPersonnel"	style="background-color: #ffffc7;"/></td>
+				</tr>
+				<tr>
+				<td class="tg-n9g5" colspan="10">차급 : <input type="text"
+					name="vehicleGrade"	style="background-color: #ffffc7;"/></td>
 				</tr>
 				<tr>
 					<td class="tg-n9g5" colspan="5"><input type="file" id="upFile" name="upFile"/></td>

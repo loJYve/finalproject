@@ -81,17 +81,18 @@
 					name="longitude"	style="background-color: #ffffc7;"/></td>
 				</tr>
 				<tr>
-					<td class="tg-n9g5" colspan="10">사업장 이미지</td>
+					<td class="tg-n9g5" colspan="10">아이디입력 :<input type="text" name="bmMember" style="background-color: #ffffc7;"></td>
+				</tr>
+				<tr>
+					
 				</tr>
 				<tr>
 				
 				</tr>
 				<tr>
-				</tr>
-				<tr>
 					<td class="tg-n9g5" colspan="5"><input type="file" id="upFile" name="upFile"/></td>
 					<c:if test="${loginMan != null }">
-					<td class="tg-n9g5" colspan="5"><c:out value="${loginMan.bmId }"/> 님 환영합니다.</td>
+					<td class="tg-n9g5" colspan="5" ><c:out value="${loginMan.bmId }" /> 님 환영합니다.</td>
 					</c:if>
 				</tr>
 				
