@@ -8,8 +8,12 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>BJSCAR 로드뷰</title>
+    <title>BJSCAR 검색기능</title>
     <style>
+ //검색
+ body{
+ font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;"
+ }
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
 .map_wrap {position:relative;width:100%;height:500px;}
@@ -45,8 +49,8 @@
 #placesList .item .marker_15 {background-position: 0 -654px;}
 #pagination {margin:10px auto;text-align: center;}
 #pagination a {display:inline-block;margin-right:10px;}
-#pagination .on {font-weight: bold; cursor: default;color:#777;}
-//    
+#pagination .on {font-weight: bold; cursor: default;color:#777;}   
+ //로드뷰   
 #container {overflow:hidden;height:300px;position:relative;}
 #mapWrapper {width:100%;height:300px;z-index:1;}
 #rvWrapper {width:50%;height:300px;top:0;right:0;position:absolute;z-index:0;}
@@ -58,46 +62,72 @@
 </style>
 </head>
 <body>
-<div class="map_wrap">
-    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+<!-- 검색기능-->
+<section>
 
-    <div id="menu_wrap" class="bg_white">
+<div class="map_wrap">
+    <!-- <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+    <div id="menu_wrap" class="bg_white">  -->
+    <div id="container"> 
+    <div id="rvWrapper">
+        <div id="roadview" style="width:100%;height:700px;"></div> <!-- 로드뷰를 표시할 div 입니다 -->
+        <div id="close" title="로드뷰닫기" onclick="closeRoadview()"><span class="img"></span></div>
+    </div>
+    <div id="mapWrapper">
+        <div id="map" style="width:100%;height:700px;position:relative;overflow:hidden;"></div> <!-- 지도를 표시할 div 입니다 -->
+        <div id="menu_wrap" class="bg_white">
         <div class="option">
             <div>
-                <form onsubmit="searchPlaces(); return false;">
-                    키워드 : <input type="text" value="서울역 맛집" id="keyword" size="15"> 
-                    <button type="submit">검색하기</button> 
+                <form onsubmit="searchPlaces(); return false;" style="margin:0;padding:0;">
+                    <br/>
+                    <br/>
+                키워드 : <input type="text" value="서울 맛집" id="keyword" size="15"> 
+                           <button type="submit">검색</button>     
                 </form>
             </div>
-        </div>
+        </div>  
         <hr>
+          <div id="roadviewControl" onclick="setRoadviewRoad()"></div>
         <ul id="placesList"></ul>
         <div id="pagination"></div>
     </div>
 </div>
-<div id="container">
-    <div id="rvWrapper">
-        <div id="roadview" style="width:100%;height:100%;"></div> <!-- 로드뷰를 표시할 div 입니다 -->
-        <div id="close" title="로드뷰닫기" onclick="closeRoadview()"><span class="img"></span></div>
-    </div>
-    <div id="mapWrapper">
-        <div id="map" style="width:100%;height:100%;"></div> <!-- 지도를 표시할 div 입니다 -->
-        <div id="roadviewControl" onclick="setRoadviewRoad()"></div>
-    </div>
 </div>
+</div>
+<!-- 로드뷰 -->
+</section>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4b43ef4c3cb8aeab2e8353bca48679c4&libraries=services"></script>
 <script>
+//검색기능
+// 마커를 담을 배열입니다
 var markers = [];
 
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
-        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+        center: new kakao.maps.LatLng(37.55409917,126.97075773), // 지도의 중심좌표
         level: 3 // 지도의 확대 레벨
     };  
 
 // 지도를 생성합니다    
 var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+
+//컨트롤러
+var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+var mapTypeControl = new kakao.maps.MapTypeControl();
+
+// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+// kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+var zoomControl = new kakao.maps.ZoomControl();
+map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+
 
 // 장소 검색 객체를 생성합니다
 var ps = new kakao.maps.services.Places();  
@@ -303,15 +333,15 @@ function removeAllChildNods(el) {
         el.removeChild (el.lastChild);
     }
 }
- //
 
+//로드뷰
 var overlayOn = false, // 지도 위에 로드뷰 오버레이가 추가된 상태를 가지고 있을 변수
     container = document.getElementById('container'), // 지도와 로드뷰를 감싸고 있는 div 입니다
     mapWrapper = document.getElementById('mapWrapper'), // 지도를 감싸고 있는 div 입니다
     mapContainer = document.getElementById('map'), // 지도를 표시할 div 입니다 
     rvContainer = document.getElementById('roadview'); //로드뷰를 표시할 div 입니다
 
-var mapCenter = new kakao.maps.LatLng(37.55409917,126.97075773), // 지도의 중심좌표
+var mapCenter = new kakao.maps.LatLng(33.45042 , 126.57091), // 지도의 중심좌표
     mapOption = {
         center: mapCenter, // 지도의 중심좌표
         level: 3 // 지도의 확대 레벨
@@ -363,7 +393,6 @@ var marker = new kakao.maps.Marker({
     position: mapCenter,
     draggable: true
 });
-
 
 // 마커에 dragend 이벤트를 등록합니다
 kakao.maps.event.addListener(marker, 'dragend', function(mouseEvent) {
@@ -487,67 +516,6 @@ function closeRoadview() {
     var position = marker.getPosition();
     toggleMapWrapper(true, position);
 }
-
-//일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
-var mapTypeControl = new kakao.maps.MapTypeControl();
-
-// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
-// kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
-map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
-
-// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
-var zoomControl = new kakao.maps.ZoomControl();
-map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-
-
-
-//장소 검색 객체를 생성합니다
-var ps = new kakao.maps.services.Places();  
-
-// 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
-var infowindow = new kakao.maps.InfoWindow({zIndex:1});
-
-// 키워드로 장소를 검색합니다
-searchPlaces();
-
-// 키워드 검색을 요청하는 함수입니다
-function searchPlaces() {
-
-    var keyword = document.getElementById('keyword').value;
-
-    if (!keyword.replace(/^\s+|\s+$/g, '')) {
-        alert('키워드를 입력해주세요!');
-        return false;
-    }
-
-    // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
-    ps.keywordSearch( keyword, placesSearchCB); 
-}
-
-// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
-function placesSearchCB(data, status, pagination) {
-    if (status === kakao.maps.services.Status.OK) {
-
-        // 정상적으로 검색이 완료됐으면
-        // 검색 목록과 마커를 표출합니다
-        displayPlaces(data);
-
-        // 페이지 번호를 표출합니다
-        displayPagination(pagination);
-
-    } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
-
-        alert('검색 결과가 존재하지 않습니다.');
-        return;
-
-    } else if (status === kakao.maps.services.Status.ERROR) {
-
-        alert('검색 결과 중 오류가 발생했습니다.');
-        return;
-
-    }
-}
-
 
 </script>
 </body>

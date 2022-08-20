@@ -18,4 +18,5 @@ public class Plan {
   private String planTheme;
   private String planArea;
   private Date planDate2;
+  private String phone;
 }

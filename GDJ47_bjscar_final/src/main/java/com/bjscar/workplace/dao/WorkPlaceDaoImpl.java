@@ -9,14 +9,47 @@ import org.springframework.stereotype.Repository;
 
 import com.bjscar.attachment.model.vo.Attachment;
 import com.bjscar.rentalshop.model.vo.Rentalshop;
-import com.bjscar.rentalshop.model.vo.RentalshopAttachment;
+import com.bjscar.vehicle.model.vo.Vehicle;
 @Repository
 public class WorkPlaceDaoImpl implements WorkPlaceDao{
 
 	@Override
-	public List<Rentalshop> selectRentalshop(SqlSessionTemplate session) {
+	public List<Vehicle> selectRentalshopCar(SqlSessionTemplate session,int rentalshopId){
+		return session.selectList("vehicle.selectRentalshopCar",rentalshopId);
+	}
+	
+	@Override
+	public int selectRentalshopCarCount(SqlSessionTemplate session,int rentalshopId) {
 		// TODO Auto-generated method stub
-		return session.selectList("rentalshop.selectRentalshopList");
+		return session.selectOne("rentalshop.selectRentalshopCarCount",rentalshopId);
+	}
+	
+	@Override
+	public List<Vehicle> selectRentalshopCarListPage(SqlSessionTemplate session, Map param) {
+		// TODO Auto-generated method stub
+		int offSet=(int)param.get("cPage");
+		int limit=(int)param.get("numPerpage");
+		
+		return session.selectList("rentalshop.selectRentalshopCarList",param,new RowBounds((offSet-1)*limit,limit));
+	}
+	
+	@Override
+	public int insertRentalshopCar(SqlSessionTemplate session,Vehicle v) {
+		return session.insert("rentalshop.insertRentalshopCar",v);	
+	}
+	
+	@Override
+	public void insertRentalshopVehicleId(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		session.insert("rentalshop.rentalshopidInsertCar");	
+	}	
+	
+	
+	//---------------------------------------------------------------
+	@Override
+	public List<Rentalshop> selectRentalshop(SqlSessionTemplate session,String memberId) {
+		// TODO Auto-generated method stub
+		return session.selectList("rentalshop.selectRentalshopList",memberId);
 	}
 
 	@Override
@@ -25,20 +58,20 @@ public class WorkPlaceDaoImpl implements WorkPlaceDao{
 		int offSet=(int)param.get("cPage");
 		int limit=(int)param.get("numPerpage");
 		
-		return session.selectList("rentalshop.selectRentalshopList",null,new RowBounds((offSet-1)*limit,limit));
+		return session.selectList("rentalshop.selectRentalshopList",param,new RowBounds((offSet-1)*limit,limit));
 	}
 	
-	@Override
-	public int selectRentalshopCount(SqlSessionTemplate session) {
-		// TODO Auto-generated method stub
-		return session.selectOne("rentalshop.selectRentalshopCount");
-	}
-
 //	@Override
-//	public int selectRentalshopCount(SqlSessionTemplate session,String memberId) {
+//	public int selectRentalshopCount(SqlSessionTemplate session) {
 //		// TODO Auto-generated method stub
-//		return session.selectOne("rentalshop.selectRentalshopCount",memberId);
+//		return session.selectOne("rentalshop.selectRentalshopCount");
 //	}
+
+	@Override
+	public int selectRentalshopCount(SqlSessionTemplate session,String memberId) {
+		// TODO Auto-generated method stub
+		return session.selectOne("rentalshop.selectRentalshopCount",memberId);
+	}
 	
 	@Override
 	public Rentalshop selectRentalshop(SqlSessionTemplate session,int no) {
@@ -68,5 +101,12 @@ public class WorkPlaceDaoImpl implements WorkPlaceDao{
 		return session.insert("rentalshop.insertAttachment",a);
 	}
 
+
+	@Override
+	public int updateRentalshopEnd(SqlSessionTemplate session, Map param) {
+
+		
+		return session.update("rentalshop.updateEndRentalshop",param);
+	}
 	
 }

@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>BJSCAR</title>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 
@@ -58,9 +58,14 @@
 }
 </style>
 </head>
-<body style="text-align: center">
 
-	<form action="${path }/alterworplace.do" method="get" enctype="multipart/form-data">
+<body>
+<main>
+<jsp:include page="/WEB-INF/views/workplace/mypageSidebar.jsp"/>
+<div style="display: flex; text-align: center;" >
+<!-- style="text-align: center" -->
+	<div>
+	
 		<table class="tg"
 			style="margin-left: auto; margin-right: auto; background-color: #ffffc7;">
 			<h2>개인 사업장관리</h2>
@@ -114,8 +119,16 @@
 
 				</c:if>
 			</tbody>
+			
 		</table>
-	</form>
-</body>
-</html>
+		
+	<button	class="btn btn-success" onclick=" location.assign('${path}/work/updateRentalshop.do?no=${rentalshop.rentalshopId }')">수정</button>
+		<button	class="btn btn-success" onclick=" location.assign('${path}/car/carview.do?rentalshopId=${rentalshop.rentalshopId }')">자동차관리</button>
+		<%-- </form><form action="/work/updateRentalshop.do?no=${rentalshop.rentalshopId }"> --%>
+			<%-- <li><a href="/work/updateRentalshop.do?no=${rentalshop.rentalshopId }" class="link-dark rounded">사업장 내용수정</a></li> --%>
+			
+	</div>
+	</div>
+	</main>
+
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

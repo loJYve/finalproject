@@ -36,7 +36,8 @@ public class SuggestController {
 		model.addAttribute("plans",plan);
 		if(plan>0) {
 			//성공
-			msg="입력성공";
+			msg="감사합니다. BJSCAR 관리자 입니다. "
+					+ " 문의 주신 귀하의 번호로 1~3일 사이에 연락 드리겠습니다. ";
 			loc="/";
 			
 		}else {

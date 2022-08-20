@@ -150,7 +150,7 @@
 			<option value="경차">경차</option>
 			<option value="소형">소형</option>
 			<option value="준중형">준중형</option>
-			<option value="중형">중형</option>
+			<option value="중형">중형</option> 
 			<option value="준대형">준대형</option>
 			<option value="대형">대형</option>
 			<option value="SUV">SUV</option>

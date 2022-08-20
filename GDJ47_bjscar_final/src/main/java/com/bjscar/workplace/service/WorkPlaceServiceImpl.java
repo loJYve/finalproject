@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.bjscar.attachment.model.vo.Attachment;
 import com.bjscar.rentalshop.model.vo.Rentalshop;
+import com.bjscar.vehicle.model.vo.Vehicle;
 import com.bjscar.workplace.dao.WorkPlaceDao;
 @Service
 public class WorkPlaceServiceImpl implements WorkPlaceService {
@@ -20,10 +21,62 @@ public class WorkPlaceServiceImpl implements WorkPlaceService {
 	@Autowired
 	private SqlSessionTemplate session;
 	
+	
+	
 	@Override
-	public List<Rentalshop> selectRentalshop() {
+	public List<Vehicle> selectRentalshopCar(int rentalshopId){
+		return dao.selectRentalshopCar(session, rentalshopId);
+	}
+	
+	@Override
+	public int selectRentalshopCarCount(int rentalshopId) {
 		// TODO Auto-generated method stub
-		return dao.selectRentalshop(session);
+		return dao.selectRentalshopCarCount(session,rentalshopId);
+	}
+	
+	@Override
+	public List<Vehicle> selectRentalshopCarListPage(Map param) {
+		// TODO Auto-generated method stub
+		
+		return dao.selectRentalshopCarListPage(session, param);
+	}
+	
+	@Override
+	@Transactional
+	public int insertRentalshopCar(Vehicle v) throws RuntimeException{
+		int result=0;
+		try {
+		
+		result = dao.insertRentalshopCar(session,v);
+		//log.debug("boardNo : {}",r.getRentalshopId());
+		if(result>0&&v.getFiles()!=null) {
+			for(Attachment a : v.getFiles()) {
+				a.setAttachmentId(v.getVehicleId());
+				result=dao.insertAttachment(session,a);
+//				if(result==0) throw new RuntimeException();
+				dao.insertRentalshopVehicleId(session);
+				
+			}
+			}
+		
+		}catch (RuntimeException e) {
+			e.printStackTrace();
+			throw new RuntimeException("작성실패!");
+			
+		}
+//		result=dao.insertAttachment(b.getFiles().get(0));
+//		result=dao.insertAttachment(b.getFiles().get(1));
+		
+		
+		return result;
+	}
+	
+	
+	//---------------------------------------------------------
+	@Override
+	public List<Rentalshop> selectRentalshop(String bmId) {
+		// TODO Auto-generated method stub
+		return dao.selectRentalshop(session,bmId);
 	}
 
 	@Override
@@ -33,17 +86,17 @@ public class WorkPlaceServiceImpl implements WorkPlaceService {
 		return dao.selectRentalshopListPage(session, param);
 	}
 
-	@Override
-	public int selectRentalshopCount() {
-		// TODO Auto-generated method stub
-		return dao.selectRentalshopCount(session);
-	}
-
 //	@Override
-//	public int selectRentalshopCount(String memberId) {
+//	public int selectRentalshopCount() {
 //		// TODO Auto-generated method stub
-//		return dao.selectRentalshopCount(session,memberId);
+//		return dao.selectRentalshopCount(session);
 //	}
+
+	@Override
+	public int selectRentalshopCount(String bmId) {
+		// TODO Auto-generated method stub
+		return dao.selectRentalshopCount(session,bmId);
+	}
 
 	
 	@Override
@@ -67,6 +120,7 @@ public class WorkPlaceServiceImpl implements WorkPlaceService {
 				dao.insertRentalshopId(session);
 				
 			}
+			
 			}
 		
 		}catch (RuntimeException e) {
@@ -80,4 +134,14 @@ public class WorkPlaceServiceImpl implements WorkPlaceService {
 		
 		return result;
 	}
+	
+	@Override
+	public int updateRentalshopEnd(Map param) {
+		
+		
+		return dao.updateRentalshopEnd(session, param);
+	}
+
 }
+
+	

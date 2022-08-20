@@ -6,7 +6,7 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	
-  <div style="height: 130vh">
+  <div style="height: 100vh">
   		<div id="map" style="width:100%; height: 100vh; margin-top : 5%"></div>
   </div>
 	
@@ -17,45 +17,6 @@
      
 <script>
 
-<%-- const rs = new Array(5);
-	for (let i = 0; i < rs.length; i++) {
-	      rs[i] = new Array(rs);
-  	}
- 
-	$(()=>{
-	  $.ajax({
-				
-		  	url:"<%=request.getContextPath()%>/map/searchRentalshop",
-			success:data=>{
-				console.log(data);
-				console.log(data.length);
-				//var station = new Array();
-				console.log(1);
-				let j = 0;
-				data.forEach(v=>{
-				let rentalShopId=v.${rentalshopId};
-				let rentalShopName=v['rentalShopName'];
-				let latitude=v['latitude'];
-				let longitude=v['longitude'];
-				let rentalShopAddress =v['rentalShopAddress'];
-				//$("#crtfcNoCk").val(data);
-				rs[j][0] = rentalShopId;
-				rs[j][1] = rentalShopName;
-				rs[j][2] = latitude;
-				rs[j][3] = longitude;
-				rs[j][4] = rentalShopAddress;
-				j++;
-				
-			});
-				  console.log(rs[1][1]);
-				  initMap();
-		}
-				
-	  })
-
-  })  
-  
- --%>
 	
  function initMap() {
 	
@@ -63,14 +24,13 @@
 	 //https://apis.map.kakao.com/web/sample/markerWithInfoWindow  참고
 	 
 	 const infoWindow=new google.maps.InfoWindow();
-	 var iwContent = '<div style="padding:5px;">${v.rentalshopName}<br><a href="/map/showRentalshop.do?no=${v.rentalshopId}" style="color:blue" target="_blank">대여소 확인하기</a>'
 	 var cv = "대여가능한 차량 대수 :  + ${count}"
 	 const map=new google.maps.Map(document.getElementById("map"), {
-         zoom: 13,
+         zoom: 12,
          center: { lat: 37.486440824 ,lng: 126.92809428	 }
      });
 	 
-	
+	 
 	$.get("${pageContext.request.contextPath}/map/mapRentalshop.do",
 			data=>{
 				console.log(data);
@@ -84,21 +44,17 @@
 				optimized: false,
 			});
 			
+			
+			 const iwContent = '<div style="padding:5px;"> 대여소명 : '+v.rentalshopName+'<br><a>주소 :' +v.rentalshopAddr+' </a><br><a href="/map/showRentalshop.do?no='+v.rentalshopId+'" style="color:blue" target="_blank">대여소 확인하기</a>'
 			  marker.addListener("click",(e)=>{
 				infoWindow.close();
-				infoWindow.setContent(marker.getLabel()+iwContent);
+				infoWindow.setContent(iwContent);
 				infoWindow.open(marker.getMap(), marker);
 			}); 
-			
-			/*  marker.addListener("click",(e)=>{
-				infoWindow.close();
-				infoWindow.setContent(marker.getLabel()+location.assign('/map/showRentalshop.do?no='+${v.rentalshopId}));
-				infoWindow.open(marker.getMap(), marker);
-			});  */
-			 
-		    
 		  
 		});//filter닫음
+
+
 	});	//ajax닫음
 	//new MarkerClusterer({ marker, map });
 }

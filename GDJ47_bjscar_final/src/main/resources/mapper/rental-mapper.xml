@@ -24,6 +24,30 @@
 			<result column="BM_MEMBER" property="bmMember"/>
 		</association>
 	</resultMap>
+	
+	<resultMap type="rentalHistory" id="rentaldataMap">
+		<id column="RENTAL_ID" property="rentalId"/>
+		<result column="RENTAL_DATE" property="rentalDate"/>
+		<result column="RETURN_DATE" property="returnDate"/>
+		<result column="RENTAL_STATUS" property="status"/>
+		<result column="VEHICLE_ID" property="vehicleId"/>
+		<result column="MEMBER_ID" property="memberId"/>
+		<result column="BOOKING_DATE" property="bookingDate"/>
+		<result column="INSURANCE_CODE" property="insuranceCode"/>
+	</resultMap>
+	
+	<resultMap type="purchaseHistory" id="purchaseHistoryMap">
+		<id column="PURCHASE_ID" property="purchaseId"/>
+		<result column="PURCHASE_AMOUNT" property="purchaseAmount"/>
+		<result column="ADD_MILEAGE" property="addMileage"/>
+		<result column="USE_MILEAGE" property="useMileage"/>
+		<result column="PURCHASE_METHOD" property="purchaseMethod"/>
+	</resultMap>
+	
+	<resultMap type="rentalPurchaseHistory" id="rentalPurchaseHistoryMap">
+		<id column="RENTAL_ID" property="rentalId"/>
+		<id column="PURCHASE_ID" property="purchaseId"/>
+	</resultMap>
 
 	<select id="searchVehicleByGrade" parameterType="string" resultMap="vehicleMap">
 		SELECT * FROM VEHICLE JOIN RENTALSHOP USING(RENTALSHOP_ID) WHERE VEHICLE_GRADE=#{vehicleGrade} ORDER BY MODEL, FUEL, PRICE
@@ -32,5 +56,31 @@
 	<select id="selectSearchvehicleCount" parameterType="string" resultType="_int">
 		SELECT COUNT(*) FROM VEHICLE WHERE VEHICLE_GRADE=#{vehicleGrade}
 	</select>
-
+	
+	<insert id="insertRentalHistory" parameterType="rentalHistory">
+		INSERT INTO RENTAL_HISTORY VALUES(SEQ_RENTAL_ID.NEXTVAL, #{rentalDate}, #{returnDate}, '예약완료', #{vehicleId}, #{memberId}, DEFAULT, #{insuranceCode})
+		<selectKey keyProperty="rentalId" resultType="_int" order="AFTER">
+			SELECT SEQ_RENTAL_ID.CURRVAL FROM DUAL
+		</selectKey>
+	</insert>
+	
+	<insert id="insertPurchaseHistory" parameterType="purchaseHistory">
+		INSERT INTO PURCHASE_HISTORY VALUES(SEQ_PURCHASE_ID.NEXTVAL, #{purchaseAmount}, ${purchaseAmount}*0.05, #{useMileage}, #{purchaseMethod})
+		<selectKey keyProperty="purchaseId" resultType="_int" order="AFTER">
+			SELECT SEQ_PURCHASE_ID.CURRVAL FROM DUAL
+		</selectKey>
+	</insert>
+	
+	<update id="updateVehicle" parameterType="_int">
+		UPDATE VEHICLE SET RENTAL_STATUS='대여불가능' WHERE VEHICLE_ID=#{vehicleId}
+	</update>
+	
+	<insert id="insertRentalPurchaseHistory" parameterType="map">
+		INSERT INTO RENTAL_PURCHASE_HISTORY VALUES(#{rentalId}, #{purchaseId})
+	</insert>
+	
+	<update id="updateMember" parameterType="map">
+		UPDATE MEMBER SET TOTAL_MILEAGE=(TOTAL_MILEAGE-${useMileage}+(SELECT ADD_MILEAGE FROM PURCHASE_HISTORY WHERE PURCHASE_ID=#{purchaseId})) WHERE MEMBER_ID=#{memberId}
+	</update>
+	
 </mapper>
