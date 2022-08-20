@@ -13,14 +13,14 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>plan 폼</title>
   </head>
 <style>
 @import url("http://fonts.googleapis.com/earlyaccess/nanumgothic.css");
-	
+	/* datepicker */
+
 	html {
 		height: 100%;
 	}
@@ -33,7 +33,7 @@
   		padding-bottom: 40px;
   		font-family: "Nanum Gothic", arial, helvetica, sans-serif;
   		background-repeat: no-repeat;
-  		background:linear-gradient(to bottom right, #0098FF, #6BA8D1);
+  		background:linear-gradient(to bottom right,);
 	}
 	
     .card {
@@ -87,13 +87,15 @@
          <option value="전라남도">전라남도</option>
          <option value="제주도">제주도</option>
         </select>
+        <br/>
+        <p>번호</p><input type="text" id="phone" name="phone" class="form-control" placeholder="Phone" required autofocus><br>
          <!--  <label>
             <input type="checkbox" value="remember-me"> 기억하기
           </label> -->
         </div>
         <br/>
         <br/>
-        <button id="btn-Yes" class="btn btn-lg btn-primary btn-block" type="submit">입력</button>
+        <button id="btn-Yes" class="btn btn-lg btn-primary btn-block" type="submit">문의하기</button>
       </form>
       <br/>
       <br/>

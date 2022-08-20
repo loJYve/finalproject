@@ -12,6 +12,6 @@
 
 
 <insert id="insertPlan" parameterType="plan">
- INSERT INTO TRAVEL_PLAN VALUES(SEQ_PLAN_ID.NEXTVAL,#{planTitle},#{planDate},#{planTheme},#{planArea},#{planDate2})
+ INSERT INTO TRAVEL_PLAN VALUES(SEQ_PLAN_ID.NEXTVAL,#{planTitle},#{planDate},#{planTheme},#{planArea},#{planDate2},#{phone})
 </insert>
 </mapper>
