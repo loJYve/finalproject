@@ -24,7 +24,7 @@
 	 //https://apis.map.kakao.com/web/sample/markerWithInfoWindow  참고
 	 
 	 const infoWindow=new google.maps.InfoWindow();
-	 var cv = "대여가능한 차량 대수 :  + ${count}"
+	 
 	 const map=new google.maps.Map(document.getElementById("map"), {
          zoom: 12,
          center: { lat: 37.486440824 ,lng: 126.92809428	 }
@@ -54,9 +54,12 @@
 		  
 		});//filter닫음
 
-
 	});	//ajax닫음
 	//new MarkerClusterer({ marker, map });
+	
+	
+	
+	
 }
 	/* 
  map.addListener("center_changed", () => {
@@ -76,68 +79,9 @@ const markers = locations.map((position, j) => {
 	    });
   new MarkerClusterer({ markers, map });
   */
-
-	
-	 /*  //console.log($("#rs0").val());
-	  console.log(rs[0][1]);
-     
-	  const seoul = { lat: 37.5642135 ,lng: 127.0016985 };
-      const station1 =new google.maps.LatLng(rs[0][2], rs[0][3]);
-      const station2 = new google.maps.LatLng(rs[1][2], rs[1][3]);
-      const station3 = new google.maps.LatLng(rs[2][2], rs[2][3]);
-      const station4 = new google.maps.LatLng(rs[3][2], rs[3][3]);
-      const station5 = new google.maps.LatLng(rs[4][2], rs[4][3]);
-      
-      const map = new google.maps.Map(
-     	        document.getElementById('map'), {
-    	        zoom: 15,
-     	        center: station1
-    	  });
-        
-      			     	        
-        Marker1 = new google.maps.Marker({
-      	    position: station1,
-      	    map: map,
-      	    title: rs[0][1]
-      	  });*/
-        
-        /* Maker1.addEventListener("click",(e)=>{
-      	  alert("이벤트");
-        }); */
-        /*
-        Marker2 = new google.maps.Marker({
-    	    position: station2,
-    	    map: map,
-    	    title: rs[1][1]
-    	  });
-        
-        Marker3 =new google.maps.Marker({
-    	    position: station3,
-  	    map: map,
-  	  	title: rs[2][1]
-  	  });
-    	  
-        Marker4 =new google.maps.Marker({
-    	    position: station4,
-  	    map: map,
-  	  	title: rs[3][1]
-  	  });
-  	  
-        Marker5 = new google.maps.Marker({
-    	    position: station5,
-  	    map: map,
-  	  	title: rs[4][1]
-  	  });
-     */
-    //}
      
    </script>
      
-     
-     
-     
-
-	  
 </body>
 </html>
 

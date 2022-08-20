@@ -87,32 +87,31 @@
         
 	        <div id="search-container">
 	        	검색타입 : 
-	        <select id="searchType">
-	        	<option value="rentalshopName" ${searchType!=null&&searchType.equals("rentalshopName")?"checked":""} >대여소명</option>
-	        	<option value="rentalshopAddr" ${searchType!=null&&searchType.equals("rentalshopAddr")?"checked":""} >지역</option>
-	        </select>
-
-			<div id="search-rentalshopName">
-	        	<form action="${path }/map/searchSearchRentalShop.do">
-	        		<input type="hidden" name="searchType" value="RENTALSHOP_NAME">
-	        		<input type="text" name="searchKeyword" size="25" 
-	        		placeholder="검색할 대여소명을 입력하세요" >
-	        		<button type="submit" id="submit">검색</button>
-	        	</form>
-	        </div>
-	        
-	        <div id="search-rentalshopAddr">
-	        	<form action="${path }/map/searchSearchRentalShop.do">
-	        		<input type="hidden" name="searchType" value="RENTALSHOP_ADDR">
-	        		<input type="text" name="searchKeyword" size="25" 
-	        		placeholder="지역을 입력하세요" >
-	        		<button type="submit" id="submit">검색</button>
-	        	</form>
-	        </div>
-	        
-	      </div>
+		        <select id="searchType">
+		        	<option value="rentalshopName" ${searchType!=null&&searchType.equals("rentalshopName")?"checked":""} >대여소명</option>
+		        	<option value="rentalshopAddr" ${searchType!=null&&searchType.equals("rentalshopAddr")?"checked":""} >지역</option>
+		        </select>
+	
+				<div id="search-rentalshopName">
+		        	<form action="${path }/map/searchSearchRentalShop.do">
+		        		<input type="hidden" name="searchType" value="RENTALSHOP_NAME">
+		        		<input type="text" name="searchKeyword" size="25" 
+		        		placeholder="검색할 대여소명을 입력하세요" >
+		        		<button type="submit" id="submit">검색</button>
+		        	</form>
+		        </div>
+		        
+		        <div id="search-rentalshopAddr">
+		        	<form action="${path }/map/searchSearchRentalShop.do">
+		        		<input type="hidden" name="searchType" value="RENTALSHOP_ADDR">
+		        		<input type="text" name="searchKeyword" size="25" 
+		        		placeholder="지역을 입력하세요" >
+		        		<button type="submit" id="submit">검색</button>
+		        	</form>
+		        </div>
 	        
 	      </div>
+	        
 			
 		</section>
 		</div>

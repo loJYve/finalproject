@@ -84,7 +84,11 @@
         	${pageBar }
         	
         </div>
-        
+        	<div id="search-container">
+         		<select id="searchType">
+		        	<option value="rentalshopName" ${searchType!=null&&searchType.equals("rentalshopName")?"checked":""} >대여소명</option>
+		        	<option value="rentalshopAddr" ${searchType!=null&&searchType.equals("rentalshopAddr")?"checked":""} >지역</option>
+		        </select>
 					<div id="search-rentalshopName">
 	        	<form action="${path }/map/searchSearchRentalShop.do">
 	        		<input type="hidden" name="searchType" value="RENTALSHOP_NAME">
@@ -103,6 +107,7 @@
 	        	</form>
 	        </div>
 			
+		</div>
 		</section>
 		</div>
 		
