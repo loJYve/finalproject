@@ -20,7 +20,7 @@
     form#numperPageFrm{display:inline;} 
     div.center{align-items: center;}
     div#search-container{justify-content: center; margin: 20px}
-    div#whole-container{margin-top: 150px; text-align: center;}
+    div#whole-container{margin-top: 50px; text-align: center;}
 	table#tbl-member{justify-content: center;}
 	section#memberlist-container{margin-left: 150px; align-content: center;}
 	select#searchType{height:30px;}
@@ -40,7 +40,7 @@
 	        	</div>
 	        </c:if>
 	        <c:if test="${not empty vl }">
-	        <table id="tbl-member">
+	        <table id="tbl-member" class="table table-striped table-hover">
            <thead>
                <tr>
                 <th>대여소이름</th>
@@ -83,36 +83,35 @@
 		<div id="pageBar" style="margin-left:10%;">
         	${pageBar }
         	
-        </div>
+        </div >
         
 	        <div id="search-container">
 	        	검색타입 : 
-	        <select id="searchType">
-	        	<option value="rentalshopName" ${searchType!=null&&searchType.equals("rentalshopName")?"checked":""} >대여소명</option>
-	        	<option value="rentalshopAddr" ${searchType!=null&&searchType.equals("rentalshopAddr")?"checked":""} >지역</option>
-	        </select>
-
-			<div id="search-rentalshopName">
-	        	<form action="${path }/map/searchSearchRentalShop.do">
-	        		<input type="hidden" name="searchType" value="RENTALSHOP_NAME">
-	        		<input type="text" name="searchKeyword" size="25" 
-	        		placeholder="검색할 대여소명을 입력하세요" >
-	        		<button type="submit" id="submit">검색</button>
-	        	</form>
-	        </div>
-	        
-	        <div id="search-rentalshopAddr">
-	        	<form action="${path }/map/searchSearchRentalShop.do">
-	        		<input type="hidden" name="searchType" value="RENTALSHOP_ADDR">
-	        		<input type="text" name="searchKeyword" size="25" 
-	        		placeholder="지역을 입력하세요" >
-	        		<button type="submit" id="submit">검색</button>
-	        	</form>
-	        </div>
-	        
-	      </div>
+		        <select id="searchType">
+		        	<option value="rentalshopName" ${searchType!=null&&searchType.equals("rentalshopName")?"checked":""} >대여소명</option>
+		        	<option value="rentalshopAddr" ${searchType!=null&&searchType.equals("rentalshopAddr")?"checked":""} >지역</option>
+		        </select>
+	
+				<div id="search-rentalshopName">
+		        	<form action="${path }/map/searchSearchRentalShop.do">
+		        		<input type="hidden" name="searchType" value="RENTALSHOP_NAME">
+		        		<input type="text" name="searchKeyword" size="25" 
+		        		placeholder="검색할 대여소명을 입력하세요" >
+		        		<button type="submit" id="submit">검색</button>
+		        	</form>
+		        </div>
+		        
+		        <div id="search-rentalshopAddr">
+		        	<form action="${path }/map/searchSearchRentalShop.do">
+		        		<input type="hidden" name="searchType" value="RENTALSHOP_ADDR">
+		        		<input type="text" name="searchKeyword" size="25" 
+		        		placeholder="지역을 입력하세요" >
+		        		<button type="submit" id="submit">검색</button>
+		        	</form>
+		        </div>
 	        
 	      </div>
+	        
 			
 		</section>
 		</div>

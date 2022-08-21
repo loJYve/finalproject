@@ -105,7 +105,6 @@ public class MapController {
 	public ModelAndView searchSearchRentalShop(@RequestParam(defaultValue="1") int cPage,@RequestParam(name="numPerpage",
 			defaultValue="10") int numPerpage,ModelAndView mv,String searchKeyword, String searchType){
 		//System.out.println(no);
-		searchKeyword=searchKeyword.toUpperCase();
 		Map param=Map.of("cPage",cPage,"numPerpage",numPerpage,"searchType",searchType,"searchKeyword",searchKeyword);
 		int totalData=service.searchSearchRentalShopCount(param);
 		List<Vehicle> vl=service.searchSearchRentalShop(param);
