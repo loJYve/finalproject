@@ -78,6 +78,8 @@
 		<result column="RENTAL_DATE" property="rentalDate"/>
 		<result column="RENTALSHOP_NAME" property="rentalshopName"/>
 		<result column="RETURN_DATE" property="returnDate"/>
+		<result column="RENTAL_STATUS" property="status"/>
+		<result column="RENTAL_ID" property="rentalId"/>
 	</resultMap>
 	
 	<!-- <resultMap type="purchaseDataList" id="purchaseDataListMap">
@@ -105,7 +107,15 @@
   		SELECT * FROM RENTALSHOP WHERE RENTALSHOP_ID=(SELECT RENTALSHOP_ID FROM VEHICLE WHERE VEHICLE_ID=#{vehicleId})
   	</select> -->
   	
-  	<!-- <select id="selectRentalDataList" parameterType="string" resultMap=""></select> -->
+  	<select id="selectRentalDataList" parameterType="string" resultMap="rentalDataListMap">
+  		SELECT V.MODEL, RH.RENTAL_DATE, RS.RENTALSHOP_NAME, RH.RETURN_DATE, A.ORIGINAL_FILENAME, RH.RENTAL_STATUS, RH.RENTAL_ID
+    		FROM RENTAL_HISTORY RH
+		        INNER JOIN VEHICLE V ON RH.VEHICLE_ID=V.VEHICLE_ID
+		        INNER JOIN RENTALSHOP RS ON V.RENTALSHOP_ID=RS.RENTALSHOP_ID
+		        LEFT JOIN VEHICLE_ATTACHMENT VA ON V.VEHICLE_ID=VA.VEHICLE_ID
+        		LEFT JOIN ATTACHMENT A ON VA.ATTACHMENT_ID=A.ATTACHMENT_ID
+   			WHERE RH.MEMBER_ID=#{memberId} AND RH.RENTAL_STATUS='예약완료' OR RH.RENTAL_STATUS='대여중'
+  	</select>
   	
    	<select id="selectrentalHistory" parameterType="map" resultMap="rentaldataMap">
   		SELECT * FROM RENTAL_HISTORY WHERE MEMBER_ID=#{memberId} AND RENTAL_STATUS='반납완료'
@@ -115,6 +125,11 @@
   		SELECT * FROM MEMBER WHERE MEMBER_ID=#{memberId}
   	</select>
   	
+
+   	<select id="selectrentalHistoryDetail" parameterType="_int" resultMap="rentaldataMap">
+  		SELECT * FROM RENTAL_HISTORY WHERE RENTAL_ID=#{rhId}
+  	</select>
+
    	<insert id="memSecessionEnd" parameterType="map">
   		INSERT INTO SECESSION_MEMBER VALUES(SEQ_SECESSION_ID.NEXTVAL, #{secessionReason}, DEFAULT, #{memberId})
   	</insert>
@@ -143,7 +158,11 @@
   		SELECT COUNT(*) FROM RENTAL_HISTORY WHERE MEMBER_ID=#{memberId}
   	</select>
   	
+  	<update id="updateRental" parameterType="_int">
+  		UPDATE RENTAL_HISTORY SET RENTAL_STATUS='대여중' WHERE RENTAL_ID=${rentalId}
+  	</update>
   	
+
   
  
   

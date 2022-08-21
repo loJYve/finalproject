@@ -87,7 +87,7 @@
 	        
 	      </div>
 	    </div>		
-	 
+	 ${paramValues.id[0] }
 	<script>
 		$(()=>{
 			$("#searchType").change(e=>{
