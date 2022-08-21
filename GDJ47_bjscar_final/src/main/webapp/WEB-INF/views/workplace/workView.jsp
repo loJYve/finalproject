@@ -244,5 +244,7 @@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 					onclick=" location.assign('${path}/car/carview.do?rentalshopId=${rentalshop.rentalshopId }')">자동차관리</button>
 		</div>
 	</main>
+<script>
 
+</script>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
