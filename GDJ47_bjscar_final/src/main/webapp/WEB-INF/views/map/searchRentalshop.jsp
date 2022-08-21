@@ -32,7 +32,7 @@
 	<div id="sub-container">
 	    <section id="memberList-container" class="container">
 	        <h2>대여소검색</h2> 
-	        <table id="tbl-member" class="table table-striped table-hover">
+	        <table id="tbl-member" class="table table-striped table-hover" style="margin-top:30px">
            <thead>
                <tr>
                 <th>대여소이름</th>
@@ -60,7 +60,7 @@
 			
 		</section>
 		</div>
-		<div id="search-container">
+		<div id="search-container" style="margin-top:30px">
 	        	검색타입 : 
 	        <select id="searchType">
 	        	<option value="rentalshopName" ${searchType!=null&&searchType.equals("rentalshopName")?"checked":""} >대여소명</option>
@@ -87,7 +87,7 @@
 	        
 	      </div>
 	    </div>		
-	 
+	 ${paramValues.id[0] }
 	<script>
 		$(()=>{
 			$("#searchType").change(e=>{

@@ -13,9 +13,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bjscar.common.PageFactory;
+import com.bjscar.member.model.vo.Member;
 import com.bjscar.mypage.model.vo.RentalHistory;
 import com.bjscar.rental.model.service.RentalService;
+import com.bjscar.rental.model.vo.OverdueHistory;
 import com.bjscar.rental.model.vo.PurchaseHistory;
+import com.bjscar.rental.model.vo.ReturnHistory;
 import com.bjscar.vehicle.model.vo.Vehicle;
 
 @Controller
@@ -93,11 +96,11 @@ public class RentalController {
 			Map paramM=Map.of("memberId",rh.getMemberId(), "purchaseId",ph.getPurchaseId(),"useMileage",ph.getUseMileage());
 			int resultM = service.updateMember(paramM);
 			
-			mv.addObject("msg", "결제완료!");
+			mv.addObject("msg", "대여완료!");
 			mv.addObject("loc", "/");
 		} catch (Exception e) {
 			e.printStackTrace();
-			mv.addObject("msg", "결제실패!");
+			mv.addObject("msg", "대여실패!");
 			mv.addObject("loc", "/rental/rental.do");
 			
 			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
@@ -107,8 +110,80 @@ public class RentalController {
 		return mv;
 	}
 	
-	@RequestMapping("/returnEnd.do")
-	public ModelAndView returnEnd(ModelAndView mv) {
+	@RequestMapping("/returnVehicle.do")
+	public ModelAndView returnVehicle(ModelAndView mv, Member loginMember, RentalHistory rh) {
+//		System.out.println(loginMember);
+//		System.out.println(rh);
+		Vehicle v = service.selectSearchvehicle(rh.getRentalId());
+//		System.out.println(price);		
+		mv.addObject("v", v);
+		mv.addObject("loginMember", loginMember);
+		mv.addObject("rh", rh);
+		mv.setViewName("rental/return");
+		return mv;
+	}
+	
+	@RequestMapping("/returnVehicleEnd.do")
+	@Transactional
+	public ModelAndView returnVehicleEnd(ModelAndView mv, Member m, RentalHistory rh, PurchaseHistory ph, ReturnHistory returnh, OverdueHistory oh) {
+		if(ph.getPurchaseAmount()>0) {
+//			System.out.println(m);
+//			System.out.println(rh);
+//			System.out.println(ph);
+//			System.out.println(returnh);
+//			System.out.println(oh);
+			mv.addObject("m", m);
+			mv.addObject("rh", rh);
+			mv.addObject("ph", ph);
+			mv.addObject("returnh", returnh);
+			mv.addObject("oh", oh);
+			mv.setViewName("rental/returnPurchase");
+		}else {
+			try {
+				int resultRH = service.updateRentalHistoryReturn(rh);
+				int resultReturnH = service.insertReturnHistory(returnh);
+				int resultV = service.updateVehicleReturn(rh.getVehicleId());
+				
+				mv.addObject("msg", "반납완료!");
+				mv.addObject("loc", "/");
+			} catch (Exception e) {
+				e.printStackTrace();
+				mv.addObject("msg", "반납실패!");
+				mv.addObject("loc", "/rental/return.do");
+				
+				TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+			}
+			mv.setViewName("common/msg");
+		}
+		return mv;
+	}
+	
+	@RequestMapping("/returnPurchaseEnd.do")
+	@Transactional
+	public ModelAndView returnPurchase(ModelAndView mv, Member m, RentalHistory rh, PurchaseHistory ph, ReturnHistory returnh, OverdueHistory oh) {
+		try {
+			int resultRH = service.updateRentalHistoryReturn(rh);
+			int resultReturnH = service.insertReturnHistory(returnh);
+			int resultV = service.updateVehicleReturn(rh.getVehicleId());
+			oh.setReturnId(returnh.getReturnId());
+			int resultOH = service.insertOverdueHistory(oh);
+			int resultPH = service.insertPurchaseHistory(ph);
+			Map param=Map.of("returnId",returnh.getReturnId(), "purchaseId",ph.getPurchaseId());
+			int resultRPH = service.insertReturnPurchaseHistory(param);
+			Map paramM=Map.of("memberId",rh.getMemberId(), "purchaseId",ph.getPurchaseId(),"useMileage",ph.getUseMileage());
+			int resultM = service.updateMember(paramM);
+			
+			mv.addObject("msg", "반납완료!");
+			mv.addObject("loc", "/");
+		} catch (Exception e) {
+			e.printStackTrace();
+			mv.addObject("msg", "반납실패!");
+			mv.addObject("loc", "/rental/return.do");
+			
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+		}
+		
+		mv.setViewName("common/msg");
 		return mv;
 	}
 

@@ -20,7 +20,7 @@
     form#numperPageFrm{display:inline;} 
     div.center{align-items: center;}
     div#search-container{justify-content: center; margin: 20px}
-    div#whole-container{margin-top: 150px; text-align: center;}
+    div#whole-container{margin-top: 50px; text-align: center;}
 	table#tbl-member{justify-content: center;}
 	section#memberlist-container{margin-left: 150px; align-content: center;}
 	select#searchType{height:30px;}
@@ -40,7 +40,7 @@
 	        	</div>
 	        </c:if>
 	        <c:if test="${not empty vl }">
-	        <table id="tbl-member">
+	        <table id="tbl-member" class="table table-striped table-hover" style="margin-top:30px">
            <thead>
                <tr>
                 <th>대여소이름</th>
@@ -78,31 +78,64 @@
 				</c:forEach>
         </tbody>
 	    </table>
-	    <button type="button" onclick="window.open('/map/showRentalshop.do?no=${v.rentalshopId}');" style="float: right; margin: 10px; margin-right: 5%;">대여하러가기</button>
-	    </c:if>
-		<div id="pageBar" style="margin-left:10%;">
-        	${pageBar }
-        	
-        </div>
-        
-					<div id="search-rentalshopName">
-	        	<form action="${path }/map/searchSearchRentalShop.do">
-	        		<input type="hidden" name="searchType" value="RENTALSHOP_NAME">
+		    <div>
+			    <button id="rental" type="button" onclick="location.assign('/map/showRentalshop.do?no='${param.no});" style="float: right; margin: 10px; margin-right: 5%;">대여하러가기</button>
+			    </c:if>
+				<div id="pageBar" style="margin-left:10%;margin-top:30px;margin-bottom:30px">
+		        	${pageBar }
+		        	
+		        </div>
+        	</div>
+			<div id="search-container" >
+	        	검색타입 : 
+	        <select id="searchType">
+	        	<option value="rentalshopName"  ${searchType!=null&&searchType.equals("rentalshopName")?"checked":""} >탑승인원</option>
+	        	<option value="rentalshopAddr" ${searchType!=null&&searchType.equals("rentalshopAddr")?"checked":""} >모델</option>
+	        	<option value="bmMember" ${searchType!=null&&searchType.equals("bmMember")?"checked":""} >차급</option>
+	        	<option value="Fuel" ${searchType!=null&&searchType.equals("Fuel")?"checked":""} >유종</option>
+	        </select>
+
+	        <div id="search-rentalshopName">
+	        	<form action="${path }/map/searchBar.do">
+	        		<input type="hidden" name="searchType" value="BOARDING_PERSONNEL">
 	        		<input type="text" name="searchKeyword" size="25" 
-	        		placeholder="검색할 대여소명을 입력하세요" >
-	        		<button type="submit" id="submit">검색</button>
+	        		placeholder="탑승인원을 입력하세요" >
+	        		<input type="hidden" name="no" value="${param.no}"/>
+	        		<button type="submit">검색</button>
 	        	</form>
 	        </div>
-	        
 	        <div id="search-rentalshopAddr">
-	        	<form action="${path }/map/searchSearchRentalShop.do">
-	        		<input type="hidden" name="searchType" value="RENTALSHOP_ADDR">
+	        	<form action="${path }/map/searchBar.do">
+	        		<input type="hidden" name="searchType" value="MODEL">
 	        		<input type="text" name="searchKeyword" size="25" 
-	        		placeholder="지역을 입력하세요" >
-	        		<button type="submit" id="submit">검색</button>
+	        		placeholder="검색할 모델을 입력하세요" >
+	        		<input type="hidden" name="no" value="${param.no}"/>
+	        		<button type="submit">검색</button>
 	        	</form>
 	        </div>
-			
+	        <div id="search-bmMember">
+	        	<form action="${path }/map/searchBar.do">
+	        		<input type="hidden" name="searchType" value="VEHICLE_GRADE">
+	        		<input type="text" name="searchKeyword" size="25" 
+	        		placeholder="차급을 입력하세요" >
+	        		<input type="hidden" name="no" value="${param.no}"/>
+	        		<button type="submit">검색</button>
+	        	</form>
+	        </div>
+	        <div id="search-Fuel">
+        	<form action="${path }/map/searchBar.do">
+        		<input type="hidden" name="searchType" value="Fuel">
+        		<label><input type="radio" name="searchKeyword" value="가솔린" >가솔린</label>
+        		<label><input type="radio" name="searchKeyword" value="디젤" >디젤</label>
+        		<label><input type="radio" name="searchKeyword" value="LPG" >LPG</label>
+        		<label><input type="radio" name="searchKeyword" value="하이브리드" >하이브리드</label>
+        		<label><input type="radio" name="searchKeyword" value="전기" >전기</label>
+        		<input type="hidden" name="no" value="${param.no}"/>
+        		<button type="submit">검색</button>
+        	</form>
+        </div>
+	      </div>
+		</div>
 		</section>
 		</div>
 		
@@ -119,7 +152,9 @@
 			$("#searchType").change();
 		})
 		
-		
+		$("#rental").click(e=>{
+			  location.assign('${path }/rental/rental.do');
+		})
 	</script>
         	
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

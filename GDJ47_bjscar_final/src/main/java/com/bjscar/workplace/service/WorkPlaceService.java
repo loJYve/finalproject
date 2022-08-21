@@ -8,7 +8,7 @@ import com.bjscar.vehicle.model.vo.Vehicle;
 
 public interface WorkPlaceService {
 	
-	List<Vehicle> selectRentalshopCar(int rentalshopId);
+	Vehicle selectVehicleId(int no);
 	
 	List<Vehicle> selectRentalshopCarListPage(Map param);
 
@@ -29,6 +29,10 @@ public interface WorkPlaceService {
 	int insertRentalshop(Rentalshop r);
 
 	int updateRentalshopEnd(Map param);
+
+	
+
+	
 
 
 	

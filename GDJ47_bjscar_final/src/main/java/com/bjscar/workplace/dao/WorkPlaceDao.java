@@ -12,7 +12,7 @@ import com.bjscar.vehicle.model.vo.Vehicle;
 public interface WorkPlaceDao {
 	
 	
-	List<Vehicle> selectRentalshopCar(SqlSessionTemplate session,int rentalshopId);
+	Vehicle selectVehicleId(SqlSessionTemplate session, int no);
 	
 	int selectRentalshopCarCount(SqlSessionTemplate session,int rentalshopId);
 	
@@ -40,6 +40,10 @@ public interface WorkPlaceDao {
 	void insertRentalshopId(SqlSessionTemplate session);
 
 	int updateRentalshopEnd(SqlSessionTemplate session, Map param);
+
+	
+
+	
 
 	
 

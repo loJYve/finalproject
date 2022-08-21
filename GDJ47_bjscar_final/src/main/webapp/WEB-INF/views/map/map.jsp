@@ -4,8 +4,103 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
+<style>
+
+/* 
+ * Always set the map height explicitly to define the size of the div element
+ * that contains the map. 
+ */
+#map {
+  height: 100%;
+}
+
+/* 
+ * Optional: Makes the sample page fill the window. 
+ */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#description {
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+#infowindow-content .title {
+  font-weight: bold;
+}
+
+#infowindow-content {
+  display: none;
+}
+
+#map #infowindow-content {
+  display: inline;
+}
+
+.pac-card {
+  background-color: #fff;
+  border: 0;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+  margin: 10px;
+  padding: 0 0.5em;
+  font: 400 18px Roboto, Arial, sans-serif;
+  overflow: hidden;
+  font-family: Roboto;
+  padding: 0;
+}
+
+#pac-container {
+  padding-bottom: 12px;
+  margin-right: 12px;
+}
+
+.pac-controls {
+  display: inline-block;
+  padding: 5px 11px;
+}
+
+.pac-controls label {
+  font-family: Roboto;
+  font-size: 13px;
+  font-weight: 300;
+}
+
+#pac-input {
+  background-color: #fff;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  margin-left: 12px;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 400px;
+}
+
+#pac-input:focus {
+  border-color: #4d90fe;
+}
+
+#title {
+  color: #fff;
+  background-color: #4d90fe;
+  font-size: 25px;
+  font-weight: 500;
+  padding: 6px 12px;
+}
+
+#target {
+  width: 345px;
+}
+
+</style>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	
+	<script type="module" src="./index.js"></script>
   <div style="height: 100vh">
   		<div id="map" style="width:100%; height: 100vh; margin-top : 5%"></div>
   </div>
@@ -24,7 +119,7 @@
 	 //https://apis.map.kakao.com/web/sample/markerWithInfoWindow  참고
 	 
 	 const infoWindow=new google.maps.InfoWindow();
-	 var cv = "대여가능한 차량 대수 :  + ${count}"
+	 
 	 const map=new google.maps.Map(document.getElementById("map"), {
          zoom: 12,
          center: { lat: 37.486440824 ,lng: 126.92809428	 }
@@ -51,12 +146,16 @@
 				infoWindow.setContent(iwContent);
 				infoWindow.open(marker.getMap(), marker);
 			}); 
-		  
+			 marker.addListener("click", () => {
+				    map.setZoom(12);
+				    map.setCenter(marker.getPosition());
+				  });
+			
 		});//filter닫음
-
 
 	});	//ajax닫음
 	//new MarkerClusterer({ marker, map });
+	
 }
 	/* 
  map.addListener("center_changed", () => {
@@ -76,68 +175,9 @@ const markers = locations.map((position, j) => {
 	    });
   new MarkerClusterer({ markers, map });
   */
-
-	
-	 /*  //console.log($("#rs0").val());
-	  console.log(rs[0][1]);
-     
-	  const seoul = { lat: 37.5642135 ,lng: 127.0016985 };
-      const station1 =new google.maps.LatLng(rs[0][2], rs[0][3]);
-      const station2 = new google.maps.LatLng(rs[1][2], rs[1][3]);
-      const station3 = new google.maps.LatLng(rs[2][2], rs[2][3]);
-      const station4 = new google.maps.LatLng(rs[3][2], rs[3][3]);
-      const station5 = new google.maps.LatLng(rs[4][2], rs[4][3]);
-      
-      const map = new google.maps.Map(
-     	        document.getElementById('map'), {
-    	        zoom: 15,
-     	        center: station1
-    	  });
-        
-      			     	        
-        Marker1 = new google.maps.Marker({
-      	    position: station1,
-      	    map: map,
-      	    title: rs[0][1]
-      	  });*/
-        
-        /* Maker1.addEventListener("click",(e)=>{
-      	  alert("이벤트");
-        }); */
-        /*
-        Marker2 = new google.maps.Marker({
-    	    position: station2,
-    	    map: map,
-    	    title: rs[1][1]
-    	  });
-        
-        Marker3 =new google.maps.Marker({
-    	    position: station3,
-  	    map: map,
-  	  	title: rs[2][1]
-  	  });
-    	  
-        Marker4 =new google.maps.Marker({
-    	    position: station4,
-  	    map: map,
-  	  	title: rs[3][1]
-  	  });
-  	  
-        Marker5 = new google.maps.Marker({
-    	    position: station5,
-  	    map: map,
-  	  	title: rs[4][1]
-  	  });
-     */
-    //}
      
    </script>
      
-     
-     
-     
-
-	  
 </body>
 </html>
 

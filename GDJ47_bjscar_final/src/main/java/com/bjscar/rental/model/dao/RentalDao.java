@@ -6,7 +6,9 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.bjscar.mypage.model.vo.RentalHistory;
+import com.bjscar.rental.model.vo.OverdueHistory;
 import com.bjscar.rental.model.vo.PurchaseHistory;
+import com.bjscar.rental.model.vo.ReturnHistory;
 import com.bjscar.vehicle.model.vo.Vehicle;
 
 public interface RentalDao {
@@ -24,5 +26,17 @@ public interface RentalDao {
 	int insertRentalPurchaseHistory(SqlSessionTemplate session, Map param);
 
 	int updateMember(SqlSessionTemplate session, Map paramM);
+
+	Vehicle selectSearchvehicle(SqlSessionTemplate session, int rentalId);
+
+	int updateRentalHistoryReturn(SqlSessionTemplate session, RentalHistory rh);
+
+	int insertReturnHistory(SqlSessionTemplate session, ReturnHistory returnh);
+
+	int updateVehicleReturn(SqlSessionTemplate session, int vehicleId);
+
+	int insertOverdueHistory(SqlSessionTemplate session, OverdueHistory oh);
+
+	int insertReturnPurchaseHistory(SqlSessionTemplate session, Map param);
 
 }

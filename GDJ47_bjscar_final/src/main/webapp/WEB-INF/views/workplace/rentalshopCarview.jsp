@@ -14,10 +14,10 @@
 <jsp:include page="/WEB-INF/views/workplace/mypageSidebar.jsp"/>
 	<div style="display: flex;">
 		<section id="rentalshop-container" class="container">
-			<p>총 ${totalContents }곳의 사업장이 있습니다.</p>
+			<p>총 ${totalContents }대의 자동차가 등록되어 있습니다.</p>
 		
 			<h2>사업장 자동차관리</h2>
-			<button	class="btn btn-success" style="margin-left: 820px;" onclick=" location.assign('${path}/car/insertRentalshopCar.do')">자동차등록</button>
+			<button	class="btn btn-success" style="float: right;" onclick=" location.assign('${path}/car/insertRentalshopCar.do')">자동차등록</button>
 			<table id="tbl_rentalshop" class="table table-striped table-hover">
 				<tr>
 					<th>차일련번호</th>
@@ -26,17 +26,17 @@
 					<th>연식</th>
 					<!-- <th>사업자아이디</th> -->
 				</tr>
-				<%-- <a href="${path}/work/workplaceView.do?no=${r.rentalshopId}"><c:out value="${r.rentalshopName }" /></a> --%>
+				
 				<c:if test="${not empty vehicles }">
 				
 					<c:forEach var="v" items="${vehicles }">
 						<tr>
 						<td><c:out value="${v.vehicleId }" /></td>
-							<td><c:out value="${v.model }" /></td>							
-							
+							<td><a href="${path}/car/workplaceCarView.do?no=${v.vehicleId}"><c:out value="${v.model }"/></a></td>							
+							<!-- <a href="${path}/car/workplaceCarView.do?no=${v.vehicleId}" > -->
 							<td><c:out value="${v.rentalStatus }" /></td>
 							<td><c:out value="${v.productYear }" /></td>
-							<%-- <td><c:out value="${r.bmMember }" /></td> --%>
+							
 						</tr>
 					</c:forEach>
 				</c:if>

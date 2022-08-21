@@ -32,11 +32,11 @@
        
         </c:if>
         <li><a href="${path }/rental/rental.do" class="nav-link px-2 link-dark mt-3">대여하기</a></li>
-	
-        <li><a href="${path }/longRental/LRCarList.do" class="nav-link px-2 link-dark mt-3">장기렌트하기</a></li>
 		<li><a href="${path }/map/mapview.do" class="nav-link px-2 link-dark mt-3">대여소보기</a></li>
 		<li><a href="${path }/map/searchRentalshop.do" class="nav-link px-2 link-dark mt-3">대여소검색</a></li>
 		<li><a href="${path }/suggest.do" class="nav-link px-2 link-dark mt-3">계획하기</a></li>
+
+
      <!--  <div class="col-md-3 text-end" style="display:contents;"> -->
      <div> 
       <c:if test="${loginMember == null&&loginMan == null&&loginAdmin == null }">

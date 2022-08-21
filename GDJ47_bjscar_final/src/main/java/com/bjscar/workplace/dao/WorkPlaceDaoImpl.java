@@ -14,8 +14,8 @@ import com.bjscar.vehicle.model.vo.Vehicle;
 public class WorkPlaceDaoImpl implements WorkPlaceDao{
 
 	@Override
-	public List<Vehicle> selectRentalshopCar(SqlSessionTemplate session,int rentalshopId){
-		return session.selectList("vehicle.selectRentalshopCar",rentalshopId);
+	public Vehicle selectVehicleId(SqlSessionTemplate session,int no) {
+		return session.selectOne("rentalshop.selectVehicleId",no);
 	}
 	
 	@Override

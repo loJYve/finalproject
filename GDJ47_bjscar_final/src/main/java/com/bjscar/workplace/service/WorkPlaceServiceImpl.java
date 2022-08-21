@@ -22,11 +22,11 @@ public class WorkPlaceServiceImpl implements WorkPlaceService {
 	private SqlSessionTemplate session;
 	
 	
-	
 	@Override
-	public List<Vehicle> selectRentalshopCar(int rentalshopId){
-		return dao.selectRentalshopCar(session, rentalshopId);
+	public Vehicle selectVehicleId(int no) {
+		return dao.selectVehicleId(session, no);
 	}
+	
 	
 	@Override
 	public int selectRentalshopCarCount(int rentalshopId) {
@@ -70,6 +70,8 @@ public class WorkPlaceServiceImpl implements WorkPlaceService {
 		
 		return result;
 	}
+	
+	
 	
 	
 	//---------------------------------------------------------
