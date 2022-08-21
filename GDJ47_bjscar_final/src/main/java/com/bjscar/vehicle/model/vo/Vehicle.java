@@ -1,5 +1,8 @@
 package com.bjscar.vehicle.model.vo;
 
+import java.util.List;
+
+import com.bjscar.attachment.model.vo.Attachment;
 import com.bjscar.rentalshop.model.vo.Rentalshop;
 
 import lombok.AllArgsConstructor;
@@ -23,5 +26,7 @@ public class Vehicle {
 	private int boardingPersonnel;
 	private String vehicleGrade;
 	private Rentalshop rentalShop;
+	private List<Attachment> files;
+
 	
 }

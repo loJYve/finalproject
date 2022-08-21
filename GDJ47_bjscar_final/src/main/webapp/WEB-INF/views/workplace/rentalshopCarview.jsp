@@ -17,7 +17,7 @@
 			<p>총 ${totalContents }곳의 사업장이 있습니다.</p>
 		
 			<h2>사업장 자동차관리</h2>
-			<button	class="btn btn-success" onclick=" location.assign('${path}/car/insertRentalshopCar.do?rentalshopId=${rentalshop.rentalshopId }')">자동차관리</button>
+			<button	class="btn btn-success" style="margin-left: 820px;" onclick=" location.assign('${path}/car/insertRentalshopCar.do')">자동차등록</button>
 			<table id="tbl_rentalshop" class="table table-striped table-hover">
 				<tr>
 					<th>차일련번호</th>

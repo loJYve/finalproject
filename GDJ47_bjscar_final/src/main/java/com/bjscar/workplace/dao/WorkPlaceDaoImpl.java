@@ -33,6 +33,18 @@ public class WorkPlaceDaoImpl implements WorkPlaceDao{
 		return session.selectList("rentalshop.selectRentalshopCarList",param,new RowBounds((offSet-1)*limit,limit));
 	}
 	
+	@Override
+	public int insertRentalshopCar(SqlSessionTemplate session,Vehicle v) {
+		return session.insert("rentalshop.insertRentalshopCar",v);	
+	}
+	
+	@Override
+	public void insertRentalshopVehicleId(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		session.insert("rentalshop.rentalshopidInsertCar");	
+	}	
+	
+	
 	//---------------------------------------------------------------
 	@Override
 	public List<Rentalshop> selectRentalshop(SqlSessionTemplate session,String memberId) {

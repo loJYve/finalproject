@@ -63,8 +63,8 @@ public class WorkPlaceController {
 		}
 		
 		
-		@RequestMapping("/insertworkplaceEndCar.do")
-		public String insertRentalshopCar(Rentalshop r, MultipartFile[] upFile, Model m, HttpServletRequest rs) {
+		@RequestMapping("/insertworkplaceCarEnd.do")
+		public String insertRentalshopCar(Vehicle v, MultipartFile[] upFile, Model m, HttpServletRequest rs) {
 			// int result = service.insertRentalshop(r);
 			String path = rs.getServletContext().getRealPath("resources/upload/rentalshopCarImg/");
 			File uploadDir = new File(path);
@@ -99,19 +99,19 @@ public class WorkPlaceController {
 
 				}
 
-				r.setFiles(files);
+				v.setFiles(files);
 				String msg = "";
 				String loc = "";
 				try {
-					service.insertRentalshop(r);
+					service.insertRentalshopCar(v);
 					msg = "자동차등록완료!";
-					loc = "/work/workplace.do";
+					loc = "/car/carview.do?rentalshopId="+v.getRentalshopId();
 					
 				} catch (RuntimeException e) {
 					e.printStackTrace();
 					msg = "등록실패!";
-					loc = "/work/insertRentalshop.do";
-					for (Attachment a : r.getFiles()) {
+					loc = "/car/insertRentalshopCar.do";
+					for (Attachment a : v.getFiles()) {
 						File deleteFile = new File(path + a.getRenamedFilename());
 						if (deleteFile.exists())
 							deleteFile.delete();
@@ -122,8 +122,8 @@ public class WorkPlaceController {
 				m.addAttribute("loc", loc);
 
 			}
-			System.out.println(r.getFiles());
-			System.out.println(r);
+			System.out.println(v.getFiles());
+			System.out.println(v);
 			return "common/msg";
 
 		}
@@ -211,7 +211,7 @@ public class WorkPlaceController {
 			try {
 				service.insertRentalshop(r);
 				msg = "렌탈샵등록!";
-				loc = "/work/workplace.do";
+				loc = "/work/workplace.do?bmId="+r.getBmMember();
 				
 			} catch (RuntimeException e) {
 				e.printStackTrace();

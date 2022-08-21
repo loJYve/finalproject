@@ -18,6 +18,11 @@ public interface WorkPlaceDao {
 	
 	List<Vehicle> selectRentalshopCarListPage(SqlSessionTemplate session,Map param);
 	
+	int insertRentalshopCar(SqlSessionTemplate session, Vehicle v);
+	
+	void insertRentalshopVehicleId(SqlSessionTemplate session);
+	
+	
 	//----------------------------------------------------------------------------
 	List<Rentalshop> selectRentalshop(SqlSessionTemplate session,String bmId);
 	
@@ -35,6 +40,10 @@ public interface WorkPlaceDao {
 	void insertRentalshopId(SqlSessionTemplate session);
 
 	int updateRentalshopEnd(SqlSessionTemplate session, Map param);
+
+	
+
+	
 
 	
 

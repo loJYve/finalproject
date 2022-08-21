@@ -41,6 +41,36 @@ public class WorkPlaceServiceImpl implements WorkPlaceService {
 		return dao.selectRentalshopCarListPage(session, param);
 	}
 	
+	@Override
+	@Transactional
+	public int insertRentalshopCar(Vehicle v) throws RuntimeException{
+		int result=0;
+		try {
+		
+		result = dao.insertRentalshopCar(session,v);
+		//log.debug("boardNo : {}",r.getRentalshopId());
+		if(result>0&&v.getFiles()!=null) {
+			for(Attachment a : v.getFiles()) {
+				a.setAttachmentId(v.getVehicleId());
+				result=dao.insertAttachment(session,a);
+//				if(result==0) throw new RuntimeException();
+				dao.insertRentalshopVehicleId(session);
+				
+			}
+			}
+		
+		}catch (RuntimeException e) {
+			e.printStackTrace();
+			throw new RuntimeException("작성실패!");
+			
+		}
+//		result=dao.insertAttachment(b.getFiles().get(0));
+//		result=dao.insertAttachment(b.getFiles().get(1));
+		
+		
+		return result;
+	}
+	
 	
 	//---------------------------------------------------------
 	@Override
@@ -90,6 +120,7 @@ public class WorkPlaceServiceImpl implements WorkPlaceService {
 				dao.insertRentalshopId(session);
 				
 			}
+			
 			}
 		
 		}catch (RuntimeException e) {
