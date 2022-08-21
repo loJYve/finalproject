@@ -51,14 +51,15 @@
 				infoWindow.setContent(iwContent);
 				infoWindow.open(marker.getMap(), marker);
 			}); 
-		  
+			 marker.addListener("click", () => {
+				    map.setZoom(12);
+				    map.setCenter(marker.getPosition());
+				  });
+			
 		});//filter닫음
 
 	});	//ajax닫음
 	//new MarkerClusterer({ marker, map });
-	
-	
-	
 	
 }
 	/* 

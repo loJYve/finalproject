@@ -20,7 +20,7 @@
     form#numperPageFrm{display:inline;} 
     div.center{align-items: center;}
     div#search-container{justify-content: center; margin: 20px}
-    div#whole-container{margin-top: 150px; text-align: center;}
+    div#whole-container{margin-top: 50px; text-align: center;}
 	table#tbl-member{justify-content: center;}
 	section#memberlist-container{margin-left: 150px; align-content: center;}
 	select#searchType{height:30px;}
@@ -40,7 +40,7 @@
 	        	</div>
 	        </c:if>
 	        <c:if test="${not empty vl }">
-	        <table id="tbl-member">
+	        <table id="tbl-member" class="table table-striped table-hover">
            <thead>
                <tr>
                 <th>대여소이름</th>
@@ -83,7 +83,7 @@
 		<div id="pageBar" style="margin-left:10%;">
         	${pageBar }
         	
-        </div>
+        </div >
         
 	        <div id="search-container">
 	        	검색타입 : 
