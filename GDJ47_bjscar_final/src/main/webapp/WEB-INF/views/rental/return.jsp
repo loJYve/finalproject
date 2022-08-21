@@ -103,16 +103,27 @@
 		
 		<div class="card-body">
       <form name="purchaseFrm" action="${path }/rental/returnVehicleEnd.do" method="post">
+		<%-- $("#purchaseAmount").val>0?action="${path }/rental/returnPurchaseVehicle.do":action="${path }/rental/returnVehicleEnd.do" --%>
+		
+		<input type="hidden" id="vehicleId" name="vehicleId" value="${v.vehicleId }"required readonly/>
+		<input type="hidden" id="memberId" name="memberId" value="${loginMember.memberId }" required readonly/>
+		<input type="hidden" id="totalMileage" name="totalMileage" value="${loginMember.totalMileage }" required readonly/>
+		<input type="hidden" id="rentalId" name="rentalId" value="${rh.rentalId }" required readonly/>
 		
 		<p class="text">예정 반납일</p>
-		<input type="text" id="returnDate" name="returnDate" class="form-control" value="" required readonly/>
+		<fmt:formatDate var="returnDate" value="${rh.returnDate }" pattern="yyyy-MM-dd HH:mm:ss"/>
+		<input type="text" id="returnDate" name="returnDate" class="form-control" value="${returnDate }" required readonly/>
 		<br><br>
 		<p class="text">실제 반납일</p>
 		<input type="text" id="returnCompletionDate" name="returnCompletionDate" class="form-control" required readonly/>
+		<br><br>
+		<p class="text">연체 시간</p>
+		<div id="totalOverdueTime" class="form-control">총 연체시간 : 0일 0시간 0분</div>
+		<input type="hidden" id="overdueTime" name="overdueTime" value="0" required readonly/>
 		<br><br><br>
-		
+		<input type="hidden" id="overdueFee" name="overdueFee" value="${v.price }" required/>
 		<div id="purchaseAmountStr" class="form-control">연체 금액 : 0원</div>
-		<input type="hidden" id="purchaseAmount" name="purchaseAmount" value="${purchaseAmount }" required/>
+		<input type="hidden" id="purchaseAmount" name="purchaseAmount" value="0" required/>
 		
         <hr class="mb-4">
           <div class="custom-control custom-checkbox">
@@ -134,6 +145,12 @@
    
 	<script>
 		$(function() {
+			
+			function addComma(value){
+    	        value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    	        return value; 
+    	    }
+			
 			const today = new Date();
 			const year = today.getFullYear();
 			const month = ('0' + (today.getMonth() + 1)).slice(-2);
@@ -146,6 +163,31 @@
 			
 			$("#returnCompletionDate").val(dateString+" "+timeString);
 			
+			const endDate = new Date($("#returnCompletionDate").val());
+            const startDate = new Date($("#returnDate").val());
+            if((endDate.getTime()-startDate.getTime()) >0){
+            	const totalTime = (endDate.getTime()-startDate.getTime()) / (1000*60*60);
+                const totalDay = Math.trunc(totalTime / 24);
+                const totalHour = Math.trunc(totalTime % 24);
+                /* const totalMinute = (totalTime % 24)%1==0.5?"30분":"0분"; */
+                const totalMinute = (endDate.getTime()-startDate.getTime()) / (1000*60) % 60;
+                /* const totalMinute = totalTime; */
+                $("#totalOverdueTime").text("총 연체시간 : "+ totalDay + "일 " + totalHour + "시간 " + totalMinute + "분");
+                /* console.log(totalTime%1); */
+                /* console.log(Math.floor(totalTime)); */
+                if((totalTime%1)>=0.5){
+                	$("#overdueTime").val(totalTime);
+        			$("#purchaseAmount").val((Math.floor(totalTime)+0.5)*($("#overdueFee").val()));
+        			$("#purchaseAmountStr").text("연체 금액 : "+addComma(String((Math.floor(totalTime)+0.5)*($("#overdueFee").val())))+"원");
+                }else{
+                	$("#overdueTime").val(totalTime);
+        			$("#purchaseAmount").val(Math.floor(totalTime)*($("#overdueFee").val()));
+        			$("#purchaseAmountStr").text("연체 금액 : "+addComma(String(Math.floor(totalTime)*($("#overdueFee").val())))+"원");
+                }
+            }
+            
+            
+            
 		})
 	</script>
    

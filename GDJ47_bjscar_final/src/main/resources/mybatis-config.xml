@@ -11,6 +11,11 @@
   	 <typeAlias type="com.bjscar.rentalshop.model.vo.Rentalshop" alias="rentalshop"/>
   	 <typeAlias type="com.bjscar.rentalshop.model.vo.RentalshopAttachment" alias="rentalshopattachment"/>
      <typeAlias type="com.bjscar.mypage.model.vo.RentalHistory" alias="rentalHistory"/>
+     <typeAlias type="com.bjscar.rental.model.vo.ReturnHistory" alias="returnHistory"/>
+     <typeAlias type="com.bjscar.rental.model.vo.OverdueHistory" alias="overdueHistory"/>
+     <typeAlias type="com.bjscar.rental.model.vo.ReturnPurchaseHistory" alias="returnPurchaseHistory"/>
+     <typeAlias type="com.bjscar.rental.model.vo.BrokenReportHistory" alias="brokenReportHistory"/>
+     <typeAlias type="com.bjscar.rental.model.vo.BRAttachment" alias="brAttachment"/>
      <typeAlias type="com.bjscar.mypage.model.vo.PurchaseDataList" alias="purchaseDataList"/>
      <typeAlias type="com.bjscar.mypage.model.vo.RentalDataList" alias="rentalDataList"/>
      <typeAlias type="com.bjscar.rental.model.vo.PurchaseHistory" alias="purchaseHistory"/>
