@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bjscar.common.PageFactory;
+import com.bjscar.member.model.vo.Member;
 import com.bjscar.mypage.model.vo.RentalHistory;
 import com.bjscar.rental.model.service.RentalService;
 import com.bjscar.rental.model.vo.PurchaseHistory;
@@ -107,8 +108,11 @@ public class RentalController {
 		return mv;
 	}
 	
-	@RequestMapping("/returnEnd.do")
-	public ModelAndView returnEnd(ModelAndView mv) {
+	@RequestMapping("/returnVehicle.do")
+	public ModelAndView returnVehicle(ModelAndView mv, Member loginMember) {
+//		System.out.println(loginMember);
+		
+		mv.setViewName("rental/return");
 		return mv;
 	}
 

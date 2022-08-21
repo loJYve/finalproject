@@ -32,6 +32,7 @@
        
         </c:if>
         <li><a href="${path }/rental/rental.do" class="nav-link px-2 link-dark">대여하기</a></li>
+        <li><a href="${path }/rental/returnVehicle.do?memberId=${loginMember.memberId}&totalMileage=${loginMember.totalMileage}" class="nav-link px-2 link-dark">반납하기</a></li>
 	
         <li><a href="${path }/longRental/LRCarList.do" class="nav-link px-2 link-dark">장기렌트하기</a></li>
 		<li><a href="${path }/map/mapview.do" class="nav-link px-2 link-dark">대여소보기</a></li>

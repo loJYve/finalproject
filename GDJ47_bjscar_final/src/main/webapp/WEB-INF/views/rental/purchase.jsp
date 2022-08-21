@@ -178,6 +178,14 @@
 			const purchaseAmountStr = addComma(String(purchaseAmount));
 			$("#purchaseAmountStr").text("총 결제금액 : "+purchaseAmountStr+"원");
 			$("#purchaseAmount").val(purchaseAmount);
+			if(val==$("#beforeMileage").val()){
+				$("#purchaseMethod option").attr("disabled","disabled");
+				$("#purchaseMethod").append($("<option>").attr("value","마일리지").text("마일리지"));
+				$("#purchaseMethod option[value='마일리지']").attr("selected","selected");
+			}else{
+				$("#purchaseMethod option").removeAttr("disabled");
+				$("#purchaseMethod option[value='마일리지']").remove();
+			}
 		})
 		
 		$("#useMileage").blur(e=>{
@@ -188,8 +196,10 @@
 				e.target.value=0;
 				$("#purchaseAmountStr").text("총 결제금액 : "+addComma(String($("#beforeMileage").val()))+"원");
 				$("#purchaseAmount").val($("#beforeMileage").val());
+				$("#purchaseMethod option").removeAttr("disabled");
+				$("#purchaseMethod option[value='마일리지']").remove();
 				e.target.focus();
-			}else if(val>$("#totalMileage").val()){
+			}else if(Number(val)>Number($("#totalMileage").val())){
 				alert("보유한 마일리지 이상의 마일리지는 사용할 수 없습니다.");
 				e.target.value=0;
 				$("#purchaseAmountStr").text("총 결제금액 : "+addComma(String($("#beforeMileage").val()))+"원");
@@ -204,11 +214,35 @@
 			const val = $("#totalMileage").val();
 			/* console.log(val); */
 			/* Math.floor(121.123) / 10) * 10; */
-			$("#useMileage").val((Math.floor(val)/1000)*1000);
-			const purchaseAmount = $("#beforeMileage").val() - ((Math.floor(val)/1000)*1000);
-			const purchaseAmountStr = addComma(String(purchaseAmount));
-			$("#purchaseAmountStr").text("총 결제금액 : "+purchaseAmountStr+"원");
-			$("#purchaseAmount").val(purchaseAmount);
+			if(Number(val)<Number($("#beforeMileage").val())){
+				/* console.log($("#beforeMileage").val());
+				console.log(val);
+				console.log(Math.floor(val));
+				console.log((Math.floor(val)/1000)*1000); */
+				$("#useMileage").val(Math.floor(val/1000)*1000);
+				const purchaseAmount = $("#beforeMileage").val() - (Math.floor(val/1000)*1000);
+				const purchaseAmountStr = addComma(String(purchaseAmount));
+				$("#purchaseAmountStr").text("총 결제금액 : "+purchaseAmountStr+"원");
+				$("#purchaseAmount").val(purchaseAmount);
+			}else{
+				if(Number($("#beforeMileage").val())%1000==0){
+					/* console.log($("#beforeMileage").val()); */
+					$("#useMileage").val($("#beforeMileage").val());
+					$("#purchaseAmountStr").text("총 결제금액 : "+0+"원");
+					$("#purchaseAmount").val(0);
+					$("#purchaseMethod option").attr("disabled","disabled");
+					$("#purchaseMethod").append($("<option>").attr("value","마일리지").text("마일리지"));
+					$("#purchaseMethod option[value='마일리지']").attr("selected","selected");
+				}else if(Number($("#beforeMileage").val())%1000!=0){
+					/* console.log(val);
+					console.log((Math.floor(val)/1000)*1000); */
+					$("#useMileage").val(Math.floor($("#beforeMileage").val()/1000)*1000);
+					const purchaseAmount = $("#beforeMileage").val() - (Math.floor($("#beforeMileage").val()/1000)*1000);
+					const purchaseAmountStr = addComma(String(purchaseAmount));
+					$("#purchaseAmountStr").text("총 결제금액 : "+purchaseAmountStr+"원");
+					$("#purchaseAmount").val(purchaseAmount);
+				}
+			}
 		})
 		
 	});

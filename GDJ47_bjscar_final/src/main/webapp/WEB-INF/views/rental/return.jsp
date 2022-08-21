@@ -98,50 +98,20 @@
 	<div class="input-form-backgroud row">
 	<div class="input-form col-md-12 mx-auto">
 		<div class="card-title" style="margin-top:30px;">
-		  <h4 class="mb-3">결제하기</h4>
+		  <h4 class="mb-3">반납하기</h4>
 		</div>
 		
 		<div class="card-body">
-      <form name="purchaseFrm" action="${path }/rental/purchase.do" method="post">
-      
-      	<%-- <input type="hidden" id="rentalHistory" name="rentalHistory" value="${rentalHistory }" required/> --%>
-      	<input type="hidden" id="rentalDate" name="rentalDate" value="${rentalHistory.rentalDate }" required/>
-      	<input type="hidden" id="returnDate" name="returnDate" value="${rentalHistory.returnDate }" required/>
-      	<input type="hidden" id="vehicleId" name="vehicleId" value="${rentalHistory.vehicleId }" required/>
-      	<input type="hidden" id="memberId" name="memberId" value="${rentalHistory.memberId }" required/>
-      	<input type="hidden" id="insuranceCode" name="insuranceCode" value="${rentalHistory.insuranceCode }" required/>
+      <form name="purchaseFrm" action="${path }/rental/returnVehicleEnd.do" method="post">
 		
-		<p class="text">마일리지 (* 천원 단위로 사용가능)</p>
-		<div id="totalMileageStr" class="form-control">
-			내 마일리지 : <fmt:formatNumber value="${loginMember.totalMileage }"/>원 
-			<!-- &nbsp;&nbsp;&nbsp;<button id="btn_mileage">전액 사용</button> -->
-			&nbsp;&nbsp;&nbsp;<input type="button" id="btn_mileage" name="btn_mileage" value="전액사용">
-			<input type="hidden" id="totalMileage" name="totalMileage" value="${loginMember.totalMileage }" required/>
-		</div>
+		<p class="text">예정 반납일</p>
+		<input type="text" id="returnDate" name="returnDate" class="form-control" value="" required readonly/>
 		<br><br>
-		<div class="form-control">
-		사용할 마일리지 : 
-		<input type="text" id="useMileage" name="useMileage" value="0" required autocomplete='off'/>
-		원
-		</div>
-		<br><br>
-		
-		<p class="text">결제방법</p>
-        <select id="purchaseMethod" name="purchaseMethod" class="form-control"required>
-			<option value="">결제방법 선택</option>
-			<option value="신용카드">신용카드</option>
-			<option value="실시간계좌이체">실시간계좌이체</option>
-			<option value="가상계좌">가상계좌</option>
-			<option value="휴대폰소액결제">휴대폰소액결제</option>
-			<option value="카카오페이">카카오페이</option>
-			<option value="페이코">페이코</option>
-		</select>
+		<p class="text">실제 반납일</p>
+		<input type="text" id="returnCompletionDate" name="returnCompletionDate" class="form-control" required readonly/>
 		<br><br><br>
 		
-		<div id="beforeMileageStr" class="form-control">마일리지 사용 전 결제금액 : <fmt:formatNumber value="${purchaseAmount }"/>원</div>
-		<input type="hidden" id="beforeMileage" name="beforeMileage" value="${purchaseAmount }" required/>
-		<br><br>
-		<div id="purchaseAmountStr" class="form-control">총 결제금액 : <fmt:formatNumber value="${purchaseAmount }"/>원</div>
+		<div id="purchaseAmountStr" class="form-control">연체 금액 : 0원</div>
 		<input type="hidden" id="purchaseAmount" name="purchaseAmount" value="${purchaseAmount }" required/>
 		
         <hr class="mb-4">
@@ -150,7 +120,7 @@
             <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
           </div>
         <br/>
-          <button type="submit" id="btn-Yes" class="btn btn-lg btn-primary btn-block">결제하기</button>
+          <button type="submit" id="btn-Yes" class="btn btn-lg btn-primary btn-block">반납하기</button>
         <br>
         <br>
     </form>
@@ -161,6 +131,23 @@
        </div>
 	</div>
    </body>
+   
+	<script>
+		$(function() {
+			const today = new Date();
+			const year = today.getFullYear();
+			const month = ('0' + (today.getMonth() + 1)).slice(-2);
+			const day = ('0' + today.getDate()).slice(-2);
+			const dateString = year + '-' + month  + '-' + day;
+			const hours = ('0' + today.getHours()).slice(-2); 
+			const minutes = ('0' + today.getMinutes()).slice(-2);
+			const seconds = ('0' + today.getSeconds()).slice(-2); 
+			const timeString = hours + ':' + minutes  + ':' + "00";
+			
+			$("#returnCompletionDate").val(dateString+" "+timeString);
+			
+		})
+	</script>
    
 </html>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
