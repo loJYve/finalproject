@@ -128,7 +128,8 @@ public class WorkPlaceController {
 
 		}
 		
-	
+		
+		
 	//-------------------------------------------------------------------------
 	
 	//랜탈샵등록
@@ -148,8 +149,18 @@ public class WorkPlaceController {
 		mv.setViewName("workplace/workplacePage");
 		return mv;
 	}
+	//자동차 상세보기  페이지
+			@RequestMapping("/car/workplaceCarView.do")
+			public ModelAndView workplaceCarView(int no, ModelAndView mv) {
+				mv.addObject("vehicle", service.selectVehicleId(no));
+				mv.setViewName("workplace/cardetial"); 
+				
+				System.out.println(no);
+				System.out.println(service.selectVehicleId(no));
+				return mv;
+			}
 	
-	//페
+	//렌탈샵 상세보기 페이지
 
 	@RequestMapping("/work/workplaceView.do")
 	public ModelAndView workplaceView(int no, ModelAndView mv) {
@@ -287,7 +298,7 @@ public class WorkPlaceController {
 	
 	
 	
-	//자동차 등록 
+	
 	
 	
 
