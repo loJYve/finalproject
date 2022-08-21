@@ -102,21 +102,22 @@
 		</div>
 		
 		<div class="card-body">
-      <form name="purchaseFrm" action="${path }/rental/purchase.do" method="post">
+      <form name="purchaseFrm" action="${path }/rental/returnPurchaseEnd.do" method="post">
       
       	<%-- <input type="hidden" id="rentalHistory" name="rentalHistory" value="${rentalHistory }" required/> --%>
-      	<input type="hidden" id="rentalDate" name="rentalDate" value="${rentalHistory.rentalDate }" required/>
-      	<input type="hidden" id="returnDate" name="returnDate" value="${rentalHistory.returnDate }" required/>
-      	<input type="hidden" id="vehicleId" name="vehicleId" value="${rentalHistory.vehicleId }" required/>
-      	<input type="hidden" id="memberId" name="memberId" value="${rentalHistory.memberId }" required/>
-      	<input type="hidden" id="insuranceCode" name="insuranceCode" value="${rentalHistory.insuranceCode }" required/>
+      	<input type="hidden" id="returnCompletionDate" name="returnCompletionDate" value="${returnh.returnCompletionDate }" required/>
+      	<input type="hidden" id="overdueTime" name="overdueTime" value="${oh.overdueTime }" required/>
+      	<input type="hidden" id="overdueFee" name="overdueFee" value="${oh.overdueFee }" required/>
+      	<input type="hidden" id="vehicleId" name="vehicleId" value="${rh.vehicleId }" required/>
+      	<input type="hidden" id="memberId" name="memberId" value="${m.memberId }" required/>
+      	<input type="hidden" id="rentalId" name="rentalId" value="${rh.rentalId }" required readonly/>
 		
 		<p class="text">마일리지 (* 천원 단위로 사용가능)</p>
 		<div id="totalMileageStr" class="form-control">
-			내 마일리지 : <fmt:formatNumber value="${loginMember.totalMileage }"/>원 
+			내 마일리지 : <fmt:formatNumber value="${m.totalMileage }"/>원 
 			<!-- &nbsp;&nbsp;&nbsp;<button id="btn_mileage">전액 사용</button> -->
 			&nbsp;&nbsp;&nbsp;<input type="button" id="btn_mileage" name="btn_mileage" value="전액사용">
-			<input type="hidden" id="totalMileage" name="totalMileage" value="${loginMember.totalMileage }" required/>
+			<input type="hidden" id="totalMileage" name="totalMileage" value="${m.totalMileage }" required/>
 		</div>
 		<br><br>
 		<div class="form-control">
@@ -138,11 +139,11 @@
 		</select>
 		<br><br><br>
 		
-		<div id="beforeMileageStr" class="form-control">마일리지 사용 전 결제금액 : <fmt:formatNumber value="${purchaseAmount }"/>원</div>
-		<input type="hidden" id="beforeMileage" name="beforeMileage" value="${purchaseAmount }" required/>
+		<div id="beforeMileageStr" class="form-control">마일리지 사용 전 결제금액 : <fmt:formatNumber value="${ph.purchaseAmount }"/>원</div>
+		<input type="hidden" id="beforeMileage" name="beforeMileage" value="${ph.purchaseAmount }" required/>
 		<br><br>
-		<div id="purchaseAmountStr" class="form-control">총 결제금액 : <fmt:formatNumber value="${purchaseAmount }"/>원</div>
-		<input type="hidden" id="purchaseAmount" name="purchaseAmount" value="${purchaseAmount }" required/>
+		<div id="purchaseAmountStr" class="form-control">총 결제금액 : <fmt:formatNumber value="${ph.purchaseAmount }"/>원</div>
+		<input type="hidden" id="purchaseAmount" name="purchaseAmount" value="${ph.purchaseAmount }" required/>
 		
         <hr class="mb-4">
           <div class="custom-control custom-checkbox">

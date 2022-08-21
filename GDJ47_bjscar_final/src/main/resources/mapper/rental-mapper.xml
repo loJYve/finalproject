@@ -83,4 +83,31 @@
 		UPDATE MEMBER SET TOTAL_MILEAGE=(TOTAL_MILEAGE-${useMileage}+(SELECT ADD_MILEAGE FROM PURCHASE_HISTORY WHERE PURCHASE_ID=#{purchaseId})) WHERE MEMBER_ID=#{memberId}
 	</update>
 	
+	<select id="selectSearchvehicle" parameterType="_int" resultMap="vehicleMap">
+		SELECT * FROM VEHICLE WHERE VEHICLE_ID=(SELECT VEHICLE_ID FROM RENTAL_HISTORY WHERE RENTAL_ID=#{rentalId})
+	</select>
+	
+	<update id="updateRentalHistoryReturn" parameterType="rentalHistory">
+		UPDATE RENTAL_HISTORY SET RENTAL_STATUS='반납완료' WHERE RENTAL_ID=#{rentalId}
+	</update>
+	
+	<insert id="insertReturnHistory" parameterType="returnHistory">
+		INSERT INTO RETURN_HISTORY VALUES(SEQ_RETURN_ID.NEXTVAL, #{returnCompletionDate}, #{rentalId}, 'N')
+		<selectKey keyProperty="returnId" resultType="_int" order="AFTER">
+			SELECT SEQ_RETURN_ID.CURRVAL FROM DUAL
+		</selectKey>
+	</insert>
+	
+	<update id="updateVehicleReturn" parameterType="_int">
+		UPDATE VEHICLE SET RENTAL_STATUS='대여가능' WHERE VEHICLE_ID=#{vehicleId}
+	</update>
+	
+	<insert id="insertOverdueHistory" parameterType="overdueHistory">
+		INSERT INTO OVERDUE_HISTORY VALUES(SEQ_OVERDUE_ID.NEXTVAL, #{overdueFee}, #{rentalId}, #{returnId}, #{overdueTime})
+	</insert>
+	
+	<insert id="insertReturnPurchaseHistory" parameterType="map">
+		INSERT INTO RETURN_PURCHASE_HISTORY VALUES(#{returnId}, #{purchaseId})
+	</insert>
+	
 </mapper>

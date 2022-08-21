@@ -193,7 +193,7 @@
             <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
           </div>
         <br/>
-          <button type="submit" id="btn-Yes" class="btn btn-lg btn-primary btn-block">결제하기</button>
+          <button type="submit" id="btn-Yes" class="btn btn-lg btn-primary btn-block">대여하기</button>
         <br>
         <br>
     </form>

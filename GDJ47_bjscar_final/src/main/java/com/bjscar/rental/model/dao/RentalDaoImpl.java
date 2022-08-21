@@ -8,7 +8,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.bjscar.mypage.model.vo.RentalHistory;
+import com.bjscar.rental.model.vo.OverdueHistory;
 import com.bjscar.rental.model.vo.PurchaseHistory;
+import com.bjscar.rental.model.vo.ReturnHistory;
 import com.bjscar.vehicle.model.vo.Vehicle;
 
 @Repository
@@ -51,6 +53,36 @@ public class RentalDaoImpl implements RentalDao{
 	@Override
 	public int updateMember(SqlSessionTemplate session, Map paramM) {
 		return session.update("rental.updateMember", paramM);
+	}
+
+	@Override
+	public Vehicle selectSearchvehicle(SqlSessionTemplate session, int rentalId) {
+		return session.selectOne("rental.selectSearchvehicle", rentalId);
+	}
+
+	@Override
+	public int updateRentalHistoryReturn(SqlSessionTemplate session, RentalHistory rh) {
+		return session.update("rental.updateRentalHistoryReturn", rh);
+	}
+
+	@Override
+	public int insertReturnHistory(SqlSessionTemplate session, ReturnHistory returnh) {
+		return session.insert("rental.insertReturnHistory", returnh);
+	}
+
+	@Override
+	public int updateVehicleReturn(SqlSessionTemplate session, int vehicleId) {
+		return session.update("rental.updateVehicleReturn", vehicleId);
+	}
+
+	@Override
+	public int insertOverdueHistory(SqlSessionTemplate session, OverdueHistory oh) {
+		return session.insert("rental.insertOverdueHistory", oh);
+	}
+
+	@Override
+	public int insertReturnPurchaseHistory(SqlSessionTemplate session, Map param) {
+		return session.insert("rental.insertReturnPurchaseHistory", param);
 	}
 
 }
