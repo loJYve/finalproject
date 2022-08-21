@@ -185,7 +185,7 @@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 							<c:forEach items="${ rentalshop.files}" var="a">
 						<tr>
 							<td class="tg-0lax" colspan="5" rowspan="10" ><img
-												src="/resources/upload/rentalshopImg/${a.renamedFilename }"
+												src="${path}/resources/upload/rentalshopImg/${a.renamedFilename }"
 												alt="이미지" /></td>
 							<td class="tg-0lax" colspan="5" rowspan="2">사진이름:<c:out
 											value="${a.originalFilename }" /></td>

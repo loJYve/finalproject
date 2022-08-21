@@ -79,7 +79,7 @@
         </tbody>
 	    </table>
 		    <div>
-			    <button id="rental" type="button" onclick="location.assign('/map/showRentalshop.do?no='${param.no});" style="float: right; margin: 10px; margin-right: 5%;">대여하러가기</button>
+			    <button id="rental" type="button" onclick="location.assign('${path}/map/showRentalshop.do?no='${param.no});" style="float: right; margin: 10px; margin-right: 5%;">대여하러가기</button>
 			    </c:if>
 				<div id="pageBar" style="margin-left:10%;margin-top:30px;margin-bottom:30px">
 		        	${pageBar }

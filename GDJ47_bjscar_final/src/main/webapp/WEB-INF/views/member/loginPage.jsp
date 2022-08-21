@@ -83,7 +83,7 @@
 	<div class="card align-middle" style="width:28rem;">
 	<div class="card-title" style="margin-top:30px;">
 		<div class="twelve" style="display: flex;align-items:center;text-align: center;">
-	<img src="/images/car.png" style="width:70px;height:70px;">
+	<img src="${path }/images/car.png" style="width:70px;height:70px;">
 		<h2>BJSCAR</h2>
     <img src="/images/car.png" style="width:70px;height:70px;">
             </div>

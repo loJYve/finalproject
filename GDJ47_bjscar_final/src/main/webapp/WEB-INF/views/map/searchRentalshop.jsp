@@ -7,7 +7,6 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <%@ page import="com.bjscar.vehicle.model.vo.Vehicle" %>	
 
-
 <style type="text/css">
 	section#memberList-container table#tbl-member {height: 50%; width:90%; border:1px solid gray; border-collapse:collapse; margin: auto;}
 	section#memberList-container table#tbl-member th, table#tbl-member td {border:1px solid gray; padding:5px; font-size:13px; }
@@ -50,7 +49,7 @@
 						<%-- <td><c:out value="${r.}"/></td> --%>
 						<!-- 여기서 대여가능 차량대수는 rentalshop이 
 			    아닌 vehicle 테이블에서 count로 받아와야 하는데 c:forEach로 어떻게 할 수 있음?? -->
-						<td><button type="button" onclick="location.assign('/map/showRentalshop.do?no=${r.rentalshopId}');">대여소 확인하기</button></td>	
+						<td><button type="button" onclick="location.assign('${path}/map/showRentalshop.do?no=${r.rentalshopId}');">대여소 확인하기</button></td>	
 
 					</tr>
 				</c:forEach>

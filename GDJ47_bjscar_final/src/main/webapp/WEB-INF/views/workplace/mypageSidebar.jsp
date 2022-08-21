@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
+    <c:set var="path" value="${pageContext.request.contextPath }" />
 <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
 
 		
@@ -14,7 +14,7 @@
 				</button>
 				<div class="collapse " id="home-collapse" style="">
 					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-						<li><a href="/work/insertRentalshop.do" class="link-dark rounded" >사업장 만들기</a></li>
+						<li><a href="${path}/work/insertRentalshop.do" class="link-dark rounded" >사업장 만들기</a></li>
 						
 					</ul>
 				</div>
@@ -27,9 +27,8 @@
 			</button>
 			<div class="collapse" id="orders-collapse" style="">
 				<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-					<li><a href="" class="link-dark rounded">문의게시판</a></li>
-					<li><a href="" class="link-dark rounded">1대1 문의</a></li>
-					<li><a href="/mypage/faq.do" class="link-dark rounded">자주 묻는 질문</a></li>
+					<li><a href="${path}/boardList.do" class="link-dark rounded">문의게시판</a></li>
+					<li><a href="${path}/mypage/faq.do" class="link-dark rounded">자주 묻는 질문</a></li>
 				</ul>
 			 </div>
 			</li>

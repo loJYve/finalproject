@@ -151,7 +151,7 @@ public class WorkPlaceController {
 	}
 	//자동차 상세보기  페이지
 			@RequestMapping("/car/workplaceCarView.do")
-			public ModelAndView workplaceCarView(int no, ModelAndView mv) {
+			public ModelAndView workplaceCarView(@RequestParam int no, ModelAndView mv) {
 				mv.addObject("vehicle", service.selectVehicleId(no));
 				mv.setViewName("workplace/cardetial"); 
 				
@@ -163,7 +163,7 @@ public class WorkPlaceController {
 	//렌탈샵 상세보기 페이지
 
 	@RequestMapping("/work/workplaceView.do")
-	public ModelAndView workplaceView(int no, ModelAndView mv) {
+	public ModelAndView workplaceView(@RequestParam int no, ModelAndView mv) {
 		mv.addObject("rentalshop", service.selectRentalshop(no));
 		mv.setViewName("workplace/workView");
 		

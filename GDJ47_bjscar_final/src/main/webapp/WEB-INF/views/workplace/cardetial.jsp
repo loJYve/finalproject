@@ -70,7 +70,7 @@
 					<c:forEach items="${ vehicle.files}" var="a">
 						<tr>
 							<td class="tg-0lax" colspan="5" rowspan="10"><img
-								src="/resources/upload/rentalshopCarImg/${a.renamedFilename }"
+								src="${path }/resources/upload/rentalshopCarImg/${a.renamedFilename }"
 								alt="이미지" /></td>
 							<td class="tg-0lax" colspan="5" rowspan="2">사진이름:<c:out
 									value="${a.originalFilename }" /></td>
