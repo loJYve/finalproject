@@ -42,5 +42,7 @@ public interface MypageService {
 
 	List<RentalDataList> selectRentalDataList(String memberId);
 
+	void updateRental(String rentalId);
+
 
 }

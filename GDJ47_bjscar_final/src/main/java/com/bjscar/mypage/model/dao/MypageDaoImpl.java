@@ -84,5 +84,10 @@ public class MypageDaoImpl implements MypageDao {
 	public int selectRHCount(SqlSessionTemplate session, String memberId) {
 		return session.selectOne("mypage.selectRHCount", memberId);
 	}
+	
+	@Override
+	public void updateRental(SqlSessionTemplate session, String rentalId) {
+		session.update("mypage.updateRental", rentalId);
+	}
 
 }

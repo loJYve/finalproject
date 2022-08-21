@@ -43,4 +43,6 @@ public interface MypageDao {
 
 	List<RentalDataList> selectRentalDataList(SqlSessionTemplate session, String memberId);
 
+	void updateRental(SqlSessionTemplate session, String rentalId);
+
 }

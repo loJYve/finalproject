@@ -79,5 +79,10 @@ public class MypageServiceImpl implements MypageService {
 		return dao.selectRHCount(session, memberId);
 	}
 	
+	@Override
+	public void updateRental(String rentalId) {
+		dao.updateRental(session, rentalId);
+	}
+	
 
 }

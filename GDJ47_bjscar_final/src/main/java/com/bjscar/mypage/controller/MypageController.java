@@ -147,5 +147,17 @@ public class MypageController {
 		return mv;
 	}
 
+	
+	@RequestMapping("/rental.do")
+	public ModelAndView updateRental(@RequestParam String memberId, @RequestParam String rentalId, ModelAndView mv) {
+		
+		service.updateRental(rentalId);
+		
+		mv.addObject("msg", "대여 완료");
+		mv.addObject("loc", "/mypage/rentaldata.do?memberId="+memberId);
+		mv.setViewName("common/msg");
+		
+		return mv;
+	}
 
 }
