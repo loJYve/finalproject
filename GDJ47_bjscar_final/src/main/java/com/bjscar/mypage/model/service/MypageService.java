@@ -29,6 +29,9 @@ public interface MypageService {
 
 	Member selectMember(String memberId);
 
+
+	RentalHistory selectrentalHistoryDetail(String rhId);
+
 	void memSecessionEnd(Map param);
 
 	List<PurchaseDataList> selectPurchaseHistory(Map param);
@@ -38,5 +41,8 @@ public interface MypageService {
 	int selectRHCount(String memberId);
 
 	List<RentalDataList> selectRentalDataList(String memberId);
+
+	void updateRental(String rentalId);
+
 
 }

@@ -56,6 +56,11 @@ public class MypageServiceImpl implements MypageService {
 	}
 	
 	@Override
+	public RentalHistory selectrentalHistoryDetail(String rhId) {
+		return dao.selectrentalHistoryDetail(session, rhId);
+	}
+	
+	@Override
 	public void memSecessionEnd(Map param)  {
 		dao.memSecessionEnd(session, param);
 	}
@@ -74,5 +79,10 @@ public class MypageServiceImpl implements MypageService {
 		return dao.selectRHCount(session, memberId);
 	}
 	
+	@Override
+	public void updateRental(String rentalId) {
+		dao.updateRental(session, rentalId);
+	}
 	
+
 }

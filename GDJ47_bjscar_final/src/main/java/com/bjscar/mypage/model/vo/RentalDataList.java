@@ -16,5 +16,7 @@ public class RentalDataList {
 	private Date rentalDate;
 	private String rentalshopName;
 	private Date returnDate;
+	private String status;
+	private int rentalId;
 	
 }

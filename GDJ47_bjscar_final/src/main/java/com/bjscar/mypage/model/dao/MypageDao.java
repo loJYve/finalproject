@@ -31,6 +31,8 @@ public interface MypageDao {
 
 	Member selectMember(SqlSessionTemplate session, String memberId);
 
+	RentalHistory selectrentalHistoryDetail(SqlSessionTemplate session, String rhId);
+
 	void memSecessionEnd(SqlSessionTemplate session, Map param);
 
 	List<PurchaseDataList> selectPurchaseHistory(SqlSessionTemplate session, Map param);
@@ -40,4 +42,7 @@ public interface MypageDao {
 	int selectRHCount(SqlSessionTemplate session, String memberId);
 
 	List<RentalDataList> selectRentalDataList(SqlSessionTemplate session, String memberId);
+
+	void updateRental(SqlSessionTemplate session, String rentalId);
+
 }

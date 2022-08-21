@@ -55,6 +55,11 @@ public class MypageDaoImpl implements MypageDao {
 	public Member selectMember(SqlSessionTemplate session, String memberId) {
 		return session.selectOne("mypage.selectMember", memberId);
 	}
+	
+	@Override
+	public RentalHistory selectrentalHistoryDetail(SqlSessionTemplate session, String rhId) {
+		return session.selectOne("mypage.selectrentalHistoryDetail", rhId);
+	}
 
 	@Override
 	public void memSecessionEnd(SqlSessionTemplate session, Map param) {
@@ -78,6 +83,11 @@ public class MypageDaoImpl implements MypageDao {
 	@Override
 	public int selectRHCount(SqlSessionTemplate session, String memberId) {
 		return session.selectOne("mypage.selectRHCount", memberId);
+	}
+	
+	@Override
+	public void updateRental(SqlSessionTemplate session, String rentalId) {
+		session.update("mypage.updateRental", rentalId);
 	}
 
 }
