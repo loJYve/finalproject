@@ -30,7 +30,7 @@ public interface MypageService {
 	Member selectMember(String memberId);
 
 
-	RentalHistory selectrentalHistoryDetail(String rhId);
+	RentalHistory selectrentalHistoryDetail(int rhId);
 
 	void memSecessionEnd(Map param);
 
@@ -43,6 +43,8 @@ public interface MypageService {
 	List<RentalDataList> selectRentalDataList(String memberId);
 
 	void updateRental(String rentalId);
+
+	void cancelRental(String rentalId);
 
 
 }

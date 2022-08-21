@@ -56,7 +56,7 @@ public class MypageServiceImpl implements MypageService {
 	}
 	
 	@Override
-	public RentalHistory selectrentalHistoryDetail(String rhId) {
+	public RentalHistory selectrentalHistoryDetail(int rhId) {
 		return dao.selectrentalHistoryDetail(session, rhId);
 	}
 	
@@ -82,6 +82,12 @@ public class MypageServiceImpl implements MypageService {
 	@Override
 	public void updateRental(String rentalId) {
 		dao.updateRental(session, rentalId);
+	}
+	
+	@Override
+	public void cancelRental(String rentalId) {
+		dao.cancelRental(session, rentalId);
+		
 	}
 	
 

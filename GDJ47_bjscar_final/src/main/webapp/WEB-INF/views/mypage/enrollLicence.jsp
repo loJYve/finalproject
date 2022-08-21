@@ -28,7 +28,6 @@
 						<div class="d-grid gap-2 col-6 mx-auto">
 	  						<c:if test="${rd.status eq '예약완료'}">
 	  							<button class="btn btn-secondary" type="button" onclick="location.assign('${path }/mypage/rental.do?rentalId=${rd.rentalId }&memberId=${loginMember.memberId }');">대여하기</button>
-	  							<button class="btn btn-secondary" type="button" onclick="location.assign('${path }/mypage/cancelRental.do?rentalId=${rd.rentalId }&memberId=${loginMember.memberId }');">취소하기</button>
 	  						</c:if>
 	  						<c:if test="${rd.status eq '대여중'}">
 	  							<button class="btn btn-secondary" type="button" onclick="location.assign('${path }/mypage/return.do?rentalId=${rd.rentalId }');">반납하기</button>

@@ -31,7 +31,7 @@ public interface MypageDao {
 
 	Member selectMember(SqlSessionTemplate session, String memberId);
 
-	RentalHistory selectrentalHistoryDetail(SqlSessionTemplate session, String rhId);
+	RentalHistory selectrentalHistoryDetail(SqlSessionTemplate session, int rhId);
 
 	void memSecessionEnd(SqlSessionTemplate session, Map param);
 
@@ -44,5 +44,7 @@ public interface MypageDao {
 	List<RentalDataList> selectRentalDataList(SqlSessionTemplate session, String memberId);
 
 	void updateRental(SqlSessionTemplate session, String rentalId);
+
+	void cancelRental(SqlSessionTemplate session, String rentalId);
 
 }

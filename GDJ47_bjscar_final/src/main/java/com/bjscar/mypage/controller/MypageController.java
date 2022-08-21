@@ -88,7 +88,7 @@ public class MypageController {
 	
 
 	@RequestMapping("/rhdetail.do")
-	public ModelAndView rhDetail(@RequestParam String rhId, ModelAndView mv) {
+	public ModelAndView rhDetail(@RequestParam int rhId, ModelAndView mv) {
 		
 		mv.addObject("rhdetail", service.selectrentalHistoryDetail(rhId));
 		
@@ -136,16 +136,6 @@ public class MypageController {
 	
 	
 	
-	@RequestMapping("/enrolllisence.do")
-	public ModelAndView enrollLisence(@RequestParam String memberId, ModelAndView mv) {
-		
-		mv.addObject(mv);
-		
-		//mv.setViewName(mv);
-		
-		
-		return mv;
-	}
 
 	
 	@RequestMapping("/rental.do")
@@ -154,6 +144,18 @@ public class MypageController {
 		service.updateRental(rentalId);
 		
 		mv.addObject("msg", "대여 완료");
+		mv.addObject("loc", "/mypage/rentaldata.do?memberId="+memberId);
+		mv.setViewName("common/msg");
+		
+		return mv;
+	}
+	
+	@RequestMapping("/cancelRental.do")
+	public ModelAndView cancelRental(@RequestParam String memberId, @RequestParam String rentalId, ModelAndView mv) {
+		
+		service.cancelRental(rentalId);
+		
+		mv.addObject("msg", "취소 완료");
 		mv.addObject("loc", "/mypage/rentaldata.do?memberId="+memberId);
 		mv.setViewName("common/msg");
 		

@@ -20,29 +20,29 @@
         <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
       </a> 
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0" style="width:-webkit-fill-available;">
-        <li><a href="<%=request.getContextPath()%>/" class="nav-link px-2 link-secondary">Home</a></li>
+        <li><a href="<%=request.getContextPath()%>/" class="nav-link px-2 link-primary display-6">BJScar</a></li>
 
-        <li><a href="${path }/mypage/faq.do" class="nav-link px-2 link-dark">FAQs</a></li>
-		<li><a href="<%=request.getContextPath()%>/boardList.do" class="nav-link px-2 link-dark">문의사항</a></li>
+        <li><a href="${path }/mypage/faq.do" class="nav-link px-2 link-dark mt-3">FAQs</a></li>
+		<li><a href="<%=request.getContextPath()%>/boardList.do" class="nav-link px-2 link-dark mt-3">문의사항</a></li>
 	<c:if test="${loginAdmin != null }">
-        <li><a href="<%=request.getContextPath()%>/admin.do" class="nav-link px-2 link-dark">관리자 페이지</a></li>
+        <li><a href="<%=request.getContextPath()%>/admin.do" class="nav-link px-2 link-dark mt-3">관리자 페이지</a></li>
     </c:if>
 	<c:if test="${loginMan != null }">
-        <li><a href="<%=request.getContextPath()%>/work/workplace.do?bmId=${loginMan.bmId}" class="nav-link px-2 link-dark">사업장관리</a></li>
+        <li><a href="<%=request.getContextPath()%>/work/workplace.do?bmId=${loginMan.bmId}" class="nav-link px-2 link-dark mt-3">사업장관리</a></li>
        
         </c:if>
-        <li><a href="${path }/rental/rental.do" class="nav-link px-2 link-dark">대여하기</a></li>
+        <li><a href="${path }/rental/rental.do" class="nav-link px-2 link-dark mt-3">대여하기</a></li>
 	
-        <li><a href="${path }/longRental/LRCarList.do" class="nav-link px-2 link-dark">장기렌트하기</a></li>
-		<li><a href="${path }/map/mapview.do" class="nav-link px-2 link-dark">대여소보기</a></li>
-		<li><a href="${path }/map/searchRentalshop.do" class="nav-link px-2 link-dark">대여소검색</a></li>
-		<li><a href="${path }/suggest.do" class="nav-link px-2 link-dark">계획하기</a></li>
+        <li><a href="${path }/longRental/LRCarList.do" class="nav-link px-2 link-dark mt-3">장기렌트하기</a></li>
+		<li><a href="${path }/map/mapview.do" class="nav-link px-2 link-dark mt-3">대여소보기</a></li>
+		<li><a href="${path }/map/searchRentalshop.do" class="nav-link px-2 link-dark mt-3">대여소검색</a></li>
+		<li><a href="${path }/suggest.do" class="nav-link px-2 link-dark mt-3">계획하기</a></li>
      <!--  <div class="col-md-3 text-end" style="display:contents;"> -->
      <div> 
       <c:if test="${loginMember == null&&loginMan == null&&loginAdmin == null }">
 				<li class="login">
-					 <button type="button"  class="btn btn-outline-primary me-2" onclick="location.assign('${path}/member/memberPage.do')">Login</button>
-			        <button type="button" class="btn btn-primary" onclick="location.assign('${path}/member/memberEnroll.do')">Sign-up</button> 
+					 <button type="button"  class="btn btn-outline-primary me-2 mt-3" onclick="location.assign('${path}/member/memberPage.do')">Login</button>
+			        <button type="button" class="btn btn-primary mt-3" onclick="location.assign('${path}/member/memberEnroll.do')">Sign-up</button> 
 			       <!--  <button type="button"  class="btn btn-outline-primary onclick="location.assign('${path}/member/memberPage.do')">Login</button>
 			        <button type="button" class="btn btn-outline-primary onclick="location.assign('${path}/member/memberEnroll.do')">Sign-up</button> -->
 				</li>
@@ -50,12 +50,12 @@
 		</c:if> 
 			<c:if test="${loginMember != null }">
 				<ul class="login">
-				<span>
+				<span class="mt-3">
                    <a href="${path }/mypage/rentaldata.do?memberId=${loginMember.memberId}">
                      <c:out value="${loginMember.memberName }"/>
                    </a>님, 환영합니다.
                 </span>
-				<button  class="btn btn-outline-primary me-2"  onclick="location.assign('${path}/member/logout')">로그아웃</button>
+				<button  class="btn btn-outline-primary me-2 mt-3"  onclick="location.assign('${path}/member/logout')">로그아웃</button>
 				</ul>
 			</c:if>
 				<!-- 사업자 --> 
@@ -63,7 +63,7 @@
 		    <c:if test="${loginMan != null }">
 				<ul class="login">
 				<span>
-                   <a href="${path }/member/memberView.do?userId=${loginMan.bmId}">
+                   <a href="${path }/work/workplace.do?bmId=${loginMan.bmId}">
                      <c:out value="${loginMan.companyName }"/>
                    </a>님, 환영합니다.
                 </span>
@@ -74,7 +74,7 @@
 		       <c:if test="${loginAdmin != null }">
 				<ul class="login">
 				<span>
-                   <a href="${path }/member/memberView.do?userId=${loginAdmin.adminId}">
+                   <a href="${path }/admin.do">
                      <c:out value="${loginAdmin.adminName }"/>
                    </a>님, 환영합니다.
                 </span>

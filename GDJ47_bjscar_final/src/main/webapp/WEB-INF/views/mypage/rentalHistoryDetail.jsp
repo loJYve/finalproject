@@ -7,30 +7,30 @@
 <main>
 	<jsp:include page="/WEB-INF/views/mypage/mypageSidebar.jsp"/>
 		<h2>이전 예약 조회</h2>
-		<c:if test="${not empty rentalHistory }">
+		<c:if test="${not empty rhdetail }">
 			<table class="table">
 		  		<thead>
 		    		<tr>
 						<th scope="col">No.</th>
 						<th scope="col">예약 날짜</th>
-						<th scope="col">차종</th>
+						<th scope="col">반납 날짜</th>
 						<th scope="col">상태</th>
+						<th scope="col">예약날짜</th>
+						<th scope="col">보험코드</th>
 		    		</tr>
 		  		</thead>
 		  		
 		  		<tbody>
-		  			<c:forEach var="rh" items="${rentalHistory }">
 			    		<tr>
-							<th scope="row">${rh.rentalId }</th>
+							<th scope="row"><a href="/mypage/rhdetail.do?rentalId=${rh.rentalId }">${rh.rentalId }</a></th>
 							<td>${rh.bookingDate }</td>
 							<td>${rh.vehicleId }</td>
 							<td>${rh.status }</td>
 			    		</tr>
-		    		</c:forEach>
 		  		</tbody>
 			</table>
 		</c:if>
-		<c:if test="${empty rentalHistory }">
+		<c:if test="${empty rhdetail }">
 			<h3 class="text-center mt-5 mb-5">이전 예약 기록이 없습니다.</h3>
 		</c:if>
 		

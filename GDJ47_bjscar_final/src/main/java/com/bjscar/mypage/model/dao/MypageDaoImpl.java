@@ -57,7 +57,7 @@ public class MypageDaoImpl implements MypageDao {
 	}
 	
 	@Override
-	public RentalHistory selectrentalHistoryDetail(SqlSessionTemplate session, String rhId) {
+	public RentalHistory selectrentalHistoryDetail(SqlSessionTemplate session, int rhId) {
 		return session.selectOne("mypage.selectrentalHistoryDetail", rhId);
 	}
 
@@ -88,6 +88,14 @@ public class MypageDaoImpl implements MypageDao {
 	@Override
 	public void updateRental(SqlSessionTemplate session, String rentalId) {
 		session.update("mypage.updateRental", rentalId);
+	}
+	
+	@Override
+	public void cancelRental(SqlSessionTemplate session, String rentalId) {
+		session.insert("mypage.insertRefundHistory", rentalId);
+		session.update("mypage.updateCarData", rentalId);
+		session.update("mypage.updateRentalData", rentalId);
+		
 	}
 
 }

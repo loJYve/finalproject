@@ -35,7 +35,6 @@
 				<div class="collapse" id="dashboard-collapse" style="">
 					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 						<li><a href="${path }/mypage/purchasehistory.do?memberId=${loginMember.memberId}" class="link-dark rounded">결제 내역</a></li>
-						<li><a href="${path }/mypage/enrolllisence.do?memberId=${loginMember.memberId}" class="link-dark rounded">운전면허 등록</a></li>
 						<li><a href="${path }/mypage/secession.do?memberId=${loginMember.memberId}" class="link-dark rounded">회원 탈퇴</a></li>
 					</ul>
 				</div>
@@ -48,7 +47,6 @@
 			<div class="collapse" id="orders-collapse" style="">
 				<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 					<li><a href="${path }/boardList.do" class="link-dark rounded">문의게시판</a></li>
-					<li><a href="" class="link-dark rounded">1대1 문의</a></li>
 					<li><a href="${path }/mypage/faq.do" class="link-dark rounded">자주 묻는 질문</a></li>
 				</ul>
 			 </div>

@@ -4,11 +4,10 @@
 <div class="container">
   <footer class="py-3 my-4">
     <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+      <li class="nav-item"><a href="<%=request.getContextPath()%>/" class="nav-link px-2 text-muted">Home</a></li>
+      <li class="nav-item"><a href="<%=request.getContextPath()%>/boardList.do" class="nav-link px-2 text-muted">문의 사항</a></li>
+      <li class="nav-item"><a href="${path }/suggest.do" class="nav-link px-2 text-muted">계획하기</a></li>
+      <li class="nav-item"><a href="${path }/mypage/faq.do" class="nav-link px-2 text-muted">FAQs</a></li>
     </ul>
     <p class="text-center text-muted">© 2022 Company, Inc</p>
   </footer>
