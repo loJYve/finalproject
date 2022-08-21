@@ -86,6 +86,17 @@ public class MypageController {
 		return mv;
 	}
 	
+
+	@RequestMapping("/rhdetail.do")
+	public ModelAndView rhDetail(@RequestParam String rhId, ModelAndView mv) {
+		
+		mv.addObject("rhdetail", service.selectrentalHistoryDetail(rhId));
+		
+		mv.setViewName("mypage/rentalHistoryDetail");
+		
+		return mv;
+	}
+
 	@RequestMapping("/secession.do")
 	public String memSecession(@RequestParam String memberId, ModelAndView mv) {
 		
@@ -132,6 +143,19 @@ public class MypageController {
 		
 		//mv.setViewName(mv);
 		
+		
+		return mv;
+	}
+
+	
+	@RequestMapping("/rental.do")
+	public ModelAndView updateRental(@RequestParam String memberId, @RequestParam String rentalId, ModelAndView mv) {
+		
+		service.updateRental(rentalId);
+		
+		mv.addObject("msg", "대여 완료");
+		mv.addObject("loc", "/mypage/rentaldata.do?memberId="+memberId);
+		mv.setViewName("common/msg");
 		
 		return mv;
 	}

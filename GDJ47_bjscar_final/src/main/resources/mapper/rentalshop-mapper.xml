@@ -54,6 +54,13 @@
 		<result column="BOARDING_PERSONNEL"
 			property="boardingPersonnel" />
 		<result column="VEHICLE_GRADE" property="vehicleGrade" />
+		<collection property="files" ofType="attachment">
+			<id column="ATTACHMENT_ID" property="attachmentId" />
+			<result column="ATTACHMENT_TITLE" property="attachmentTitle" />
+			<result column="ATTACHMENT_DATE" property="attchamentDate" />
+			<result column="ORIGINAL_FILENAME" property="originalFilename" />
+			<result column="RENAMED_FILENAME" property="renamedFilename" />
+		</collection>
 	</resultMap>
 	<!-- 자동차 리스트 -->
 	<select id="selectRentalshopCarList" parameterType="Map"
@@ -67,12 +74,35 @@
 		FROM VEHICLE WHERE RENTALSHOP_ID=#{rentalshopId}
 	</select>
 
+	<select id="selectrentalshopcar" parameterType="_int"
+		resultMap="vehicleMap">
+
+		SELECT *
+  FROM ATTACHMENT A
+  INNER JOIN VEHICLE_ATTACHMENT VA
+  ON VA.ATTACHMENT_ID = A.ATTACHMENT_ID
+  INNER JOIN VEHICLE V
+  ON V.VEHICLE_ID = VA.ATTACHMENT_ID WHERE V.VEHICLE_ID=#{no}
 
 
 
+	</select>
+
+	 <insert id="rentalshopidInsertCar"
+		parameterType="rentalshopattachment">
+
+		INSERT INTO VEHICLE_ATTACHMENT VALUES((SELECT
+		MAX(VEHICLE_ID) FROM
+		VEHICLE ),(SELECT MAX(ATTACHMENT_ID) FROM
+		ATTACHMENT))
+
+	</insert>
 
 
-
+<insert id="insertRentalshopCar" parameterType="vehicle">
+		INSERT INTO
+		VEHICLE VALUES (SEQ_VEHICLE_ID.NEXTVAL,#{model},#{numberPlate},#{rentalStatus},#{productYear},#{rentalshopId},#{accidentStatus},#{price},#{fuel},#{boardingPersonnel},#{vehicleGrade})
+	</insert>
 
 
 	<!-- 리스트 출력 -->
